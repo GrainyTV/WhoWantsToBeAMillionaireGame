@@ -1,0 +1,48 @@
+E Melyik törzsbe tartoznak a csigák? Válaszok: puhatestűek, ízeltlábúak, gerinchúrosok, félgerinchúrosok. Megoldás: puhatestűek
+E Hol élnek a pingvinek? Válaszok: a déli sarkon, az északi sarkon, Afrikában, Alaszkában. Megoldás: a déli sarkon
+M Melyik családba tartozik a paradicsom? Válaszok: burgonyafélék, tökfélék, pillangósvirágúak, rózsafélék. Megoldás: burgonyafélék
+E Hogyan lélegeznek a madarak? Válaszok: tüdővel, kopoltyúval, bőrön keresztül, diffúz módon. Megoldás: tüdővel
+M Az erdei pajzsika melyik rendszertani osztályba tartozik? Válaszok: marattiapáfrányok, valódi páfrányok, őspáfrányok, zsurlók. Megoldás: valódi páfrányok
+H Mi az állkapocscsont latin neve? Válaszok: mandibula, maxilla, clavicula, cranium. Megoldás: mandibula
+E Melyik vitamin hiánya okozza az angolkórt? Válaszok: D-vitamin, A-vitamin, E-vitamin, B-vitamin. Megoldás: D-vitamin
+E Melyik nem a kukorica népies neve? Válaszok: pityóka, tengeri, törökbúza, málé. Megoldás: pityóka
+M Mi alapján tájékozódik a delfin? Válaszok: visszhang, ultrahang, mágneses tér, fényhullám. Megoldás: visszhang
+H Melyik nem a gólya népi elnevezése? Válaszok: cepe, gilice, gagó, koszta. Megoldás: cepe
+H Mennyi az elefántok vemhességi ideje? Válaszok: 22 hónap, 12 hónap, 9 hónap, 36 hónap. Megoldás: 22 hónap
+H Hány csigolyából áll a zsiráf nyaka? Válaszok: 5, 7, 9, 11. Megoldás: 7
+H Milyen magasra nőhet az erdeifenyő? Válaszok: 5-10 m, 20-35 m, 50-65 m, 10-20 m. Megoldás: 20-35 m
+H Hány kg súlyú volt a legnagyobb vadon élt oroszlán? Válaszok: 313 kg, 287 kg, 186 kg, 112 kg. Megoldás: 313 kg
+H Mi a szegycsont latin neve? Válaszok: scapula, clavicula, sternum, mandibula. Megoldás: sternum
+E Melyik növény a sörfőzés alapanyaga? Válaszok: árpa, lucerna, búza, zab. Megoldás: árpa
+M Melyik törzsbe tartozik a búza? Válaszok: nyitvatermők, mohák, zárvatermők, leplesmagvúak. Megoldás: zárvatermők
+M Mivel táplálkozik a lajhár? Válaszok: gyümölcsökkel, levelekkel, fűvel, bogarakkal. Megoldás: levelekkel
+E Melyik a burgonya népies neve? Válaszok: pityóka, málé, tengeri, orda. Megoldás: pityóka
+M Melyik a Föld legnagyobb méretű rovara? Válaszok: óriás szöcske, óriás botsáska, alföldi szitakötő, tarantulaölő darázs. Megoldás: óriás botsáska
+M Mi a vakond fő tápláléka? Válaszok: giliszta, rovarok, gyümölcsök, magvak. Megoldás: giliszta
+M Melyik családba tartozik a görögdinnye? Válaszok: dinnyefafélék, szőlőfélék, tökfélék, díszlevélfafélék. Megoldás: tökfélék
+M Hogyan szaporodik az amőba? Válaszok: mirtózissal, mitózissal, mintózissal, miózissal. Megoldás: mitózissal
+M Hol él a koala? Válaszok: Afrikában, Ausztráliában, Ázsiában, Dél-Amerikában. Megoldás: Ausztráliában
+M Mi a deres tapló? Válaszok: műveletlen ember, rovarféle, gombafajta, piócafajta. Megoldás: gombafajta
+E Melyik a természetben előforduló legkeményebb ásvány? Válaszok: ametiszt, gyémánt, gránit, fluorit. Megoldás: gyémánt
+E Minek az energiáját használják fel az élőlények fotoszintéziskor? Válaszok: napfény, szél, hő, gravitáció. Megoldás: napfény
+E Hány lába van a póknak? Válaszok: 8, 6, 4, 16. Megoldás: 8
+H Melyik törzsbe tartoznak a tengericsillagok? Válaszok: előgerinchúrosok, tüskésbőrűek, csalánozók, puhatestűek. Megoldás: tüskésbőrűek
+M Mit vizsgálnak az EEG-vel? Válaszok: agyat, szívet, vesét, tüdőt. Megoldás: agyat
+H Milyen állat a bonobó? Válaszok: majomfaj, madárfaj, hüllőfaj, kétéltűfaj. Megoldás: majomfaj
+M Melyik országban népszerű a rambután nevű gyümölcs? Válaszok: Indiában, Indonéziában, Brazíliában, Bangladesben. Megoldás: Indonéziában
+M Hol található az orsócsont? Válaszok: kéztőben, alkarban, felkarban, lábfejben. Megoldás: alkarban
+H Hány évig élhet egy óriásteknős? Válaszok: 150-200 évig, 200-250 évig, 100-150 évig, 250-300 évig. Megoldás: 150-200 évig
+M Mitől narancssárga a répa? Válaszok: alfa karotintól, béta karontintól, gamma karotintól, delta karotintól. Megoldás: béta karontintól
+M Hányszor erősebb a cápák szemlencséje az embernél? Válaszok: 3x, 10x, 7x, 30x. Megoldás: 7x
+E Mennyi a görögdinnye víztartalma? Válaszok: 90-95 %, 80-85 %, 50-60 %, 70-75 %. Megoldás: 90-95 %
+M Hogy hívják az őz nőstényét? Válaszok: suta, tehén, szuka, kanca. Megoldás: suta
+M Honnan származik a napraforgó? Válaszok: Afrikából, Dél-Amerikából, Észak-Amerikából, Ázsiából. Megoldás: Észak-Amerikából
+M Milyen állat a gangeszi gaviál? Válaszok: hüllő, hal, madár, emlős. Megoldás: hüllő
+E Melyik ország a világ legnagyobb banánexportőre? Válaszok: Peru, Ecuador, Venezuela, Kolumbia. Megoldás: Ecuador
+H Mennyi ideig tart az európai mókus vemhessége? Válaszok: 56 nap, 90 nap, 38 nap, 10 nap. Megoldás: 38 nap
+M Mi a neve a hím kecskének? Válaszok: bak, kan, kos, bika. Megoldás: bak
+M Melyik nem körtefajta? Válaszok: Piros Vilmos, Téli esperes, Vista Bella, Nyári Kálmán. Megoldás: Vista Bella
+M Kik a lajhárok legközelebbi rokonai? Válaszok: ormányosok, övesállatok, hangyászok, bőrszárnyúak. Megoldás: hangyászok
+E Mi a padlizsán másik elnevezése? Válaszok: tojásgyümölcs, csillagtök, laskatök, orsógyümölcs. Megoldás: tojásgyümölcs
+M Melyik megyénkben termesztik a legtöbb sütőtököt? Válaszok: Szabolcs-Szatmár-Bereg, Győr-Moson-Sopron, Borsod-Abaúj-Zemplén, Zala. Megoldás: Szabolcs-Szatmár-Bereg
+M Hány méter hosszú a nagy ámbráscet? Válaszok: 20 m, 10 m, 50 m, 35 m. Megoldás: 20 m

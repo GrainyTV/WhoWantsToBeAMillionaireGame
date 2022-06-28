@@ -1,0 +1,26 @@
+M Melyik magyar festőművész alkotása a Golgota? Válaszok: Munkácsy Mihály, Székely Bertalan, Rippl-Rónai József, Paál László. Megoldás: Munkácsy Mihály
+H Kinek az alkotása a Magányos cédrus? Válaszok: Csontváry Kosztka Tivadar, Madarász Viktor, Rippl-Rónai József, Munkácsy Mihály. Megoldás: Csontváry Kosztka Tivadar
+E Hol tekinthető meg a Feszty-körkép? Válaszok: Ópusztaszeri Nemzeti Történeti Emlékparkban, Zalavári Történelmi Emlékparkban, Vésztő-Mágor Történelmi Emlékhelyen, Magyar Nemzeti Múzeumban. Megoldás: Ópusztaszeri Nemzeti Történeti Emlékparkban
+M Melyik festőnek volt kedvenc témája a napraforgó? Válaszok: Vincent van Gogh, Paul Gauguin, Leonardo da Vinci, Claude Monet. Megoldás: Vincent van Gogh
+E Kinek a műve a Mona Lisa? Válaszok: Leonardo da Vinci, Michelangelo, Pablo Picasso, Paul Gauguin. Megoldás: Leonardo da Vinci
+E Hol van kiállítva a Mona Lisa? Válaszok: párizsi Louvre-ban, firenzei Uffizi Képtárban, brit Nemzeti Képtárban, milánói Fondazione Prada-ban. Megoldás: párizsi Louvre-ban
+M Milyen nemzetiségű volt Pablo Picasso? Válaszok: spanyol, olasz, francia, portugál. Megoldás: spanyol
+H Kinek a műve a Don Quijote szobra Spanyolországban? Válaszok: Salvador Dali, Michelangelo, Raffaello, Donatello. Megoldás: Salvador Dali
+E Mi található a párizsi Louvre udvarán? Válaszok: üvegpiramis, üvegoroszlán, üvegszobor, üvegkupola. Megoldás: üvegpiramis
+H Mikor alapították a firenzei Uffizi Képtárat? Válaszok: 1581-ben, 1781-ben, 1678-ban, 1614-ben. Megoldás: 1581-ben
+H Mi volt Victor Vasarely születési neve? Válaszok: Vásárhelyi Győző, Vásárhelyi Viktor, Vas Győző, Vas Viktor. Megoldás: Vásárhelyi Győző
+M Melyik festő alkotásai a Majális és a Lilaruhás nő? Válaszok: Szinyei Merse Pál, Csontváry Kosztka Tivadar, Munkácsy Mihály, Székely Bertalan. Megoldás: Szinyei Merse Pál
+M Hol született Munkácsy Mihály? Válaszok: Munkácson, Szinyeújfalun, Kisszebenen, Beregszászon. Megoldás: Munkácson
+H Melyik festő alkotása a Honfoglalás? Válaszok: Munkácsy Mihály, Czóbel Béla, Benczur Gyula, Ferenczy Károly. Megoldás: Munkácsy Mihály
+M Mi volt Amerigo Tot szobrászművész eredeti neve? Válaszok: Tóth Imre, Tóth András, Nagy Kálmán, Horváth Ferenc. Megoldás: Tóth Imre
+E Melyik testrészét vágta le Vincent van Gogh? Válaszok: fülét, kezét, lábát, orrát. Megoldás: fülét
+M Melyik festő műve a Karácsonyi éj? Válaszok: Paul Gauguin, Vincent van Gogh, Paul Cézanne, Henri Matisse. Megoldás: Paul Gauguin
+H Miből készült a "Boci" szobor Budapesten? Válaszok: alumíniumból, bronzból, mészkőből, üvegből. Megoldás: alumíniumból
+M Kinek a festménye a Vénusz születése? Válaszok: Sandro Botticelli, Claude Monet, Pablo Picasso, Raffaello Sanzio. Megoldás: Sandro Botticelli
+H Hol született Victor Vasarely festő? Válaszok: Pécsen, Párizsban, Londonban, Budapesten. Megoldás: Pécsen
+H Melyik festő műve a Krisztus trilógia? Válaszok: Munkácsy Mihály, Csontváry Kosztka Tivadar, Szinyei Merse Pál, Rippl-Rónai József. Megoldás: Munkácsy Mihály
+H Hány festményt loptak el 1983-ban a Szépművészeti Múzeumból? Válaszok: 7, 10, 16, 24. Megoldás: 7
+M Melyik szobrász alkotása a Diszkoszvető? Válaszok: Mürón, Pheidiasz, Polükleitosz, Praxitelész. Megoldás: Mürón
+E Kinek a festménye az Éjjeli őrjárat? Válaszok: Rembrandt, Leonardo da Vinci, Picasso, Peter Paul Rubens. Megoldás: Rembrandt
+E Mit csinál az inas Munkácsi Mihály festményén? Válaszok: ásít, alszik, zongorázik, ül. Megoldás: ásít
+M Hol látható Munkácsy Mihály Honfoglalás című festménye? Válaszok: Országházban, Szépművészeti Múzeumban, Magyar Nemzeti Múzeumban, Magyar Nemzeti Galériában. Megoldás: Országházban

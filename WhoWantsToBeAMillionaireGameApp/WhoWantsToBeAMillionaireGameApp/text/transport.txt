@@ -1,0 +1,18 @@
+E Milyen autómárka a Ferrari? Válaszok: olasz, német, angol, amerikai. Megoldás: olasz
+M Milyen jármű a csámesz? Válaszok: vízi, légi, szárazföldi, földalatti. Megoldás: vízi
+H Hányas jelzésű villamos formálisan a Budapesti Fogaskerekű Vasút? Válaszok: 60-as, 13-as, 75-ös, 42-es. Megoldás: 60-as
+M Hány km hosszú a Kisföldalatti Vasút? Válaszok: 4.4 km, 10.4 km, 5.6 km, 1.5 km. Megoldás: 4.4 km
+M Mi volt a beceneve a Ford T-modell-nek? Válaszok: Bádog Böske, Bádog Marcsa, Ford Fanni, Ford Felícia. Megoldás: Bádog Böske
+H Hány vonallal üzemel a sanghaji metró? Válaszok: 14, 8, 12, 10. Megoldás: 14
+H Milyen hosszú a Budapesti Fogaskerekű Vasút útvonala? Válaszok: 3.7 km, 4.5 km, 4.8 km, 1.1 km. Megoldás: 3.7 km
+E Hány állomása van az M4-es metróvonalnak? Válaszok: 10, 15, 12, 11. Megoldás: 10
+H Mikor indult meg Budapesten a menetrend szerinti autóbuszközlekedés? Válaszok: 1915, 1936, 1923, 1946. Megoldás: 1915
+M Hova nem közlekedik HÉV? Válaszok: Esztergomba, Szentendrére, Csepelre, Gödöllőre. Megoldás: Esztergomba
+E Mi volt az Orient expressz? Válaszok: luxusvonat, luxushajó, űrszonda, jacht. Megoldás: luxusvonat
+H Milyen hajó egy budapesti koncert és étteremhajó neve? Válaszok: A38-as, B29-es, G45-ös, H17-es. Megoldás: A38-as
+M Melyik két szín alkotja a KRESZ-ben a "Megállni tilos" táblát? Válaszok: kék és piros, sárga és fekete, kék és fehér, zöld és fehér. Megoldás: kék és piros
+E Milyen színű a főútvonal KRESZ tábla? Válaszok: sárga, zöld, piros, kék. Megoldás: sárga
+E Kinek a nevét viseli a budapesti nemzetközi repülőtér? Válaszok: Liszt Ferenc, Széchenyi István, Petőfi Sándor, Horthy Miklós. Megoldás: Liszt Ferenc
+M Melyik a leghosszabb menetidejű budapesti buszvonal? Válaszok: 133E, 7, 46, 88. Megoldás: 133E
+E Mennyi a megengedett sebesség lakott területen belüli főútvonalon? Válaszok: 50 km/h, 65 km/h, 40 km/h, 80 km/h. Megoldás: 50 km/h
+H Mióta közlekednek FLIRT típusú vonatok Magyarországon? Válaszok: 2007, 2005, 2010, 2011. Megoldás: 2007

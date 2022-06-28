@@ -1,0 +1,46 @@
+M Mit jelent a macsánka szó? Válaszok: paprikás krumpli, bozótvágó kés, muskotályos bor, megműveletlen termőföld. Megoldás: paprikás krumpli
+E Ki fedezte fel a C-vitamint? Válaszok: Szent-Györgyi Albert, Czeizel Endre, Semmelweis Ignác, Eötvös Loránd. Megoldás: Szent-Györgyi Albert
+E Mi a talizmán? Válaszok: szerencsét hozó tárgy, ritka madárféle, szúrófegyver, középkori hajótípus. Megoldás: szerencsét hozó tárgy
+E Ki találta fel a golyóstollat? Válaszok: Bíró László, Gábor Dénes, Irinyi János, Jedlik Ányos. Megoldás: Bíró László
+M Mit jelent a gábli szó? Válaszok: villásreggeli, folyosó, vizipipa, vízelvezető. Megoldás: villásreggeli
+H Mi volt a foglalkozása Aigner Szilárdnak? Válaszok: meteorólogus, színész, újságíró, híradós. Megoldás: meteorólogus
+M Mi a kén vegyjele? Válaszok: S, K, C, H. Megoldás: S
+E Mi a szelfi? Válaszok: önfotó, önámítás, önéletrajz, öntözés. Megoldás: önfotó
+E Mit jelent az angol "always" szó? Válaszok: mindig, soha, egyedül, egyszer. Megoldás: mindig
+E Milyen számítógépes hardver rövidítése a CPU? Válaszok: processzor, videókártya, tápegység, memória. Megoldás: processzor
+H Ki volt Lechner Ödön? Válaszok: magyar építész, magyar festő, magyar szobrász, magyar zenész. Megoldás: magyar építész
+M Milyen tudományág a paleontológia? Válaszok: őslénytan, ősföldrajz, öregedéstan, csontváztan. Megoldás: őslénytan
+M Mi Törökország pénzneme? Válaszok: líra, euró, shiling, leva. Megoldás: líra
+M Ki tervezte a Parlamentet? Válaszok: Steindl Imre, Otto Wagner, Ybl Miklós, Hild József. Megoldás: Steindl Imre
+H Mit jelent a pádimentom szó? Válaszok: padló, erkély, ablak, plafon. Megoldás: padló
+E Mi a tamburin? Válaszok: csörgődob, furulya, nagybőgő, zongora. Megoldás: csörgődob
+M Mi a slambuc? Válaszok: krumplis tészta, mákos tészta, sajtos tészta, túrós tészta. Megoldás: krumplis tészta
+M Mivel foglalkozik az etnográfia? Válaszok: néprajzzal, csillagászattal, írás történetével, földrengésekkel. Megoldás: néprajzzal
+E Milyen nemzetiségű Gordon Ramsay? Válaszok: skót, svéd, dán, angol. Megoldás: skót
+E Mi a kobalt vegyjele? Válaszok: Co, K, Ko, C. Megoldás: Co
+E Ki találta fel a bűvös kockát? Válaszok: Rubik Ernő, Gábor Dénes, Kempelen Farkas, Neumann János. Megoldás: Rubik Ernő
+M Melyik szakácsnak nincs Michelin csillaga? Válaszok: Jamie Oliver, Gordon Ramsay, Alain Ducasse, Seiji Yamamoto. Megoldás: Jamie Oliver
+M Milyen lábbeli a kalucsni? Válaszok: gumicipő, csizma, papucs, bakancs. Megoldás: gumicipő
+E Mi a diabetes? Válaszok: cukorbetegség, laktózérzékenység, szénanátha, pollenallergia. Megoldás: cukorbetegség
+H Kiről nevezték el az Újházi-tyúklevest? Válaszok: Újházi Edéről, Újházi Lászlóról, Újházi Andrásról, Újházi Zsoltról. Megoldás: Újházi Edéről
+E Minek a rövidítése a CD? Válaszok: Color Disc, Compact Disc, Compact Disco, Closed Dentistry. Megoldás: Compact Disc
+E Mi a barátfüle? Válaszok: szilvalekváros derelye, mákos nudli, csörögefánk, diós tészta. Megoldás: szilvalekváros derelye
+M Mit jelent a halef szó? Válaszok: villa, kanál, kés, merőkanál. Megoldás: kés
+H Melyik hónap régi elnevezése a Boldogasszony hava? Válaszok: október, február, január, november. Megoldás: január
+M Melyik vitamin hiánya okozza a farkasvakságot? Válaszok: A vitamin, C vitamin, K vitamin, D vitamin. Megoldás: A vitamin
+E Mi a citológia? Válaszok: bonctan, szövettan, sejttan, vírustan. Megoldás: sejttan
+M Mi a cséving? Válaszok: tálalóedény, fejfedő, ritka madárfaj, erjesztési eljárás. Megoldás: tálalóedény
+H Mi a tarantász? Válaszok: utazókocsi, kétüléses bicikli, lovaskocsi, háromkerekű gépkocsi. Megoldás: utazókocsi
+H Mi a compó? Válaszok: madárfaj, halfajta, rovarféle, vírus. Megoldás: halfajta
+E Mit jelent a "beard" angol szó? Válaszok: bajusz, szakáll, homlok, áll. Megoldás: szakáll
+M Mi a vintage? Válaszok: kis edényke, stílusirányzat, madárfaj, szálláshely. Megoldás: stílusirányzat
+H Ki a matróna? Válaszok: idős asszony, matróz, masiniszta, határőr. Megoldás: idős asszony
+M Miknek az atyjának nevezték Hermann Ottót? Válaszok: növények, madarak, emlősök, halak. Megoldás: madarak
+E Mivel foglalkozik az antropológia? Válaszok: növényekkel, állatokkal, emberekkel, baktériumokkal. Megoldás: emberekkel
+E Mit jellemez a Ph érték? Válaszok: kémhatást, hőmérsékletet, szélirányt, gravitációt. Megoldás: kémhatást
+M Mi a Bóra? Válaszok: szélfajta, halfajta, gombafajta, szőlőfajta. Megoldás: szélfajta
+H Mennyi idő alatt rakta ki Phillip Weyer a Rubik-kockát az Európa-bajnokságon? Válaszok: 7.88 mp, 11.7 mp, 22.88 mp, 5.46 mp. Megoldás: 7.88 mp
+H Milyen ruhadarab volt a pruszlik? Válaszok: díszes mellény, díszes fejfedő, télikabát, lábbeli. Megoldás: díszes mellény
+M Mit csinál az aki obszervál? Válaszok: megfigyel, sportol, menekül, tudakozik. Megoldás: megfigyel
+M Mi a COPD? Válaszok: vesebetegség, szívbetegség, tüdőbetegség, májbetegség. Megoldás: tüdőbetegség
+E Mi a pénzneme Svájcnak? Válaszok: korona, euró, frank, kuna. Megoldás: frank

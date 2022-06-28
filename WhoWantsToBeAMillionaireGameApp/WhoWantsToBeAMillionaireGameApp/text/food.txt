@@ -1,0 +1,46 @@
+E Milyen alakú a farfalle tészta? Válaszok: szarvacska, kagyló, masni, cső. Megoldás: masni
+E Milyen tésztából készül a lángos? Válaszok: kelt, leveles, hajtogatott, omlós. Megoldás: kelt
+M Mi nem kell a madártej készítéséhez? Válaszok: vaj, tojás, tej, cukor. Megoldás: vaj
+H Milyen édesség a Pastiera? Válaszok: töltött képviselőfánk, kávés habcsók, linzertorta, gyümölcstorta. Megoldás: linzertorta
+M Mi a tiramisu jelentése? Válaszok: Dobj fel!, Falj fel!, Egyél meg!, Nyugtass meg!. Megoldás: Dobj fel!
+H Mi a szekszárdi borvidék legismertebb borfajtája? Válaszok: szekszárdi bikavér, kadarka, merlot, chardonnay. Megoldás: szekszárdi bikavér
+M Mi Pennsylvania állam itala? Válaszok: tej, bor, sör, kávé. Megoldás: tej
+E Mi Csehország étele? Válaszok: knédli, pilmenyi, pirog, szárma. Megoldás: knédli
+E Milyen gyümölcsből készül a bor? Válaszok: szőlőből, narancsból, banánból, kajszibarackból. Megoldás: szőlőből
+E Mi az abszint? Válaszok: égetett szesz, édesség, gyümölcsfajta, főétel. Megoldás: égetett szesz
+H Melyik nem fehérborszőlő fajta? Válaszok: zweigelt, cserszegi fűszeres, királyleányka, rajnai rizling. Megoldás: zweigelt
+H Melyik anyag okozza a paprika csípősségét? Válaszok: kapszaicin, kinin, kodein, kinon. Megoldás: kapszaicin
+M Mi a Zala gyöngye szőlőfajta másik neve? Válaszok: Egri csillagok 24., Egri remete 25., Egri szőlő 48., Egri vár 19.. Megoldás: Egri csillagok 24.
+H Mi a Kövidinka? Válaszok: fehérborszőlő, madár, gomba, szlovák főétel. Megoldás: fehérborszőlő
+H Milyen lisztből készül a puliszka? Válaszok: kukoricalisztből, rizslisztből, szójalisztből, rozslisztből. Megoldás: kukoricalisztből
+E Mi a kaviár? Válaszok: halikra, haltej, kagyló, gombafajta. Megoldás: halikra
+H Mi nem kell a habkarika elkészítéséhez? Válaszok: liszt, tojás, cukor, citromlé. Megoldás: liszt
+M Mi kell a mákos guba elkészítéséhez a mákon kívűl? Válaszok: tej, tejföl, alma, méz. Megoldás: tej
+E Milyen ételt nem lehet enni január 1-én? Válaszok: baromfihúst, lencsét, paradicsomot, sertéshúst. Megoldás: baromfihúst
+M Mi az uborka népies neve? Válaszok: ugorka, ugrika, ubroka, udorka. Megoldás: ugorka
+M Kinek nincs Michelin csillaga? Válaszok: Jamie Oliver, Gordon Ramsay, Alain Ducasse, Seiji Yamamoto. Megoldás: Jamie Oliver
+E Miből készül a Sacher-torta? Válaszok: csokoládéból, dióból, gesztenyéből, mézből. Megoldás: csokoládéból
+E Miből készül a szaké? Válaszok: rizsből, búzából, árpából, burgonyából. Megoldás: rizsből
+H Mi a krampampuli? Válaszok: alkoholos ital, kutyafajta, gombafajta, ázsiai fűszernövény. Megoldás: alkoholos ital
+M Mit főzött egy magyar férfi a világon elsőként az Északi-sarkon? Válaszok: paprikás csirkét, paprikás krumplit, lecsót, gulyást. Megoldás: paprikás csirkét
+H Milyen gyümölcsből készül a calvados? Válaszok: almából, szilvából, szőlőből, körtéből. Megoldás: almából
+M Melyik ország desszertje a panna cotta? Válaszok: Olaszország, Franciaország, Spanyolország, Hollandia. Megoldás: Olaszország
+E Miből készül a csokoládé? Válaszok: kakaóbabból, cukornádból, mézből, földimogyoróból. Megoldás: kakaóbabból
+M Milyen ital az Amaretto? Válaszok: olasz mandulalikőr, francia ánizslikőr, ír krémlikőr, dán köménylikőr. Megoldás: olasz mandulalikőr
+E Mi nem kell a palacsinta készítéshez? Válaszok: tejföl, liszt, tojás, tej. Megoldás: tejföl
+H Kiről kapta a nevét a Rákóczi túrós nevű sütemény? Válaszok: Rákóczi János, II. Rákóczi Ferenc, Rákóczi Zsigmond, Rákóczi József. Megoldás: Rákóczi János
+H Honnan származik a zakuszka nevű étel? Válaszok: Örményországból, Csehországból, Oroszországból, Törökországból. Megoldás: Örményországból
+E Milyen ital a Becherovka? Válaszok: cseh keserűlikőr, dán köménylikőr, olasz vermut, német búzasör. Megoldás: cseh keserűlikőr
+M Miből készül a tofu? Válaszok: szójatejből, rizstejből, mandulatejből, kókusztejből. Megoldás: szójatejből
+H Hány Michelin-csillag tulajdonosa Gordon Ramsay? Válaszok: 16, 8, 11, 10. Megoldás: 16
+M Miből készül a guacamole nevű étel? Válaszok: avokádóból, padlizsánból, kelbimbóból, sütőtökből. Megoldás: avokádóból
+E Miből készül a rum? Válaszok: cukornádból, árpamalátából, szőlőből, rizsből. Megoldás: cukornádból
+M Miről kapta a nevét a somlói galuska? Válaszok: egy dombról, egy folyóról, egy faluról, egy síkságról. Megoldás: egy dombról
+E Ki volt Rigó János akiről elnevezték a Rigó Jancsi nevű süteményt? Válaszok: prímás, cukrász, étteremtulajdonos, pincér. Megoldás: prímás
+H Kiknek a szent fája a mangófa? Válaszok: indiaiak, mexikóiak, argentínek, kínaiak. Megoldás: indiaiak
+M Milyen zöldség kell a Dubbary szelet elkészítéséhez? Válaszok: karfiol, karalábé, padlizsán, zeller. Megoldás: karfiol
+E Miből készül a mazsola? Válaszok: szőlőből, almából, szilvából, őszibarackból. Megoldás: szőlőből
+M Mi nem kell a flódni elkészítéséhez? Válaszok: túró, alma, mák, vaj. Megoldás: túró
+H Miből készül a kumisz? Válaszok: kancatejből, kecsketejből, juhtejből, kókusztejből. Megoldás: kancatejből
+M Melyik olasz város a pizza őshazája? Válaszok: Nápoly, Milánó, Verona, Firenze. Megoldás: Nápoly
+E Minek a népies neve a zabszilva? Válaszok: kökény, galagonya, berkenye, csipkebogyó. Megoldás: kökény

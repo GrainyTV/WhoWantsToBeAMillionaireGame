@@ -1,0 +1,46 @@
+E Melyik ország fővárosa Helsinki? Válaszok: Finnország, Svédország, Portugália, Dánia. Megoldás: Finnország
+H Milyen hosszú a Balaton? Válaszok: 77 km, 88 km, 120 km, 64 km. Megoldás: 77 km
+E Mi Magyarország második legnagyobb tava? Válaszok: Velencei-tó, Fertő-tó, Tisza-tó, Öreg-tó. Megoldás: Tisza-tó
+M Mi Nógrád megye székhelye? Válaszok: Salgótarján, Balassagyarmat, Tatabánya, Vác. Megoldás: Salgótarján
+E Hozzávetőlegesen mennyi a Föld népessége? Válaszok: 7 milliárd fő, 5 milliárd fő, 10 milliárd fő, 9 milliárd fő. Megoldás: 7 milliárd fő
+M Melyik ország fővárosa Dublin? Válaszok: Írország, Izland, India, Wales. Megoldás: Írország
+H Hány km a távolság Szolnok és Budapest között? Válaszok: 97 km, 88 km, 78 km, 105 km. Megoldás: 97 km
+M Melyik államban van Dallas? Válaszok: Texas, Kalifornia, Kansas, Új-Mexikó. Megoldás: Texas
+E Hol található Budapesten a Halászbástya? Válaszok: a budai várban, a Gellért-hegyen, a Hősök terén, a Széll Kálmán téren. Megoldás: a budai várban
+E Melyik város nevezetessége a Big Ben? Válaszok: London, Párizs, Milánó, Velence. Megoldás: London
+H Melyik Magyarországi megyében van Sásd? Válaszok: Baranya, Békés, Bács-Kiskun, Somogy. Megoldás: Baranya
+M Honnan ered a Duna? Válaszok: Németországból, Ukrajnából, Szlovákiából, Csehországból. Megoldás: Németországból
+H Mi Litvánia fővárosa? Válaszok: Vilnius, Riga, Tallin, Minszk. Megoldás: Vilnius
+H Honnan indul a Balaton átúszás? Válaszok: Révfülöpről, Balatonboglárról, Tihanyból, Balatonfüredről. Megoldás: Révfülöpről
+M Mi Kalifornia állam székhelye? Válaszok: Sacramento, Atlanta, Boston, Austin. Megoldás: Sacramento
+M Melyik a Föld leghosszabb folyója? Válaszok: Amazonas, Nílus, Mississippi, Jangce. Megoldás: Nílus
+H Melyik nem tartozik a világ hét csodája közé? Válaszok: pisai ferde torony, Szemiramisz függőkertje, rodoszi kolosszus, pharoszi világítótorony. Megoldás: pisai ferde torony
+H Hány km-re van egymástól Tatabánya és Nyíregyháza? Válaszok: 301 km, 234 km, 401 km, 97 km. Megoldás: 301 km
+E Melyik magyar város nevezetessége a Dzsámi? Válaszok: Pécs, Kecskemét, Szeged, Hódmezővásárhely. Megoldás: Pécs
+E Mi Norvégia fővárosa? Válaszok: Oslo, Lisszabon, Bern, Reykjavík. Megoldás: Oslo
+H Melyik megyében van Csanádapáca? Válaszok: Békés, Csongrád, Heves, Borsod-Abaúj-Zemplén. Megoldás: Békés
+M Hány méter magas a Kékes? Válaszok: 1014 m, 976 m, 1006 m, 1025 m. Megoldás: 1014 m
+H Mi Bulgária fővárosa? Válaszok: Burgasz, Szófia, Várna, Szkopje. Megoldás: Szófia
+M Melyik magyar város jelképe a Tűztorony? Válaszok: Sopron, Győr, Eger, Szeged. Megoldás: Sopron
+E Melyik nem szikes tó? Válaszok: Balaton, Fertő-tó, Velencei-tó, Szelidi-tó. Megoldás: Balaton
+M Hol van Bora Bora szigete? Válaszok: az Égei-tengeren, Francia Polinéziában, a Karib-tengeren, a Perzsa-öbölben. Megoldás: Francia Polinéziában
+H Milyen az éghajlata Caracasnak? Válaszok: trópusi szavanna, óceáni, száraz sivatagi, szubtrópusi monszun. Megoldás: trópusi szavanna
+M Melyik óceánban vannak a Seychelle-szigetek? Válaszok: Indiai, Dél-Atlanti, Csendes, Észak-Atlanti. Megoldás: Indiai
+E Hány szövetségi államból áll az USA? Válaszok: 50, 45, 60, 55. Megoldás: 50
+H Melyik ország fővárosa Maputo? Válaszok: Nicaragua, Mozambik, Zambia, Costa Rica. Megoldás: Mozambik
+M Hol torkollik a Tiszába a Maros? Válaszok: Szegednél, Makónál, Aradnál, Magyarcsanádnál. Megoldás: Szegednél
+E Hány megyéből áll Magyarország? Válaszok: 19, 20, 21, 18. Megoldás: 19
+H A Föld felszínének hány %-át foglalja el az Atlanti-óceán? Válaszok: 20, 25, 10, 15. Megoldás: 20
+H Melyik ország fővárosa Hanoi? Válaszok: Vietnam, Japán, Pakisztán, Üzbegisztán. Megoldás: Vietnam
+H Mekkora a Balaton legnagyobb mélysége? Válaszok: 22.6 m, 15 m, 12.5 m, 8 m. Megoldás: 12.5 m
+M Milyen hosszú a Velencei-tó? Válaszok: 10.8 km, 15 km, 6.7 km, 4.2 km. Megoldás: 10.8 km
+E Hol van a Golden Gate híd? Válaszok: Las Vegasban, New Orleansban, San Franciscoban, Los Angelesben. Megoldás: San Franciscoban
+H Mennyi Zalaegerszeg és Budapest távolsága? Válaszok: 224 km, 260 km, 345 km, 190 km. Megoldás: 224 km
+M Melyik város része Lillafüred? Válaszok: Eger, Miskolc, Nyíregyháza, Debrecen. Megoldás: Miskolc
+M Melyik amerikai állam székhelye Denver? Válaszok: Arizona, Florida, Colorado, Wyoming. Megoldás: Colorado
+M Melyik téren van Budapesten a Mátyás templom? Válaszok: Mátyás téren, Szabadság téren, Szentháromság téren, Blaha Lujza téren. Megoldás: Szentháromság téren
+M Melyik a világ legnagyobb kávétermelő országa? Válaszok: Kolumbia, Vietnam, Brazília, Fülöp-szigetek. Megoldás: Brazília
+M Hol van Tasmania szigete? Válaszok: Amerikában, Afrikában, Ausztráliában, Ázsiában. Megoldás: Ausztráliában
+H Melyik fővárosban látható a Petronas-ikertorony? Válaszok: Katmanduban, Kuala Lumpurban, Damaszkuszban, Jakartában. Megoldás: Kuala Lumpurban
+M Mi a neve a keszthelyi kastélynak? Válaszok: Festetics-kastély, Eszterházy-kastély, Grassalkovich-kastély, Széchenyi-kastély. Megoldás: Festetics-kastély
+E Mi a Csomolungma hegy másik elnevezése? Válaszok: K2, Mount Everest, Kilimandzsáró, Kancsendzönga. Megoldás: Mount Everest
