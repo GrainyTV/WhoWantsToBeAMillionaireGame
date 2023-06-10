@@ -4,21 +4,6 @@ unique_ptr<Game> Game::instance = nullptr;
 
 /**
  * 
- * Returns our singleton game object when called. If it hadn't been called before, it gets initialized.
- * 
- */
-Game Game::Instance()
-{
-	if(instance == nullptr)
-	{
-		instance = unique_ptr<Game>(new Game());
-	}
-
-	return *instance.get();
-}
-
-/**
- * 
  * Game object constructor that gets called once when the application starts.
  * 
  */
@@ -26,8 +11,11 @@ Game::Game()
 {
 	srand((unsigned int)(time(NULL)));
 	setlocale(LC_ALL, "hu_HU.utf8");
+}
 
-	*instance.get().FillFileNames();
+void Game::Run()
+{
+	Instance()->FillFileNames();
 
 	for(auto keyValuePair : fileNames)
 	{
@@ -59,4 +47,19 @@ void Game::FillFileNames()
 	fileNames[Category::Tabloid] = "tabloid.txt";
 	fileNames[Category::Theatre] = "theatre.txt";
 	fileNames[Category::Transport] = "transport.txt";
+}
+
+/**
+ * 
+ * Returns our singleton game object when called. If it hadn't been called before, it gets initialized.
+ * 
+ */
+Game* Game::Instance()
+{
+	if(instance == nullptr)
+	{
+		instance = unique_ptr<Game>(new Game());
+	}
+
+	return instance.get();
 }

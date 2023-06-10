@@ -43,9 +43,10 @@ Difficulty Data::CharToDifficulty(char input)
 		throw invalid_argument("Provided difficulty is neither E, M or H character!");
 	}
 
-	return  (input == 'E') ? Difficulty::Easy : 
-			(input == 'M') ? Difficulty::Medium : 
-			Difficulty::Hard;
+	return
+		(input == 'E') ? Difficulty::Easy : 
+		(input == 'M') ? Difficulty::Medium : 
+		Difficulty::Hard;
 }
 
 /**
@@ -55,5 +56,25 @@ Difficulty Data::CharToDifficulty(char input)
  * 
  */
 void Data::LoadContent(string fileName)
-{	
+{
+	ifstream reader;
+	reader.exceptions(ifstream::badbit);
+	
+	try
+	{
+		reader.open("text/" + fileName, ios::in);
+		
+		do
+		{
+			string line;
+			getline(reader, line);
+		
+		} while(reader.eof() == false);
+	}
+	catch(const ifstream::failure& e)
+	{
+		printf("%s\n", "Exception with opening / reading the file!");
+	}
+
+	reader.close();
 }
