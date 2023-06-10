@@ -35,7 +35,7 @@ public:
 
 	void FillFileNames();
 
-	static Game Instance();
+	static Game* Instance();
 };
 
 #endif
