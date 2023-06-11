@@ -13,16 +13,30 @@ Game::Game()
 	setlocale(LC_ALL, "hu_HU.utf8");
 }
 
-void Game::Run()
+/**
+ * 
+ * Stores all the input data if the loading process was successful.
+ * All the data is sorted by category then difficulty for ease of use.
+ * 
+ * [Category] -> [Easy]   -> [Data0, Data1, Data2, ...]
+ *            -> [Medium] -> [Data0, Data1, Data2, ...]
+ *            -> [Hard]   -> [Data0, Data1, Data2, ...]
+ * 
+ */
+void Game::StoreData()
 {
 	for(auto keyValuePair : fileNames)
 	{
+		// Category(first) - "example.txt"(second)
 		auto key = keyValuePair.first;
 		
+		// Initializing empty containers for the data
 		deque<Data> defaultList;
 		unordered_map<Difficulty, deque<Data>> defaultMap = { { Easy, defaultList }, { Medium, defaultList }, { Hard, defaultList } };
 		gameData[key] = defaultMap;
 
+		// Iterating over every element,
+		// and pushing them to their appropriate container
 		for(auto data : Data::LoadContent(fileNames.at(key)))
 		{
 			switch(data._Difficulty())
@@ -86,6 +100,12 @@ void Game::Testing()
 	{
 		values.Print();
 	}
+}
+
+void Game::Run()
+{
+	w_Window;
+	w_Window.Launch();
 }
 
 /**
