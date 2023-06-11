@@ -13,8 +13,9 @@ int main(int argc, char* args[])
 	{
 		Game* const g_Game = Game::Instance();
 		(*g_Game).FillFileNames();
-		(*g_Game).Run();
-		(*g_Game).Testing();
+		(*g_Game).StoreData();
+		//(*g_Game).Testing();
+		(*g_Game).Run();		
 	}
 	catch(const exception& e)
 	{
