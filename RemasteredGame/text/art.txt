@@ -1,0 +1,26 @@
+M|Melyik magyar festőművész alkotása a Golgota?|Munkácsy Mihály|Székely Bertalan|Rippl-Rónai József|Paál László|Munkácsy Mihály
+H|Kinek az alkotása a Magányos cédrus?|Csontváry Kosztka Tivadar|Madarász Viktor|Rippl-Rónai József|Munkácsy Mihály|Csontváry Kosztka Tivadar
+E|Hol tekinthető meg a Feszty-körkép?|Ópusztaszeri Nemzeti Történeti Emlékparkban|Zalavári Történelmi Emlékparkban|Vésztő-Mágor Történelmi Emlékhelyen|Magyar Nemzeti Múzeumban|Ópusztaszeri Nemzeti Történeti Emlékparkban
+M|Melyik festőnek volt kedvenc témája a napraforgó?|Vincent van Gogh|Paul Gauguin|Leonardo da Vinci|Claude Monet|Vincent van Gogh
+E|Kinek a műve a Mona Lisa?|Leonardo da Vinci|Michelangelo|Pablo Picasso|Paul Gauguin|Leonardo da Vinci
+E|Hol van kiállítva a Mona Lisa?|párizsi Louvre-ban|firenzei Uffizi Képtárban|brit Nemzeti Képtárban|milánói Fondazione Prada-ban|párizsi Louvre-ban
+M|Milyen nemzetiségű volt Pablo Picasso?|spanyol|olasz|francia|portugál|spanyol
+H|Kinek a műve a Don Quijote szobra Spanyolországban?|Salvador Dali|Michelangelo|Raffaello|Donatello|Salvador Dali
+E|Mi található a párizsi Louvre udvarán?|üvegpiramis|üvegoroszlán|üvegszobor|üvegkupola|üvegpiramis
+H|Mikor alapították a firenzei Uffizi Képtárat?|1581-ben|1781-ben|1678-ban|1614-ben|1581-ben
+H|Mi volt Victor Vasarely születési neve?|Vásárhelyi Győző|Vásárhelyi Viktor|Vas Győző|Vas Viktor|Vásárhelyi Győző
+M|Melyik festő alkotásai a Majális és a Lilaruhás nő?|Szinyei Merse Pál|Csontváry Kosztka Tivadar|Munkácsy Mihály|Székely Bertalan|Szinyei Merse Pál
+M|Hol született Munkácsy Mihály?|Munkácson|Szinyeújfalun|Kisszebenen|Beregszászon|Munkácson
+H|Melyik festő alkotása a Honfoglalás?|Munkácsy Mihály|Czóbel Béla|Benczur Gyula|Ferenczy Károly|Munkácsy Mihály
+M|Mi volt Amerigo Tot szobrászművész eredeti neve?|Tóth Imre|Tóth András|Nagy Kálmán|Horváth Ferenc|Tóth Imre
+E|Melyik testrészét vágta le Vincent van Gogh?|fülét|kezét|lábát|orrát|fülét
+M|Melyik festő műve a Karácsonyi éj?|Paul Gauguin|Vincent van Gogh|Paul Cézanne|Henri Matisse|Paul Gauguin
+H|Miből készült a "Boci" szobor Budapesten?|alumíniumból|bronzból|mészkőből|üvegből|alumíniumból
+M|Kinek a festménye a Vénusz születése?|Sandro Botticelli|Claude Monet|Pablo Picasso|Raffaello Sanzio|Sandro Botticelli
+H|Hol született Victor Vasarely festő?|Pécsen|Párizsban|Londonban|Budapesten|Pécsen
+H|Melyik festő műve a Krisztus trilógia?|Munkácsy Mihály|Csontváry Kosztka Tivadar|Szinyei Merse Pál|Rippl-Rónai József|Munkácsy Mihály
+H|Hány festményt loptak el 1983-ban a Szépművészeti Múzeumból?|7|10|16|24|7
+M|Melyik szobrász alkotása a Diszkoszvető?|Mürón|Pheidiasz|Polükleitosz|Praxitelész|Mürón
+E|Kinek a festménye az Éjjeli őrjárat?|Rembrandt|Leonardo da Vinci|Picasso|Peter Paul Rubens|Rembrandt
+E|Mit csinál az inas Munkácsi Mihály festményén?|ásít|alszik|zongorázik|ül|ásít
+M|Hol látható Munkácsy Mihály Honfoglalás című festménye?|Országházban|Szépművészeti Múzeumban|Magyar Nemzeti Múzeumban|Magyar Nemzeti Galériában|Országházban

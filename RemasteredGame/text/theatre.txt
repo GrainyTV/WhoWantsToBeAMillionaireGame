@@ -1,0 +1,50 @@
+E|Ki volt a Forrest Gump című film főszereplője?|Tom Hanks|Tim Robbins|Mel Gibson|Danny Glover|Tom Hanks
+M|Melyik film kapott Oscar-díjat 1988-ban?|Esőember|Veszedelmes viszonyok|Farkasokkal táncoló|Az utolsó császár|Esőember
+E|Mi volt Bud Spencer eredeti neve?|Carlo Pedersoli|Mario Girotti|Carlo Girotti|Mario Pedersoli|Carlo Pedersoli
+M|Melyik évben kapott Oscar-díjat a Titanic?|1997|1998|1999|1996|1997
+E|Ki a Csillagok háborújának atyja?|George Lucas|Jake Lloyd|Ewan McGregor|Steven Spielberg|George Lucas
+E|Hol kerül sor az Oscar-díj átadásra?|Los Angelesben|New Yorkban|Las Vegasban|Miamiban|Los Angelesben
+H|Ki volt Gálvölgyi János apósa?|Rodolfó|Alfonzó|Latabár Kálmán|Markos György|Rodolfó
+M|Melyik filmben nyújtott alakításáért kapott Oscar-díjat Leonardo DiCaprio?|A visszatérő|Aviátor|A Wall Street farkasa|Véres Gyémánt|A visszatérő
+M|Ki Pocahontas a Walt Disney mesében?|indián hercegnő|hableány|császár leánya|királynő|indián hercegnő
+H|Melyik film nyert Oscar díjat 1956-ban?|80 nap alatt a Föld körül|Híd a Kwai folyón|West Side Story|Ben-Hur|80 nap alatt a Föld körül
+H|Hány cm magas volt Yoda a Star Wars szereplője?|140 cm|66 cm|97 cm|120 cm|66 cm
+H|Mikor készült a Száll a kakukk fészkére című film?|1970-ben|1976-ban|1975-ben|1982-ben|1975-ben
+M|Melyik években játszódik a Star Trek?|1960-as|1970-es|1950-es|1980-as|1960-as
+H|Ki Mushu a Mulan című Disney rajzfilmben?|házisárkány|kobold|hobbit|elf|házisárkány
+M|Melyik országban rendezik meg a Locarnói Nemzetközi Filmfesztivált?|Franciaország|Olaszország|Svájc|Belgium|Svájc
+M|Ki a főszereplője Az utolsó szamuráj című filmnek?|Tom Cruise|Tom Hanks|Tom Welling|Tom Hardy|Tom Cruise
+H|Hányadik Golden Globe-gálát rendezték 2016-ban?|73.|74.|72.|71.|73.
+E|Mi a neve az oroszlánnak a Madagaszkárban?|Alex|Gloria|Rico|Marty|Alex
+M|Mi volt a születési neve Ruttkai Évának?|Russ Éva|Szabó Éva|Robok Éva|Flachbarth Éva|Russ Éva
+M|Hol született Antonio Banderas?|Barcelonában|Sevillában|Malagában|Madridban|Malagában
+E|Milyen anyagból készült Pinokkió?|műanyagból|fából|textilből|bőrből|fából
+M|Hol kerül átadásra az Emmy-díj?|Los Angelesben|New Yorkban|Las Vegasban|Miamiban|Los Angelesben
+H|Hol született Páger Antal Kossuth-díjas színész?|Makón|Debrecenben|Szegeden|Pécsen|Makón
+H|Hányszoros Golden Globe-díjas Robin Williams?|kétszeres|négyszeres|hatszoros|ötszörös|hatszoros
+E|Hol játszódik a Lucky Luke képregénysorozat?|a dzsungelben|a vadnyugaton|a sivatagban|a tengeren|a vadnyugaton
+M|Mi a neve a másik két mókusnak az Alvin és a mókusokban?|David és Ted|Simon és Theodore|Simon és David|David és Theodore|Simon és Theodore
+E|Mi a neve a fekete párducnak A dzsungel könyvében?|Sir Kán|Bagira|Akela|Ráksa|Bagira
+H|Mikor mutatták be az Augusztus Oklahomában című filmet?|2015-ben|2014-ben|2010-ben|2017-ben|2014-ben
+M|Ki játszotta Donna szerepét a Mamma Mia! című filmben?|Meryl Streep|Sharon Stone|Nicole Kidman|Amanda Seyfried|Meryl Streep
+E|Milyen állat Garfield?|macska|mókus|kutya|nyúl|macska
+M|Ki nem szerepelt az Alice csodaországban című filmben?|Toto|Április bolondja|Kalapos|Dodó|Toto
+H|Mi a neve a kaposvári színháznak?|Gárdonyi Géza Színház|Csiky Gergely Színház|Móricz Zsigmond Színház|Örkény István Színház|Csiky Gergely Színház
+M|Hol játszódik a Halálsoron című film?|az űrben|elmegyógyintézetben|börtönben|vonaton|börtönben
+E|Mi a neve a vízilónak a Madagaszkár című filmben?|Gloria|Alex|Melman|Rico|Gloria
+M|Melyik filmben nem játszott Kaszás Attila?|Kútfejek|Valami Amerika|Üvegtigris|A Hídember|Valami Amerika
+E|Melyik számokkal lett telitalálata Andrásnak a Valami Amerika című filmben?|1 2 3 4 5|10 20 30 40 50|12 22 32 42 52|5 10 15 20 25|1 2 3 4 5
+E|Milyen állat Ted az amerikai vígjátékban?|mackó|elefánt|oroszlán|panda|mackó
+M|Melyik filmben nem játszott Patrick Swayze?|Dirty Dancing|Ghost|Titanic|A vér szava|Titanic
+M|Ki énekelte a Titanic betétdalát?|Shania Twain|Celine Dion|Shakira|Jennifer Lopez|Celine Dion
+M|Ki rendezte A tanú című filmet?|Bacsó Péter|Fábri Péter|Mészáros Péter|Halász Péter|Bacsó Péter
+E|Melyik rajzfilm szereplője Grabowski?|Macskarisztokraták|Macskafogó|Tom és Jerry|Szilveszter és Csőrike kalandja|Macskafogó
+M|Hány évesen tudja meg Harry Potter hogy varázsló?|14|12|11|10|11
+H|Mi volt a születési neve Karády Katalinnak?|Kovács Katalin|Kanczler Katalin|Kerekes Katalin|Katánszki Katalin|Kanczler Katalin
+H|Mi volt Tolnay Klári eredeti keresztneve?|Ilona|Rózsi|Bori|Tündi|Rózsi
+M|Melyik tévéfilmben nem játszott Bajor Imre?|Linda|Kisváros|Angyalbőrben|Szomszédok|Kisváros
+H|Mikor mutatták be az eredeti fekete-fehér Meseautó című filmet?|1953-ban|1947-ben|1934-ben|1925-ben|1934-ben
+E|Hányszoros Oscar-díjas Robert De Niro?|négyszeres|kétszeres|ötszörös|hétszeres|kétszeres
+E|Melyik Marlon Brando legismertebb filmszerepe?|A Keresztapa|Julius Caesar|Don Juan DeMarco|Utolsó tangó Párizsban|A Keresztapa
+M|Ki rendezte A Keresztapa című filmet?|Francis Ford Coppola|John Malkovich|Garry Marshall|Martin Scorsese|Francis Ford Coppola
+E|Melyik filmben játszott Michael Jackson?|Elemi ösztön|Men in Black II|A bárányok hallgatnak|Hetedik|Men in Black II

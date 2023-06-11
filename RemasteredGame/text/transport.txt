@@ -1,0 +1,18 @@
+E|Milyen autómárka a Ferrari?|olasz|német|angol|amerikai|olasz
+M|Milyen jármű a csámesz?|vízi|légi|szárazföldi|földalatti|vízi
+H|Hányas jelzésű villamos formálisan a Budapesti Fogaskerekű Vasút?|60-as|13-as|75-ös|42-es|60-as
+M|Hány km hosszú a Kisföldalatti Vasút?|4.4 km|10.4 km|5.6 km|1.5 km|4.4 km
+M|Mi volt a beceneve a Ford T-modell-nek?|Bádog Böske|Bádog Marcsa|Ford Fanni|Ford Felícia|Bádog Böske
+H|Hány vonallal üzemel a sanghaji metró?|14|8|12|10|14
+H|Milyen hosszú a Budapesti Fogaskerekű Vasút útvonala?|3.7 km|4.5 km|4.8 km|1.1 km|3.7 km
+E|Hány állomása van az M4-es metróvonalnak?|10|15|12|11|10
+H|Mikor indult meg Budapesten a menetrend szerinti autóbuszközlekedés?|1915|1936|1923|1946|1915
+M|Hova nem közlekedik HÉV?|Esztergomba|Szentendrére|Csepelre|Gödöllőre|Esztergomba
+E|Mi volt az Orient expressz?|luxusvonat|luxushajó|űrszonda|jacht|luxusvonat
+H|Milyen hajó egy budapesti koncert és étteremhajó neve?|A38-as|B29-es|G45-ös|H17-es|A38-as
+M|Melyik két szín alkotja a KRESZ-ben a "Megállni tilos" táblát?|kék és piros|sárga és fekete|kék és fehér|zöld és fehér|kék és piros
+E|Milyen színű a főútvonal KRESZ tábla?|sárga|zöld|piros|kék|sárga
+E|Kinek a nevét viseli a budapesti nemzetközi repülőtér?|Liszt Ferenc|Széchenyi István|Petőfi Sándor|Horthy Miklós|Liszt Ferenc
+M|Melyik a leghosszabb menetidejű budapesti buszvonal?|133E|7|46|88|133E
+E|Mennyi a megengedett sebesség lakott területen belüli főútvonalon?|50 km/h|65 km/h|40 km/h|80 km/h|50 km/h
+H|Mióta közlekednek FLIRT típusú vonatok Magyarországon?|2007|2005|2010|2011|2007

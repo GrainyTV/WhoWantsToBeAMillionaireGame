@@ -1,0 +1,46 @@
+E|Milyen alakú a farfalle tészta?|szarvacska|kagyló|masni|cső|masni
+E|Milyen tésztából készül a lángos?|kelt|leveles|hajtogatott|omlós|kelt
+M|Mi nem kell a madártej készítéséhez?|vaj|tojás|tej|cukor|vaj
+H|Milyen édesség a Pastiera?|töltött képviselőfánk|kávés habcsók|linzertorta|gyümölcstorta|linzertorta
+M|Mi a tiramisu jelentése?|Dobj fel!|Falj fel!|Egyél meg!|Nyugtass meg!|Dobj fel!
+H|Mi a szekszárdi borvidék legismertebb borfajtája?|szekszárdi bikavér|kadarka|merlot|chardonnay|szekszárdi bikavér
+M|Mi Pennsylvania állam itala?|tej|bor|sör|kávé|tej
+E|Mi Csehország étele?|knédli|pilmenyi|pirog|szárma|knédli
+E|Milyen gyümölcsből készül a bor?|szőlőből|narancsból|banánból|kajszibarackból|szőlőből
+E|Mi az abszint?|égetett szesz|édesség|gyümölcsfajta|főétel|égetett szesz
+H|Melyik nem fehérborszőlő fajta?|zweigelt|cserszegi fűszeres|királyleányka|rajnai rizling|zweigelt
+H|Melyik anyag okozza a paprika csípősségét?|kapszaicin|kinin|kodein|kinon|kapszaicin
+M|Mi a Zala gyöngye szőlőfajta másik neve?|Egri csillagok 24.|Egri remete 25.|Egri szőlő 48.|Egri vár 19.|Egri csillagok 24.
+H|Mi a Kövidinka?|fehérborszőlő|madár|gomba|szlovák főétel|fehérborszőlő
+H|Milyen lisztből készül a puliszka?|kukoricalisztből|rizslisztből|szójalisztből|rozslisztből|kukoricalisztből
+E|Mi a kaviár?|halikra|haltej|kagyló|gombafajta|halikra
+H|Mi nem kell a habkarika elkészítéséhez?|liszt|tojás|cukor|citromlé|liszt
+M|Mi kell a mákos guba elkészítéséhez a mákon kívűl?|tej|tejföl|alma|méz|tej
+E|Milyen ételt nem lehet enni január 1-én?|baromfihúst|lencsét|paradicsomot|sertéshúst|baromfihúst
+M|Mi az uborka népies neve?|ugorka|ugrika|ubroka|udorka|ugorka
+M|Kinek nincs Michelin csillaga?|Jamie Oliver|Gordon Ramsay|Alain Ducasse|Seiji Yamamoto|Jamie Oliver
+E|Miből készül a Sacher-torta?|csokoládéból|dióból|gesztenyéből|mézből|csokoládéból
+E|Miből készül a szaké?|rizsből|búzából|árpából|burgonyából|rizsből
+H|Mi a krampampuli?|alkoholos ital|kutyafajta|gombafajta|ázsiai fűszernövény|alkoholos ital
+M|Mit főzött egy magyar férfi a világon elsőként az Északi-sarkon?|paprikás csirkét|paprikás krumplit|lecsót|gulyást|paprikás csirkét
+H|Milyen gyümölcsből készül a calvados?|almából|szilvából|szőlőből|körtéből|almából
+M|Melyik ország desszertje a panna cotta?|Olaszország|Franciaország|Spanyolország|Hollandia|Olaszország
+E|Miből készül a csokoládé?|kakaóbabból|cukornádból|mézből|földimogyoróból|kakaóbabból
+M|Milyen ital az Amaretto?|olasz mandulalikőr|francia ánizslikőr|ír krémlikőr|dán köménylikőr|olasz mandulalikőr
+E|Mi nem kell a palacsinta készítéshez?|tejföl|liszt|tojás|tej|tejföl
+H|Kiről kapta a nevét a Rákóczi túrós nevű sütemény?|Rákóczi János|II. Rákóczi Ferenc|Rákóczi Zsigmond|Rákóczi József|Rákóczi János
+H|Honnan származik a zakuszka nevű étel?|Örményországból|Csehországból|Oroszországból|Törökországból|Örményországból
+E|Milyen ital a Becherovka?|cseh keserűlikőr|dán köménylikőr|olasz vermut|német búzasör|cseh keserűlikőr
+M|Miből készül a tofu?|szójatejből|rizstejből|mandulatejből|kókusztejből|szójatejből
+H|Hány Michelin-csillag tulajdonosa Gordon Ramsay?|16|8|11|10|16
+M|Miből készül a guacamole nevű étel?|avokádóból|padlizsánból|kelbimbóból|sütőtökből|avokádóból
+E|Miből készül a rum?|cukornádból|árpamalátából|szőlőből|rizsből|cukornádból
+M|Miről kapta a nevét a somlói galuska?|egy dombról|egy folyóról|egy faluról|egy síkságról|egy dombról
+E|Ki volt Rigó János akiről elnevezték a Rigó Jancsi nevű süteményt?|prímás|cukrász|étteremtulajdonos|pincér|prímás
+H|Kiknek a szent fája a mangófa?|indiaiak|mexikóiak|argentínek|kínaiak|indiaiak
+M|Milyen zöldség kell a Dubbary szelet elkészítéséhez?|karfiol|karalábé|padlizsán|zeller|karfiol
+E|Miből készül a mazsola?|szőlőből|almából|szilvából|őszibarackból|szőlőből
+M|Mi nem kell a flódni elkészítéséhez?|túró|alma|mák|vaj|túró
+H|Miből készül a kumisz?|kancatejből|kecsketejből|juhtejből|kókusztejből|kancatejből
+M|Melyik olasz város a pizza őshazája?|Nápoly|Milánó|Verona|Firenze|Nápoly
+E|Minek a népies neve a zabszilva?|kökény|galagonya|berkenye|csipkebogyó|kökény

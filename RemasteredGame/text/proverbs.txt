@@ -1,0 +1,26 @@
+M|Mi a befejezése a közmondásnak "Ha rövid a kardod"?|told meg egy lépéssel|cseréld hosszúra|told meg egy másikkal|használj kettőt|told meg egy lépéssel
+E|Hogyan fejeződik be a közmondás "Késő bánat"?|ebgondolat|a kutyafádat|holnapra elmúlik|a kihagyott lehetőség|ebgondolat
+E|Mi rossz tanácsadó a közmondás szerint?|harang|harag|szomszéd|internet|harag
+H|Mibe nem üt a mennykő a közmondás szerint?|csalánba|bokorba|nyírfába|karámba|csalánba
+E|Mi van annak a fején aki bűnös a közmondás szerint?|vaj|tej|sapka|hideg|vaj
+M|Mit lel a közmondás szerint aki korán kel?|gyémántot|aranyat|barátot|pénzt|aranyat
+H|Hogyan folytatódik a közmondás "Több nap mint"?|kolbász|szalonna|éjszaka|amennyi szükséges|kolbász
+E|Milyét ne nézd az ajándék lónak a közmondás szerint?|a patáját|a fogát|a sörényét|a méretét|a fogát
+H|Mit jelent magyarul a Dies diem docet-latin közmondás?|Nap napot tanít.|Pap papot tanít.|Amíg élek remélek.|Minden nap tanulságos.|Nap napot tanít.
+M|Hogyan fejeződik be a közmondás "Éhes disznó"?|makkal álmodik.|mindent felfal.|nem vén disznó.|könnyen levágható.|makkal álmodik.
+H|Mit jelent a Carpe diem! latin közmondás?|Élj a mának!|Amíg élek remélek.|Ne ítélj hogy ne ítéltess!|Adok hogy adj!|Élj a mának!
+H|Mit jelent a "Do ut des!" latin közmondás?|Adok hogy adj!|Amíg élek remélek.|Borban az igazság.|Élj a mának!|Adok hogy adj!
+M|Mit jelent az Ab ovo latin közmondás?|Elejétől a végéig.|Tűzből tüzet.|Tetőtől talpig.|Tűzön vizen át.|Elejétől a végéig.
+H|Mit jelent a latin közmondás: Acta est fabula?|A játéknak vége.|Az arany középút.|A sas nem vadászik legyekre.|Élj a mának!|A játéknak vége.
+M|Mit jelent a latin közmondás: In vino veritas?|Borban az igazság.|Fiatalság bolondság.|Fából vaskarika.|Az arany középút.|Borban az igazság.
+E|Mit terem a türelem a közmondás szerint?|rózsát|almát|nyulat|vagyont|rózsát
+M|Mit jelent a latin közmondás: Alea iacta est?|A kocka el van vetve.|Az arany középút.|Gondolkodom tehát vagyok.|Fiatalság bolondság.|A kocka el van vetve.
+E|Hogyan fejeződik be a mondás "Sándor József Benedek"?|zsákban hozzák a meleget.|kiűzik a hideget.|sose lesznek betegek.|együtt lesznek celebek.|zsákban hozzák a meleget.
+E|Hogy folytatódik a közmondás "Mindenki a maga szerencséjének"?|a kovácsa|a pogácsa|az elrontója|a csodája|a kovácsa
+E|Hogy folytatódik a közmondás "Ki mint vet"?|úgy arat.|úgymarad.|úgy halad.|úgy szalad.|úgy arat.
+E|Hogy folytatódik a közmondás "Aki másnak vermet ás"?|maga esik bele.|sose esik bele.|az magának is kitudja ásni.|földmunkás vagy fejvadász.|maga esik bele.
+M|Hogy folytatódik a közmondás "A tiltott gyümölcs"?|a legédesebb|a legrosszabb|nem ehető|sosem keserű|a legédesebb
+M|Ki mondta hogy "Gondolkodom tehát vagyok."?|Descartes|Voltaire|Goethe|Platón|Descartes
+H|Hogy folytatódik a latin közmondás "Aki időt nyer"?|életet nyer|éveket nyer|életet mer|életet ment|életet nyer
+M|Hogy folytatódik a közmondás "Kutyából nem lesz"?|szalonna|pizsama|csatorna|legenda|szalonna
+E|Hogy folytatódik a közmondás "A lónak négy lába van"?|amellyel maga esik bele.|ennek ellenére csak egy farka.|mégis megbotlik.|mint a sánta kutyának.|mégis megbotlik.

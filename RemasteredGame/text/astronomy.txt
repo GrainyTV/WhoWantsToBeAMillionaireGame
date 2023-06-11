@@ -1,0 +1,35 @@
+H|Mikor lesz Magyarországon legközelebb teljes napfogyatkozás?|2081.09.03|2091.09.11|2089.09.21|2110.09.17|2081.09.03
+E|Melyik bolygó van a legközelebb a Naphoz?|Merkúr|Vénusz|Mars|Jupiter|Merkúr
+M|Melyik állatövi jegybe tartozik aki január 25-én született?|vízöntő|halak|bak|nyilas|vízöntő
+M|Melyik állatövi jegyhez tartozik aki november 25-én született?|nyilas|skorpió|mérleg|bak|nyilas
+M|Melyik a legnagyobb bolygó a Naprendszerben?|Jupiter|Szaturnusz|Uránusz|Mars|Jupiter
+M|Mi a Vénusz bolygó másik elnevezése?|Esthajnalcsillag|Göncölszekér|Androméda|Ökörhajcsár|Esthajnalcsillag
+H|Melyik nem Föld-típusú bolygó?|Jupiter|Vénusz|Merkúr|Mars|Jupiter
+E|Melyik a Naptól számítva legkülső bolygó a Naprendszerben?|Neptunusz|Uránusz|Vénusz|Mars|Neptunusz
+M|Hány törpebolygó van a Naprendszerben?|6|5|8|7|5
+M|Mi a meteor népies neve?|esticsillag|hajnalcsillag|hullócsillag|üstökös|hullócsillag
+E|Hány fénymásodpercre van a Föld a Holdtól?|1.3|8.4|4.5|22.4|1.3
+E|Melyik nem óriásbolygó?|Vénusz|Szaturnusz|Jupiter|Uránusz|Vénusz
+M|Hány km távolságra van a Nap a Földtől?|150 millió km|260 millió km|40 millió km|10 millió km|150 millió km
+E|Mi volt a neve az első űreszköznek amit a világűrbe juttattak?|Szputnyik–1|Voyager-1|Syncom–1|Vostok 1|Szputnyik–1
+H|Mikor volt Magyarországon utoljára teljes napfogyatkozás?|1999.aug.11-én|2000.aug.21-én|1997.júl.13-án|2001.jún.14-én|1999.aug.11-én
+E|Mi az aszteroida?|kisbolygó|csillag|üstökös|űrszemét|kisbolygó
+M|Mi a Nap anyaga?|hidrogén és hélium|oxigén és nitrogén|hidrogén és oxigén|hélium és nitrogén|hidrogén és hélium
+E|Mi a Mars nem hivatalos másik neve?|vörös bolygó|kék bolygó|sárga bolygó|magenta bolygó|vörös bolygó
+M|Mi a Föld legmélyebb pontja?|Mariana-árok|Tonga-árok|Japán-árok|Fülöp-árok|Mariana-árok
+E|Mi a neve a mesterséges égitestnek?|műhold|műbolygó|műcsillag|űrállomás|műhold
+H|Mikor jelent meg utoljára a Halley-üstökös a naprendszerben?|1986-ban|1997-ben|2000-ben|2001-ben|1986-ban
+E|Mi történik napfogyatkozáskor?|A Hold eltakarja a Napot|A Hold a Föld árnyékába kerül|A Mars eltakarja a Földet|A Nap eltakarja a Holdat|A Hold eltakarja a Napot
+M|Mi történik holdfogyatkozáskor?|A Hold a Föld árnyékába kerül|A Nap eltakarja a Holdat|A Hold eltakarja a Napot|A Föld árnyéka rávetül a Holdra|A Hold a Föld árnyékába kerül
+H|Hány holdja van a Jupiternek?|67|98|34|152|67
+H|Milyen magasságban kering a Nemzetközi Űrállomás?|161 km|408 km|950 km|620 km|408 km
+H|Hány percenként kerüli meg a Földet a Nemzetközi Űrállomás?|92|360|156|45|92
+M|Mikor lesz újra megfigyelhető a Halley-üstökös?|2061-ben|2081-ben|2045-ben|2025-ben|2061-ben
+E|Hanyadik bolygó a Föld a Naptól számítva?|3.|5.|6.|4.|3.
+M|Hány milliárd évvel ezelőtt született a Nap?|4.6 milliárd|1.3 milliárd|3.6 milliárd|2.7 milliárd|4.6 milliárd
+M|Melyik szobor kicsinyített mását vitte magával Farkas Bertalan a világűrbe?|Szabadság-szobor|Sárkányölő Szent György szobor|Hunyadi János szobor|II. Rákóczi Ferenc szobor|Szabadság-szobor
+E|Mit jelent az atmoszféra szó?|légkör|világűr|bolygó|légmentes tér|légkör
+M|Melyik amerikai színésznőről neveztek el kisbolygót?|Jodie Foster|Natalie Portman|Meryl Streep|Alexandra Hedison|Jodie Foster
+M|Melyik bolygó van legközelebb a Naphoz?|Merkúr|Vénusz|Mars|Szaturnusz|Merkúr
+E|Ki lépett előszőr a Holdra?|Neil Armstrong|Jurij Gagarin|Louis Armstrong|Edgar Mitchell|Neil Armstrong
+H|Hány csillag alkotja a Göncölszekeret?|7|8|10|5|7

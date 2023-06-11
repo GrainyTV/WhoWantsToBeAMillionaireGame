@@ -1,0 +1,48 @@
+E|Melyik törzsbe tartoznak a csigák?|puhatestűek|ízeltlábúak|gerinchúrosok|félgerinchúrosok|puhatestűek
+E|Hol élnek a pingvinek?|a déli sarkon|az északi sarkon|Afrikában|Alaszkában|a déli sarkon
+M|Melyik családba tartozik a paradicsom?|burgonyafélék|tökfélék|pillangósvirágúak|rózsafélék|burgonyafélék
+E|Hogyan lélegeznek a madarak?|tüdővel|kopoltyúval|bőrön keresztül|diffúz módon|tüdővel
+M|Az erdei pajzsika melyik rendszertani osztályba tartozik?|marattiapáfrányok|valódi páfrányok|őspáfrányok|zsurlók|valódi páfrányok
+H|Mi az állkapocscsont latin neve?|mandibula|maxilla|clavicula|cranium|mandibula
+E|Melyik vitamin hiánya okozza az angolkórt?|D-vitamin|A-vitamin|E-vitamin|B-vitamin|D-vitamin
+E|Melyik nem a kukorica népies neve?|pityóka|tengeri|törökbúza|málé|pityóka
+M|Mi alapján tájékozódik a delfin?|visszhang|ultrahang|mágneses tér|fényhullám|visszhang
+H|Melyik nem a gólya népi elnevezése?|cepe|gilice|gagó|koszta|cepe
+H|Mennyi az elefántok vemhességi ideje?|22 hónap|12 hónap|9 hónap|36 hónap|22 hónap
+H|Hány csigolyából áll a zsiráf nyaka?|5|7|9|11|7
+H|Milyen magasra nőhet az erdeifenyő?|5-10 m|20-35 m|50-65 m|10-20 m|20-35 m
+H|Hány kg súlyú volt a legnagyobb vadon élt oroszlán?|313 kg|287 kg|186 kg|112 kg|313 kg
+H|Mi a szegycsont latin neve?|scapula|clavicula|sternum|mandibula|sternum
+E|Melyik növény a sörfőzés alapanyaga?|árpa|lucerna|búza|zab|árpa
+M|Melyik törzsbe tartozik a búza?|nyitvatermők|mohák|zárvatermők|leplesmagvúak|zárvatermők
+M|Mivel táplálkozik a lajhár?|gyümölcsökkel|levelekkel|fűvel|bogarakkal|levelekkel
+E|Melyik a burgonya népies neve?|pityóka|málé|tengeri|orda|pityóka
+M|Melyik a Föld legnagyobb méretű rovara?|óriás szöcske|óriás botsáska|alföldi szitakötő|tarantulaölő darázs|óriás botsáska
+M|Mi a vakond fő tápláléka?|giliszta|rovarok|gyümölcsök|magvak|giliszta
+M|Melyik családba tartozik a görögdinnye?|dinnyefafélék|szőlőfélék|tökfélék|díszlevélfafélék|tökfélék
+M|Hogyan szaporodik az amőba?|mirtózissal|mitózissal|mintózissal|miózissal|mitózissal
+M|Hol él a koala?|Afrikában|Ausztráliában|Ázsiában|Dél-Amerikában|Ausztráliában
+M|Mi a deres tapló?|műveletlen ember|rovarféle|gombafajta|piócafajta|gombafajta
+E|Melyik a természetben előforduló legkeményebb ásvány?|ametiszt|gyémánt|gránit|fluorit|gyémánt
+E|Minek az energiáját használják fel az élőlények fotoszintéziskor?|napfény|szél|hő|gravitáció|napfény
+E|Hány lába van a póknak?|8|6|4|16|8
+H|Melyik törzsbe tartoznak a tengericsillagok?|előgerinchúrosok|tüskésbőrűek|csalánozók|puhatestűek|tüskésbőrűek
+M|Mit vizsgálnak az EEG-vel?|agyat|szívet|vesét|tüdőt|agyat
+H|Milyen állat a bonobó?|majomfaj|madárfaj|hüllőfaj|kétéltűfaj|majomfaj
+M|Melyik országban népszerű a rambután nevű gyümölcs?|Indiában|Indonéziában|Brazíliában|Bangladesben|Indonéziában
+M|Hol található az orsócsont?|kéztőben|alkarban|felkarban|lábfejben|alkarban
+H|Hány évig élhet egy óriásteknős?|150-200 évig|200-250 évig|100-150 évig|250-300 évig|150-200 évig
+M|Mitől narancssárga a répa?|alfa karotintól|béta karontintól|gamma karotintól|delta karotintól|béta karontintól
+M|Hányszor erősebb a cápák szemlencséje az embernél?|3x|10x|7x|30x|7x
+E|Mennyi a görögdinnye víztartalma?|90-95 %|80-85 %|50-60 %|70-75 %|90-95 %
+M|Hogy hívják az őz nőstényét?|suta|tehén|szuka|kanca|suta
+M|Honnan származik a napraforgó?|Afrikából|Dél-Amerikából|Észak-Amerikából|Ázsiából|Észak-Amerikából
+M|Milyen állat a gangeszi gaviál?|hüllő|hal|madár|emlős|hüllő
+E|Melyik ország a világ legnagyobb banánexportőre?|Peru|Ecuador|Venezuela|Kolumbia|Ecuador
+H|Mennyi ideig tart az európai mókus vemhessége?|56 nap|90 nap|38 nap|10 nap|38 nap
+M|Mi a neve a hím kecskének?|bak|kan|kos|bika|bak
+M|Melyik nem körtefajta?|Piros Vilmos|Téli esperes|Vista Bella|Nyári Kálmán|Vista Bella
+M|Kik a lajhárok legközelebbi rokonai?|ormányosok|övesállatok|hangyászok|bőrszárnyúak|hangyászok
+E|Mi a padlizsán másik elnevezése?|tojásgyümölcs|csillagtök|laskatök|orsógyümölcs|tojásgyümölcs
+M|Melyik megyénkben termesztik a legtöbb sütőtököt?|Szabolcs-Szatmár-Bereg|Győr-Moson-Sopron|Borsod-Abaúj-Zemplén|Zala|Szabolcs-Szatmár-Bereg
+M|Hány méter hosszú a nagy ámbráscet?|20 m|10 m|50 m|35 m|20 m

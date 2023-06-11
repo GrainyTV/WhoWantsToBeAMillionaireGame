@@ -1,0 +1,40 @@
+M|Melyik együttes dala a Késő már?|Wellhello|Punnany Massif|Halott Pénz|Tankcsapda|Wellhello
+H|Ki nyert életműdíjat a 2016. jún. 8-án megrendezett Fonogram díjátadó gálán?|Frenreisz Károly|Dés László|Pásztor László|Geszti Péter|Frenreisz Károly
+M|Melyik musical dala "A zene az kell"?|Valahol Európában|Macskák|Mozart|Egy szerelem három éjszakája|Valahol Európában
+E|Melyik együttes dala a Lámpát ha gyújtok?|Quimby|Honeybeast|Kiscsillag|Margaret Island|Quimby
+E|Ki képviselte hazánkat a 2016-os Eurovizíós dalfesztiválon?|Freddie|Boggie|Kállay Saunders András|ByeAlex|Freddie
+E|Hol szokott megrendezésre kerülni a Volt fesztivál?|Sopronban|Budapesten|Zamárdiban|Agárdon|Sopronban
+M|Ki a Hooligans együttes frontembere?|Csipa|Endi|Hozsó|Késmárki Zsolt|Csipa
+E|Milyen hangszer a kasztanyett?|ütős|fúvós|húros|billentyűs|ütős
+E|Melyik országból származik a szamba tánc?|Brazília|Spanyolország|Kuba|Mexikó|Brazília
+M|Melyik együttes dala a Ha volna két életem?|Piramis|LGT|Illés|Generál|Piramis
+E|Kinek az operája A Varázsfuvola?|Mozart|Verdi|Puccini|Handel|Mozart
+E|Melyik énekes dala az Elzárt övezet?|Caramel|Gáspár Laci|Király Viktor|ByeAlex|Caramel
+H|Mikor rendezték meg az első Petőfi zenei díjátadót?|2016. június 28-án|2016. június 29-én|2016. június 27-én|2016. június 26-án|2016. június 28-án
+M|Melyik együttes dala a Holnap hajnalig?|Neoton família|R-GO|Dolly Roll|Omega|Neoton família
+H|Mi volt Zámbó Jimmy eredeti keresztneve?|Imre|Alex|Béla|Áron|Imre
+H|Melyik együttes dala az Emese?|Kispál és a borz|Pál utcai fiúk|Kiscsillag|30Y|Kispál és a borz
+E|Ki nyerte meg az első X-faktort?|Vastag Csaba|Takács Nikolas|Kocsis Tibor|Muri Enikő|Vastag Csaba
+E|Hol szokott megrendezésre kerülni a Balaton Sound?|Zamárdiban|Keszthelyen|Siófokon|Balatonfüreden|Zamárdiban
+H|Melyik színésznő lánya Tarján Zsófia a Honeybest énekesnője?|Hernádi Judit|Udvaros Dorottya|Ábrahám Edit|Bánfalvy Ágnes|Hernádi Judit
+H|Ki a Zanzibár együttes énekese?|Terecskei Rita|Kollányi Zsuzsi|Tarján Zsófia|Sidlovics Ferenc|Terecskei Rita
+E|Melyik együttes nyerte meg az Eurovízios Dalfesztivált 1974-ben?|ABBA|Ottawan|Boney-M|Queen|ABBA
+H|Ki nyerte meg a 2015-ös Rising Start?|Czibi Norbi|Várhegyi Lucas Palmira|Peter Shramek|Fehérvári Gábor Alfréd|Várhegyi Lucas Palmira
+E|Melyik tehetségkutatóban tűnt fel először Zorán?|Ki mit tud|Csillag születik|Táncdalfesztivál|Megasztár|Ki mit tud
+M|Kinek az operája a Carmen?|Georges Bizet|Giacomo Puccini|Ludwig van Beethoven|Giuseppe Verdi|Georges Bizet
+M|Melyik együttes dala a Ballag a katona?|R-Go|Hungária|Első Emelet|Neoton Família|R-Go
+E|Hol született Bartók Béla?|Nagyszalontán|Nagyszentmiklóson|Nagymegyeren|Nagykanizsán|Nagyszentmiklóson
+E|Kivel énekelte Hofi Géza a Macska duettet?|Korda Györggyel|Aradszky Lászlóval|Koós Jánossal|Markos Györggyel|Koós Jánossal
+M|Mikor alapították a Wellhello nevű zenekart?|2013-ban|2014-ben|2010-ben|2009-ben|2014-ben
+M|Melyik magyar énekes beceneve "Rózsi"?|Demjén Ferenc|Fenyő Miklós|Koós János|Balázs Fecó|Demjén Ferenc
+E|Mikor alakult a Tankcsapda együttes?|1990-ben|1986-ban|1989-ben|1991-ben|1989-ben
+E|Milyen hangszer művésze volt Liszt Ferenc?|orgona|hegedű|zongora|fuvola|zongora
+H|Mikor alakult az Irie Maffia együttes?|2005-ben|2006-ban|2000-ben|2002-ben|2005-ben
+M|Melyik együttesnek volt még a tagja Somló Tamás az LGT-n kívül?|Omega|Illés|Metro|Beatrice|Omega
+H|Mi Dolly eredeti neve?|Penczi Mária|Kocsor Mária|Szabó Margit|Csepregi Éva|Penczi Mária
+E|Milyen nemzetiségű volt Beethoven?|német|svéd|angol|osztrák|német
+E|Mi a címe a Neoton musical-nak?|Holnap hajnalig|Szép nyári nap|Santa Maria|Isten pénze|Szép nyári nap
+M|Ki az Anna and The Barbies énekesnője?|Fehér Anna|Pásztor Anna|Kozma Orsi|Tóth Vera|Pásztor Anna
+H|Melyik nem Andrew Lloyd Webber musical?|Mozart|Evita|Macskák|A fehérruhás nő|Mozart
+M|Melyik együttes dala a Te meg én?|Compact Disco|Magna Cum Laude|New Level Empire|Honeybeast|Compact Disco
+E|Kinek az operettje a Leányvásár?|Jacobi Viktor|Kálmán Imre|Huszka Jenő|Fényes Szabolcs|Jacobi Viktor

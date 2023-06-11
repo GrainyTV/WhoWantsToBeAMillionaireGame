@@ -1,0 +1,45 @@
+E|Mikor és hol rendezték meg az első nyári olimpiai játékokat?|1896 Athén|1908 London|932 Los Angeles|1924 Párizs|1896 Athén
+M|Mi volt a végeredménye a Magyar-Ausztria mérkőzésnek a 2016-os foci EB-n?|2-0|1-0|1-1|1-8|2-0
+E|Hol rendezték meg a 2016-os Olimpiai Játékokat?|Rio de Janeiroban|Londonban|Párizsban|Szocsiban|Rio de Janeiroban
+H|Ki nyerte a 2016. május 1-i orosz nagydíjat?|Nico Rosberg|Lewis Hamilton|Max Verstappen|Sebastian Vettel|Nico Rosberg
+E|Hány évente kerül megrendezésre a labdarúgó EB?|4|2|1|3|4
+M|Ki a Forma 1 történetének legsikeresebb versenyzője?|Michael Schumacher|Nelson Piquet|Alain Prost|Ayrton Senna|Michael Schumacher
+M|Hol rendezték meg a 2016-os kajak-kenu Európa-bajnokságot?|Moszkvában|Londonban|Párizsban|Varsóban|Moszkvában
+E|Hol született Lionel Messi a híres focista?|Argentínában|Brazíliában|Spanyolországban|Uruguayban|Argentínában
+M|Hol rendezték meg a 2016-os labdarúgó Eb-t?|Franciaországban|Angliában|Spanyolországban|Németországban|Franciaországban
+H|Hány aranyérmet nyert Michael Phelps Londonban 2012-ben?|4|3|5|7|4
+M|Melyik városban rendezték meg a nyári olimpiai játékokat 2008-ban?|Londonban|Atlantában|Pekingben|Athénban|Pekingben
+H|Hányszoros olimpiai bajnok Egerszegi Krisztina?|5|4|6|7|5
+H|Hány aranyérmet szereztünk a 3. Arena junior úszó-Európa-bajnokságon?|5|4|3|0|5
+M|Melyik csapat nyerte a 2016-os Foci Eb-t?|Németország|Franciaország|Portugália|Spanyolország|Portugália
+M|Melyik évben lett világbajnok Talmácsi Gábor?|2007-ben|2008-ben|2010-ben|2005-ben|2007-ben
+E|Milyen poszton játszott Puskás Öcsi a legendás labdarúgó?|csatár|hátvéd|középpályás|kapus|csatár
+M|Melyik sportág olimpiai bajnoka Carl Lewis?|úszás|atlétika|torna|vívás|atlétika
+H|Hány km hosszú a Kékszalag vitorlásverseny?|160 km|240 km|190 km|105 km|160 km
+M|Hol rendezték meg 2014-ben a Foci VB-t?|Mexikóban|Argentínában|Brazíliában|Uruguayban|Brazíliában
+E|Hányas számú mezt viselt Maradona?|10-es|11-es|12-es|7-es|10-es
+E|Hol rendezték meg a nyári olimpiai játékokat 2020-ban?|Athénban|Pekingben|Tokióban|Párizsban|Tokióban
+H|Milyen súlycsoportú volt Balzsay Károly ökölvívó?|nehézsúlyú|váltósúlyú|nagyközépsúlyú|szupernehézsúlyú|nagyközépsúlyú
+M|Kinek a becene volt a "Magyar delfin"?|Hajós Alfréd|Komjádi Béla|Rózsa Norbert|Halmay Zoltán|Hajós Alfréd
+M|Melyik olimpián nyert aranyérmet Repka Attila bírkózó?|1996 Atlanta|1992 Barcelona|2000 Sydney|1988 Szöul|1992 Barcelona
+H|Melyik sportolónk beceneve Madár?|Erdei Zsolt|Cseh László|Kovács István|Balzsay Károly|Erdei Zsolt
+M|Hány olimpiai aranyérme van Gyurta Dánielnek?|1|2|3|0|1
+E|Melyik sportág Olimpiai bajnoka Pars Krisztián?|gerelyhajítás|kalapácsvetés|diszkoszvetés|súlylökés|kalapácsvetés
+M|Hányszoros világbajnok volt Kolonics György kenus?|15|10|8|5|15
+H|Hol született Vajda Attila kenus?|Szegeden|Sopronban|Pécsen|Győrben|Szegeden
+H|Mikor kezdődött a 2016-os Riói Olimpia?|augusztus 21-én|augusztus 8-án|augusztus 5-én|augusztus 17-én|augusztus 5-én
+H|Hány aranyérmet szerzett Kovács István (Kokó) pályafutása során?|10|13|8|7|13
+M|Hány aranyérmet szerzett a Magyarország a 2012-es londoni olimpián?|8|7|10|6|8
+E|Melyik ország gyűjtötte a legtöbb aranyérmet a 2012-es londoni olimpián?|Oroszország|Kína|Egyesült Államok|Nagy-Britannia|Egyesült Államok
+H|Hány magyar fő vett részt a 2016-os Riói olimpián?|160|140|200|110|160
+M|Ki vitte a magyar zászlót a Riói olimpia megnyitóján?|Szilágyi Áron|Cseh László|Gyurta Dániel|Hosszú Katinka|Szilágyi Áron
+E|Melyik sportág olimpiai bajnoka Szilágyi Áron?|tőrvívás|kardvívás|atlétika|úszás|kardvívás
+E|Melyik sportág világbajnoka Hosszú Katinka?|szinkronúszás|evezés|úszás|műugrás|úszás
+M|Hányszor lett aranyérmes a magyar férfi vízilabda-válogatott az olimpiákon?|9x|10x|6x|7x|9x
+M|Hányadik helyen végzett a magyar férfi vízilabda-válogatott a londoni olimpián?|5.|3.|2.|1.|5.
+H|Ki az első nő aki a magyar cselgáncs történetében érmett szerzett olimpiai játékokon?|Joó Abigél|Csernoviczki Éva|Karakas Hedvig|Gercsák Szabina|Csernoviczki Éva
+H|Ki nyerte az első magyar aranyérmet a Riói olimpián?|Hosszú Katinka|Szász Emese|Gyurta Dániel|Kozák Danuta|Szász Emese
+E|Mi a beceneve Bacskai Balázs ökölvívónak?|Benji|Bazsa|Beni|Bazsi|Benji
+M|Hányszoros világbajnok úszó Hosszú Katinka?|ötszörös|négyszeres|hatszoros|háromszoros|ötszörös
+H|Hány ezüstérmet szerzett Cseh László a 2008-as pekingi olimpián?|3|2|5|4|3
+M|Melyik versenyszámban lett bronzérmes Kenderesi Tamás úszó Rióban?|200m pillangó|100m pillangó|200m vegyes|200m mell|200m pillangó

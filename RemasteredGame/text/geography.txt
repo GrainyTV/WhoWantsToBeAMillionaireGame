@@ -1,0 +1,46 @@
+E|Melyik ország fővárosa Helsinki?|Finnország|Svédország|Portugália|Dánia|Finnország
+H|Milyen hosszú a Balaton?|77 km|88 km|120 km|64 km|77 km
+E|Mi Magyarország második legnagyobb tava?|Velencei-tó|Fertő-tó|Tisza-tó|Öreg-tó|Tisza-tó
+M|Mi Nógrád megye székhelye?|Salgótarján|Balassagyarmat|Tatabánya|Vác|Salgótarján
+E|Hozzávetőlegesen mennyi a Föld népessége?|7 milliárd fő|5 milliárd fő|10 milliárd fő|9 milliárd fő|7 milliárd fő
+M|Melyik ország fővárosa Dublin?|Írország|Izland|India|Wales|Írország
+H|Hány km a távolság Szolnok és Budapest között?|97 km|88 km|78 km|105 km|97 km
+M|Melyik államban van Dallas?|Texas|Kalifornia|Kansas|Új-Mexikó|Texas
+E|Hol található Budapesten a Halászbástya?|a budai várban|a Gellért-hegyen|a Hősök terén|a Széll Kálmán téren|a budai várban
+E|Melyik város nevezetessége a Big Ben?|London|Párizs|Milánó|Velence|London
+H|Melyik Magyarországi megyében van Sásd?|Baranya|Békés|Bács-Kiskun|Somogy|Baranya
+M|Honnan ered a Duna?|Németországból|Ukrajnából|Szlovákiából|Csehországból|Németországból
+H|Mi Litvánia fővárosa?|Vilnius|Riga|Tallin|Minszk|Vilnius
+H|Honnan indul a Balaton átúszás?|Révfülöpről|Balatonboglárról|Tihanyból|Balatonfüredről|Révfülöpről
+M|Mi Kalifornia állam székhelye?|Sacramento|Atlanta|Boston|Austin|Sacramento
+M|Melyik a Föld leghosszabb folyója?|Amazonas|Nílus|Mississippi|Jangce|Nílus
+H|Melyik nem tartozik a világ hét csodája közé?|pisai ferde torony|Szemiramisz függőkertje|rodoszi kolosszus|pharoszi világítótorony|pisai ferde torony
+H|Hány km-re van egymástól Tatabánya és Nyíregyháza?|301 km|234 km|401 km|97 km|301 km
+E|Melyik magyar város nevezetessége a Dzsámi?|Pécs|Kecskemét|Szeged|Hódmezővásárhely|Pécs
+E|Mi Norvégia fővárosa?|Oslo|Lisszabon|Bern|Reykjavík|Oslo
+H|Melyik megyében van Csanádapáca?|Békés|Csongrád|Heves|Borsod-Abaúj-Zemplén|Békés
+M|Hány méter magas a Kékes?|1014 m|976 m|1006 m|1025 m|1014 m
+H|Mi Bulgária fővárosa?|Burgasz|Szófia|Várna|Szkopje|Szófia
+M|Melyik magyar város jelképe a Tűztorony?|Sopron|Győr|Eger|Szeged|Sopron
+E|Melyik nem szikes tó?|Balaton|Fertő-tó|Velencei-tó|Szelidi-tó|Balaton
+M|Hol van Bora Bora szigete?|az Égei-tengeren|Francia Polinéziában|a Karib-tengeren|a Perzsa-öbölben|Francia Polinéziában
+H|Milyen az éghajlata Caracasnak?|trópusi szavanna|óceáni|száraz sivatagi|szubtrópusi monszun|trópusi szavanna
+M|Melyik óceánban vannak a Seychelle-szigetek?|Indiai|Dél-Atlanti|Csendes|Észak-Atlanti|Indiai
+E|Hány szövetségi államból áll az USA?|50|45|60|55|50
+H|Melyik ország fővárosa Maputo?|Nicaragua|Mozambik|Zambia|Costa Rica|Mozambik
+M|Hol torkollik a Tiszába a Maros?|Szegednél|Makónál|Aradnál|Magyarcsanádnál|Szegednél
+E|Hány megyéből áll Magyarország?|19|20|21|18|19
+H|A Föld felszínének hány %-át foglalja el az Atlanti-óceán?|20|25|10|15|20
+H|Melyik ország fővárosa Hanoi?|Vietnam|Japán|Pakisztán|Üzbegisztán|Vietnam
+H|Mekkora a Balaton legnagyobb mélysége?|22.6 m|15 m|12.5 m|8 m|12.5 m
+M|Milyen hosszú a Velencei-tó?|10.8 km|15 km|6.7 km|4.2 km|10.8 km
+E|Hol van a Golden Gate híd?|Las Vegasban|New Orleansban|San Franciscoban|Los Angelesben|San Franciscoban
+H|Mennyi Zalaegerszeg és Budapest távolsága?|224 km|260 km|345 km|190 km|224 km
+M|Melyik város része Lillafüred?|Eger|Miskolc|Nyíregyháza|Debrecen|Miskolc
+M|Melyik amerikai állam székhelye Denver?|Arizona|Florida|Colorado|Wyoming|Colorado
+M|Melyik téren van Budapesten a Mátyás templom?|Mátyás téren|Szabadság téren|Szentháromság téren|Blaha Lujza téren|Szentháromság téren
+M|Melyik a világ legnagyobb kávétermelő országa?|Kolumbia|Vietnam|Brazília|Fülöp-szigetek|Brazília
+M|Hol van Tasmania szigete?|Amerikában|Afrikában|Ausztráliában|Ázsiában|Ausztráliában
+H|Melyik fővárosban látható a Petronas-ikertorony?|Katmanduban|Kuala Lumpurban|Damaszkuszban|Jakartában|Kuala Lumpurban
+M|Mi a neve a keszthelyi kastélynak?|Festetics-kastély|Eszterházy-kastély|Grassalkovich-kastély|Széchenyi-kastély|Festetics-kastély
+E|Mi a Csomolungma hegy másik elnevezése?|K2|Mount Everest|Kilimandzsáró|Kancsendzönga|Mount Everest

@@ -1,0 +1,44 @@
+H|Mikor van Sándor névnap?|március 18-án|március 21-én|március 26-án|március 2-án|március 18-án
+H|Mikor van Katalin névnap?|november 25-én|november 22-én|október 4-én|december 10-én|november 25-én
+E|Mikor van az Államalapítás ünnepe?|augusztus 20-án|május 1-én|október 23-án|március 15-én|augusztus 20-án
+H|Mikor van Gábor névnap?|március 24-én|március 11-én|október 22-én|április 10-én|március 24-én
+H|Mikor van Adrienn névnap?|október 21-én|szeptember 15-én|szeptember 8-án|november 10-én|szeptember 8-án
+H|Mikor van József névnap?|március 4-én|április 13-án|március 19-én|február 5-én|március 19-én
+M|Mikor van a Béke világnapja?|január 1-én|január 21-én|március 15-én|november 15-én|január 1-én
+H|Mikor van Róbert névnap?|május 21-én|június 7-én|április 18-án|augusztus 13-án|június 7-én
+H|Mikor van Anna névnap?|július 26-án|július 12-én|július 18-án|július 1-én|július 26-án
+H|Mikor ünneplik a munka ünnepét Új-Zélandon?|október 4-én|május 1-én|november 18-án|szeptember 1-én|október 4-én
+H|Mikor van Lajos névnap?|július 19-én|augusztus 25-én|november 22-én|szeptember 4-én|augusztus 25-én
+E|Milyen névnap van augusztus 20-án?|István|József|János|Ádám|István
+E|Melyik királyunk emlékünnepe augusztus 20-a?|Szent István|Mátyás|IV. Béla|II. József|Szent István
+M|Minek az ünnepe még augusztus 20-a?|zene|környezetvédelem|új kenyér|összetartozás|új kenyér
+H|Milyen névnap van október 4-én?|Ferenc|Aurél|Gábor|Dénes|Ferenc
+M|Mikor van az állatok világnapja?|október 4-én|március 15-én|augusztus 16-án|december 11-én|október 4-én
+E|Mit ünneplünk október 23-án?|Magyar Köztársaság kikiáltását|Államalapítást|Munka ünnepét|1848-as forradalmat|Magyar Köztársaság kikiáltását
+M|Milyen névnap van október 23-án?|Gyöngyi|György|Gyula|Győző|Gyöngyi
+E|Kiknek a napja van november 1-jén?|mindenszentek|gyerekek|tűzoltók|állatok|mindenszentek
+H|Milyen névnap van november 1-én?|Marianna|Mária|Mónika|Mira|Marianna
+E|Mi a halloween szó jelentése magyarul?|szent ember|démonok harca|boszorkányok üldözése|kísértetek éjszakája|szent ember
+E|Milyen országokban tartották eredetileg a halloweent?|angolszász|skandináv|ázsiai|szláv|angolszász
+M|Mikor van halottak napja?|november 2-án|november 1-én|október 31-én|október 30-án|november 2-án
+M|Minek a napja van november 3-án?|a magyar tudomány|a költészet|a televízió|az animáció|a magyar tudomány
+H|Milyen névnap van november 7-én?|Rezső|Géza|Nimród|Árpád|Rezső
+E|Melyik magyar zeneszerző született november 7-én?|Erkel Ferenc|Liszt Ferenc|Kodály Zoltán|Egressy Béni|Erkel Ferenc
+M|Minek van a világnapja november 14-én?|cukorbetegség|látás|csontritkulás|mozgás|cukorbetegség
+M|Minek a napja van november 16-án?|tolerancia|család|költészet|egészség|tolerancia
+E|Minek a napja van november 21-én?|televíziózás|rádiózás|zene|művészet|televíziózás
+M|Minek a napja van november 22-én?|a magyar közoktatás|a magyar kultúra|a magyar véradók|a magyar zene|a magyar közoktatás
+E|Mit jelent az advent szó?|eljövetel|várakozás|betlehemezés|békesség|eljövetel
+H|Minek a világnapja van december 2-án?|a rabszolgaság megszüntetésének|a fogyatékos emberek|az emberi jogok|az elfogadás|a rabszolgaság megszüntetésének
+M|Meddig tart az Advent időszak?|Karácsonyig|Újévig|Húsvétig|Vízkeresztig|Karácsonyig
+E|Ki volt Jézus édesanyja?|Szűz Mária|Szűz Anna|Szűz Borbála|Szűz Ilona|Szűz Mária
+H|Kiknek a napja van december 5-én?|az önkéntesek|a bányászok|a zenészek|a nyugdíjasok|az önkéntesek
+E|Milyen névnap van december 6-án?|Miklós|Sándor|István|Tamás|Miklós
+E|Hol él a Mikulás?|Lappföldön|Grönlandon|Mexikóban|a Déli-sarkon|Lappföldön
+M|Mi a neve a finn Mikulásnak?|Joulupukki|Santa Claus|Nikolaus|Black Peternek|Joulupukki
+M|Melyik országban hívják a Mikulást Black Peternek?|Marokkóban|Olaszországban|Lengyelországban|Andorrában|Marokkóban
+E|Mi a neve a Mikulás gonosz kísérőjének?|Krampusz|Rudolf|Kerge|Üstökös|Krampusz
+E|Hány rénszarvas húzza a Mikulás szánját?|9|6|12|5|9
+M|Melyik városunk védőszentje Szent Miklós?|Kecskemét|Szeged|Szekszárd|Pécs|Kecskemét
+H|Mikor kezdtek csokoládé-Mikulásokat gyártani Magyarországon?|1934-ben|1967-ben|1878-ban|1946-ban|1934-ben
+H|Melyik országban van a függetlenség napja december 6-án?|Finnországban|Svédországban|Norvégiában|Dániában|Finnországban
