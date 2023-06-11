@@ -17,7 +17,7 @@ Data::Data(char difficulty, string question, string a, string b, string c, strin
 	if (solution.compare(a) != 0 && solution.compare(b) != 0 && 
 		solution.compare(c) != 0 && solution.compare(d) != 0)
 	{
-		throw invalid_argument("None of the provided answers are equal to the solution!");
+		throw invalid_argument("None of the provided answers are equal to the solution for question: " + question);
 	}
 
 	this->diff = CharToDifficulty(difficulty);
@@ -40,7 +40,7 @@ Difficulty Data::CharToDifficulty(char input)
 {
 	if(input != 'E' && input != 'M' && input != 'H')
 	{
-		throw invalid_argument("Provided difficulty is neither E, M or H character!");
+		throw invalid_argument(format("Provided difficulty ({0:c}) is neither E, M or H character.", input));
 	}
 
 	return
@@ -93,60 +93,78 @@ deque<Data> Data::LoadContent(const string& fileName)
  * 
  * Helps to identify empty or null lines from the input file.
  * @param str : the line to execute the function on
+ * @return : wether the line is null or whitespace, or not
  * 
  */
-bool Data::IsNullOrWhiteSpace(string const& str)
+bool Data::IsNullOrWhiteSpace(const string& str)
 {
 	return find_if(str.begin(), str.end(), [](unsigned char ch) { return !isspace(ch); } ) == str.end();
 }
 
+/**
+ * 
+ * Our main loading function that translates the singular lines of input to usable game data objects.
+ * @param line : a singular line from an input file
+ * @return : a game data object
+ * 
+ */
 Data Data::RawInputToData(const string& line)
 {
+	// Separate properties in given line
+	const deque<string> separatedLineValues = Split(line, '|');
+
+	if(separatedLineValues.size() != 7)
+	{
+		throw invalid_argument(format("Line ({0:s}) does not consist of 7 elements and 6 separators \'|\'.", line));
+	}
+
 	// Difficulty
-	const char difficulty = line[0];
+	const char difficulty = separatedLineValues[0][0];
 
 	// Question
-	const int questionMarkPosition = line.find_first_of('?');
-	const string question = line.substr(2, questionMarkPosition - 1);
-
-	// All answers
-	const int answerPosition = line.find("Válaszok:") + string("Válaszok:").size();
-	int solutionPosition = line.find("Megoldás:");
-	const string allAnswers = line.substr(answerPosition, solutionPosition - 2 - answerPosition);
-	const deque<string> separatedAnswers = Split(allAnswers, ',');
+	const string question = separatedLineValues[1];
 
 	// Answer A
-	const string answerA = separatedAnswers[0].substr(1); 
+	const string answerA = separatedLineValues[2];
 
 	// Answer B
-	const string answerB = separatedAnswers[1].substr(1);
+	const string answerB = separatedLineValues[3];
 
 	// Answer C
-	const string answerC = separatedAnswers[2].substr(1);
+	const string answerC = separatedLineValues[4];
 
 	// Answer D
-	const string answerD = separatedAnswers[3].substr(1);
+	const string answerD = separatedLineValues[5];
 
 	// Solution
-	solutionPosition = solutionPosition + string("Megoldás: ").size();
-	const string solution = line.substr(solutionPosition, line.size() - solutionPosition);
+	const string solution = separatedLineValues[6];
 
-	printf("%c %s %s %s %s %s %s\n", difficulty, question.c_str(), answerA.c_str(), answerB.c_str(), answerC.c_str(), answerD.c_str(), solution.c_str());
-
+	// Return in compact form
 	return Data(difficulty, question, answerA, answerB, answerC, answerD, solution);
 }
 
-
-deque<string> Data::Split(const string& s, const char& delimiter) 
+/**
+ * 
+ * Homemade string.Split function
+ * @param str : the string to slice
+ * @param delimiter : the character where the slicing happens
+ * @return : a collection of tokens made from the original string
+ * 
+ */
+deque<string> Data::Split(const string& str, const char& delimiter) 
 {
-	int pos_start = 0, pos_end;
 	string token;
 	deque<string> result;
 
-	for(char letter : s)
+	for(char letter : str)
 	{
 		if(letter == delimiter)
 		{
+			if(token.empty())
+			{
+				throw invalid_argument(format("Unnecessary separator \'|\' found in line: {0:s}.", str));
+			}
+
 			result.push_back(token);
 			token.clear();
 			continue;
@@ -155,7 +173,7 @@ deque<string> Data::Split(const string& s, const char& delimiter)
 		token += letter;
 	}
 
-	if(result.empty() == false)
+	if(token.empty() == false)
 	{
 		result.push_back(token);
 	}
