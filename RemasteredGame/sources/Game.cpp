@@ -18,7 +18,26 @@ void Game::Run()
 	for(auto keyValuePair : fileNames)
 	{
 		auto key = keyValuePair.first;
-		Data::LoadContent(fileNames.at(key));
+		
+		deque<Data> defaultList;
+		unordered_map<Difficulty, deque<Data>> defaultMap = { { Easy, defaultList }, { Medium, defaultList }, { Hard, defaultList } };
+		gameData[key] = defaultMap;
+
+		for(auto data : Data::LoadContent(fileNames.at(key)))
+		{
+			switch(data._Difficulty())
+			{
+			case Easy:
+				gameData[key][Easy].push_back(data);
+				break;
+			case Medium:
+				gameData[key][Medium].push_back(data);
+				break;
+			case Hard:
+				gameData[key][Hard].push_back(data);
+				break;
+			}
+		}
 	}
 }
 
@@ -45,6 +64,28 @@ void Game::FillFileNames()
 	fileNames[Category::Tabloid] = "tabloid.txt";
 	fileNames[Category::Theatre] = "theatre.txt";
 	fileNames[Category::Transport] = "transport.txt";
+}
+
+void Game::Testing()
+{
+	for(auto values : gameData[Geography][Easy])
+	{
+		values.Print();
+	}
+
+	printf("\n");
+
+	for(auto values : gameData[Geography][Medium])
+	{
+		values.Print();
+	}
+
+	printf("\n");
+
+	for(auto values : gameData[Geography][Hard])
+	{
+		values.Print();
+	}
 }
 
 /**

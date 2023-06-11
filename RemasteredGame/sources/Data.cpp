@@ -31,6 +31,26 @@ Data::Data(char difficulty, string question, string a, string b, string c, strin
 
 /**
  * 
+ * Getter for difficulty
+ * 
+ */
+Difficulty Data::_Difficulty()
+{
+	return diff;
+}
+
+/**
+ * 
+ * Print method for testing purposes
+ * 
+ */
+void Data::Print()
+{
+	printf("%d %s %s %s %s %s %s\n", diff, question.c_str(), a.c_str(), b.c_str(), c.c_str(), d.c_str(), solution.c_str());
+}
+
+/**
+ * 
  * A helper method to convert a char value to explicit difficulty. If the input is not E, M, or H, it throws an exception.
  * @param input : the char that should represent a difficulty level
  * @return : the converted difficulty or invalid argument exception
@@ -62,7 +82,6 @@ deque<Data> Data::LoadContent(const string& fileName)
 	path fileWithDirectory = "text";
 	fileWithDirectory /= fileName;
 
-	printf("%s\n", fileWithDirectory.c_str());
 	const string file = fileWithDirectory.string();
 
 	reader.open(file, ios::in);
