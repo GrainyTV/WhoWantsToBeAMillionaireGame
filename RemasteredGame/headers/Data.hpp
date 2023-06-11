@@ -8,6 +8,7 @@
 #include <deque>
 #include <ios>
 #include <filesystem>
+#include <format>
 
 using std::invalid_argument;
 using std::string;
@@ -16,6 +17,7 @@ using std::ios;
 using std::find_if;
 using std::deque;
 using std::filesystem::path;
+using std::format;
 
 enum Difficulty { Easy, Medium, Hard };
 
@@ -51,11 +53,11 @@ public:
 
 	static deque<Data> LoadContent(const string& fileName);
 
-	static bool IsNullOrWhiteSpace(string const& str);
+	static bool IsNullOrWhiteSpace(const string& str);
 
 	static Data RawInputToData(const string& line);
 
-	static deque<string> Split(const string& s, const char& delimiter);
+	static deque<string> Split(const string& str, const char& delimiter);
 };
 
 #endif
