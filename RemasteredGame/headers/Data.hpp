@@ -49,6 +49,10 @@ public:
 
 	Data(char difficulty, string question, string a, string b, string c, string d, string solution);
 
+	Difficulty _Difficulty();
+
+	void Print();
+
 	static Difficulty CharToDifficulty(char input);
 
 	static deque<Data> LoadContent(const string& fileName);

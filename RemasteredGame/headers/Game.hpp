@@ -41,6 +41,12 @@ public:
 
 	void FillFileNames();
 
+	// Test
+
+	void Testing();
+
+	// Test
+
 	static Game* Instance();
 };
 
