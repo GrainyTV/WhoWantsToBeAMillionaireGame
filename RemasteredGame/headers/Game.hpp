@@ -7,6 +7,7 @@
 #include <deque>
 #include <memory>
 #include "Data.hpp"
+#include "Window.hpp"
 
 using std::unordered_map;
 using std::deque;
@@ -36,8 +37,11 @@ private:
 	// Equals operator not needed either
 	void operator=(Game const&) = delete;
 
+	// The application's window
+	Window w_Window;
+
 public:
-	void Run();
+	void StoreData();
 
 	void FillFileNames();
 
@@ -46,6 +50,8 @@ public:
 	void Testing();
 
 	// Test
+
+	void Run();
 
 	static Game* Instance();
 };
