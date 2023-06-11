@@ -14,10 +14,11 @@ int main(int argc, char* args[])
 		Game* const g_Game = Game::Instance();
 		(*g_Game).FillFileNames();
 		(*g_Game).Run();
+		(*g_Game).Testing();
 	}
 	catch(const exception& e)
 	{
-		// Color Value 33 = Yellow
+		// Color Value 33 = Orange
 		ColoredPrint(e.what(), 33);
 
 		// Color Value 31 = Red
