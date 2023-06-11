@@ -55,26 +55,110 @@ Difficulty Data::CharToDifficulty(char input)
  * @param fileName : the name of the given input file with extensions
  * 
  */
-void Data::LoadContent(string fileName)
+deque<Data> Data::LoadContent(const string& fileName)
 {
 	ifstream reader;
-	reader.exceptions(ifstream::badbit);
-	
-	try
+
+	path fileWithDirectory = "text";
+	fileWithDirectory /= fileName;
+
+	printf("%s\n", fileWithDirectory.c_str());
+	const string file = fileWithDirectory.string();
+
+	reader.open(file, ios::in);
+
+	if(reader.fail())
 	{
-		reader.open("text/" + fileName, ios::in);
-		
-		do
-		{
-			string line;
-			getline(reader, line);
-		
-		} while(reader.eof() == false);
+		throw ios::failure("Cannot open input file: " + fileWithDirectory.string());
 	}
-	catch(const ifstream::failure& e)
+	
+	deque<Data> result;
+
+	do
 	{
-		printf("%s\n", "Exception with opening / reading the file!");
+		string line;
+		getline(reader, line);
+
+		if(IsNullOrWhiteSpace(line) == false)
+		{
+			result.push_back(Data::RawInputToData(line));
+		}
+	
+	} while(reader.eof() == false);
+
+	return result;
+}
+
+/**
+ * 
+ * Helps to identify empty or null lines from the input file.
+ * @param str : the line to execute the function on
+ * 
+ */
+bool Data::IsNullOrWhiteSpace(string const& str)
+{
+	return find_if(str.begin(), str.end(), [](unsigned char ch) { return !isspace(ch); } ) == str.end();
+}
+
+Data Data::RawInputToData(const string& line)
+{
+	// Difficulty
+	const char difficulty = line[0];
+
+	// Question
+	const int questionMarkPosition = line.find_first_of('?');
+	const string question = line.substr(2, questionMarkPosition - 1);
+
+	// All answers
+	const int answerPosition = line.find("Válaszok:") + string("Válaszok:").size();
+	int solutionPosition = line.find("Megoldás:");
+	const string allAnswers = line.substr(answerPosition, solutionPosition - 2 - answerPosition);
+	const deque<string> separatedAnswers = Split(allAnswers, ',');
+
+	// Answer A
+	const string answerA = separatedAnswers[0].substr(1); 
+
+	// Answer B
+	const string answerB = separatedAnswers[1].substr(1);
+
+	// Answer C
+	const string answerC = separatedAnswers[2].substr(1);
+
+	// Answer D
+	const string answerD = separatedAnswers[3].substr(1);
+
+	// Solution
+	solutionPosition = solutionPosition + string("Megoldás: ").size();
+	const string solution = line.substr(solutionPosition, line.size() - solutionPosition);
+
+	printf("%c %s %s %s %s %s %s\n", difficulty, question.c_str(), answerA.c_str(), answerB.c_str(), answerC.c_str(), answerD.c_str(), solution.c_str());
+
+	return Data(difficulty, question, answerA, answerB, answerC, answerD, solution);
+}
+
+
+deque<string> Data::Split(const string& s, const char& delimiter) 
+{
+	int pos_start = 0, pos_end;
+	string token;
+	deque<string> result;
+
+	for(char letter : s)
+	{
+		if(letter == delimiter)
+		{
+			result.push_back(token);
+			token.clear();
+			continue;
+		}
+		
+		token += letter;
 	}
 
-	reader.close();
+	if(result.empty() == false)
+	{
+		result.push_back(token);
+	}
+	
+	return result;
 }

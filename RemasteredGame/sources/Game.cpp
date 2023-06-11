@@ -15,8 +15,6 @@ Game::Game()
 
 void Game::Run()
 {
-	Instance()->FillFileNames();
-
 	for(auto keyValuePair : fileNames)
 	{
 		auto key = keyValuePair.first;
