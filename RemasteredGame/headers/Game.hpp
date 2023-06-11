@@ -30,6 +30,12 @@ private:
 	// Constructor hidden from outside
 	Game();
 
+	// Copy constructor not needed
+	Game(Game const&) = delete;
+
+	// Equals operator not needed either
+	void operator=(Game const&) = delete;
+
 public:
 	void Run();
 

@@ -3,9 +3,19 @@
 
 #include <string>
 #include <stdexcept>
+#include <fstream>
+#include <algorithm>
+#include <deque>
+#include <ios>
+#include <filesystem>
 
 using std::invalid_argument;
 using std::string;
+using std::ifstream;
+using std::ios;
+using std::find_if;
+using std::deque;
+using std::filesystem::path;
 
 enum Difficulty { Easy, Medium, Hard };
 
@@ -39,7 +49,13 @@ public:
 
 	static Difficulty CharToDifficulty(char input);
 
-	static void LoadContent(string fileName);
+	static deque<Data> LoadContent(const string& fileName);
+
+	static bool IsNullOrWhiteSpace(string const& str);
+
+	static Data RawInputToData(const string& line);
+
+	static deque<string> Split(const string& s, const char& delimiter);
 };
 
 #endif
