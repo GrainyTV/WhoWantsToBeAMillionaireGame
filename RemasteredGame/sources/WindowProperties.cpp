@@ -25,3 +25,15 @@ WindowProperties::WindowProperties()
 		throw runtime_error(SDL_GetError());
 	}
 }
+
+WindowProperties::~WindowProperties()
+{
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+}
+
+SDL_Renderer* WindowProperties::_Renderer() const
+{
+	return renderer;
+}
