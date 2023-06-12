@@ -8,6 +8,7 @@
 #include "SDL.h"
 #include "WindowProperties.hpp"
 #include "Event.hpp"
+#include "Scene.hpp"
 
 using std::runtime_error;
 using std::unique_ptr;
@@ -22,6 +23,9 @@ private:
 	
 	// Handler for the incoming events
 	SDL_Event gameEvent;
+
+	// Handler for the screen operations
+	Scene scene;
 
 	// Handler for the outgoing events
 	Event invokedEvent;

@@ -25,9 +25,6 @@ private:
 	// Loaded data represented in sorted way [category(K) - [difficulty(K) - question(V)]]
 	unordered_map<Category, unordered_map<Difficulty, deque<Data>>> gameData;
 
-	// Singleton instance for the game
-	static unique_ptr<Game> instance;
-
 	// Constructor hidden from outside
 	Game();
 
@@ -39,6 +36,9 @@ private:
 
 	// The application's window
 	Window w_Window;
+
+	// Singleton instance for the game
+	static unique_ptr<Game> instance;
 
 public:
 	void StoreData();

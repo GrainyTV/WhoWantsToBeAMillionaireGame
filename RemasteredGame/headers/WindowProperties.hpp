@@ -16,6 +16,10 @@ private:
 
 public:
 	WindowProperties();
+
+	~WindowProperties();
+
+	SDL_Renderer* _Renderer() const;
 };
 
 #endif
