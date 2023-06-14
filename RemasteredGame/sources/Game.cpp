@@ -2,6 +2,8 @@
 
 unique_ptr<Game> Game::instance = nullptr;
 
+bool Game::running = true;
+
 /**
  * 
  * Game object constructor that gets called once when the application starts.
@@ -102,10 +104,10 @@ void Game::Testing()
 	}
 }
 
-void Game::Run()
+void Game::Launch()
 {
-	w_Window;
-	w_Window.Launch();
+	frontEnd = unique_ptr<GameView>(new GameView());
+	(*frontEnd.get()).EnterGameLoop();
 }
 
 /**
@@ -121,4 +123,14 @@ Game* Game::Instance()
 	}
 
 	return instance.get();
+}
+
+bool Game::IsRunning()
+{
+	return running;
+}
+
+void Game::Terminate()
+{
+	running = false;
 }

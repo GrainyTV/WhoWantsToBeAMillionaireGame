@@ -20,7 +20,7 @@ Data::Data(char difficulty, string question, string a, string b, string c, strin
 		throw invalid_argument("None of the provided answers are equal to the solution for question: " + question);
 	}
 
-	this->diff = CharToDifficulty(difficulty);
+	diff = CharToDifficulty(difficulty);
 	this->question = question;
 	this->a = a;
 	this->b = b;
@@ -34,7 +34,7 @@ Data::Data(char difficulty, string question, string a, string b, string c, strin
  * Getter for difficulty
  * 
  */
-Difficulty Data::_Difficulty()
+Difficulty Data::_Difficulty() const
 {
 	return diff;
 }
@@ -56,7 +56,7 @@ void Data::Print()
  * @return : the converted difficulty or invalid argument exception
  * 
  */
-Difficulty Data::CharToDifficulty(char input)
+Difficulty Data::CharToDifficulty(const char& input)
 {
 	if(input != 'E' && input != 'M' && input != 'H')
 	{

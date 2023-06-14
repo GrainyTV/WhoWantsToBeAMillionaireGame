@@ -6,21 +6,15 @@ Scene::Scene()
 {
 }
 
-Scene::Scene(const WindowProperties& properties)
+Scene::Scene(SDL_Renderer* renderer)
 {
-	sceneRenderer = properties._Renderer();
+	sceneRenderer = renderer;
 	invalidator.type = SDL_RegisterEvents(1);
 }
 
 void Scene::Redraw()
 {
-	int R = Random(0, 255);
-	int G = Random(0, 255);
-	int B = Random(0, 255);
-
-	printf("(%d %d %d)\n", R, G, B);
-
-	if(SDL_SetRenderDrawColor(sceneRenderer, R, G, B, 255) != 0)
+	if(SDL_SetRenderDrawColor(sceneRenderer, 0, 0, 0, 255) != 0)
 	{
 		throw runtime_error(SDL_GetError());
 	}
@@ -29,6 +23,9 @@ void Scene::Redraw()
 	{
 		throw runtime_error(SDL_GetError());
 	}
+
+	printf("%s\n", "Redraw Invoked!");
+	//SDL_RenderCopy(sceneRenderer, textures[currentState][currentTexture], NULL, NULL);
 
 	SDL_RenderPresent(sceneRenderer);
 }

@@ -1,34 +1,39 @@
 #include "Window.hpp"
 
-bool Window::running = true;
+int Window::SCREEN_WIDTH = 960;
+
+int Window::SCREEN_HEIGHT = 540;
 
 Window::Window()
 {
-	properties = unique_ptr<WindowProperties>(new WindowProperties());
-	invokedEvent = Event();
-	scene = Scene(*properties.get());
-	
-	// User-invokable events and their method calls
-	eventCalls[SDL_QUIT] = [this]() { Terminate(); };
-	eventCalls[SDL_USEREVENT] = [this]() { scene.Redraw(); };
-	eventCalls[SDL_KEYDOWN] = [this]() { scene.Invalidate(); };
-}
-
-void Window::Launch()
-{
-	while(running)
+	if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-		while(SDL_PollEvent(&gameEvent))
-		{
-			if(eventCalls.contains(gameEvent.type))
-			{
-				eventCalls[gameEvent.type]();
-			}
-		}
+		throw runtime_error(SDL_GetError());
+	}
+
+	window = SDL_CreateWindow("Legyen on is milliomos!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+
+	if(window == NULL)
+	{
+		throw runtime_error(SDL_GetError());
+	}
+
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+	if(renderer == NULL)
+	{
+		throw runtime_error(SDL_GetError());
 	}
 }
 
-void Window::Terminate()
+Window::~Window()
 {
-	running = false;
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+}
+
+SDL_Renderer* Window::_Renderer() const
+{
+	return renderer;
 }
