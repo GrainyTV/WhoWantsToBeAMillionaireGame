@@ -4,12 +4,13 @@
 #include <stdexcept>
 #include <random>
 #include "SDL.h"
-#include "WindowProperties.hpp"
 
 using std::runtime_error;
 using std::random_device;
 using std::mt19937;
 using std::uniform_int_distribution;
+
+enum GameState { MainMenu, Options, InGame };
 
 class Scene
 {
@@ -26,7 +27,7 @@ private:
 public:
 	Scene();
 
-	Scene(const WindowProperties& properties);
+	Scene(SDL_Renderer* renderer);
 
 	void Redraw();
 

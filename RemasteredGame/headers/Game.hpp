@@ -7,7 +7,7 @@
 #include <deque>
 #include <memory>
 #include "Data.hpp"
-#include "Window.hpp"
+#include "GameView.hpp"
 
 using std::unordered_map;
 using std::deque;
@@ -34,11 +34,13 @@ private:
 	// Equals operator not needed either
 	void operator=(Game const&) = delete;
 
-	// The application's window
-	Window w_Window;
+	// The application's frontend
+	unique_ptr<GameView> frontEnd;
 
 	// Singleton instance for the game
 	static unique_ptr<Game> instance;
+
+	static bool running;
 
 public:
 	void StoreData();
@@ -51,9 +53,13 @@ public:
 
 	// Test
 
-	void Run();
+	void Launch();
 
 	static Game* Instance();
+
+	static void Terminate();
+
+	static bool IsRunning();
 };
 
 #endif
