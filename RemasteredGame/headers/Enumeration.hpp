@@ -14,15 +14,18 @@ using std::invalid_argument;
 using std::initializer_list;
 using std::format;
 
+struct EnumField
+{
+	string name;
+	
+	long unsigned int value;
+
+	bool operator==(const EnumField& input) const;
+};
+
 class Enumeration
 {
 private:
-	struct EnumField
-	{
-		string name;
-		long unsigned int value;
-	};
-
 	deque<EnumField> enums;
 
 	bool Contains(const string& name) const;

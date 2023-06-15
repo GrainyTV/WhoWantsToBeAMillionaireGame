@@ -1,5 +1,17 @@
 #include "Enumeration.hpp"
 
+bool EnumField::operator==(const EnumField& input) const
+{
+	const int MATCH = 0;
+
+	if(name.compare(input.name) == MATCH && value == input.value)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 bool Enumeration::Contains(const string& name) const
 {
 	const int MATCH = 0;
@@ -66,6 +78,14 @@ void Enumeration::Remove(const string& name)
 	
 	long unsigned int value = Find(name);
 	enums.erase(enums.begin() + value);
+
+	for(int i = 0; i < enums.size(); ++i)
+	{
+		if(enums[i].value != i)
+		{
+			enums[i].value = i;
+		}
+	}
 }
 
 void Enumeration::Remove(const long unsigned int& value)
@@ -76,9 +96,17 @@ void Enumeration::Remove(const long unsigned int& value)
 	}
 	
 	enums.erase(enums.begin() + value);
+
+	for(int i = 0; i < enums.size(); ++i)
+	{
+		if(enums[i].value != i)
+		{
+			enums[i].value = i;
+		}
+	}
 }
 
-Enumeration::EnumField Enumeration::operator[](const string& name) const
+EnumField Enumeration::operator[](const string& name) const
 {
 	if(enums.empty() || Contains(name) == false)
 	{
@@ -89,7 +117,7 @@ Enumeration::EnumField Enumeration::operator[](const string& name) const
 	return enums[value];
 }
 
-Enumeration::EnumField Enumeration::operator[](const long unsigned int& value) const
+EnumField Enumeration::operator[](const long unsigned int& value) const
 {
 	if(enums.empty() || value >= enums.size())
 	{
