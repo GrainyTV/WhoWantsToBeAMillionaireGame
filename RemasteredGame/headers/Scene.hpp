@@ -7,6 +7,7 @@
 #include <deque>
 #include <filesystem>
 #include <format>
+#include <future>
 #include "SDL.h"
 #include "SDL_image.h"
 
@@ -19,6 +20,11 @@ using std::unordered_map;
 using std::deque;
 using std::filesystem::path;
 using std::format;
+using std::async;
+using std::launch;
+using std::future;
+
+#include <thread>
 
 enum GameState { MainMenu, InGame, Options };
 
@@ -49,11 +55,17 @@ private:
 public:
 	Scene(SDL_Renderer* renderer);
 
+	~Scene();
+
 	void Redraw();
 
 	void Invalidate();
 
-	deque<SDL_Texture*> LoadCurrentTextures(const GameState& currentState);
+	deque<SDL_Texture*> LoadTextures();
+
+	deque<SDL_Surface*> LoadSurfaces(const GameState& currentState);
+
+	void UnloadTextures();
 
 	void FillTextureFiles();
 

@@ -132,7 +132,10 @@ void Event::FillMouseHitboxes()
 	buttonHitboxesClicked[GameState::MainMenu] = mainMenuClicked;
 
 	// Ingame (hover && clicked)
-	
+	deque<SDL_Rect> inGameHover = { (SDL_Rect) { 336, 796, 592, 110 }, (SDL_Rect) { 990, 796, 592, 110 }, (SDL_Rect) { 336, 940, 592, 110 }, (SDL_Rect) { 990, 940, 592, 110 } };
+	buttonHitboxes[GameState::InGame] = inGameHover;
+
+	// Options (hover && clicked)
 	/*
 	.
 	.
