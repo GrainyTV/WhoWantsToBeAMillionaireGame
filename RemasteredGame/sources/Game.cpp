@@ -82,6 +82,11 @@ void Game::FillFileNames()
 	fileNames[Category::Transport] = "transport.txt";
 }
 
+/**
+ * 
+ * Testing method to see, if our input files are loaded.
+ * 
+ */
 void Game::Testing()
 {
 	for(auto values : gameData[Geography][Easy])
@@ -104,6 +109,11 @@ void Game::Testing()
 	}
 }
 
+/**
+ * 
+ * Creates a view for the game and launches it.
+ * 
+ */
 void Game::Launch()
 {
 	frontEnd = unique_ptr<GameView>(new GameView());
@@ -113,6 +123,7 @@ void Game::Launch()
 /**
  * 
  * Returns our singleton game object when called. If it hadn't been called before, it gets initialized.
+ * @return : a pointer to our instance
  * 
  */
 Game* Game::Instance()
@@ -125,11 +136,22 @@ Game* Game::Instance()
 	return instance.get();
 }
 
+/**
+ * 
+ * Indicator wether the game is still running.
+ * @return : either true or false
+ * 
+ */
 bool Game::IsRunning()
 {
 	return running;
 }
 
+/**
+ * 
+ * Function to terminate the application.
+ * 
+ */
 void Game::Terminate()
 {
 	running = false;

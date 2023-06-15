@@ -40,6 +40,7 @@ private:
 	// Singleton instance for the game
 	static unique_ptr<Game> instance;
 
+	// Indicator wether the game is still running
 	static bool running;
 
 public:

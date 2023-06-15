@@ -1,22 +1,30 @@
 #include "GameView.hpp"
 #include "Game.hpp"
 
-GameView::GameView()
+/**
+ * 
+ * Constructor sets the default scene and event objects.
+ * 
+ */
+GameView::GameView() : scene(window._Renderer()), event(&scene)
 {
-	scene = Scene(window._Renderer());
-	event = Event(scene);
+	scene.Invalidate();
 }
 
+/**
+ * 
+ * The game loop of our application. It runs continually on the main thread until termination is called.
+ * 
+ */
 void GameView::EnterGameLoop()
 {
 	while(Game::IsRunning())
 	{
-		while(SDL_PollEvent(event._IncomingGameEvent()))
+		SDL_PollEvent(event._IncomingGameEvent());
+
+		if(event.IsValidEvent())
 		{
-			if(event.IsValidEvent())
-			{
-				event.ExecuteHandler();
-			}
+			event.ExecuteHandler();
 		}
 	}
 }

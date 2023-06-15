@@ -4,6 +4,11 @@ int Window::SCREEN_WIDTH = 960;
 
 int Window::SCREEN_HEIGHT = 540;
 
+/**
+ * 
+ * Constructor initializes subsystems, the window and the renderer.
+ * 
+ */
 Window::Window()
 {
 	if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
@@ -11,7 +16,7 @@ Window::Window()
 		throw runtime_error(SDL_GetError());
 	}
 
-	window = SDL_CreateWindow("Legyen on is milliomos!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow("Legyen on is milliomos!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 
 	if(window == NULL)
 	{
@@ -19,13 +24,21 @@ Window::Window()
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
+	
 	if(renderer == NULL)
 	{
 		throw runtime_error(SDL_GetError());
 	}
+
+	// Turn on anti-aliasing
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
 
+/**
+ * 
+ * Destructor deallocates reserved resources automatically.
+ * 
+ */
 Window::~Window()
 {
 	SDL_DestroyRenderer(renderer);
@@ -33,6 +46,11 @@ Window::~Window()
 	SDL_Quit();
 }
 
+/**
+ * 
+ * Getter function for the renderer object.
+ * 
+ */
 SDL_Renderer* Window::_Renderer() const
 {
 	return renderer;
