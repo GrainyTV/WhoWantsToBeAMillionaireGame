@@ -12,6 +12,14 @@ bool EnumField::operator==(const EnumField& input) const
 	return false;
 }
 
+unsigned int EnumField::Hash::operator()(const EnumField& e) const noexcept
+{
+	unsigned int hash_1 = hash<string>{}(e.name);
+	unsigned int hash_2 = hash<unsigned long int>{}(e.value);
+	
+	return hash_1 ^ (hash_2 << 1);
+}
+
 bool Enumeration::Contains(const string& name) const
 {
 	const int MATCH = 0;

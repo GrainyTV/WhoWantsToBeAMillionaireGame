@@ -64,7 +64,7 @@ void Game::StoreData()
  */
 void Game::FillFileNames()
 {
-	fileNames[Category::Art] = "art.txt";
+	/*fileNames[Category::Art] = "art.txt";
 	fileNames[Category::Astronomy] = "astronomy.txt";
 	fileNames[Category::Food] = "food.txt";
 	fileNames[Category::Geography] = "geography.txt";
@@ -79,7 +79,24 @@ void Game::FillFileNames()
 	fileNames[Category::Sports] = "sports.txt";
 	fileNames[Category::Tabloid] = "tabloid.txt";
 	fileNames[Category::Theatre] = "theatre.txt";
-	fileNames[Category::Transport] = "transport.txt";
+	fileNames[Category::Transport] = "transport.txt";*/
+		
+	path directory = "text";
+	
+	for(auto entry : directory_iterator(directory.c_str()))
+	{
+		// Query for the path of the file
+		path fileWithDirectory = entry.path();
+
+		// Create a new enum value from the name of the file without extension
+		string newEnumValue = fileWithDirectory.stem().string();
+
+		// Add entry to our enum object
+		category.Add(newEnumValue);
+
+		// Save .txt file in our hashmap
+		fileNames[category[newEnumValue]] = fileWithDirectory.string();
+	}
 }
 
 /**
@@ -89,21 +106,21 @@ void Game::FillFileNames()
  */
 void Game::Testing()
 {
-	for(auto values : gameData[Geography][Easy])
+	for(auto values : gameData[category["theatre"]][Easy])
 	{
 		values.Print();
 	}
 
 	printf("\n");
 
-	for(auto values : gameData[Geography][Medium])
+	for(auto values : gameData[category["tabloid"]][Medium])
 	{
 		values.Print();
 	}
 
 	printf("\n");
 
-	for(auto values : gameData[Geography][Hard])
+	for(auto values : gameData[category["other"]][Hard])
 	{
 		values.Print();
 	}
@@ -155,4 +172,14 @@ bool Game::IsRunning()
 void Game::Terminate()
 {
 	running = false;
+}
+
+void Game::GenerateQuestions()
+{
+	/*deque<Category> chosenCategories;
+
+	for(int i = 0; i < 15; ++i)
+	{
+
+	}*/
 }

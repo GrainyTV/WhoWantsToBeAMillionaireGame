@@ -75,20 +75,22 @@ Difficulty Data::CharToDifficulty(const char& input)
  * @param fileName : the name of the given input file with extensions
  * 
  */
-deque<Data> Data::LoadContent(const string& fileName)
+deque<Data> Data::LoadContent(const string& fileWithDirectory) //fileName)
 {
 	ifstream reader;
 
-	path fileWithDirectory = "text";
-	fileWithDirectory /= fileName;
+	//path fileWithDirectory = "text";
+	//fileWithDirectory /= fileName;
 
-	const string file = fileWithDirectory.string();
+	//const string file = fileWithDirectory.string();
 
-	reader.open(file, ios::in);
+	//reader.open(file, ios::in);
+	reader.open(fileWithDirectory, ios::in);
 
 	if(reader.fail())
 	{
-		throw ios::failure("Cannot open input file: " + fileWithDirectory.string());
+		//throw ios::failure("Cannot open input file: " + fileWithDirectory.string());
+		throw ios::failure("Cannot open input file: " + fileWithDirectory);
 	}
 	
 	deque<Data> result;
