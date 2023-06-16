@@ -6,24 +6,32 @@
 #include <unordered_map>
 #include <deque>
 #include <memory>
+#include <filesystem>
 #include "Data.hpp"
 #include "GameView.hpp"
+#include "Enumeration.hpp"
 
 using std::unordered_map;
 using std::deque;
 using std::string;
 using std::unique_ptr;
+using std::filesystem::path;
+using std::filesystem::directory_iterator;
 
-enum Category { Art, Astronomy, Food, Geography, History, Holidays, Literature, Music, Nature, Other, Proverbs, TelevisionSeries, Sports, Tabloid, Theatre, Transport };
+//enum Category { Art, Astronomy, Food, Geography, History, Holidays, Literature, Music, Nature, Other, Proverbs, TelevisionSeries, Sports, Tabloid, Theatre, Transport };
 
 class Game
 {
 private:
+	Enumeration category;
+
 	// Input files for categories [category(K) - fileName(V)]
-	unordered_map<Category, string> fileNames;
+	//unordered_map<Category, string> fileNames;
+	unordered_map<EnumField, string, EnumField::Hash> fileNames;
 
 	// Loaded data represented in sorted way [category(K) - [difficulty(K) - question(V)]]
-	unordered_map<Category, unordered_map<Difficulty, deque<Data>>> gameData;
+	//unordered_map<Category, unordered_map<Difficulty, deque<Data>>> gameData;
+	unordered_map<EnumField, unordered_map<Difficulty, deque<Data>>, EnumField::Hash> gameData;
 
 	// Constructor hidden from outside
 	Game();
@@ -61,6 +69,8 @@ public:
 	static void Terminate();
 
 	static bool IsRunning();
+
+	static void GenerateQuestions();
 };
 
 #endif

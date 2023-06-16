@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <initializer_list>
 #include <format>
+#include <functional>
 
 using std::deque;
 using std::string;
@@ -13,6 +14,7 @@ using std::to_string;
 using std::invalid_argument;
 using std::initializer_list;
 using std::format;
+using std::hash;
 
 struct EnumField
 {
@@ -21,6 +23,11 @@ struct EnumField
 	long unsigned int value;
 
 	bool operator==(const EnumField& input) const;
+
+	struct Hash
+	{
+		unsigned int operator()(const EnumField& e) const noexcept;
+	};
 };
 
 class Enumeration

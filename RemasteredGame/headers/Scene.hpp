@@ -24,8 +24,6 @@ using std::async;
 using std::launch;
 using std::future;
 
-#include <thread>
-
 enum GameState { MainMenu, InGame, Options };
 
 class Scene
