@@ -125,7 +125,7 @@ void Event::FillMouseHitboxes()
 	
 	deque<function<void()>> mainMenuClicked = 
 	{ 
-		[&, this] () { (*Game::Instance()).GenerateQuestions(); }, //Game::GenerateQuestions(); (*scenePtr)._State(GameState::InGame); },
+		[&, this] () { (*Game::Instance()).GenerateNewGame(); }, //Game::GenerateQuestions(); (*scenePtr)._State(GameState::InGame); },
 		[&, this] () { (*scenePtr)._State(GameState::Options); },
 		[] () { Game::Terminate(); }
 	};

@@ -51,7 +51,23 @@ public:
 
 	Difficulty _Difficulty() const;
 
+	string _Question() const;
+
+	string _A() const;
+
+	string _B() const;
+
+	string _C() const;
+
+	string _D() const;
+
+	string _Solution() const;
+
 	void Print();
+
+	bool operator==(const Data& data) const;
+
+	bool operator<(const Data& data) const;
 
 	static Difficulty CharToDifficulty(const char& input);
 

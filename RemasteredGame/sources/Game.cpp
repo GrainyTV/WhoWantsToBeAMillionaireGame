@@ -165,15 +165,37 @@ void Game::Terminate()
 	running = false;
 }
 
-void Game::GenerateQuestions()
+void Game::GenerateNewGame()
 {
 	CategoryChance chances(category);
 	deque<string> categories = chances.GenerateRandomizedCategories();
+	Difficulty currentDiff = Difficulty::Easy;
+	deque<Data> chosenQuestions;
 
-	for(auto s : categories)
+	for(int i = 0; i < categories.size(); ++i)
 	{
-		printf("%s\n", s.c_str());
+		deque<Data> options = gameData[category[categories[i]]][currentDiff];
+		bool success = false;
+		
+		do
+		{
+			const unsigned int RANDOM = CategoryChance::Random(0, options.size() - 1);
+			const Data QUESTION = options[RANDOM];
+			const bool CONTAINS = find(chosenQuestions.begin(), chosenQuestions.end(), QUESTION) != chosenQuestions.end();
+
+			if(CONTAINS == false)
+			{
+				chosenQuestions.push_back(QUESTION);
+				success = true;
+			}
+
+		} while(success == false);
+
+		if((i + 1) % 5 == 0)
+		{
+			currentDiff = static_cast<Difficulty>((i + 1) / 5);
+		}
 	}
 
-	//Game::Terminate();
+	newGame = make_unique<NewGame>(chosenQuestions);
 }

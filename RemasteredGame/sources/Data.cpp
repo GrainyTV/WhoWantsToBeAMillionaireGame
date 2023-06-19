@@ -39,6 +39,36 @@ Difficulty Data::_Difficulty() const
 	return diff;
 }
 
+string Data::_Question() const
+{
+	return question;
+}
+
+string Data::_A() const
+{
+	return a;
+}
+
+string Data::_B() const
+{
+	return b;
+}
+
+string Data::_C() const
+{
+	return c;
+}
+
+string Data::_D() const
+{
+	return d;
+}
+
+string Data::_Solution() const
+{
+	return solution;
+}
+
 /**
  * 
  * Print method for testing purposes
@@ -47,6 +77,27 @@ Difficulty Data::_Difficulty() const
 void Data::Print()
 {
 	printf("%d %s %s %s %s %s %s\n", diff, question.c_str(), a.c_str(), b.c_str(), c.c_str(), d.c_str(), solution.c_str());
+}
+
+bool Data::operator==(const Data& data) const
+{
+	if (diff == data._Difficulty() && 
+		question.compare(data._Question()) == 0 &&
+		a.compare(data._A()) == 0 &&
+		b.compare(data._B()) == 0 &&
+		c.compare(data._C()) == 0 &&
+		d.compare(data._D()) == 0 &&
+		solution.compare(data._Solution()) == 0)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool Data::operator<(const Data& data) const
+{
+	return (question.compare(data._Question()) < 0) ? true : false;
 }
 
 /**

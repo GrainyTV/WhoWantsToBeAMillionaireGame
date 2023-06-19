@@ -7,9 +7,11 @@
 #include <deque>
 #include <memory>
 #include <filesystem>
+#include <algorithm>
 #include "Data.hpp"
 #include "GameView.hpp"
 #include "Enumeration.hpp"
+#include "NewGame.hpp"
 
 using std::unordered_map;
 using std::deque;
@@ -17,20 +19,18 @@ using std::string;
 using std::unique_ptr;
 using std::filesystem::path;
 using std::filesystem::directory_iterator;
-
-//enum Category { Art, Astronomy, Food, Geography, History, Holidays, Literature, Music, Nature, Other, Proverbs, TelevisionSeries, Sports, Tabloid, Theatre, Transport };
+using std::find;
 
 class Game
 {
 private:
+	// Dynamically changeable enum++ class with count property
 	Enumeration category;
 
 	// Input files for categories [category(K) - fileName(V)]
-	//unordered_map<Category, string> fileNames;
 	unordered_map<EnumField, string, EnumField::Hash> fileNames;
 
 	// Loaded data represented in sorted way [category(K) - [difficulty(K) - question(V)]]
-	//unordered_map<Category, unordered_map<Difficulty, deque<Data>>> gameData;
 	unordered_map<EnumField, unordered_map<Difficulty, deque<Data>>, EnumField::Hash> gameData;
 
 	// Constructor hidden from outside
@@ -44,6 +44,10 @@ private:
 
 	// The application's frontend
 	unique_ptr<GameView> frontEnd;
+
+	// All required data for the game
+	// Initially null, until the user launches one
+	unique_ptr<NewGame> newGame; 
 
 	// Singleton instance for the game
 	static unique_ptr<Game> instance;
@@ -70,7 +74,7 @@ public:
 
 	static bool IsRunning();
 
-	void GenerateQuestions();
+	void GenerateNewGame();
 };
 
 #endif
