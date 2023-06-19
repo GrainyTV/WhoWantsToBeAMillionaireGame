@@ -70,7 +70,7 @@ public:
 
 	static bool IsRunning();
 
-	static void GenerateQuestions();
+	void GenerateQuestions();
 };
 
 #endif

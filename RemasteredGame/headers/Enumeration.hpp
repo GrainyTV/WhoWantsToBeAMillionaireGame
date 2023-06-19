@@ -7,6 +7,7 @@
 #include <initializer_list>
 #include <format>
 #include <functional>
+#include <iterator>
 
 using std::deque;
 using std::string;
@@ -55,6 +56,10 @@ public:
 	EnumField operator[](const string& name) const;
 
 	EnumField operator[](const long unsigned int& value) const;
+
+	deque<EnumField>::const_iterator begin() const noexcept;
+
+	deque<EnumField>::const_iterator end() const noexcept;
 };
 
 #endif

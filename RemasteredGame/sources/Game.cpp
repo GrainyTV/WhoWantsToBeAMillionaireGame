@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "CategoryChance.hpp"
 
 unique_ptr<Game> Game::instance = nullptr;
 
@@ -64,23 +65,6 @@ void Game::StoreData()
  */
 void Game::FillFileNames()
 {
-	/*fileNames[Category::Art] = "art.txt";
-	fileNames[Category::Astronomy] = "astronomy.txt";
-	fileNames[Category::Food] = "food.txt";
-	fileNames[Category::Geography] = "geography.txt";
-	fileNames[Category::History] = "history.txt";
-	fileNames[Category::Holidays] = "holidays.txt";
-	fileNames[Category::Literature] = "literature.txt";
-	fileNames[Category::Music] = "music.txt";
-	fileNames[Category::Nature] = "nature.txt";
-	fileNames[Category::Other] = "other.txt";
-	fileNames[Category::Proverbs] = "proverbs.txt";
-	fileNames[Category::TelevisionSeries] = "series.txt";
-	fileNames[Category::Sports] = "sports.txt";
-	fileNames[Category::Tabloid] = "tabloid.txt";
-	fileNames[Category::Theatre] = "theatre.txt";
-	fileNames[Category::Transport] = "transport.txt";*/
-		
 	path directory = "text";
 	
 	for(auto entry : directory_iterator(directory.c_str()))
@@ -123,6 +107,13 @@ void Game::Testing()
 	for(auto values : gameData[category["other"]][Hard])
 	{
 		values.Print();
+	}
+
+	printf("\n");
+
+	for(auto enumKeyValue : category)
+	{
+		printf("%s - %d\n", enumKeyValue.name.c_str(), enumKeyValue.value);
 	}
 }
 
@@ -176,10 +167,13 @@ void Game::Terminate()
 
 void Game::GenerateQuestions()
 {
-	/*deque<Category> chosenCategories;
+	CategoryChance chances(category);
+	deque<string> categories = chances.GenerateRandomizedCategories();
 
-	for(int i = 0; i < 15; ++i)
+	for(auto s : categories)
 	{
+		printf("%s\n", s.c_str());
+	}
 
-	}*/
+	//Game::Terminate();
 }

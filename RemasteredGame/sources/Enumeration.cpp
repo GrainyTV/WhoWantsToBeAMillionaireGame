@@ -134,3 +134,13 @@ EnumField Enumeration::operator[](const long unsigned int& value) const
 	
 	return enums[value];
 }
+
+deque<EnumField>::const_iterator Enumeration::begin() const noexcept
+{
+	return enums.begin();
+}
+
+deque<EnumField>::const_iterator Enumeration::end() const noexcept
+{
+	return enums.end();
+}

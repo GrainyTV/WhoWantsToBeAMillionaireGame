@@ -2,7 +2,6 @@
 #define SCENE_HPP
 
 #include <stdexcept>
-#include <random>
 #include <unordered_map>
 #include <deque>
 #include <filesystem>
@@ -12,9 +11,6 @@
 #include "SDL_image.h"
 
 using std::runtime_error;
-using std::random_device;
-using std::mt19937;
-using std::uniform_int_distribution;
 using std::string;
 using std::unordered_map;
 using std::deque;
@@ -47,9 +43,6 @@ private:
 	// The current ID of rendered texture
 	unsigned int textureID;
 
-	// Expensive non-deterministic seed for random numbers
-	static random_device randomGenerator;
-
 public:
 	Scene(SDL_Renderer* renderer);
 
@@ -74,8 +67,6 @@ public:
 	unsigned int _TextureId() const;
 
 	void _TextureId(const unsigned int& value);
-
-	static int Random(int lowerBound, int upperBound);
 };
 
 #endif

@@ -1,7 +1,5 @@
 #include "Scene.hpp"
 
-random_device Scene::randomGenerator = random_device();
-
 /**
  * 
  * Constructor with the renderer acquired.
@@ -190,22 +188,4 @@ unsigned int Scene::_TextureId() const
 void Scene::_TextureId(const unsigned int& value)
 {
 	textureID = value;
-}
-
-/**
- * 
- * Non-deterministic seeded random number generator.
- * @param lowerBound : inclusive, integer lower bound
- * @param upperBound : inclusive, integer upper bound
- * @return : the chosen integer from the interval
- * 
- */
-int Scene::Random(int lowerBound, int upperBound)
-{
-	// seeding the engine:
-	mt19937 engine{ randomGenerator() }; 
-	uniform_int_distribution<int> distribution{ lowerBound, upperBound };
-
-	// get random numbers with:
-	return distribution(engine);
 }
