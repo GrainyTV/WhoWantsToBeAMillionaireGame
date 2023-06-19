@@ -234,22 +234,6 @@ CategoryChance::CategoryChance(const Enumeration& enums) : categories(enums)
 
 /**
  * 
- * Destructor to release used resources when going out of scope.
- * 
- */
-/*CategoryChance::~CategoryChance()
-{
-	for(auto [key, value] : categoryChances)
-	{
-		for(auto element : value)
-		{
-			delete element;
-		}
-	}
-}*/
-
-/**
- * 
  * This function iterates over the generation process, the number of required times.
  * So in our case 15 times. We need 15 selected categories to choose the questions from.
  * @result : the name of the chosen categories

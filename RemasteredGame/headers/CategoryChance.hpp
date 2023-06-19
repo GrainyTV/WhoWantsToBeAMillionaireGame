@@ -89,8 +89,6 @@ private:
 public:
 	CategoryChance(const Enumeration& enums);
 
-	//~CategoryChance();
-
 	deque<string> GenerateRandomizedCategories();
 
 	void RecalculatePercantages(const deque<string>& result);
