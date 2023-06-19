@@ -1,0 +1,19 @@
+Width=595 Height=115 Sarok=50
+
+First Column:
+-left side 340
+-right side 930
+
+Second Column:
+-left side 990
+-right side 1580
+
+First Row:
+-top 790
+-middle 845
+-bottom 900
+
+Second Row:
+-top 930
+-middle 985
+-bottom 1040
