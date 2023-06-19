@@ -2,6 +2,10 @@
 
 using std::exception;
 
+static const int GREEN = 32;
+static const int RED = 31;
+static const int ORANGE = 33;
+
 static void ColoredPrint(const char* string, const int& color)
 {
 	printf("\x1B[%dm%s\033[0m\n", color, string);
@@ -14,20 +18,16 @@ int main(int argc, char* args[])
 		Game* const g_Game = Game::Instance();
 		(*g_Game).FillFileNames();
 		(*g_Game).StoreData();
-		(*g_Game).Testing();
-		//(*g_Game).Launch();		
+		//(*g_Game).Testing();
+		(*g_Game).Launch();		
 	}
 	catch(const exception& e)
 	{
-		// Color Value 33 = Orange
-		ColoredPrint(e.what(), 33);
-
-		// Color Value 31 = Red
-		ColoredPrint("Program exited with code: 1", 31);
+		ColoredPrint(e.what(), ORANGE);
+		ColoredPrint("Program exited with code: 1", RED);
 		return EXIT_FAILURE;
 	}
 
-	// Color Value 32 = Green
-	ColoredPrint("Program exited with code: 0", 32);
+	ColoredPrint("Program exited with code: 0", GREEN);
 	return EXIT_SUCCESS;
 }
