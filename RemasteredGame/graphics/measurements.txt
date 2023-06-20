@@ -1,4 +1,4 @@
-Width=595 Height=115 Sarok=50
+Width=595 Height=115 Corner=50 In-between=30
 
 First Column:
 -left side 340
