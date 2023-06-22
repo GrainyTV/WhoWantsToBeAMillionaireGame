@@ -1,5 +1,5 @@
 # OBJ_SOURCE specifies which files to compile as part of the project
-OBJ_SOURCE = main.cpp
+OBJ_SOURCE = Hexa.cpp main.cpp Primitive.cpp Quad.cpp Triangle.cpp Window.cpp
 
 # OBJ_LIB specifies which headers and libraries to link
 OBJ_LIB = -I headers -I SDL/include -Lresources -Wl,-rpath=./resources -lm -lSDL2main -lSDL2
@@ -9,4 +9,4 @@ OBJ_NAME = Program
 
 # This is the target that compiles our executable
 all : $(OBJ_SOURCE)
-	g++ $(OBJ_SOURCE) -w -std=c++23 $(OBJ_LIB) -o $(OBJ_NAME)
+	g++ $(OBJ_SOURCE) -std=c++23 $(OBJ_LIB) -o $(OBJ_NAME)

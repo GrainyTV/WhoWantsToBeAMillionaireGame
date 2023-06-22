@@ -1,247 +1,30 @@
-// g++ main.cpp `pkg-config --cflags --libs sdl2`
 #include <SDL.h>
 #include <vector>
 #include <format>
 #include <initializer_list>
 #include <cmath>
 #include <stdexcept>
+#include "Window.hpp"
+#include "Hexa.hpp"
 
 using namespace std;
-
-struct vec2
-{
-	double x;
-	double y;
-
-	void Normalize()
-	{
-		double distance = sqrt(pow(x, 2) + pow(y, 2));
-		x /= distance;
-		y /= distance;
-	}
-
-	void Print()
-	{
-		printf("(%.2f, %.2f)\n", x, y);
-	}
-};
-
-class Quad
-{
-private:
-	SDL_Renderer* renderer;
-
-	vector<SDL_Vertex> vertices;
-
-public:
-	Quad()
-	{
-	}
-
-	Quad(SDL_Renderer* renderer, const vector<vec2>& vertices, const SDL_Color& color) : renderer(renderer)
-	{
-		if(vertices.size() != 4)
-		{
-			throw invalid_argument(format("A quad should have 4 vertices. Not less, not more. The one you provided has {0:d}.", vertices.size()));
-		}
-
-		for(auto vertex : vertices)
-		{
-			this->vertices.push_back((SDL_Vertex) { SDL_FPoint(vertex.x, vertex.y), SDL_Color(color.r, color.g, color.b, color.a), SDL_FPoint(0) });
-		}
-
-		this->vertices.push_back((SDL_Vertex) { SDL_FPoint(vertices[1].x, vertices[1].y), SDL_Color(color.r, color.g, color.b, color.a), SDL_FPoint(0) });
-		this->vertices.push_back((SDL_Vertex) { SDL_FPoint(vertices[2].x, vertices[2].y), SDL_Color(color.r, color.g, color.b, color.a), SDL_FPoint(0) });
-	}
-
-	vec2 operator[](const int index) const
-	{
-		return vec2(vertices[index].position.x, vertices[index].position.y);
-	}
-
-	void Draw() const 
-	{
-		SDL_RenderGeometry( renderer, NULL, vertices.data(), vertices.size(), NULL, 0);
-	}
-};
-
-class Triangle
-{
-private:
-	SDL_Renderer* renderer;
-
-	vector<SDL_Vertex> vertices;
-
-public:
-	Triangle()
-	{
-	}
-
-	Triangle(SDL_Renderer* renderer, const vector<vec2>& vertices, const SDL_Color& color) : renderer(renderer)
-	{
-		if(vertices.size() != 3)
-		{
-			throw invalid_argument(format("A triangle should have 3 vertices. Not less, not more. The one you provided has {0:d}.", vertices.size()));
-		}
-
-		for(auto vertex : vertices)
-		{
-			this->vertices.push_back((SDL_Vertex) { SDL_FPoint(vertex.x, vertex.y), SDL_Color(color.r, color.g, color.b, color.a), SDL_FPoint(0) });
-		}
-	}
-
-	void Draw() const 
-	{
-		SDL_RenderGeometry( renderer, NULL, vertices.data(), vertices.size(), NULL, 0);
-	}
-};
-
-class Hexa
-{
-private:
-	vector<Quad> stroke;
-
-	vector<Triangle> gapFix;
-
-	SDL_Renderer* renderer;
-	
-	Triangle triangles[2];
-	
-	Quad quad;
-
-public:
-	Hexa(SDL_Renderer* renderer, const std::vector<vec2>& vertices) : renderer(renderer)
-	{
-		if(vertices.size() != 6)
-		{
-			throw invalid_argument(format("A hexagon should have 6 vertices. Not less, not more. The one you provided has {0:d}.", vertices.size()));
-		}
-
-		triangles[0] = Triangle(renderer, vector<vec2>({ vertices[0], vertices[1], vertices[2] }), SDL_Color(255, 0, 0, 255));
-		triangles[1] = Triangle(renderer, vector<vec2>({ vertices[3], vertices[4], vertices[5] }), SDL_Color(255, 0, 0, 255));
-		quad = Quad(renderer, vector<vec2>({ vertices[1], vertices[2], vertices[3], vertices[4] }), SDL_Color(255, 0, 0, 255));
-
-		stroke = vector<Quad>({
-			CalulateBorderQuad(renderer, vertices[0], vertices[1]),
-			CalulateBorderQuad(renderer, vertices[1], vertices[3]),
-			CalulateBorderQuad(renderer, vertices[3], vertices[5]),
-			CalulateBorderQuad(renderer, vertices[5], vertices[4]),
-			CalulateBorderQuad(renderer, vertices[4], vertices[2]),
-			CalulateBorderQuad(renderer, vertices[2], vertices[0])
-		});
-
-		const int SIDES = 6;
-
-		for(int i = 0; i < SIDES; ++i)
-		{
-			int j = (i + 1) % SIDES;
-
-			gapFix.push_back(Triangle(renderer, vector<vec2>({ stroke[i][2], stroke[i][3], stroke[j][1] }), SDL_Color(0, 0, 255, 255)));
-		}
-		
-		stroke[0][2].Print();
-		stroke[0][3].Print();
-		stroke[1][0].Print();
-		stroke[1][1].Print();
-		printf("\n");
-	}
-
-	Quad CalulateBorderQuad(SDL_Renderer* renderer, const vec2& v1, const vec2& v2)
-	{
-		if(v1.x == v2.x && v1.y == v2.y)
-		{
-			throw invalid_argument("Calculating the difference of the same two points.");
-		}
-
-		const double THICKNESS = 10.0;
-
-		if(v2.y - v1.y == 0)
-		{
-			vec2 direction = (v2.x > v1.x) ? vec2(1, 0) : vec2(-1, 0);
-
-			vec2 perpendicular = vec2(-1 * direction.y, direction.x);
-			perpendicular.x *= THICKNESS / 2;
-			perpendicular.y *= THICKNESS / 2;
-
-			return Quad(renderer, vector<vec2>({
-				vec2(v1.x + perpendicular.x, v1.y + perpendicular.y),
-				vec2(v1.x - perpendicular.x, v1.y - perpendicular.y),
-				vec2(v2.x + perpendicular.x, v2.y + perpendicular.y),
-				vec2(v2.x - perpendicular.x, v2.y - perpendicular.y)
-			}),
-				SDL_Color(0, 255, 255, 255)
-			);
-		}
-		else if(v2.x - v1.x == 0)
-		{
-			vec2 direction = (v2.y > v1.y) ? vec2(1, 0) : vec2(-1, 0);
-
-			vec2 perpendicular = vec2(-1 * direction.y, direction.x);
-			perpendicular.x *= THICKNESS / 2;
-			perpendicular.y *= THICKNESS / 2;
-
-			return Quad(renderer, vector<vec2>({
-				vec2(v1.x - perpendicular.x, v1.y - perpendicular.y),
-				vec2(v1.x + perpendicular.x, v1.y + perpendicular.y),
-				vec2(v2.x - perpendicular.x, v2.y - perpendicular.y),
-				vec2(v2.x + perpendicular.x, v2.y + perpendicular.y)
-			}),
-				SDL_Color(0, 255, 255, 255)
-			);
-		}
-		else
-		{
-			vec2 direction = vec2(v2.x - v1.x, v2.y - v1.y);
-			direction.Normalize();
-
-			vec2 perpendicular = vec2(-1 * direction.y, direction.x);
-			perpendicular.x *= THICKNESS / 2;
-			perpendicular.y *= THICKNESS / 2;
-
-			return Quad(renderer, vector<vec2>({
-				vec2(v1.x + perpendicular.x, v1.y + perpendicular.y),
-				vec2(v1.x - perpendicular.x, v1.y - perpendicular.y),
-				vec2(v2.x + perpendicular.x, v2.y + perpendicular.y),
-				vec2(v2.x - perpendicular.x, v2.y - perpendicular.y)
-			}),
-				SDL_Color(0, 255, 255, 255)
-			);
-		}
-
-		throw invalid_argument("Subtracting two points should result in 0 change in x, 0 change in y, or some change in both x and y.");
-	}
-
-	void Draw() const
-	{
-		triangles[0].Draw();
-		triangles[1].Draw();
-		quad.Draw();
-		
-		for(auto quad : stroke)
-		{
-			quad.Draw();
-		}
-
-		for(auto fix : gapFix)
-		{
-			fix.Draw();
-		}
-	}
-};
 
 int main( int argc, char** argv )
 {
 	SDL_Init( SDL_INIT_EVERYTHING );
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
-	SDL_Window* window = SDL_CreateWindow("SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
-	SDL_Renderer* renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+
+	Window w1;
+
+	SDL_Window* window = w1._Window();
+	SDL_Renderer* renderer = w1._Renderer();
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
-	const Hexa answer_a(renderer, vector<vec2>({ vec2(340, 845), vec2(390, 790), vec2(390, 900), vec2(880, 790), vec2(880, 900), vec2(930, 845) }));
-	const Hexa answer_b(renderer, vector<vec2>({ vec2(990, 845), vec2(1040, 790), vec2(1040, 900), vec2(1530, 790), vec2(1530, 900), vec2(1580, 845) }));
-	const Hexa answer_c(renderer, vector<vec2>({ vec2(340, 985), vec2(390, 930), vec2(390, 1040), vec2(880, 930), vec2(880, 1040), vec2(930, 985) }));
-	const Hexa answer_d(renderer, vector<vec2>({ vec2(990, 985), vec2(1040, 930), vec2(1040, 1040), vec2(1530, 930), vec2(1530, 1040), vec2(1580, 985) }));
-	const Hexa question(renderer, vector<vec2>({ vec2(340, 705), vec2(390, 650), vec2(390, 760), vec2(1530, 650), vec2(1530, 760), vec2(1580, 705) }));
+	const Hexa answer_a({ Vec2(340, 845), Vec2(390, 790), Vec2(390, 900), Vec2(896, 790), Vec2(896, 900), Vec2(946, 845) });
+	const Hexa answer_b({ Vec2(974, 845), Vec2(1024, 790), Vec2(1024, 900), Vec2(1530, 790), Vec2(1530, 900), Vec2(1580, 845) });
+	const Hexa answer_c({ Vec2(340, 985), Vec2(390, 930), Vec2(390, 1040), Vec2(896, 930), Vec2(896, 1040), Vec2(946, 985) });
+	const Hexa answer_d({ Vec2(974, 985), Vec2(1024, 930), Vec2(1024, 1040), Vec2(1530, 930), Vec2(1530, 1040), Vec2(1580, 985) });
+	const Hexa question({ Vec2(340, 705), Vec2(390, 650), Vec2(390, 760), Vec2(1530, 650), Vec2(1530, 760), Vec2(1580, 705) });
 
 	bool running = true;
 	while( running )
@@ -265,20 +48,6 @@ int main( int argc, char** argv )
 		answer_b.Draw();
 		answer_c.Draw();
 		answer_d.Draw();
-
-		/*SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-
-		SDL_RenderDrawLine(renderer, 0, 985, 1920, 985);
-
-		SDL_RenderDrawLine(renderer, 0, 845, 1920, 845);
-
-		SDL_RenderDrawLine(renderer, 1040, 0, 1040, 1080);
-
-		SDL_RenderDrawLine(renderer, 1530, 0, 1530, 1080);
-
-		SDL_RenderDrawLine(renderer, 390, 0, 390, 1080);
-
-		SDL_RenderDrawLine(renderer, 880, 0, 880, 1080);*/
 
 		SDL_RenderPresent( renderer );
 	}
