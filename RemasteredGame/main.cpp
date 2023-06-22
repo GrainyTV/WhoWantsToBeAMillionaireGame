@@ -19,7 +19,7 @@ int main(int argc, char* args[])
 		(*g_Game).FillFileNames();
 		(*g_Game).StoreData();
 		//(*g_Game).Testing();
-		(*g_Game).Launch();		
+		(*g_Game).Launch();	
 	}
 	catch(const exception& e)
 	{

@@ -16,17 +16,19 @@ private:
 	static int SCREEN_HEIGHT;
 
 	// Our window object
-	SDL_Window* window;
+	static SDL_Window* window;
 
 	// Our renderer object
-	SDL_Renderer* renderer;
+	static SDL_Renderer* renderer;
 
 public:
 	Window();
 
 	~Window();
 
-	SDL_Renderer* _Renderer() const;
+	static SDL_Renderer* _Renderer();
+
+	static SDL_Window* _Window();
 };
 
 #endif

@@ -7,8 +7,10 @@
 #include <filesystem>
 #include <format>
 #include <future>
+#include <memory>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "DrawableScene.hpp"
 
 using std::runtime_error;
 using std::string;
@@ -19,6 +21,7 @@ using std::format;
 using std::async;
 using std::launch;
 using std::future;
+using std::unique_ptr;
 
 enum GameState { MainMenu, InGame, Options };
 
@@ -36,6 +39,9 @@ private:
 
 	// Our texture files
 	unordered_map<GameState, deque<string>> textureFiles;
+
+	// Our different renderable scenes
+	unordered_map<GameState, unique_ptr<DrawableScene>> renderedScene;
 
 	// The current state of the game
 	GameState state;

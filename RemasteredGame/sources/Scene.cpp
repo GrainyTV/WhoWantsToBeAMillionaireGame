@@ -1,4 +1,5 @@
 #include "Scene.hpp"
+#include "InGameScene.hpp"
 
 /**
  * 
@@ -20,6 +21,8 @@ Scene::Scene(SDL_Renderer* renderer)
 	
 	FillTextureFiles();
 	textures = LoadTextures();
+
+	renderedScene[GameState::InGame] = unique_ptr<InGameScene>(new InGameScene());
 }
 
 /**
@@ -50,6 +53,11 @@ void Scene::Redraw()
 	}
 
 	SDL_RenderCopy(rendererPtr, textures[textureID], NULL, NULL);
+
+	if(renderedScene.contains(state))
+	{
+		(*renderedScene[state].get()).Draw();
+	}
 
 	SDL_RenderPresent(rendererPtr);
 }
@@ -139,7 +147,7 @@ void Scene::FillTextureFiles()
 	deque<string> mainMenu = { "mainmenu_default.png", "mainmenu_1.png", "mainmenu_2.png", "mainmenu_3.png" };
 	textureFiles[GameState::MainMenu] = mainMenu;
 
-	deque<string> inGame = { "ingame_default.png", "ingame_1.png", "ingame_2.png", "ingame_3.png", "ingame_4.png" };
+	deque<string> inGame = { "background.png" }; //"ingame_default.png", "ingame_1.png", "ingame_2.png", "ingame_3.png", "ingame_4.png" };
 	textureFiles[GameState::InGame] = inGame;
 }
 

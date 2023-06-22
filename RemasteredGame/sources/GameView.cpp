@@ -6,7 +6,7 @@
  * Constructor sets the default scene and event objects.
  * 
  */
-GameView::GameView() : scene(window._Renderer()), event(&scene)
+GameView::GameView() : scene(Window::_Renderer()), event(&scene)
 {
 	scene.Invalidate();
 }

@@ -4,6 +4,10 @@ int Window::SCREEN_WIDTH = 960;
 
 int Window::SCREEN_HEIGHT = 540;
 
+SDL_Window* Window::window = nullptr;
+
+SDL_Renderer* Window::renderer = nullptr;
+
 /**
  * 
  * Constructor initializes subsystems, the window and the renderer.
@@ -15,6 +19,9 @@ Window::Window()
 	{
 		throw runtime_error(SDL_GetError());
 	}
+
+	// Turn on anti-aliasing for surfaces
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
 
 	window = SDL_CreateWindow("Legyen on is milliomos!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 
@@ -30,7 +37,7 @@ Window::Window()
 		throw runtime_error(SDL_GetError());
 	}
 
-	// Turn on anti-aliasing
+	// Turn on anti-aliasing for textures
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
 
@@ -51,7 +58,12 @@ Window::~Window()
  * Getter function for the renderer object.
  * 
  */
-SDL_Renderer* Window::_Renderer() const
+SDL_Renderer* Window::_Renderer()
 {
 	return renderer;
+}
+
+SDL_Window* Window::_Window()
+{
+	return window;
 }
