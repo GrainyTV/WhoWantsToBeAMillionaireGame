@@ -9,26 +9,26 @@ Hexa::Hexa(const initializer_list<Vec2>& vertexList) : Primitive()
 
 	const vector<Vec2> vertices(vertexList);
 	
-	hexagonParts.push_back(make_unique<Primitive*>(new Triangle({ vertices[0], vertices[1], vertices[2] }, SDL_Color(255, 0, 0, 255))));
-	hexagonParts.push_back(make_unique<Primitive*>(new Triangle({ vertices[3], vertices[4], vertices[5] }, SDL_Color(255, 0, 0, 255))));
-	hexagonParts.push_back(make_unique<Primitive*>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, SDL_Color(255, 0, 0, 255))));
+	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, SDL_Color(255, 0, 0, 255))));
+	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, SDL_Color(255, 0, 0, 255))));
+	hexagonParts.push_back(unique_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, SDL_Color(255, 0, 0, 255))));
 
-	hexagonStroke.push_back(make_unique<Primitive*>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
-	hexagonStroke.push_back(make_unique<Primitive*>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
-	hexagonStroke.push_back(make_unique<Primitive*>(new Quad(CalculateBorderQuad(vertices[3], vertices[5]))));
-	hexagonStroke.push_back(make_unique<Primitive*>(new Quad(CalculateBorderQuad(vertices[5], vertices[4]))));
-	hexagonStroke.push_back(make_unique<Primitive*>(new Quad(CalculateBorderQuad(vertices[4], vertices[2]))));
-	hexagonStroke.push_back(make_unique<Primitive*>(new Quad(CalculateBorderQuad(vertices[2], vertices[0]))));
+	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
+	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
+	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[3], vertices[5]))));
+	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[5], vertices[4]))));
+	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[4], vertices[2]))));
+	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[2], vertices[0]))));
 
 	for(int i = 0; i < SIDES; ++i)
 	{
 		int j = (i + 1) % SIDES;
 
-		Vec2 strokeFixVertex1 = (*static_cast<Quad*>(*hexagonStroke[i].get()))[2];
-		Vec2 strokeFixVertex2 = (*static_cast<Quad*>(*hexagonStroke[i].get()))[3];
-		Vec2 strokeFixVertex3 = (*static_cast<Quad*>(*hexagonStroke[j].get()))[1];
+		Vec2 strokeFixVertex1 = (*static_cast<Quad*>(hexagonStroke[i].get()))[2];
+		Vec2 strokeFixVertex2 = (*static_cast<Quad*>(hexagonStroke[i].get()))[3];
+		Vec2 strokeFixVertex3 = (*static_cast<Quad*>(hexagonStroke[j].get()))[1];
 
-		hexagonStroke.push_back(make_unique<Primitive*>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, SDL_Color(0, 255, 255, 255))));
+		hexagonStroke.push_back(unique_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, SDL_Color(0, 255, 255, 255))));
 	}
 }
 
@@ -98,13 +98,11 @@ void Hexa::Draw() const
 {
 	for(int i = 0; i < hexagonParts.size(); ++i)
 	{
-		Primitive* shapePtr = (*hexagonParts[i].get());
-		(*shapePtr).Draw();
+		(*hexagonParts[i].get()).Draw();
 	}
 
 	for(int i = 0; i < hexagonStroke.size(); ++i)
 	{
-		Primitive* shapePtr = (*hexagonStroke[i].get());
-		(*shapePtr).Draw();
+		(*hexagonStroke[i].get()).Draw();
 	}
 }

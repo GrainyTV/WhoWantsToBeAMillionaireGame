@@ -23,9 +23,9 @@ class Hexa : public Primitive
 private:
 	static constexpr int SIDES = 6;
 
-	vector<unique_ptr<Primitive*>> hexagonParts;
+	vector<unique_ptr<Primitive>> hexagonParts;
 
-	vector<unique_ptr<Primitive*>> hexagonStroke;
+	vector<unique_ptr<Primitive>> hexagonStroke;
 
 public:
 	Hexa(const initializer_list<Vec2>& vertexList);
