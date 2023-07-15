@@ -3,26 +3,14 @@
 
 #include <stdexcept>
 #include <unordered_map>
-#include <deque>
-#include <filesystem>
-#include <format>
-#include <future>
 #include <memory>
 #include "SDL.h"
-#include "SDL_image.h"
-#include "SDL_ttf.h"
 #include "DrawableScene.hpp"
 #include "Enumeration.hpp"
 
 using std::runtime_error;
 using std::string;
 using std::unordered_map;
-using std::deque;
-using std::filesystem::path;
-using std::format;
-using std::async;
-using std::launch;
-using std::future;
 using std::unique_ptr;
 
 class Scene
@@ -46,10 +34,6 @@ public:
 	~Scene();
 
 	void Redraw();
-
-	//deque<SDL_Texture*> LoadTextures();
-
-	//deque<SDL_Surface*> LoadSurfaces(const GameState& currentState);
 };
 
 #endif

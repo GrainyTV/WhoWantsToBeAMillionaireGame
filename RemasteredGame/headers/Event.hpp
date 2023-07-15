@@ -3,17 +3,11 @@
 
 #include <functional>
 #include <unordered_map>
-#include <memory>
-#include <deque>
 #include "SDL.h"
 #include "Scene.hpp"
 
 using std::unordered_map;
 using std::function;
-using std::bind;
-using std::shared_ptr;
-using std::placeholders::_1;
-using std::deque;
 
 class Event
 {

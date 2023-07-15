@@ -12,6 +12,8 @@ quit({ Vec2(657, 984), Vec2(707, 929), Vec2(707, 1039), Vec2(1213, 929), Vec2(12
 		throw runtime_error("The 3 buttons in the main menu don't line up.");
 	}
 
+	background = CreateTextureFromFile("background.png");
+	logo = CreateTextureFromFile("logo.png");
 	startGameText = CreateTextureFromText("Új játék", "answer");
 	optionsText = CreateTextureFromText("Opciók", "answer");
 	quitText = CreateTextureFromText("Kilépés", "answer");
@@ -23,8 +25,8 @@ void MainMenuScene::Draw() const
 
 	SDL_Rect destination;
 
-	//destination = SDL_Rect {  };
-	//SDL_RenderCopy(Window::_Renderer(), logo, NULL, &destination);
+	destination = SDL_Rect { 665, 30, 590, 590 };
+	SDL_RenderCopy(Window::_Renderer(), logo, NULL, &destination);
 
 	startGame.Draw();
 	options.Draw();

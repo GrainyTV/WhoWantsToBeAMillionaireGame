@@ -1,6 +1,39 @@
 #include "SDL_ttf.h"
+#include "SDL_image.h"
 #include "DrawableScene.hpp"
 #include "Window.hpp"
+
+SDL_Surface* DrawableScene::CreateSurfaceFromFile(const string& file) const
+{
+	path fileWithDirectory = "textures";
+	fileWithDirectory /= file;
+
+	SDL_Surface* loaded = IMG_Load(fileWithDirectory.c_str());
+
+	if(loaded == NULL)
+	{
+		throw runtime_error(format("Could not create surface from file: {0:s}", fileWithDirectory.string()));
+	}
+
+	return loaded;
+}
+
+SDL_Texture* DrawableScene::CreateTextureFromFile(const string& file) const
+{
+	future<SDL_Surface*> loadingTask = async(launch::async, &DrawableScene::CreateSurfaceFromFile, this, file);
+	SDL_Surface* loadedSurface = loadingTask.get();
+
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(Window::_Renderer(), loadedSurface);
+
+	if(texture == NULL)
+	{
+		throw runtime_error(format("Could not convert surface {0:s} to texture.", file));
+	}
+
+	SDL_FreeSurface(loadedSurface);
+
+	return texture;
+}
 
 SDL_Surface* DrawableScene::CreateSurfaceFromText(const string& text, const string& type) const
 {

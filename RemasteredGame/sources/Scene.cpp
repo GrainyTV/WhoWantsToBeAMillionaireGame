@@ -1,3 +1,5 @@
+#include "SDL_image.h"
+#include "SDL_ttf.h"
 #include "Scene.hpp"
 #include "MainMenuScene.hpp"
 #include "InGameScene.hpp"
@@ -61,74 +63,3 @@ void Scene::Redraw()
 
 	SDL_RenderPresent(rendererPtr);
 }
-
-/*
-
-deque<SDL_Texture*> Scene::LoadTextures()
-{
-	deque<SDL_Texture*> result;
-
-	future<deque<SDL_Surface*>> loadingTask = async(launch::async, &Scene::LoadSurfaces, this, state);
-	deque<SDL_Surface*> loadedSurfaces = loadingTask.get();
-
-	while(loadedSurfaces.empty() == false)
-	{
-		SDL_Surface* surface = loadedSurfaces.front();
-		SDL_Texture* texture = SDL_CreateTextureFromSurface(rendererPtr, surface);
-
-		if(texture == NULL)
-		{
-			throw runtime_error("Could not convert surface to texture.");
-		}
-
-		result.push_back(texture);
-		SDL_FreeSurface(surface);
-		loadedSurfaces.pop_front();
-	}
-
-	return result;
-}
-
-/**
- * 
- * Loads the textures required by the given game state object.
- * e.g. all the mainmenu textures if the state is MainMenu
- * @param currentState : the current state of the game
- * @returns : a collection of texture objects
- * 
- */
-
-/*
-deque<SDL_Surface*> Scene::LoadSurfaces(const GameState& currentState)
-{
-	deque<SDL_Surface*> result;
-
-	for(auto file : textureFiles[currentState])
-	{
-		path fileWithDirectory = "textures";
-		fileWithDirectory /= file;
-
-		SDL_Surface* loaded = IMG_Load(fileWithDirectory.c_str());
-
-		if(loaded == NULL)
-		{
-			throw runtime_error(format("Could not load texture: {0:s}", fileWithDirectory.string()));
-		}
-
-		result.push_back(loaded);
-	}
-
-	return result;
-}
-
-void Scene::UnloadTextures()
-{
-	while(textures.empty() == false)
-	{
-		SDL_Texture* texture = textures.front();
-		SDL_DestroyTexture(texture);
-		textures.pop_front();
-	}
-}
-
-*/

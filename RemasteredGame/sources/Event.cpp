@@ -1,6 +1,5 @@
 #include "Event.hpp"
 #include "Game.hpp"
-#include "InGameScene.hpp"
 
 /**
  * 
@@ -18,6 +17,9 @@ Event::Event(Scene* scene)
 	eventCalls[SDL_USEREVENT] = [&, this] () { (*scenePtr).Redraw(); };
 	eventCalls[SDL_MOUSEBUTTONDOWN] = [&, this] () { (*this).MouseClick(); };
 	eventCalls[SDL_MOUSEMOTION] = [&, this] () { (*this).MouseMotion(gameEvent); };
+
+    // Testing Purposes
+    eventCalls[SDL_KEYDOWN] = [] () { Game::Terminate(); };
 }
 
 /**
