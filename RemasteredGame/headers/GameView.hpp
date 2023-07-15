@@ -1,7 +1,6 @@
 #ifndef GAMEVIEW_HPP
 #define GAMEVIEW_HPP
 
-#include "SDL.h"
 #include "Window.hpp"
 #include "Event.hpp"
 #include "Scene.hpp"

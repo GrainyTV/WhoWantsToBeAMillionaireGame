@@ -14,10 +14,16 @@ using std::invalid_argument;
 class NewGame
 {
 private:
+	int currentQuestionIdx;
+
 	deque<Data> chosenQuestions;
 
 public:
 	NewGame(const deque<Data>& selected);
+
+	Data ThisRoundsData() const;
+
+	void IterateToNextRound();
 
 	template<class T>
 	static bool UniqueCheck(deque<T> list);

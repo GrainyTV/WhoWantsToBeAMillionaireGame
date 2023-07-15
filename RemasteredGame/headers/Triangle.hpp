@@ -5,7 +5,6 @@
 #include <vector>
 #include <stdexcept>
 #include <format>
-#include "SDL.h"
 #include "Primitive.hpp"
 
 using std::initializer_list;
@@ -24,6 +23,12 @@ public:
 	Triangle(const initializer_list<Vec2>& vertexList, const SDL_Color& color);
 
 	void Draw() const override;
+
+	bool Hit(int x, int y) const;
+
+	void ChangeColor(SDL_Color color) override;
+
+	static int TriangleArea(Vec2 x1, Vec2 x2, Vec2 x3);
 };
 
 #endif

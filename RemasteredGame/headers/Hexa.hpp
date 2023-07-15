@@ -23,6 +23,14 @@ class Hexa : public Primitive
 private:
 	static constexpr int SIDES = 6;
 
+	const SDL_Color BLACK;
+
+	const SDL_Color BLUE;
+
+	const SDL_Color ORANGE;
+
+	bool overlayEnabled;
+
 	vector<Vec2> nodes;
 
 	vector<unique_ptr<Primitive>> hexagonParts;
@@ -36,9 +44,23 @@ public:
 
 	void Draw() const override;
 
+	bool Hit(SDL_Point& mousePos) const;
+
 	vector<Vec2> _Vertices() const;
 
-	static double CalculateHexagonArea(const vector<Vec2>& hexagonCoordinates);
+	bool operator==(const Hexa& hexa) const;
+
+	bool operator<(const Hexa& hexa) const;
+
+	Hexa Translate(int x, int y) const;
+
+	int Width() const;
+
+	int Height() const;
+
+	void _Overlay(bool enabled);
+
+	void ChangeColor(SDL_Color color) override;
 };
 
 #endif

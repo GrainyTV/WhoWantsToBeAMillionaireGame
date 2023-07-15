@@ -8,12 +8,12 @@
  */
 GameView::GameView() : scene(Window::_Renderer()), event(&scene)
 {
-	scene.Invalidate();
+	event.Invalidate();
 }
 
 /**
  * 
- * The game loop of our application. It runs continually on the main thread until termination is called.
+ * The game loop of our application. It runs constantly on the main thread until termination is called.
  * 
  */
 void GameView::EnterGameLoop()

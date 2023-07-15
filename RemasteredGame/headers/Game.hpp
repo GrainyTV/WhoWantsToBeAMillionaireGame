@@ -11,7 +11,6 @@
 #include "Data.hpp"
 #include "GameView.hpp"
 #include "Enumeration.hpp"
-#include "NewGame.hpp"
 
 using std::unordered_map;
 using std::deque;
@@ -30,7 +29,7 @@ private:
 	// Input files for categories [category(K) - fileName(V)]
 	unordered_map<EnumField, string, EnumField::Hash> fileNames;
 
-	// Loaded data represented in sorted way [category(K) - [difficulty(K) - question(V)]]
+	// Loaded data represented in sorted way [category(K) - [difficulty(K) - data(V)]]
 	unordered_map<EnumField, unordered_map<Difficulty, deque<Data>>, EnumField::Hash> gameData;
 
 	// Constructor hidden from outside
@@ -44,10 +43,6 @@ private:
 
 	// The application's frontend
 	unique_ptr<GameView> frontEnd;
-
-	// All required data for the game
-	// Initially null, until the user launches one
-	unique_ptr<NewGame> newGame; 
 
 	// Singleton instance for the game
 	static unique_ptr<Game> instance;
@@ -68,13 +63,13 @@ public:
 
 	void Launch();
 
+	deque<Data> GenerateNewGame();
+
 	static Game* Instance();
 
 	static void Terminate();
 
-	static bool IsRunning();
-
-	void GenerateNewGame();
+	static bool IsRunning();	
 };
 
 #endif

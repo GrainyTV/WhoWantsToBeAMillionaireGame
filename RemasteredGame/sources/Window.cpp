@@ -63,6 +63,11 @@ SDL_Renderer* Window::_Renderer()
 	return renderer;
 }
 
+/**
+ * 
+ * Getter function for the window object.
+ * 
+ */
 SDL_Window* Window::_Window()
 {
 	return window;

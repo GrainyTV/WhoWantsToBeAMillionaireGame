@@ -1,6 +1,12 @@
 #include "Hexa.hpp"
 
-Hexa::Hexa(const initializer_list<Vec2>& vertexList) : Primitive()
+Hexa::Hexa(const initializer_list<Vec2>& vertexList)
+:
+Primitive(),
+BLACK(SDL_Color(0, 0, 0, 255)),
+BLUE(SDL_Color(95, 194, 253, 255)),
+ORANGE(SDL_Color(254, 125, 5, 128)),
+overlayEnabled(false)
 {
 	if(vertexList.size() != SIDES)
 	{
@@ -14,9 +20,9 @@ Hexa::Hexa(const initializer_list<Vec2>& vertexList) : Primitive()
 
 	const vector<Vec2> vertices(vertexList);
 	
-	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, SDL_Color(255, 0, 0, 255))));
-	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, SDL_Color(255, 0, 0, 255))));
-	hexagonParts.push_back(unique_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, SDL_Color(255, 0, 0, 255))));
+	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, BLACK)));
+	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, BLACK)));
+	hexagonParts.push_back(unique_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, BLACK)));
 
 	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
 	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
@@ -33,7 +39,7 @@ Hexa::Hexa(const initializer_list<Vec2>& vertexList) : Primitive()
 		Vec2 strokeFixVertex2 = (*static_cast<Quad*>(hexagonStroke[i].get()))[3];
 		Vec2 strokeFixVertex3 = (*static_cast<Quad*>(hexagonStroke[j].get()))[1];
 
-		hexagonStroke.push_back(unique_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, SDL_Color(0, 255, 255, 255))));
+		hexagonStroke.push_back(unique_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, BLUE)));
 	}
 }
 
@@ -103,7 +109,17 @@ void Hexa::Draw() const
 {
 	for(int i = 0; i < hexagonParts.size(); ++i)
 	{
+		(*hexagonParts[i].get()).ChangeColor(BLACK);
 		(*hexagonParts[i].get()).Draw();
+	}
+
+	if(overlayEnabled)
+	{
+		for(int i = 0; i < hexagonParts.size(); ++i)
+		{
+			(*hexagonParts[i].get()).ChangeColor(ORANGE);
+			(*hexagonParts[i].get()).Draw();
+		}
 	}
 
 	for(int i = 0; i < hexagonStroke.size(); ++i)
@@ -112,42 +128,88 @@ void Hexa::Draw() const
 	}
 }
 
+bool Hexa::Hit(SDL_Point& mousePos) const
+{
+	SDL_Rect rectangle = { static_cast<int>(nodes[1].x), static_cast<int>(nodes[1].y), Width(), Height() };
+
+	// Check if mouse is in the middle rectangle
+	if(SDL_PointInRect(&mousePos, &rectangle) == SDL_TRUE)
+	{
+		return true;
+	}
+
+	// Check if mouse is in the left triangle
+	if((*static_cast<Triangle*>(hexagonParts[0].get())).Hit(mousePos.x, mousePos.y))
+	{
+		return true;
+	}
+
+	// Check if mouse is in the right triangle
+	if((*static_cast<Triangle*>(hexagonParts[1].get())).Hit(mousePos.x, mousePos.y))
+	{
+		return true;
+	}
+
+	// Mouse is not inside the hexagon
+	return false;
+}
+
 vector<Vec2> Hexa::_Vertices() const
 {
 	return nodes;
 }
 
-double Hexa::CalculateHexagonArea(const vector<Vec2>& hexagonCoordinates)
+bool Hexa::operator==(const Hexa& hexa) const
 {
-	double area = 0.0;
-	
-	double height = hexagonCoordinates[2].y - hexagonCoordinates[1].y;
-	double width = hexagonCoordinates[3].x - hexagonCoordinates[1].x;
-	double rectangleArea = width * height;
-	
-	double triangleArea1 = abs(
-		(
-		hexagonCoordinates[0].x * (hexagonCoordinates[1].y - hexagonCoordinates[2].y)
-		+
-		hexagonCoordinates[1].x * (hexagonCoordinates[2].y - hexagonCoordinates[0].y)
-		+
-		hexagonCoordinates[2].x * (hexagonCoordinates[0].y - hexagonCoordinates[1].y)
-		)
-	/
-	2.0
-	);
-	
-	double triangleArea2 = abs(
-		(
-		hexagonCoordinates[3].x * (hexagonCoordinates[4].y - hexagonCoordinates[5].y)
-		+
-		hexagonCoordinates[4].x * (hexagonCoordinates[5].y - hexagonCoordinates[3].y)
-		+
-		hexagonCoordinates[5].x * (hexagonCoordinates[3].y - hexagonCoordinates[4].y)
-		)
-	/
-	2.0
-	);
+	vector<Vec2> hexaPoints = hexa._Vertices();
 
-	return rectangleArea + triangleArea1 + triangleArea2;
+	if (nodes[0] == hexaPoints[0] &&
+		nodes[1] == hexaPoints[1] &&
+		nodes[2] == hexaPoints[2] &&
+		nodes[3] == hexaPoints[3] &&
+		nodes[4] == hexaPoints[4] &&
+		nodes[5] == hexaPoints[5])
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool Hexa::operator<(const Hexa& hexa) const
+{
+	return true;
+}
+
+Hexa Hexa::Translate(int x, int y) const
+{
+	return Hexa(
+	{ 
+		Vec2(nodes[0].x + x, nodes[0].y + y),
+		Vec2(nodes[1].x + x, nodes[1].y + y),
+		Vec2(nodes[2].x + x, nodes[2].y + y),
+		Vec2(nodes[3].x + x, nodes[3].y + y),
+		Vec2(nodes[4].x + x, nodes[4].y + y),
+		Vec2(nodes[5].x + x, nodes[5].y + y),
+	});
+}
+
+int Hexa::Width() const
+{
+	return nodes[4].x - nodes[1].x;
+}
+
+int Hexa::Height() const
+{
+	return nodes[4].y - nodes[1].y;
+}
+
+void Hexa::_Overlay(bool enabled)
+{
+	overlayEnabled = enabled;
+}
+
+void Hexa::ChangeColor(SDL_Color color)
+{
+	// Not used function
 }

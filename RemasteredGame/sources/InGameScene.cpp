@@ -1,4 +1,6 @@
 #include "InGameScene.hpp"
+#include "Window.hpp"
+#include "Game.hpp"
 
 InGameScene::InGameScene()
 :
@@ -8,21 +10,9 @@ answer_b({ Vec2(974, 845), Vec2(1024, 790), Vec2(1024, 900), Vec2(1530, 790), Ve
 answer_c({ Vec2(340, 985), Vec2(390, 930), Vec2(390, 1040), Vec2(896, 930), Vec2(896, 1040), Vec2(946, 985) }),
 answer_d({ Vec2(974, 985), Vec2(1024, 930), Vec2(1024, 1040), Vec2(1530, 930), Vec2(1530, 1040), Vec2(1580, 985) })
 {
-	double area_1 = Hexa::CalculateHexagonArea(answer_a._Vertices());
-	double area_2 = Hexa::CalculateHexagonArea(answer_b._Vertices());
-	double area_3 = Hexa::CalculateHexagonArea(answer_c._Vertices());
-	double area_4 = Hexa::CalculateHexagonArea(answer_d._Vertices());
-
-	bool equality = area_1 == area_2 && area_2 == area_3 && area_3 == area_4;
-
-	printf("%f\n", area_1);
-	printf("%f\n", area_2);
-	printf("%f\n", area_3);
-	printf("%f\n", area_4);
-
-	if(equality == false)
+	if(CheckTextboxPositionValidity() == false)
 	{
-		throw runtime_error(format("The 4 answer textboxes do not have equal size.\n1.) {0}\n2.) {1}\n3.) {2}\n4.) {3}", area_1, area_2, area_3, area_4));
+		throw runtime_error("The 4 answer and 1 question textboxes do not line up.");
 	}
 }
 
@@ -33,4 +23,52 @@ void InGameScene::Draw() const
 	answer_b.Draw();
 	answer_c.Draw();
 	answer_d.Draw();
+
+	SDL_Rect destination;
+
+	destination = CenterTextInsideHexagon(question, questionText);
+	SDL_RenderCopy(Window::_Renderer(), questionText, NULL, &destination);
+	
+	destination = CenterTextInsideHexagon(answer_a, answer_aText);
+	SDL_RenderCopy(Window::_Renderer(), answer_aText, NULL, &destination);
+
+	destination = CenterTextInsideHexagon(answer_b, answer_bText);
+	SDL_RenderCopy(Window::_Renderer(), answer_bText, NULL, &destination);
+
+	destination = CenterTextInsideHexagon(answer_c, answer_cText);
+	SDL_RenderCopy(Window::_Renderer(), answer_cText, NULL, &destination);
+
+	destination = CenterTextInsideHexagon(answer_d, answer_dText);
+	SDL_RenderCopy(Window::_Renderer(), answer_dText, NULL, &destination);
+}
+
+bool InGameScene::CheckTextboxPositionValidity() const
+{
+	// A -> C
+	Hexa translated_a1 = answer_a.Translate(0, 140);
+	bool vertical = translated_a1 == answer_c;
+
+	// A -> B
+	Hexa translated_a2 = answer_a.Translate(634, 0);
+	bool horizontal = translated_a2 == answer_b;
+
+	// A -> D
+	Hexa translated_a3 = answer_a.Translate(634, 140);
+	bool diagonal = translated_a3 == answer_d;
+
+	// Question -> A + B
+	Hexa aCombinedb({ answer_a._Vertices()[0], answer_a._Vertices()[1], answer_a._Vertices()[2], answer_b._Vertices()[3], answer_b._Vertices()[4], answer_b._Vertices()[5] });
+	bool verticalScaled = question == aCombinedb.Translate(0, -140);
+
+	return  (vertical && horizontal && diagonal && verticalScaled) ? true : false;
+}
+
+void InGameScene::InitiateNewGame()
+{
+	currentGame = make_unique<NewGame>((*Game::Instance()).GenerateNewGame());
+	questionText = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._Question(), "question");
+	answer_aText = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._A(), "answer");
+	answer_bText = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._B(), "answer");
+	answer_cText = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._C(), "answer");
+	answer_dText = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._D(), "answer");
 }

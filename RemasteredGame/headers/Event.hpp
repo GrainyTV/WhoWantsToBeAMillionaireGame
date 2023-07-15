@@ -21,17 +21,14 @@ private:
 	// Holding object for incoming events
 	SDL_Event gameEvent;
 
+	// Event to call when screen needs redraw
+	SDL_Event invalidator;
+
 	// Pointer to the original scene object
 	Scene* scenePtr;
 
 	// Outgoing method calls based on events
 	unordered_map<unsigned int, function<void()>> eventCalls;
-
-	// Our buttons, categorized by game state
-	unordered_map<GameState, deque<SDL_Rect>> buttonHitboxes;
-
-	// Our methods that execute on button press, categorized by game state
-	unordered_map<GameState, deque<function<void()>>> buttonHitboxesClicked;
 
 public:
 	Event(Scene* scene);
@@ -42,13 +39,11 @@ public:
 
 	void ExecuteHandler();
 
+	void Invalidate();
+
 	void MouseClick();
 
 	void MouseMotion(SDL_Event args);
-
-	void FillMouseHitboxes();
-
-	static bool Hit(const SDL_Rect& r1, const SDL_Rect& r2);
 };
 
 #endif

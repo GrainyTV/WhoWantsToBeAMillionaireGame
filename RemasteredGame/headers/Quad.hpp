@@ -5,7 +5,6 @@
 #include <initializer_list>
 #include <stdexcept>
 #include <format>
-#include "SDL.h"
 #include "Primitive.hpp"
 
 using std::vector;
@@ -26,6 +25,8 @@ public:
 	Vec2 operator[](const int index) const;
 
 	void Draw() const override;
+
+	void ChangeColor(SDL_Color color) override;
 };
 
 #endif

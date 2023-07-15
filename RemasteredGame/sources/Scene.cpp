@@ -1,4 +1,5 @@
 #include "Scene.hpp"
+#include "MainMenuScene.hpp"
 #include "InGameScene.hpp"
 
 /**
@@ -13,16 +14,19 @@ Scene::Scene(SDL_Renderer* renderer)
 	{
 		throw runtime_error("Failed to load Image library.");
 	}
-	
-	rendererPtr = renderer;
-	invalidator.type = SDL_RegisterEvents(1);
-	state = GameState::MainMenu;
-	textureID = 0;
-	
-	FillTextureFiles();
-	textures = LoadTextures();
 
-	renderedScene[GameState::InGame] = unique_ptr<InGameScene>(new InGameScene());
+	if(TTF_Init() != 0)
+	{
+		throw runtime_error(TTF_GetError());
+	}
+
+	rendererPtr = renderer;
+	gameState = Enumeration({ "MainMenu", "InGame" });
+	currentState = gameState["MainMenu"].name;
+	
+	// Our different registered scenes e.g. Mainmenu, Ingame, Options ...
+	renderedScene[gameState["MainMenu"]] = unique_ptr<MainMenuScene>(new MainMenuScene());
+	renderedScene[gameState["InGame"]] = unique_ptr<InGameScene>(new InGameScene());
 }
 
 /**
@@ -32,6 +36,7 @@ Scene::Scene(SDL_Renderer* renderer)
  */
 Scene::~Scene()
 {
+	TTF_Quit();
 	IMG_Quit();
 }
 
@@ -52,25 +57,12 @@ void Scene::Redraw()
 		throw runtime_error(SDL_GetError());
 	}
 
-	SDL_RenderCopy(rendererPtr, textures[textureID], NULL, NULL);
-
-	if(renderedScene.contains(state))
-	{
-		(*renderedScene[state].get()).Draw();
-	}
+	(*renderedScene[gameState[currentState]].get()).Draw();
 
 	SDL_RenderPresent(rendererPtr);
 }
 
-/**
- * 
- * Method to push an invalidate call onto the event stack.
- * 
- */
-void Scene::Invalidate()
-{
-	SDL_PushEvent(&invalidator);
-}
+/*
 
 deque<SDL_Texture*> Scene::LoadTextures()
 {
@@ -105,6 +97,8 @@ deque<SDL_Texture*> Scene::LoadTextures()
  * @returns : a collection of texture objects
  * 
  */
+
+/*
 deque<SDL_Surface*> Scene::LoadSurfaces(const GameState& currentState)
 {
 	deque<SDL_Surface*> result;
@@ -137,63 +131,4 @@ void Scene::UnloadTextures()
 	}
 }
 
-/**
- * 
- * Fills our hashmap with the name of textures, categorized based on game state.
- * 
- */
-void Scene::FillTextureFiles()
-{
-	deque<string> mainMenu = { "mainmenu_default.png", "mainmenu_1.png", "mainmenu_2.png", "mainmenu_3.png" };
-	textureFiles[GameState::MainMenu] = mainMenu;
-
-	deque<string> inGame = { "background.png" }; //"ingame_default.png", "ingame_1.png", "ingame_2.png", "ingame_3.png", "ingame_4.png" };
-	textureFiles[GameState::InGame] = inGame;
-}
-
-/**
- * 
- * Getter function for game state.
- * return : state of the game
- * 
- */
-GameState Scene::_State() const
-{
-	return state;
-}
-
-/**
- * 
- * Setter function for game state.
- * param value : new state
- * 
- */
-void Scene::_State(const GameState& value)
-{
-	state = value;
-	textureID = 0;
-	UnloadTextures();
-	textures = LoadTextures();
-}
-
-/**
- * 
- * Getter function for the ID of the texture.
- * return : currently rendered texture's ID
- * 
- */
-unsigned int Scene::_TextureId() const
-{
-	return textureID;
-}
-
-/**
- * 
- * Setter function for the ID of the texture.
- * param value : new ID
- * 
- */
-void Scene::_TextureId(const unsigned int& value)
-{
-	textureID = value;
-}
+*/

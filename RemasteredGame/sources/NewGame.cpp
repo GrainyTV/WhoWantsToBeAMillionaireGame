@@ -1,11 +1,21 @@
 #include "NewGame.hpp"
 
-NewGame::NewGame(const deque<Data>& selected) : chosenQuestions(selected)
+NewGame::NewGame(const deque<Data>& selected) : chosenQuestions(selected), currentQuestionIdx(0)
 {
 	if(UniqueCheck<Data>(chosenQuestions) == false)
 	{
 		throw invalid_argument("The number of unique questions do not match the required amount. Duplicate questions found.");
 	}
+}
+
+Data NewGame::ThisRoundsData() const
+{
+	return chosenQuestions[currentQuestionIdx];
+}
+
+void NewGame::IterateToNextRound()
+{
+	++currentQuestionIdx;
 }
 
 template<class T>

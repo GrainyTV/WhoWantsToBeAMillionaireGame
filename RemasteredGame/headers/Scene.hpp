@@ -10,7 +10,9 @@
 #include <memory>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 #include "DrawableScene.hpp"
+#include "Enumeration.hpp"
 
 using std::runtime_error;
 using std::string;
@@ -23,31 +25,20 @@ using std::launch;
 using std::future;
 using std::unique_ptr;
 
-enum GameState { MainMenu, InGame, Options };
-
 class Scene
 {
 private:
+	// Possible scenes of the application
+	Enumeration gameState;
+
+	// The currently applied scene
+	string currentState;
+
 	// Copy of the renderer object
 	SDL_Renderer* rendererPtr;
 
-	// Event to call when screen needs redraw
-	SDL_Event invalidator;
-
-	// Our loaded textures [GameState(key) - [ID(key) - Texture(value)]]
-	deque<SDL_Texture*> textures;
-
-	// Our texture files
-	unordered_map<GameState, deque<string>> textureFiles;
-
 	// Our different renderable scenes
-	unordered_map<GameState, unique_ptr<DrawableScene>> renderedScene;
-
-	// The current state of the game
-	GameState state;
-
-	// The current ID of rendered texture
-	unsigned int textureID;
+	unordered_map<EnumField, unique_ptr<DrawableScene>, EnumField::Hash> renderedScene;
 
 public:
 	Scene(SDL_Renderer* renderer);
@@ -56,23 +47,9 @@ public:
 
 	void Redraw();
 
-	void Invalidate();
+	//deque<SDL_Texture*> LoadTextures();
 
-	deque<SDL_Texture*> LoadTextures();
-
-	deque<SDL_Surface*> LoadSurfaces(const GameState& currentState);
-
-	void UnloadTextures();
-
-	void FillTextureFiles();
-
-	GameState _State() const;
-
-	void _State(const GameState& value);
-
-	unsigned int _TextureId() const;
-
-	void _TextureId(const unsigned int& value);
+	//deque<SDL_Surface*> LoadSurfaces(const GameState& currentState);
 };
 
 #endif

@@ -11,6 +11,8 @@ struct Vec2
 
 	void Normalize();
 
+	bool operator==(const Vec2& vector);
+
 	void Print() const;
 };
 
@@ -23,6 +25,8 @@ protected:
 
 public:
 	virtual void Draw() const = 0;
+
+	virtual void ChangeColor(SDL_Color color) = 0;
 
 	virtual ~Primitive() = default;
 };

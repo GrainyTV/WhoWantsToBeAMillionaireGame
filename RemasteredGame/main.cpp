@@ -2,9 +2,9 @@
 
 using std::exception;
 
-static const int GREEN = 32;
-static const int RED = 31;
-static const int ORANGE = 33;
+static constexpr int GREEN = 32;
+static constexpr int RED = 31;
+static constexpr int ORANGE = 33;
 
 static void ColoredPrint(const char* string, const int& color)
 {
@@ -19,7 +19,7 @@ int main(int argc, char* args[])
 		(*g_Game).FillFileNames();
 		(*g_Game).StoreData();
 		//(*g_Game).Testing();
-		(*g_Game).Launch();	
+		(*g_Game).Launch();
 	}
 	catch(const exception& e)
 	{
