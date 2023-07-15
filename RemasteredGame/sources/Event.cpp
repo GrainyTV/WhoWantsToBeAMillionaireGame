@@ -86,4 +86,9 @@ void Event::MouseClick()
 void Event::MouseMotion(SDL_Event args)
 {
 	SDL_Point mousePos = { args.motion.x, args.motion.y };
+
+    if((*scenePtr).CheckForHit(mousePos))
+    {
+        (*this).Invalidate();
+    }
 }

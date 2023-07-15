@@ -23,28 +23,21 @@ void Triangle::Draw() const
 bool Triangle::Hit(int x, int y) const
 {
 	/* Calculate area of triangle ABC */
-	int A = TriangleArea(Vec2(vertices[0].position.x, vertices[0].position.y), Vec2(vertices[1].position.x, vertices[1].position.y), Vec2(vertices[2].position.x, vertices[2].position.y));
+	double A = TriangleArea(Vec2(vertices[0].position.x, vertices[0].position.y), Vec2(vertices[1].position.x, vertices[1].position.y), Vec2(vertices[2].position.x, vertices[2].position.y));
 
 	/* Calculate area of triangle PBC */
-	int A1 = TriangleArea(Vec2(x, y), Vec2(vertices[1].position.x, vertices[1].position.y), Vec2(vertices[2].position.x, vertices[2].position.y));
+	double A1 = TriangleArea(Vec2(x, y), Vec2(vertices[1].position.x, vertices[1].position.y), Vec2(vertices[2].position.x, vertices[2].position.y));
 
 	/* Calculate area of triangle PAC */
-	int A2 = TriangleArea(Vec2(vertices[0].position.x, vertices[0].position.y), Vec2(x, y), Vec2(vertices[2].position.x, vertices[2].position.y));
+	double A2 = TriangleArea(Vec2(vertices[0].position.x, vertices[0].position.y), Vec2(x, y), Vec2(vertices[2].position.x, vertices[2].position.y));
 
 	/* Calculate area of triangle PAB */
-	int A3 = TriangleArea(Vec2(vertices[0].position.x, vertices[0].position.y), Vec2(vertices[1].position.x, vertices[1].position.y), Vec2(x, y));
+	double A3 = TriangleArea(Vec2(vertices[0].position.x, vertices[0].position.y), Vec2(vertices[1].position.x, vertices[1].position.y), Vec2(x, y));
 		
 	/* Check if sum of A1, A2 and A3 is same as A */
 	//printf("%d+%d+%d=%d\n", A1, A2, A3, A);
 
 	return (A == A1 + A2 + A3);
-}
-
-void Triangle::ChangeColor(SDL_Color color)
-{
-	vertices[0].color = color;
-	vertices[1].color = color;
-	vertices[2].color = color;
 }
 
 /**
@@ -56,7 +49,7 @@ void Triangle::ChangeColor(SDL_Color color)
  * return : the area of the triangle
  *  
  */
-int Triangle::TriangleArea(Vec2 x1, Vec2 x2, Vec2 x3)
+double Triangle::TriangleArea(Vec2 x1, Vec2 x2, Vec2 x3)
 {
-	return abs((x1.x * (x2.y - x3.y) + x2.x * (x3.y - x1.y) + x3.x * (x1.y - x2.y)) / 2);
+	return abs((x1.x * (x2.y - x3.y) + x2.x * (x3.y - x1.y) + x3.x * (x1.y - x2.y)) / 2.0);
 }

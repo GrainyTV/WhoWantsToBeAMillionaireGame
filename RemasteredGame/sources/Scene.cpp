@@ -10,7 +10,7 @@
  * @param renderer : renderer received from window
  * 
  */
-Scene::Scene(SDL_Renderer* renderer)
+Scene::Scene(SDL_Renderer* renderer) : hitId(0)
 {
 	if(IMG_Init(IMG_INIT_PNG) == 0)
 	{
@@ -62,4 +62,17 @@ void Scene::Redraw()
 	(*renderedScene[gameState[currentState]].get()).Draw();
 
 	SDL_RenderPresent(rendererPtr);
+}
+
+bool Scene::CheckForHit(SDL_Point mousePos)
+{
+	unsigned int newId = (*renderedScene[gameState[currentState]].get()).Hit(mousePos);
+		
+	if(newId == hitId)
+	{
+		return false;
+	}
+
+	hitId = newId;
+	return true;
 }

@@ -21,6 +21,8 @@ private:
 public:
 	virtual void Draw() const = 0;
 
+	virtual unsigned int Hit(SDL_Point mousePos) = 0;
+
 	virtual ~DrawableScene() = default;
 
 	SDL_Surface* CreateSurfaceFromFile(const string& text) const;

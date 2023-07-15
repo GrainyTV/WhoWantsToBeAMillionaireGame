@@ -42,6 +42,12 @@ void InGameScene::Draw() const
 	SDL_RenderCopy(Window::_Renderer(), answer_dText, NULL, &destination);
 }
 
+unsigned int InGameScene::Hit(SDL_Point mousePos)
+{
+	// TODO
+	return 1;
+}
+
 bool InGameScene::CheckTextboxPositionValidity() const
 {
 	// A -> C

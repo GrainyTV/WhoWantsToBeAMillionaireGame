@@ -30,11 +30,3 @@ void Quad::Draw() const
 {
 	SDL_RenderGeometry(renderer, NULL, vertices.data(), vertices.size(), NULL, 0);
 }
-
-void Quad::ChangeColor(SDL_Color color)
-{
-	for(auto vertex : vertices)
-	{
-		vertex.color = color;
-	}
-}

@@ -20,16 +20,31 @@ overlayEnabled(false)
 
 	const vector<Vec2> vertices(vertexList);
 	
-	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, BLACK)));
+	/*hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, BLACK)));
 	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, BLACK)));
-	hexagonParts.push_back(unique_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, BLACK)));
+	hexagonParts.push_back(unique_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, BLACK)));*/
 
-	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
+	hexagonParts.push_back(shared_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, BLACK)));
+	hexagonParts.push_back(shared_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, BLACK)));
+	hexagonParts.push_back(shared_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, BLACK)));
+
+	hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, ORANGE)));
+	hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, ORANGE)));
+	hexagonOverlay.push_back(shared_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, ORANGE)));
+
+	/*hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
 	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
 	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[3], vertices[5]))));
 	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[5], vertices[4]))));
 	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[4], vertices[2]))));
-	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[2], vertices[0]))));
+	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[2], vertices[0]))));*/
+
+	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
+	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
+	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[3], vertices[5]))));
+	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[5], vertices[4]))));
+	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[4], vertices[2]))));
+	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[2], vertices[0]))));
 
 	for(int i = 0; i < SIDES; ++i)
 	{
@@ -39,7 +54,8 @@ overlayEnabled(false)
 		Vec2 strokeFixVertex2 = (*static_cast<Quad*>(hexagonStroke[i].get()))[3];
 		Vec2 strokeFixVertex3 = (*static_cast<Quad*>(hexagonStroke[j].get()))[1];
 
-		hexagonStroke.push_back(unique_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, BLUE)));
+		//hexagonStroke.push_back(unique_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, BLUE)));
+		hexagonStroke.push_back(shared_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, BLUE)));
 	}
 }
 
@@ -109,22 +125,17 @@ void Hexa::Draw() const
 {
 	for(int i = 0; i < hexagonParts.size(); ++i)
 	{
-		(*hexagonParts[i].get()).ChangeColor(BLACK);
 		(*hexagonParts[i].get()).Draw();
-	}
 
-	if(overlayEnabled)
-	{
-		for(int i = 0; i < hexagonParts.size(); ++i)
+		if(overlayEnabled)
 		{
-			(*hexagonParts[i].get()).ChangeColor(ORANGE);
-			(*hexagonParts[i].get()).Draw();
+			(*hexagonOverlay[i].get()).Draw();
 		}
 	}
 
 	for(int i = 0; i < hexagonStroke.size(); ++i)
 	{
-		(*hexagonStroke[i].get()).Draw();
+		//(*hexagonStroke[i].get()).Draw();
 	}
 }
 
@@ -207,9 +218,4 @@ int Hexa::Height() const
 void Hexa::_Overlay(bool enabled)
 {
 	overlayEnabled = enabled;
-}
-
-void Hexa::ChangeColor(SDL_Color color)
-{
-	// Not used function
 }

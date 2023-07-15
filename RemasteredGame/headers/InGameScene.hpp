@@ -44,6 +44,8 @@ public:
 
 	void Draw() const override;
 
+	unsigned int Hit(SDL_Point mousePos) override;
+
 	bool CheckTextboxPositionValidity() const;
 
 	void InitiateNewGame();

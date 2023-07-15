@@ -18,6 +18,9 @@ using std::data;
 using std::unique_ptr;
 using std::make_unique;
 
+using std::shared_ptr;
+using std::make_shared;
+
 class Hexa : public Primitive
 {
 private:
@@ -33,9 +36,15 @@ private:
 
 	vector<Vec2> nodes;
 
-	vector<unique_ptr<Primitive>> hexagonParts;
+	vector<shared_ptr<Primitive>> hexagonParts;
 
-	vector<unique_ptr<Primitive>> hexagonStroke;
+	vector<shared_ptr<Primitive>> hexagonOverlay;
+
+	vector<shared_ptr<Primitive>> hexagonStroke;
+
+	//vector<unique_ptr<Primitive>> hexagonParts;
+
+	//vector<unique_ptr<Primitive>> hexagonStroke;
 
 public:
 	Hexa(const initializer_list<Vec2>& vertexList);
@@ -59,8 +68,6 @@ public:
 	int Height() const;
 
 	void _Overlay(bool enabled);
-
-	void ChangeColor(SDL_Color color) override;
 };
 
 #endif

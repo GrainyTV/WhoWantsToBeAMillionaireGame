@@ -28,12 +28,17 @@ private:
 	// The contents of our different renderable scenes
 	unordered_map<EnumField, unique_ptr<DrawableScene>, EnumField::Hash> renderedScene;
 
+	// Observer for mouse position
+	unsigned int hitId;
+
 public:
 	Scene(SDL_Renderer* renderer);
 
 	~Scene();
 
 	void Redraw();
+
+	bool CheckForHit(SDL_Point mousePos);
 };
 
 #endif
