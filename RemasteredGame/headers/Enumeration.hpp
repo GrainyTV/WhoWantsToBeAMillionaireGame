@@ -19,8 +19,10 @@ using std::hash;
 
 struct EnumField
 {
+	// The name of a singular enum element
 	string name;
 	
+	// The value of a singular enum element
 	long unsigned int value;
 
 	bool operator==(const EnumField& input) const;
@@ -34,6 +36,7 @@ struct EnumField
 class Enumeration
 {
 private:
+	// All the enum elements
 	deque<EnumField> enums;
 
 	bool Contains(const string& name) const;

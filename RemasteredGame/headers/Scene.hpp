@@ -19,13 +19,13 @@ private:
 	// Possible scenes of the application
 	Enumeration gameState;
 
-	// The currently applied scene
+	// The name of the currently applied scene
 	string currentState;
 
 	// Copy of the renderer object
 	SDL_Renderer* rendererPtr;
 
-	// Our different renderable scenes
+	// The contents of our different renderable scenes
 	unordered_map<EnumField, unique_ptr<DrawableScene>, EnumField::Hash> renderedScene;
 
 public:

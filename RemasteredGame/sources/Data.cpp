@@ -39,31 +39,61 @@ Difficulty Data::_Difficulty() const
 	return diff;
 }
 
+/**
+ * 
+ * Getter for question
+ * 
+ */
 string Data::_Question() const
 {
 	return question;
 }
 
+/**
+ * 
+ * Getter for answer A
+ * 
+ */
 string Data::_A() const
 {
 	return a;
 }
 
+/**
+ * 
+ * Getter for answer B
+ * 
+ */
 string Data::_B() const
 {
 	return b;
 }
 
+/**
+ * 
+ * Getter for answer C
+ * 
+ */
 string Data::_C() const
 {
 	return c;
 }
 
+/**
+ * 
+ * Getter for answer D
+ * 
+ */
 string Data::_D() const
 {
 	return d;
 }
 
+/**
+ * 
+ * Getter for solution
+ * 
+ */
 string Data::_Solution() const
 {
 	return solution;
@@ -79,6 +109,13 @@ void Data::Print()
 	printf("%d %s %s %s %s %s %s\n", diff, question.c_str(), a.c_str(), b.c_str(), c.c_str(), d.c_str(), solution.c_str());
 }
 
+/**
+ * 
+ * Equality operator for two different Data objects
+ * @param data : the data to compare with the one inside this class
+ * @return : wether they are the same object
+ * 
+ */
 bool Data::operator==(const Data& data) const
 {
 	if (diff == data._Difficulty() && 
@@ -95,6 +132,13 @@ bool Data::operator==(const Data& data) const
 	return false;
 }
 
+/**
+ * 
+ * Alphabetical operator for using Data class inside ordered Hashmap (sorts based on question)
+ * @param data : the data to compare with the one inside this class
+ * @return : which one comes first in boolean
+ * 
+ */
 bool Data::operator<(const Data& data) const
 {
 	return (question.compare(data._Question()) < 0) ? true : false;

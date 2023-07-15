@@ -128,6 +128,12 @@ void Game::Launch()
 	(*frontEnd.get()).EnterGameLoop();
 }
 
+/**
+ * 
+ * Creates 15 randomly chosen questions for a new game.
+ * @return : the selected questions' container
+ * 
+ */
 deque<Data> Game::GenerateNewGame()
 {
 	CategoryChance chances(category);

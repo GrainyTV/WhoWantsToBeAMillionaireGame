@@ -64,6 +64,7 @@ public:
 
 	Fraction operator/(const Fraction& f);
 
+	// For debugging only
 	void Print();
 };
 

@@ -33,7 +33,7 @@ Scene::Scene(SDL_Renderer* renderer)
 
 /**
  * 
- * Scene destructor closes Image library.
+ * Scene destructor closes Image and TTF library.
  * 
  */
 Scene::~Scene()

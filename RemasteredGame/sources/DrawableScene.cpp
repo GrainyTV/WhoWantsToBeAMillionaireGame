@@ -3,6 +3,13 @@
 #include "DrawableScene.hpp"
 #include "Window.hpp"
 
+/**
+ * 
+ * Sub-function for loading a texture from disk. Used in async mode.
+ * @param file : the name and extension of the file
+ * @return : either a loaded surface or an exception
+ * 
+ */
 SDL_Surface* DrawableScene::CreateSurfaceFromFile(const string& file) const
 {
 	path fileWithDirectory = "textures";
@@ -18,6 +25,13 @@ SDL_Surface* DrawableScene::CreateSurfaceFromFile(const string& file) const
 	return loaded;
 }
 
+/**
+ * 
+ * Function for loading a texture from disk.
+ * @param file : the name and extension of the file
+ * @return : either a loaded texture or an exception
+ * 
+ */
 SDL_Texture* DrawableScene::CreateTextureFromFile(const string& file) const
 {
 	future<SDL_Surface*> loadingTask = async(launch::async, &DrawableScene::CreateSurfaceFromFile, this, file);
@@ -35,6 +49,14 @@ SDL_Texture* DrawableScene::CreateTextureFromFile(const string& file) const
 	return texture;
 }
 
+/**
+ * 
+ * Sub-function for creating a texture from string. Used in async mode.
+ * @param text : the text we convert to texture
+ * @param type : wether the text is used as answer or question (the latter needs more space)
+ * @return : either a loaded surface or an exception
+ * 
+ */
 SDL_Surface* DrawableScene::CreateSurfaceFromText(const string& text, const string& type) const
 {
 	// Color used is white
@@ -96,6 +118,14 @@ SDL_Surface* DrawableScene::CreateSurfaceFromText(const string& text, const stri
 	return textSurface;
 }
 
+/**
+ * 
+ * Function for creating a texture from string.
+ * @param text : the text we convert to texture
+ * @param type : wether the text is used as answer or question (the latter needs more space)
+ * @return : either a loaded texture or an exception
+ * 
+ */
 SDL_Texture* DrawableScene::CreateTextureFromText(const string& text, const string& type) const
 {	
 	future<SDL_Surface*> loadingTask = async(launch::async, &DrawableScene::CreateSurfaceFromText, this, text, type);
@@ -112,6 +142,14 @@ SDL_Texture* DrawableScene::CreateTextureFromText(const string& text, const stri
 	return texture;
 }
 
+/**
+ * 
+ * Helper function to center text inside a hexagon horizontally and vertically.
+ * @param hexagon : which hexagon to use
+ * @param text : what text to include
+ * @return : the calculated rectangular area
+ * 
+ */
 SDL_Rect DrawableScene::CenterTextInsideHexagon(const Hexa& hexagon, SDL_Texture* text) const
 {
 	SDL_Point querySize;
