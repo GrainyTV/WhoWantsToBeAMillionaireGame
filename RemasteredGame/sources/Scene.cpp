@@ -10,7 +10,7 @@
  * @param renderer : renderer received from window
  * 
  */
-Scene::Scene(SDL_Renderer* renderer) : hitId(0)
+Scene::Scene(SDL_Renderer* renderer) : hitId(0), rendererPtr(renderer)
 {
 	if(IMG_Init(IMG_INIT_PNG) == 0)
 	{
@@ -22,13 +22,19 @@ Scene::Scene(SDL_Renderer* renderer) : hitId(0)
 		throw runtime_error(TTF_GetError());
 	}
 
-	rendererPtr = renderer;
-	gameState = Enumeration({ "MainMenu", "InGame" });
+	gameState.Add("MainMenu");
+	gameState.Add("InGame");
 	currentState = gameState["MainMenu"].name;
 	
 	// Our different registered scenes e.g. Mainmenu, Ingame, Options ...
-	renderedScene[gameState["MainMenu"]] = unique_ptr<MainMenuScene>(new MainMenuScene());
+	renderedScene[gameState["MainMenu"]] = unique_ptr<MainMenuScene>(new MainMenuScene(this));
 	renderedScene[gameState["InGame"]] = unique_ptr<InGameScene>(new InGameScene());
+
+	// Our different state changes
+	stateChange["InGame"] = [&, this] ()
+	{
+		(*static_cast<InGameScene*>(renderedScene[gameState[currentState]].get())).InitiateNewGame(); 
+	};
 }
 
 /**
@@ -82,4 +88,23 @@ bool Scene::CheckForHit(SDL_Point mousePos)
 
 	hitId = newId;
 	return true;
+}
+
+bool Scene::ClickOnCurrentHitId()
+{
+	if(hitId == 0)
+	{
+		// Mouse is on empty surface
+		return false;
+	}
+
+	// Array indexing starts from 0 so we subtract 1
+	(*renderedScene[gameState[currentState]].get()).Invoke(hitId - 1);
+	return true;
+}
+
+void Scene::ChangeScene(const string& which)
+{
+	currentState = gameState[which].name;
+	stateChange[currentState]();
 }

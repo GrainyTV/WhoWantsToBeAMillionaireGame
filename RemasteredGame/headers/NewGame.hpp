@@ -27,6 +27,8 @@ public:
 
 	void IterateToNextRound();
 
+	void GuessAnswer(char answerLetter);
+
 	template<class T>
 	static bool UniqueCheck(deque<T> list);
 };

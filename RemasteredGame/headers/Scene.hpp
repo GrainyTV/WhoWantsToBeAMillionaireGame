@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <unordered_map>
 #include <memory>
+#include <string>
+#include <functional>
 #include "SDL.h"
 #include "DrawableScene.hpp"
 #include "Enumeration.hpp"
@@ -12,6 +14,8 @@ using std::runtime_error;
 using std::string;
 using std::unordered_map;
 using std::unique_ptr;
+using std::string;
+using std::function;
 
 class Scene
 {
@@ -31,6 +35,9 @@ private:
 	// Observer for mouse position
 	unsigned int hitId;
 
+	// Delegate for changing scenes
+	unordered_map<string, function<void()>> stateChange;
+
 public:
 	Scene(SDL_Renderer* renderer);
 
@@ -39,6 +46,10 @@ public:
 	void Redraw();
 
 	bool CheckForHit(SDL_Point mousePos);
+
+	bool ClickOnCurrentHitId();
+
+	void ChangeScene(const string& which);
 };
 
 #endif

@@ -1,26 +1,44 @@
 #ifndef INGAMESCENE_HPP
 #define INGAMESCENE_HPP
 
-#include <initializer_list>
 #include <stdexcept>
 #include <memory>
-#include <map>
+#include <deque>
+#include <tuple>
+#include <functional>
 #include "SDL.h"
 #include "Hexa.hpp"
 #include "DrawableScene.hpp"
 #include "NewGame.hpp"
+#include "Line.hpp"
 
-using std::initializer_list;
 using std::runtime_error;
-using std::format;
 using std::unique_ptr;
 using std::make_unique;
-using std::map;
+using std::tuple;
+using std::make_tuple;
+using std::get;
+using std::function;
 
 class InGameScene : public DrawableScene
 {
 private:
-	const Hexa question;
+	tuple<Hexa, SDL_Texture*> question;
+
+	deque<tuple<Hexa, SDL_Texture*, function<void()>>> buttons;
+
+	SDL_Texture* background;
+
+	// Lines under each of the buttons
+	deque<Line> buttonLines;
+
+	// Width of the lines
+	const int lineWidth;
+
+	// Color of the lines
+	const SDL_Color BLUE;
+
+	/*const Hexa question;
 	SDL_Texture* questionText;
 
 	const Hexa answer_a;
@@ -33,7 +51,7 @@ private:
 	SDL_Texture* answer_cText;
 	
 	const Hexa answer_d;
-	SDL_Texture* answer_dText;
+	SDL_Texture* answer_dText; */
 
 	// All required data for the game
 	// Initially null, until the user launches one
@@ -49,6 +67,8 @@ public:
 	bool CheckTextboxPositionValidity() const;
 
 	void InitiateNewGame();
+
+	void Invoke(int index) const override;
 };
 
 #endif

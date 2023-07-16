@@ -34,6 +34,23 @@ void NewGame::IterateToNextRound()
 	++currentQuestionIdx;
 }
 
+void NewGame::GuessAnswer(char answerLetter)
+{
+    switch(answerLetter)
+    {
+    case 'A':
+        break;
+    case 'B':
+        break;
+    case 'C':
+        break;
+    case 'D':
+        break;
+    default:
+        break;
+    }
+}
+
 /**
  * 
  * Generic static function to check wether a collection of items are unique.

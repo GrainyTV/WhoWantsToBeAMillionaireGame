@@ -1,26 +1,36 @@
 #include "MainMenuScene.hpp"
 #include "Window.hpp"
+#include "Game.hpp"
 
 /**
  * 
  * Constructor for setting initial values for the main menu screen.
  * 
  */
-MainMenuScene::MainMenuScene() : lineWidth(5), BLUE(SDL_Color(95, 194, 253, 255))
+MainMenuScene::MainMenuScene(Scene* scene) : lineWidth(5), BLUE(SDL_Color(95, 194, 253, 255)), scenePtr(scene)
 {
 	buttons.push_back(
-		make_pair(Hexa({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }), 
-		CreateTextureFromText("Új játék", "answer"))
+		make_tuple(
+			Hexa({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }), 
+			CreateTextureFromText("Új játék", "answer"),
+			[&, this] () { (*scenePtr).ChangeScene("InGame"); }
+		)
 	);
 	
 	buttons.push_back(
-		make_pair(Hexa({ Vec2(657, 844), Vec2(707, 789), Vec2(707, 899), Vec2(1213, 789), Vec2(1213, 899), Vec2(1263, 844) }),
-		CreateTextureFromText("Opciók", "answer"))
+		make_tuple(
+			Hexa({ Vec2(657, 844), Vec2(707, 789), Vec2(707, 899), Vec2(1213, 789), Vec2(1213, 899), Vec2(1263, 844) }),
+			CreateTextureFromText("Opciók", "answer"),
+			[&, this] () { /* TODO */ }
+		)
 	);
 	
 	buttons.push_back(
-		make_pair(Hexa({ Vec2(657, 984), Vec2(707, 929), Vec2(707, 1039), Vec2(1213, 929), Vec2(1213, 1039), Vec2(1263, 984) }),
-		CreateTextureFromText("Kilépés", "answer"))
+		make_tuple(
+			Hexa({ Vec2(657, 984), Vec2(707, 929), Vec2(707, 1039), Vec2(1213, 929), Vec2(1213, 1039), Vec2(1263, 984) }),
+			CreateTextureFromText("Kilépés", "answer"),
+			[&, this] () { Game::Terminate(); }
+		)
 	);
 
 	if(CheckTextboxPositionValidity() == false)
@@ -57,9 +67,9 @@ void MainMenuScene::Draw() const
 
 	for(auto button : buttons)
 	{
-		button.first.Draw();
-		destination = CenterTextInsideHexagon(button.first, button.second);
-		SDL_RenderCopy(Window::_Renderer(), button.second, NULL, &destination);
+		get<Hexa>(button).Draw();
+		destination = CenterTextInsideHexagon(get<Hexa>(button), get<SDL_Texture*>(button));
+		SDL_RenderCopy(Window::_Renderer(), get<SDL_Texture*>(button), NULL, &destination);
 	}
 }
 
@@ -77,14 +87,14 @@ unsigned int MainMenuScene::Hit(SDL_Point mousePos)
 
 	for(int i = 0; i < buttons.size(); ++i)
 	{
-		if(buttons[i].first.Hit(mousePos))
+		if(get<Hexa>(buttons[i]).Hit(mousePos))
 		{
 			idx = i;
-			buttons[i].first._Overlay(true);
+			get<Hexa>(buttons[i])._Overlay(true);
 		}
 		else
 		{
-			buttons[i].first._Overlay(false);
+			get<Hexa>(buttons[i])._Overlay(false);
 		}
 	}
 
@@ -98,9 +108,9 @@ unsigned int MainMenuScene::Hit(SDL_Point mousePos)
  */
 bool MainMenuScene::CheckTextboxPositionValidity() const
 {
-	Hexa startGame = buttons[0].first;
-	Hexa options = buttons[1].first;
-	Hexa quit = buttons[2].first;
+	Hexa startGame = get<Hexa>(buttons[0]);
+	Hexa options = get<Hexa>(buttons[1]);
+	Hexa quit = get<Hexa>(buttons[2]);
 	
 	// StartGame -> Options
 	Hexa translatedStartGame = startGame.Translate(0, 140);
@@ -111,4 +121,9 @@ bool MainMenuScene::CheckTextboxPositionValidity() const
 	bool verticalSecond = translatedOptions == quit;
 
 	return (verticalFirst && verticalSecond) ? true : false;
+}
+
+void MainMenuScene::Invoke(int index) const
+{
+	get<function<void()>>(buttons[index])();
 }

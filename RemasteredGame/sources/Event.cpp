@@ -76,6 +76,10 @@ void Event::Invalidate()
  */
 void Event::MouseClick()
 {
+    if((*scenePtr).ClickOnCurrentHitId())
+    {
+        (*this).Invalidate();
+    }
 }
 
 /**

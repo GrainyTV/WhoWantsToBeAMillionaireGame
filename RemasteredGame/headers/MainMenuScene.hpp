@@ -3,28 +3,29 @@
 
 #include <stdexcept>
 #include <deque>
-#include <utility>
+#include <tuple>
+#include <functional>
 #include "SDL.h"
+#include "Scene.hpp"
 #include "DrawableScene.hpp"
 #include "Hexa.hpp"
 #include "Line.hpp"
 
 using std::runtime_error;
 using std::invalid_argument;
-using std::pair;
-using std::make_pair;
+using std::tuple;
+using std::make_tuple;
+using std::get;
 using std::deque;
+using std::function;
 
 class MainMenuScene : public DrawableScene
 {
 private:
-	//
 	// Our clickable buttons
-	// 0 - New Game
-	// 1 - Options
-	// 2 - Quit
-	//
-	deque<pair<Hexa, SDL_Texture*>> buttons;
+	// They consist of a hexagon, a texture of text and a backend function call
+	// {0:New Game}, {1:Options}, {2:Quit}
+	deque<tuple<Hexa, SDL_Texture*, function<void()>>> buttons;
 
 	// Lines under each of the buttons
 	deque<Line> buttonLines;
@@ -41,14 +42,19 @@ private:
 	// Logo image
 	SDL_Texture* logo;
 
+	// Copy of scene pointer
+	Scene* scenePtr;
+
 public:
-	MainMenuScene();
+	MainMenuScene(Scene* scene);
 
 	void Draw() const override;
 
 	unsigned int Hit(SDL_Point mousePos) override;
 
 	bool CheckTextboxPositionValidity() const;
+
+	void Invoke(int index) const override;
 };
 
 #endif
