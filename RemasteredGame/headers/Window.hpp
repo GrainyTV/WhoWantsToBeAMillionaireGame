@@ -29,6 +29,10 @@ public:
 	static SDL_Renderer* _Renderer();
 
 	static SDL_Window* _Window();
+
+	static int _Width();
+
+	static int _Height();
 };
 
 #endif

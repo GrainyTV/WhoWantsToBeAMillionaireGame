@@ -5,7 +5,7 @@ Hexa::Hexa(const initializer_list<Vec2>& vertexList)
 Primitive(),
 BLACK(SDL_Color(0, 0, 0, 255)),
 BLUE(SDL_Color(95, 194, 253, 255)),
-ORANGE(SDL_Color(254, 125, 5, 128)),
+ORANGE(SDL_Color(254, 125, 5, 255)),
 overlayEnabled(false)
 {
 	if(vertexList.size() != SIDES)
@@ -66,7 +66,7 @@ Quad Hexa::CalculateBorderQuad(const Vec2& v1, const Vec2& v2)
 		throw invalid_argument("Calculating the difference of the same two points.");
 	}
 
-	const double THICKNESS = 10.0;
+	constexpr double THICKNESS = 5.0;
 
 	if(v2.y - v1.y == 0)
 	{
@@ -82,7 +82,7 @@ Quad Hexa::CalculateBorderQuad(const Vec2& v1, const Vec2& v2)
 			Vec2(v2.x + perpendicular.x, v2.y + perpendicular.y),
 			Vec2(v2.x - perpendicular.x, v2.y - perpendicular.y)
 		},
-		SDL_Color(0, 255, 255, 255));
+		BLUE);
 	}
 	else if(v2.x - v1.x == 0)
 	{
@@ -98,7 +98,7 @@ Quad Hexa::CalculateBorderQuad(const Vec2& v1, const Vec2& v2)
 			Vec2(v2.x - perpendicular.x, v2.y - perpendicular.y),
 			Vec2(v2.x + perpendicular.x, v2.y + perpendicular.y)
 		}, 
-		SDL_Color(0, 255, 255, 255));
+		BLUE);
 	}
 	else
 	{
@@ -115,7 +115,7 @@ Quad Hexa::CalculateBorderQuad(const Vec2& v1, const Vec2& v2)
 			Vec2(v2.x + perpendicular.x, v2.y + perpendicular.y),
 			Vec2(v2.x - perpendicular.x, v2.y - perpendicular.y)
 		}, 
-		SDL_Color(0, 255, 255, 255));
+		BLUE);
 	}
 
 	throw invalid_argument("Subtracting two points should result in 0 change in x, 0 change in y, or some change in both x and y.");
@@ -135,7 +135,7 @@ void Hexa::Draw() const
 
 	for(int i = 0; i < hexagonStroke.size(); ++i)
 	{
-		//(*hexagonStroke[i].get()).Draw();
+		(*hexagonStroke[i].get()).Draw();
 	}
 }
 

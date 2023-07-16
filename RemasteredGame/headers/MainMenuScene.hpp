@@ -7,6 +7,7 @@
 #include "SDL.h"
 #include "DrawableScene.hpp"
 #include "Hexa.hpp"
+#include "Line.hpp"
 
 using std::runtime_error;
 using std::invalid_argument;
@@ -17,6 +18,11 @@ using std::deque;
 class MainMenuScene : public DrawableScene
 {
 private:
+	//
+	// 0 - New Game
+	// 1 - Options
+	// 2 - Quit
+	//
 	deque<pair<Hexa, SDL_Texture*>> buttons;
 
 	//const Hexa startGame;
@@ -27,6 +33,12 @@ private:
 
 	//const Hexa quit;
 	//SDL_Texture* quitText;
+
+	deque<Line> buttonLines;
+
+	const int lineWidth;
+
+	const SDL_Color BLUE;
 
 	SDL_Texture* background;
 

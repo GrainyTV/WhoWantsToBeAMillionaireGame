@@ -1,8 +1,8 @@
 #include "Window.hpp"
 
-int Window::SCREEN_WIDTH = 960;
+int Window::SCREEN_WIDTH = 1920;
 
-int Window::SCREEN_HEIGHT = 540;
+int Window::SCREEN_HEIGHT = 1080;
 
 SDL_Window* Window::window = nullptr;
 
@@ -33,6 +33,11 @@ Window::Window()
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	
 	if(renderer == NULL)
+	{
+		throw runtime_error(SDL_GetError());
+	}
+
+	if(SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND) != 0)
 	{
 		throw runtime_error(SDL_GetError());
 	}
@@ -71,4 +76,24 @@ SDL_Renderer* Window::_Renderer()
 SDL_Window* Window::_Window()
 {
 	return window;
+}
+
+/**
+ * 
+ * Getter function for the window's width.
+ * 
+ */
+int Window::_Width()
+{
+	return SCREEN_WIDTH;
+}
+
+/**
+ * 
+ * Getter function for the window's height.
+ * 
+ */
+int Window::_Height()
+{
+	return SCREEN_HEIGHT;
 }

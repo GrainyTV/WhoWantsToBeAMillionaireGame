@@ -6,7 +6,7 @@
  * Constructor for setting initial values for the main menu screen.
  * 
  */
-MainMenuScene::MainMenuScene()
+MainMenuScene::MainMenuScene() : lineWidth(5), BLUE(SDL_Color(95, 194, 253, 255))
 //:
 //startGame({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }),
 //options({ Vec2(657, 844), Vec2(707, 789), Vec2(707, 899), Vec2(1213, 789), Vec2(1213, 899), Vec2(1263, 844) }),
@@ -35,6 +35,10 @@ MainMenuScene::MainMenuScene()
 	background = CreateTextureFromFile("background.png");
 	logo = CreateTextureFromFile("logo.png");
 	
+	buttonLines.push_back(Line(Vec2(0, 704), Vec2(Window::_Width(), 704), lineWidth, BLUE));
+	buttonLines.push_back(Line(Vec2(0, 844), Vec2(Window::_Width(), 844), lineWidth, BLUE));
+	buttonLines.push_back(Line(Vec2(0, 984), Vec2(Window::_Width(), 984), lineWidth, BLUE));
+
 	//startGameText = CreateTextureFromText("Új játék", "answer");
 	//optionsText = CreateTextureFromText("Opciók", "answer");
 	//quitText = CreateTextureFromText("Kilépés", "answer");
@@ -53,6 +57,11 @@ void MainMenuScene::Draw() const
 
 	destination = SDL_Rect { 665, 30, 590, 590 };
 	SDL_RenderCopy(Window::_Renderer(), logo, NULL, &destination);
+
+	for(auto line : buttonLines)
+	{
+		line.Draw();
+	}
 
 	for(auto button : buttons)
 	{
@@ -75,6 +84,14 @@ void MainMenuScene::Draw() const
 	SDL_RenderCopy(Window::_Renderer(), quitText, NULL, &destination);*/
 }
 
+
+/**
+ * 
+ * Intersection test for the MainMenu scene's buttons.
+ * @param mousePos : the location of the cursor when the method was called
+ * @return : the index of the hit button, 0 if it is not a clickable surface
+ * 
+ */
 unsigned int MainMenuScene::Hit(SDL_Point mousePos)
 {
 	int idx = -1;
