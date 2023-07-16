@@ -12,8 +12,10 @@ using std::format;
 class Line : public Primitive
 {
 private:
+	// Color of the line
 	SDL_Color color;
 
+	// The line itself as a rect object
 	SDL_Rect line;
 
 public:

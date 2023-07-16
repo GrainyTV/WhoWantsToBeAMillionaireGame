@@ -1,5 +1,11 @@
 #include "Hexa.hpp"
 
+/**
+ * 
+ * Hexagon costructor creates a hexagon from 6 vertices and sets the default values. It creates 2x triangles and 1x quad to merge.
+ * @param vertexList : the vertices provided in specific "russian N letter" order •(И)•
+ * 
+ */
 Hexa::Hexa(const initializer_list<Vec2>& vertexList)
 :
 Primitive(),
@@ -19,10 +25,6 @@ overlayEnabled(false)
 	}
 
 	const vector<Vec2> vertices(vertexList);
-	
-	/*hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, BLACK)));
-	hexagonParts.push_back(unique_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, BLACK)));
-	hexagonParts.push_back(unique_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, BLACK)));*/
 
 	hexagonParts.push_back(shared_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, BLACK)));
 	hexagonParts.push_back(shared_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, BLACK)));
@@ -31,13 +33,6 @@ overlayEnabled(false)
 	hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, ORANGE)));
 	hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, ORANGE)));
 	hexagonOverlay.push_back(shared_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, ORANGE)));
-
-	/*hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
-	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
-	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[3], vertices[5]))));
-	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[5], vertices[4]))));
-	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[4], vertices[2]))));
-	hexagonStroke.push_back(unique_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[2], vertices[0]))));*/
 
 	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
 	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
@@ -54,11 +49,18 @@ overlayEnabled(false)
 		Vec2 strokeFixVertex2 = (*static_cast<Quad*>(hexagonStroke[i].get()))[3];
 		Vec2 strokeFixVertex3 = (*static_cast<Quad*>(hexagonStroke[j].get()))[1];
 
-		//hexagonStroke.push_back(unique_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, BLUE)));
 		hexagonStroke.push_back(shared_ptr<Triangle>(new Triangle({ strokeFixVertex1, strokeFixVertex2, strokeFixVertex3 }, BLUE)));
 	}
 }
 
+/**
+ * 
+ * Helper function to calculate the stroke of the hexagon. Calculates from normal vectors of 2 vertices pairs.
+ * @param v1 : the first vertex
+ * @param v2 : the second vertex
+ * @return : a stroke with a width of 5
+ * 
+ */
 Quad Hexa::CalculateBorderQuad(const Vec2& v1, const Vec2& v2)
 {
 	if(v1.x == v2.x && v1.y == v2.y)
@@ -121,6 +123,11 @@ Quad Hexa::CalculateBorderQuad(const Vec2& v1, const Vec2& v2)
 	throw invalid_argument("Subtracting two points should result in 0 change in x, 0 change in y, or some change in both x and y.");
 }
 
+/**
+ * 
+ * Render function for a hexagon.
+ * 
+ */
 void Hexa::Draw() const
 {
 	for(int i = 0; i < hexagonParts.size(); ++i)
@@ -139,6 +146,13 @@ void Hexa::Draw() const
 	}
 }
 
+/**
+ * 
+ * Intersection function for a hexagon. Checks if mouse cursor is in either of the triangles or inside the quad.
+ * @param mousePos : cursor location
+ * @return : either intersects or not
+ * 
+ */
 bool Hexa::Hit(SDL_Point& mousePos) const
 {
 	SDL_Rect rectangle = { static_cast<int>(nodes[1].x), static_cast<int>(nodes[1].y), Width(), Height() };
@@ -165,11 +179,24 @@ bool Hexa::Hit(SDL_Point& mousePos) const
 	return false;
 }
 
+/**
+ * 
+ * Getter function for the 6 vertices of the hexagon.
+ * @return : the vertices
+ * 
+ */
 vector<Vec2> Hexa::_Vertices() const
 {
 	return nodes;
 }
 
+/**
+ * 
+ * Equality operator for hexagons.
+ * @param hexa : the other hexagon we compare with this one
+ * @return : either they are equal or not
+ * 
+ */
 bool Hexa::operator==(const Hexa& hexa) const
 {
 	vector<Vec2> hexaPoints = hexa._Vertices();
@@ -187,11 +214,26 @@ bool Hexa::operator==(const Hexa& hexa) const
 	return false;
 }
 
+/**
+ * 
+ * Alphabetical order for hexagons so we can use it inside Hashmaps. (Don't really care about the order)
+ * @param hexa : the other hexagon we compare with this one
+ * @return : always true
+ * 
+ */
 bool Hexa::operator<(const Hexa& hexa) const
 {
 	return true;
 }
 
+/**
+ * 
+ * Helper function for translating hexagons. We use this to make sure all hexagons are equals distance away from each other.
+ * @param x : distance on x axis
+ * @param y : distance on y axis
+ * @return : a copy hexagon of the result
+ * 
+ */
 Hexa Hexa::Translate(int x, int y) const
 {
 	return Hexa(
@@ -205,16 +247,34 @@ Hexa Hexa::Translate(int x, int y) const
 	});
 }
 
+/**
+ * 
+ * Helper function to know the width of the quad inside the hexagon for the text area.
+ * @return : the width
+ * 
+ */
 int Hexa::Width() const
 {
 	return nodes[4].x - nodes[1].x;
 }
 
+/**
+ * 
+ * Helper function to know the height of the quad inside the hexagon for the text area.
+ * @return : the height
+ * 
+ */
 int Hexa::Height() const
 {
 	return nodes[4].y - nodes[1].y;
 }
 
+/**
+ * 
+ * Setter function to enable or disable the hover overlay effect.
+ * @param enabled : true to turn or, or false to turn off
+ * 
+ */
 void Hexa::_Overlay(bool enabled)
 {
 	overlayEnabled = enabled;

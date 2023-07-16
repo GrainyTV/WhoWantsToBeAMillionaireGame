@@ -1,5 +1,12 @@
 #include "Quad.hpp"
 
+/**
+ * 
+ * Quad constructor creates a quad from 4 vertices given in "russian N" order (И).
+ * @param vertexList : the given vertices
+ * @param color : the color of the quad
+ * 
+ */
 Quad::Quad(const initializer_list<Vec2>& vertexList, const SDL_Color& color) : Primitive()
 {
 	if(vertexList.size() != SIDES)
@@ -16,6 +23,13 @@ Quad::Quad(const initializer_list<Vec2>& vertexList, const SDL_Color& color) : P
 	vertices.push_back(vertices[2]);
 }
 
+/**
+ * 
+ * Getter function for a singular vertex of the quad.
+ * @param index : a provided index from 0 to 3
+ * @return : the vertex at the given index
+ * 
+ */
 Vec2 Quad::operator[](const int index) const
 {
 	if(index < 0 || index > 3)
@@ -26,6 +40,11 @@ Vec2 Quad::operator[](const int index) const
 	return Vec2(vertices[index].position.x, vertices[index].position.y);
 }
 
+/**
+ * 
+ * Render function for quads.
+ * 
+ */
 void Quad::Draw() const
 {
 	SDL_RenderGeometry(renderer, NULL, vertices.data(), vertices.size(), NULL, 0);

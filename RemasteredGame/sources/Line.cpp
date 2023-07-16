@@ -1,7 +1,15 @@
 #include "Line.hpp"
-#include "Window.hpp"
 
-Line::Line(Vec2 x0, Vec2 x1, int width, SDL_Color color) : color(color)
+/**
+ * 
+ * Line constructor creates a Rectangle from given 2 parallel vertices, either horizontally or vertically with a given width value.
+ * @param x0 : the first vertex
+ * @param x1 : the second vertex
+ * @width : the width of the line (should be odd number)
+ * @color : the line color
+ * 
+ */
+Line::Line(Vec2 x0, Vec2 x1, int width, SDL_Color color) : Primitive(), color(color)
 {
 	if(x0.x != x1.x && x0.y != x1.y)
 	{
@@ -36,8 +44,13 @@ Line::Line(Vec2 x0, Vec2 x1, int width, SDL_Color color) : color(color)
 		: diagonallyOppositeVertices[1].y - diagonallyOppositeVertices[0].y;
 }
 
+/**
+ * 
+ * Render function for lines.
+ * 
+ */
 void Line::Draw() const
 {
-	SDL_SetRenderDrawColor(Window::_Renderer(), color.r, color.g, color.b, color.a);
-	SDL_RenderFillRect(Window::_Renderer(), &line);
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	SDL_RenderFillRect(renderer, &line);
 }

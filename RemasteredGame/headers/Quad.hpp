@@ -15,8 +15,10 @@ using std::format;
 class Quad : public Primitive
 {
 private:
+	// The number of sides a quad should have is 4
 	static constexpr int SIDES = 4;
 
+	// The vertices of the quad
 	vector<SDL_Vertex> vertices;
 
 public:

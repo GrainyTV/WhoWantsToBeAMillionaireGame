@@ -14,8 +14,10 @@ using std::invalid_argument;
 class NewGame
 {
 private:
+	// Which question the player if currently on
 	int currentQuestionIdx;
 
+	// The selected questions for this run
 	deque<Data> chosenQuestions;
 
 public:

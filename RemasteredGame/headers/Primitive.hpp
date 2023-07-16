@@ -5,8 +5,10 @@
 
 struct Vec2
 {
+	// X coordinate of a 2D vector
 	double x;
 	
+	// Y coordinate of a 2D vector
 	double y;
 
 	void Normalize();
@@ -19,6 +21,7 @@ struct Vec2
 class Primitive
 {
 protected:
+	// Distributed renderer for derived primitive classes
 	SDL_Renderer* renderer;
 
 	Primitive();

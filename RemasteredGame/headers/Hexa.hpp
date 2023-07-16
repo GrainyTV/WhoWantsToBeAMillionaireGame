@@ -24,27 +24,32 @@ using std::make_shared;
 class Hexa : public Primitive
 {
 private:
+	// Number of sides a hexagon should have
 	static constexpr int SIDES = 6;
 
+	// Default color of a hexagon
 	const SDL_Color BLACK;
 
+	// Border color of a hexagon
 	const SDL_Color BLUE;
 
+	// Hover color of a hexagon
 	const SDL_Color ORANGE;
 
+	// Indicator wether hover is enabled
 	bool overlayEnabled;
 
+	// The 6 vertices of the hexagon
 	vector<Vec2> nodes;
 
+	// The individual parts of the hexagon (2x Triangle and 1x Quad)
 	vector<shared_ptr<Primitive>> hexagonParts;
 
+	// Same as the previous for the hover hexagon
 	vector<shared_ptr<Primitive>> hexagonOverlay;
 
+	// The individual parts of the stroke of the hexagon
 	vector<shared_ptr<Primitive>> hexagonStroke;
-
-	//vector<unique_ptr<Primitive>> hexagonParts;
-
-	//vector<unique_ptr<Primitive>> hexagonStroke;
 
 public:
 	Hexa(const initializer_list<Vec2>& vertexList);

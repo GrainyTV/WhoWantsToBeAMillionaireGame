@@ -7,10 +7,6 @@
  * 
  */
 MainMenuScene::MainMenuScene() : lineWidth(5), BLUE(SDL_Color(95, 194, 253, 255))
-//:
-//startGame({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }),
-//options({ Vec2(657, 844), Vec2(707, 789), Vec2(707, 899), Vec2(1213, 789), Vec2(1213, 899), Vec2(1263, 844) }),
-//quit({ Vec2(657, 984), Vec2(707, 929), Vec2(707, 1039), Vec2(1213, 929), Vec2(1213, 1039), Vec2(1263, 984) })
 {
 	buttons.push_back(
 		make_pair(Hexa({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }), 
@@ -38,10 +34,6 @@ MainMenuScene::MainMenuScene() : lineWidth(5), BLUE(SDL_Color(95, 194, 253, 255)
 	buttonLines.push_back(Line(Vec2(0, 704), Vec2(Window::_Width(), 704), lineWidth, BLUE));
 	buttonLines.push_back(Line(Vec2(0, 844), Vec2(Window::_Width(), 844), lineWidth, BLUE));
 	buttonLines.push_back(Line(Vec2(0, 984), Vec2(Window::_Width(), 984), lineWidth, BLUE));
-
-	//startGameText = CreateTextureFromText("Új játék", "answer");
-	//optionsText = CreateTextureFromText("Opciók", "answer");
-	//quitText = CreateTextureFromText("Kilépés", "answer");
 }
 
 /**
@@ -69,19 +61,6 @@ void MainMenuScene::Draw() const
 		destination = CenterTextInsideHexagon(button.first, button.second);
 		SDL_RenderCopy(Window::_Renderer(), button.second, NULL, &destination);
 	}
-	
-	//startGame.Draw();
-	//options.Draw();
-	//quit.Draw();
-
-	/*destination = CenterTextInsideHexagon(startGame, startGameText);
-	SDL_RenderCopy(Window::_Renderer(), startGameText, NULL, &destination);
-
-	destination = CenterTextInsideHexagon(options, optionsText);
-	SDL_RenderCopy(Window::_Renderer(), optionsText, NULL, &destination);
-
-	destination = CenterTextInsideHexagon(quit, quitText);
-	SDL_RenderCopy(Window::_Renderer(), quitText, NULL, &destination);*/
 }
 
 
@@ -89,7 +68,7 @@ void MainMenuScene::Draw() const
  * 
  * Intersection test for the MainMenu scene's buttons.
  * @param mousePos : the location of the cursor when the method was called
- * @return : the index of the hit button, 0 if it is not a clickable surface
+ * @return : the index of the button hit, 0 if it is not a clickable surface
  * 
  */
 unsigned int MainMenuScene::Hit(SDL_Point mousePos)

@@ -64,6 +64,13 @@ void Scene::Redraw()
 	SDL_RenderPresent(rendererPtr);
 }
 
+/**
+ * 
+ * Helper function for tracking wether the mouse cursor entered a new location compared to the previous one.
+ * @param mousePos : the location of the cursor
+ * @return : wether the mouse entered a new area
+ * 
+ */
 bool Scene::CheckForHit(SDL_Point mousePos)
 {
 	unsigned int newId = (*renderedScene[gameState[currentState]].get()).Hit(mousePos);

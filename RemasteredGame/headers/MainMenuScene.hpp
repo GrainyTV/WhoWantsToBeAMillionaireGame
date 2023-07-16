@@ -19,29 +19,26 @@ class MainMenuScene : public DrawableScene
 {
 private:
 	//
+	// Our clickable buttons
 	// 0 - New Game
 	// 1 - Options
 	// 2 - Quit
 	//
 	deque<pair<Hexa, SDL_Texture*>> buttons;
 
-	//const Hexa startGame;
-	//SDL_Texture* startGameText;
-
-	//const Hexa options;
-	//SDL_Texture* optionsText;
-
-	//const Hexa quit;
-	//SDL_Texture* quitText;
-
+	// Lines under each of the buttons
 	deque<Line> buttonLines;
 
+	// Width of the lines
 	const int lineWidth;
 
+	// Color of the lines
 	const SDL_Color BLUE;
 
+	// Background image
 	SDL_Texture* background;
 
+	// Logo image
 	SDL_Texture* logo;
 
 public:

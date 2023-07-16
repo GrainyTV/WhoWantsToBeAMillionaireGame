@@ -15,8 +15,10 @@ using std::format;
 class Triangle : public Primitive
 {
 private:
+	// Number of sides a triangle should have is 3
 	static constexpr int SIDES = 3;
 
+	// A 3 elements long array for the vertices of the triangle
 	SDL_Vertex vertices[SIDES];
 
 public:

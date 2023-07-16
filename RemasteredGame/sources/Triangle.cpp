@@ -1,5 +1,10 @@
 #include "Triangle.hpp"
 
+/**
+ * 
+ * Triangle constructor creates a triangle from 3 vertices and a color.
+ * 
+ */
 Triangle::Triangle(const initializer_list<Vec2>& vertexList, const SDL_Color& color) : Primitive()
 {
 	if(vertexList.size() != SIDES)
@@ -15,11 +20,24 @@ Triangle::Triangle(const initializer_list<Vec2>& vertexList, const SDL_Color& co
 	}
 }
 
+/**
+ * 
+ * Render function for triangles.
+ * 
+ */
 void Triangle::Draw() const
 {
 	SDL_RenderGeometry(renderer, NULL, &vertices[0], SIDES, NULL, 0);
 }
 
+/**
+ * 
+ * Intersection function for triangles using area calculation of 3 smaller triangles.
+ * @param x : the x coordinate to check for
+ * @param y : the y coordinate to check for
+ * @return : either true if coordinate pair is inside the triangle or false if it is outside
+ * 
+ */
 bool Triangle::Hit(int x, int y) const
 {
 	/* Calculate area of triangle ABC */
@@ -33,9 +51,6 @@ bool Triangle::Hit(int x, int y) const
 
 	/* Calculate area of triangle PAB */
 	double A3 = TriangleArea(Vec2(vertices[0].position.x, vertices[0].position.y), Vec2(vertices[1].position.x, vertices[1].position.y), Vec2(x, y));
-		
-	/* Check if sum of A1, A2 and A3 is same as A */
-	//printf("%d+%d+%d=%d\n", A1, A2, A3, A);
 
 	return (A == A1 + A2 + A3);
 }
