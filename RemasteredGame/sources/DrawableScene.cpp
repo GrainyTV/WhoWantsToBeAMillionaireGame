@@ -5,6 +5,44 @@
 
 /**
  * 
+ * Intersection test for the currently applied scene's buttons.
+ * @param mousePos : the location of the cursor when the method was called
+ * @return : the index of the button hit, 0 if it is not a clickable surface
+ * 
+ */
+unsigned int DrawableScene::Hit(SDL_Point mousePos)
+{
+	int idx = -1;
+
+	for(int i = 0; i < buttons.size(); ++i)
+	{
+		if(get<Hexa>(buttons[i]).Hit(mousePos))
+		{
+			idx = i;
+			get<Hexa>(buttons[i])._Overlay(true);
+		}
+		else
+		{
+			get<Hexa>(buttons[i])._Overlay(false);
+		}
+	}
+
+	return idx + 1;
+}
+
+/**
+ * 
+ * Delegate call based on what button the user had clicked.
+ * @param index : the index of the clicked button
+ * 
+ */
+void DrawableScene::Invoke(int index) const
+{
+	get<function<void()>>(buttons[index])();
+}
+
+/**
+ * 
  * Sub-function for loading a texture from disk. Used in async mode.
  * @param file : the name and extension of the file
  * @return : either a loaded surface or an exception

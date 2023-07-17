@@ -10,7 +10,7 @@
  * @param renderer : renderer received from window
  * 
  */
-Scene::Scene(SDL_Renderer* renderer) : hitId(0), rendererPtr(renderer)
+Scene::Scene()
 {
 	if(IMG_Init(IMG_INIT_PNG) == 0)
 	{
@@ -21,19 +21,15 @@ Scene::Scene(SDL_Renderer* renderer) : hitId(0), rendererPtr(renderer)
 	{
 		throw runtime_error(TTF_GetError());
 	}
-
-	gameState.Add("MainMenu");
-	gameState.Add("InGame");
-	currentState = gameState["MainMenu"].name;
 	
 	// Our different registered scenes e.g. Mainmenu, Ingame, Options ...
-	renderedScene[gameState["MainMenu"]] = unique_ptr<MainMenuScene>(new MainMenuScene(this));
+	renderedScene[gameState["MainMenu"]] = unique_ptr<MainMenuScene>(new MainMenuScene());
 	renderedScene[gameState["InGame"]] = unique_ptr<InGameScene>(new InGameScene());
 
 	// Our different state changes
-	stateChange["InGame"] = [&, this] ()
+	stateChange[gameState["InGame"]] = [&, this] ()
 	{
-		(*static_cast<InGameScene*>(renderedScene[gameState[currentState]].get())).InitiateNewGame(); 
+		(*static_cast<InGameScene*>(renderedScene[currentState].get())).InitiateNewGame(); 
 	};
 }
 
@@ -55,19 +51,19 @@ Scene::~Scene()
  */
 void Scene::Redraw()
 {
-	if(SDL_SetRenderDrawColor(rendererPtr, 0, 0, 0, 255) != 0)
+	if(SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255) != 0)
 	{
 		throw runtime_error(SDL_GetError());
 	}
 
-	if(SDL_RenderClear(rendererPtr) != 0)
+	if(SDL_RenderClear(renderer) != 0)
 	{
 		throw runtime_error(SDL_GetError());
 	}
 
-	(*renderedScene[gameState[currentState]].get()).Draw();
+	(*renderedScene[currentState].get()).Draw();
 
-	SDL_RenderPresent(rendererPtr);
+	SDL_RenderPresent(renderer);
 }
 
 /**
@@ -79,7 +75,7 @@ void Scene::Redraw()
  */
 bool Scene::CheckForHit(SDL_Point mousePos)
 {
-	unsigned int newId = (*renderedScene[gameState[currentState]].get()).Hit(mousePos);
+	unsigned int newId = (*renderedScene[currentState].get()).Hit(mousePos);
 		
 	if(newId == hitId)
 	{
@@ -99,12 +95,12 @@ bool Scene::ClickOnCurrentHitId()
 	}
 
 	// Array indexing starts from 0 so we subtract 1
-	(*renderedScene[gameState[currentState]].get()).Invoke(hitId - 1);
+	(*renderedScene[currentState].get()).Invoke(hitId - 1);
 	return true;
 }
 
 void Scene::ChangeScene(const string& which)
 {
-	currentState = gameState[which].name;
+	currentState = gameState[which];
 	stateChange[currentState]();
 }

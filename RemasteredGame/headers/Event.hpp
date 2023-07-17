@@ -21,7 +21,7 @@ private:
 	// Pointer to the original scene object
 	Scene* scenePtr;
 
-	// Outgoing method calls based on events
+	// Outgoing method calls based on SDL events
 	unordered_map<unsigned int, function<void()>> eventCalls;
 
 public:

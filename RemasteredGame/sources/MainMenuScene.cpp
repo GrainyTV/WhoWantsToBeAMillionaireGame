@@ -7,13 +7,13 @@
  * Constructor for setting initial values for the main menu screen.
  * 
  */
-MainMenuScene::MainMenuScene(Scene* scene) : lineWidth(5), BLUE(SDL_Color(95, 194, 253, 255)), scenePtr(scene)
+MainMenuScene::MainMenuScene()
 {
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }), 
 			CreateTextureFromText("Új játék", "answer"),
-			[&, this] () { (*scenePtr).ChangeScene("InGame"); }
+			[&, this] () { /* TODO */ }
 		)
 	);
 	
@@ -73,34 +73,6 @@ void MainMenuScene::Draw() const
 	}
 }
 
-
-/**
- * 
- * Intersection test for the MainMenu scene's buttons.
- * @param mousePos : the location of the cursor when the method was called
- * @return : the index of the button hit, 0 if it is not a clickable surface
- * 
- */
-unsigned int MainMenuScene::Hit(SDL_Point mousePos)
-{
-	int idx = -1;
-
-	for(int i = 0; i < buttons.size(); ++i)
-	{
-		if(get<Hexa>(buttons[i]).Hit(mousePos))
-		{
-			idx = i;
-			get<Hexa>(buttons[i])._Overlay(true);
-		}
-		else
-		{
-			get<Hexa>(buttons[i])._Overlay(false);
-		}
-	}
-
-	return idx + 1;
-}
-
 /**
  * 
  * Helper function to check wether our clickable buttons are all same sizes and at their desired locations.
@@ -121,9 +93,4 @@ bool MainMenuScene::CheckTextboxPositionValidity() const
 	bool verticalSecond = translatedOptions == quit;
 
 	return (verticalFirst && verticalSecond) ? true : false;
-}
-
-void MainMenuScene::Invoke(int index) const
-{
-	get<function<void()>>(buttons[index])();
 }
