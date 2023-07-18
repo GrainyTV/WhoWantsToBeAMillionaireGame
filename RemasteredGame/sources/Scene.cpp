@@ -1,47 +1,20 @@
-#include "SDL_image.h"
-#include "SDL_ttf.h"
 #include "Scene.hpp"
 #include "MainMenuScene.hpp"
 #include "InGameScene.hpp"
 
 /**
  * 
- * Constructor with the renderer acquired.
- * @param renderer : renderer received from window
+ * Constructor for a generic scene class.
  * 
  */
-Scene::Scene()
+Scene::Scene() : renderedScene(make_unique<MainMenuScene>())
 {
-	if(IMG_Init(IMG_INIT_PNG) == 0)
-	{
-		throw runtime_error("Failed to load Image library.");
-	}
-
-	if(TTF_Init() != 0)
-	{
-		throw runtime_error(TTF_GetError());
-	}
-	
-	// Our different registered scenes e.g. Mainmenu, Ingame, Options ...
-	renderedScene[gameState["MainMenu"]] = unique_ptr<MainMenuScene>(new MainMenuScene());
-	renderedScene[gameState["InGame"]] = unique_ptr<InGameScene>(new InGameScene());
-
 	// Our different state changes
 	stateChange[gameState["InGame"]] = [&, this] ()
 	{
-		(*static_cast<InGameScene*>(renderedScene[currentState].get())).InitiateNewGame(); 
+		renderedScene = make_unique<InGameScene>();
+		(*static_cast<InGameScene*>(renderedScene.get())).InitiateNewGame();
 	};
-}
-
-/**
- * 
- * Scene destructor closes Image and TTF library.
- * 
- */
-Scene::~Scene()
-{
-	TTF_Quit();
-	IMG_Quit();
 }
 
 /**
@@ -61,7 +34,7 @@ void Scene::Redraw()
 		throw runtime_error(SDL_GetError());
 	}
 
-	(*renderedScene[currentState].get()).Draw();
+	(*renderedScene.get()).Draw();
 
 	SDL_RenderPresent(renderer);
 }
@@ -75,7 +48,7 @@ void Scene::Redraw()
  */
 bool Scene::CheckForHit(SDL_Point mousePos)
 {
-	unsigned int newId = (*renderedScene[currentState].get()).Hit(mousePos);
+	unsigned int newId = (*renderedScene.get()).Hit(mousePos);
 		
 	if(newId == hitId)
 	{
@@ -95,7 +68,7 @@ bool Scene::ClickOnCurrentHitId()
 	}
 
 	// Array indexing starts from 0 so we subtract 1
-	(*renderedScene[currentState].get()).Invoke(hitId - 1);
+	(*renderedScene.get()).Invoke(hitId - 1);
 	return true;
 }
 
@@ -103,4 +76,11 @@ void Scene::ChangeScene(const string& which)
 {
 	currentState = gameState[which];
 	stateChange[currentState]();
+}
+
+Scene& Scene::Instance()
+{
+	static Scene sceneInstance;
+	
+	return sceneInstance;
 }

@@ -15,6 +15,7 @@ using std::runtime_error;
 using std::string;
 using std::unordered_map;
 using std::unique_ptr;
+using std::make_unique;
 using std::string;
 using std::function;
 
@@ -33,16 +34,22 @@ private:
 	// The name of the currently applied scene
 	EnumField currentState { gameState["MainMenu"] };
 
-	// The contents of our different renderable scenes
-	unordered_map<EnumField, unique_ptr<DrawableScene>, EnumField::Hash> renderedScene;
+	// The currently applied renderable scene
+	unique_ptr<DrawableScene> renderedScene;
 
 	// Delegate for running methods after changing scenes
 	unordered_map<EnumField, function<void()>, EnumField::Hash> stateChange;
 
-public:
+	// Constructor hidden from the outside
 	Scene();
 
-	~Scene();
+public:
+
+	// Copy constructor not needed
+	Scene(const Scene&) = delete;
+
+	// Equals operator not needed either
+	void operator=(const Scene&) = delete;
 
 	void Redraw();
 
@@ -51,6 +58,8 @@ public:
 	bool ClickOnCurrentHitId();
 
 	void ChangeScene(const string& which);
+
+	static Scene& Instance();
 };
 
 #endif

@@ -4,7 +4,6 @@
 #include <functional>
 #include <unordered_map>
 #include "SDL.h"
-#include "Scene.hpp"
 
 using std::unordered_map;
 using std::function;
@@ -18,14 +17,11 @@ private:
 	// Event to call when screen needs redraw
 	SDL_Event invalidator;
 
-	// Pointer to the original scene object
-	Scene* scenePtr;
-
 	// Outgoing method calls based on SDL events
 	unordered_map<unsigned int, function<void()>> eventCalls;
 
 public:
-	Event(Scene* scene);
+	Event();
 
 	SDL_Event* _IncomingGameEvent();
 

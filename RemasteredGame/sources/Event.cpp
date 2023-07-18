@@ -1,5 +1,6 @@
 #include "Event.hpp"
 #include "Game.hpp"
+#include "Scene.hpp"
 
 /**
  * 
@@ -7,14 +8,13 @@
  * @param scene : a pointer to our previously created scene
  * 
  */
-Event::Event(Scene* scene)
+Event::Event() //(Scene* sceneAddr) : scenePtr(sceneAddr)
 {
-	scenePtr = scene;
 	invalidator.type = SDL_RegisterEvents(1);
 
 	// User-invokable events and their method calls
 	eventCalls[SDL_QUIT] = [] () { Game::Terminate(); };
-	eventCalls[SDL_USEREVENT] = [&, this] () { (*scenePtr).Redraw(); };
+	eventCalls[SDL_USEREVENT] = [&, this] () { Scene::Instance().Redraw(); /*(*scenePtr).Redraw();*/ };
 	eventCalls[SDL_MOUSEBUTTONDOWN] = [&, this] () { (*this).MouseClick(); };
 	eventCalls[SDL_MOUSEMOTION] = [&, this] () { (*this).MouseMotion(gameEvent); };
 
@@ -76,7 +76,7 @@ void Event::Invalidate()
  */
 void Event::MouseClick()
 {
-    if((*scenePtr).ClickOnCurrentHitId())
+    if(Scene::Instance().ClickOnCurrentHitId()) //((*scenePtr).ClickOnCurrentHitId())
     {
         (*this).Invalidate();
     }
@@ -91,7 +91,7 @@ void Event::MouseMotion(SDL_Event args)
 {
 	SDL_Point mousePos = { args.motion.x, args.motion.y };
 
-    if((*scenePtr).CheckForHit(mousePos))
+    if(Scene::Instance().CheckForHit(mousePos)) //((*scenePtr).CheckForHit(mousePos))
     {
         (*this).Invalidate();
     }

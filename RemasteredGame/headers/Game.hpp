@@ -9,7 +9,7 @@
 #include <filesystem>
 #include <algorithm>
 #include "Data.hpp"
-#include "GameView.hpp"
+#include "GameLoop.hpp"
 #include "Enumeration.hpp"
 
 using std::unordered_map;
@@ -42,7 +42,7 @@ private:
 	void operator=(Game const&) = delete;
 
 	// The application's frontend
-	unique_ptr<GameView> frontEnd;
+	unique_ptr<GameLoop> frontEnd;
 
 	// Singleton instance for the game
 	static unique_ptr<Game> instance;

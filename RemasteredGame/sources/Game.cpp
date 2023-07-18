@@ -124,7 +124,7 @@ void Game::Testing()
  */
 void Game::Launch()
 {
-	frontEnd = unique_ptr<GameView>(new GameView());
+	frontEnd = unique_ptr<GameLoop>(new GameLoop());
 	(*frontEnd.get()).EnterGameLoop();
 }
 

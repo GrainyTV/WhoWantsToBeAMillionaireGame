@@ -1,6 +1,6 @@
 #include "MainMenuScene.hpp"
-#include "Window.hpp"
 #include "Game.hpp"
+#include "Scene.hpp"
 
 /**
  * 
@@ -9,14 +9,20 @@
  */
 MainMenuScene::MainMenuScene()
 {
+	//
+	// Button for starting a new game
+	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }), 
 			CreateTextureFromText("Új játék", "answer"),
-			[&, this] () { /* TODO */ }
+			[&, this] () { Scene::Instance().ChangeScene("InGame"); }
 		)
 	);
 	
+	//
+	// Button for options
+	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(657, 844), Vec2(707, 789), Vec2(707, 899), Vec2(1213, 789), Vec2(1213, 899), Vec2(1263, 844) }),
@@ -25,6 +31,9 @@ MainMenuScene::MainMenuScene()
 		)
 	);
 	
+	//
+	// Button for quitting
+	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(657, 984), Vec2(707, 929), Vec2(707, 1039), Vec2(1213, 929), Vec2(1213, 1039), Vec2(1263, 984) }),

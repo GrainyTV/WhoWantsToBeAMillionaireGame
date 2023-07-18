@@ -1,9 +1,11 @@
 #include "InGameScene.hpp"
-#include "Window.hpp"
 #include "Game.hpp"
 
 InGameScene::InGameScene() : question(make_tuple(Hexa({ Vec2(340, 705), Vec2(390, 650), Vec2(390, 760), Vec2(1530, 650), Vec2(1530, 760), Vec2(1580, 705) }), nullptr))
 {
+	//
+	// Button for Answer A
+	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(340, 845), Vec2(390, 790), Vec2(390, 900), Vec2(896, 790), Vec2(896, 900), Vec2(946, 845) }),
@@ -12,6 +14,9 @@ InGameScene::InGameScene() : question(make_tuple(Hexa({ Vec2(340, 705), Vec2(390
 		)
 	);
 
+	//
+	// Button for Answer B
+	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(974, 845), Vec2(1024, 790), Vec2(1024, 900), Vec2(1530, 790), Vec2(1530, 900), Vec2(1580, 845) }),
@@ -20,6 +25,9 @@ InGameScene::InGameScene() : question(make_tuple(Hexa({ Vec2(340, 705), Vec2(390
 		)
 	);
 
+	//
+	// Button for Answer C
+	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(340, 985), Vec2(390, 930), Vec2(390, 1040), Vec2(896, 930), Vec2(896, 1040), Vec2(946, 985) }),
@@ -28,6 +36,9 @@ InGameScene::InGameScene() : question(make_tuple(Hexa({ Vec2(340, 705), Vec2(390
 		)
 	);
 
+	//
+	// Button for Answer D
+	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(974, 985), Vec2(1024, 930), Vec2(1024, 1040), Vec2(1530, 930), Vec2(1530, 1040), Vec2(1580, 985) }),
