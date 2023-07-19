@@ -61,13 +61,21 @@ void InGameScene::Draw() const
 
 	get<Hexa>(question).Draw();
 	destination = CenterTextInsideHexagon(get<Hexa>(question), get<SDL_Texture*>(question));
-	SDL_RenderCopy(Window::_Renderer(), get<SDL_Texture*>(question), NULL, &destination);
+
+	if(get<SDL_Texture*>(question) != nullptr)
+	{
+		SDL_RenderCopy(Window::_Renderer(), get<SDL_Texture*>(question), NULL, &destination);
+	}
 	
 	for(auto button : buttons)
 	{
 		get<Hexa>(button).Draw();
 		destination = CenterTextInsideHexagon(get<Hexa>(button), get<SDL_Texture*>(button));
-		SDL_RenderCopy(Window::_Renderer(), get<SDL_Texture*>(button), NULL, &destination);
+
+		if(get<SDL_Texture*>(button) != nullptr)
+		{
+			SDL_RenderCopy(Window::_Renderer(), get<SDL_Texture*>(button), NULL, &destination);
+		}		
 	}
 }
 
@@ -102,37 +110,30 @@ void InGameScene::InitiateNewGame()
 {
 	currentGame = make_unique<NewGame>((*Game::Instance()).GenerateNewGame());
 
-	// Question
-	sleep_for(2000ms);
-	get<SDL_Texture*>(question) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._Question(), "question");
-	Scene::Instance().Invalidate();
-
-	// Answer A
-	sleep_for(2000ms);
-	get<SDL_Texture*>(buttons[0]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._A(), "answer");
-	Scene::Instance().Invalidate();
-
-	// Answer B
-	sleep_for(2000ms);
-	get<SDL_Texture*>(buttons[1]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._B(), "answer");
-	Scene::Instance().Invalidate();
-
-	// Answer C
-	sleep_for(2000ms);
-	get<SDL_Texture*>(buttons[2]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._C(), "answer");
-	Scene::Instance().Invalidate();
-
-	// Answer D
-	sleep_for(2000ms);
-	get<SDL_Texture*>(buttons[3]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._D(), "answer");
-	Scene::Instance().Invalidate();
+	thread createNewRound { [&, this] () { (*this).NewRound(); } };
+	createNewRound.detach();
 }
 
 void InGameScene::BeginGuessOnAnswer(char which)
 {
+	get<Hexa>(buttons[which - 'A'])._Overlay(false);
+
 	if((*currentGame.get()).GuessAnswer(which) == true)
 	{
-		(*this).NewRound();
+		SDL_DestroyTexture(get<SDL_Texture*>(question));
+		SDL_DestroyTexture(get<SDL_Texture*>(buttons[0]));
+		SDL_DestroyTexture(get<SDL_Texture*>(buttons[1]));
+		SDL_DestroyTexture(get<SDL_Texture*>(buttons[2]));
+		SDL_DestroyTexture(get<SDL_Texture*>(buttons[3]));
+
+		get<SDL_Texture*>(question) = nullptr;
+		get<SDL_Texture*>(buttons[0]) = nullptr;
+		get<SDL_Texture*>(buttons[1]) = nullptr;
+		get<SDL_Texture*>(buttons[2]) = nullptr;
+		get<SDL_Texture*>(buttons[3]) = nullptr;
+
+		thread createNewRound { [&, this] () { (*this).NewRound(); } };
+		createNewRound.detach();
 	}
 	else
 	{
@@ -142,15 +143,34 @@ void InGameScene::BeginGuessOnAnswer(char which)
 
 void InGameScene::NewRound()
 {
-	SDL_DestroyTexture(get<SDL_Texture*>(question));
-	SDL_DestroyTexture(get<SDL_Texture*>(buttons[0]));
-	SDL_DestroyTexture(get<SDL_Texture*>(buttons[1]));
-	SDL_DestroyTexture(get<SDL_Texture*>(buttons[2]));
-	SDL_DestroyTexture(get<SDL_Texture*>(buttons[3]));
+	(*this)._MouseEnabled(false);
 
+	if((*currentGame.get())._Round() % 5 == 0)
+	{
+		sleep_for(5000ms);
+	}
+	else
+	{
+		sleep_for(2000ms);
+	}
 	get<SDL_Texture*>(question) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._Question(), "question");
+	Scene::Instance().Invalidate();
+
+	sleep_for(2000ms);
 	get<SDL_Texture*>(buttons[0]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._A(), "answer");
+	Scene::Instance().Invalidate();
+
+	sleep_for(2000ms);
 	get<SDL_Texture*>(buttons[1]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._B(), "answer");
+	Scene::Instance().Invalidate();
+
+	sleep_for(2000ms);
 	get<SDL_Texture*>(buttons[2]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._C(), "answer");
+	Scene::Instance().Invalidate();
+
+	sleep_for(2000ms);
 	get<SDL_Texture*>(buttons[3]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._D(), "answer");
+	Scene::Instance().Invalidate();
+
+	(*this)._MouseEnabled(true);
 }

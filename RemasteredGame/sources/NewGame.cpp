@@ -54,6 +54,11 @@ bool NewGame::GuessAnswer(char answerLetter)
 	return result;
 }
 
+unsigned int NewGame::_Round() const
+{
+	return currentQuestionIdx;
+}
+
 /**
  * 
  * Generic static function to check wether a collection of items are unique.

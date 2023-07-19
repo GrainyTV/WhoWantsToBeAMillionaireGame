@@ -43,10 +43,17 @@ protected:
 	// Background image
 	SDL_Texture* background;
 
+	// Wether to ignore events invoked by the mouse
+	bool mouseEnabled { true };
+
 public:
 	virtual void Draw() const = 0;
 
 	virtual ~DrawableScene() = default;
+
+	bool _MouseEnabled() const;
+
+	void _MouseEnabled(bool enabled);
 
 	unsigned int Hit(SDL_Point mousePos);
 

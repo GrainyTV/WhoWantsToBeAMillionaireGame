@@ -13,10 +13,7 @@ Scene::Scene() : renderedScene(make_unique<MainMenuScene>())
 	stateChange[gameState["InGame"]] = [&, this] ()
 	{
 		renderedScene = make_unique<InGameScene>();
-		//InGameScene newScene = (*static_cast<InGameScene*>(renderedScene.get()));
-		//auto newSceneTask = async(launch::async, &InGameScene::InitiateNewGame, &newScene);
-		thread createNewScene { [&, this] () { (*static_cast<InGameScene*>(renderedScene.get())).InitiateNewGame(); } };
-		createNewScene.detach();
+		(*static_cast<InGameScene*>(renderedScene.get())).InitiateNewGame();
 	};
 }
 
@@ -61,6 +58,11 @@ void Scene::Redraw()
  */
 bool Scene::CheckForHit(SDL_Point mousePos)
 {
+	if((*renderedScene.get())._MouseEnabled() == false)
+	{
+		return false;
+	}
+
 	unsigned int newId = (*renderedScene.get()).Hit(mousePos);
 		
 	if(newId == hitId)
@@ -74,7 +76,7 @@ bool Scene::CheckForHit(SDL_Point mousePos)
 
 bool Scene::ClickOnCurrentHitId()
 {
-	if(hitId == 0)
+	if((*renderedScene.get())._MouseEnabled() == false || hitId == 0)
 	{
 		// Mouse is on empty surface
 		return false;

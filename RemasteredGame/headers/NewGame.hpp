@@ -38,6 +38,8 @@ public:
 
 	bool GuessAnswer(char answerLetter);
 
+	unsigned int _Round() const;
+
 	template<class T>
 	static bool UniqueCheck(deque<T> list);
 };

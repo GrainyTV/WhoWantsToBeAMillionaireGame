@@ -5,6 +5,26 @@
 
 /**
  * 
+ * Getter function for the mouseEnabled property.
+ * 
+ */
+bool DrawableScene::_MouseEnabled() const
+{
+	return mouseEnabled;
+}
+
+/**
+ * 
+ * Setter function for the mouseEnabled property.
+ * 
+ */
+void DrawableScene::_MouseEnabled(bool enabled)
+{
+	mouseEnabled = enabled;
+}
+
+/**
+ * 
  * Intersection test for the currently applied scene's buttons.
  * @param mousePos : the location of the cursor when the method was called
  * @return : the index of the button hit, 0 if it is not a clickable surface

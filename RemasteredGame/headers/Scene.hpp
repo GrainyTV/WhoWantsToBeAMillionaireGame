@@ -6,7 +6,6 @@
 #include <memory>
 #include <string>
 #include <functional>
-#include <thread>
 #include "SDL.h"
 #include "Window.hpp"
 #include "DrawableScene.hpp"
@@ -19,7 +18,6 @@ using std::unique_ptr;
 using std::make_unique;
 using std::string;
 using std::function;
-using std::thread;
 
 class Scene
 {

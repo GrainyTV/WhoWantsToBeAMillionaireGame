@@ -9,6 +9,7 @@
 
 using std::make_tuple;
 using std::make_unique;
+using std::thread;
 using std::this_thread::sleep_for;
 using std::literals::chrono_literals::operator""ms;
 
