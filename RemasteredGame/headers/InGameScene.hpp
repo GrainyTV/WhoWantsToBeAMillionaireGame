@@ -2,11 +2,17 @@
 #define INGAMESCENE_HPP
 
 #include <memory>
+#include <thread>
+#include <chrono>
 #include "DrawableScene.hpp"
 #include "NewGame.hpp"
 
 using std::make_tuple;
 using std::make_unique;
+using std::this_thread::sleep_for;
+using std::literals::chrono_literals::operator""ms;
+
+enum class GameState { Neutral, Won, Lost };
 
 class InGameScene : public DrawableScene
 {
@@ -19,6 +25,9 @@ private:
 	// Initially null, until the user launches one
 	unique_ptr<NewGame> currentGame; 
 
+	// Tracking for game's current state
+	GameState gameState { GameState::Neutral };
+
 public:
 	InGameScene();
 
@@ -27,6 +36,10 @@ public:
 	bool CheckTextboxPositionValidity() const;
 
 	void InitiateNewGame();
+
+	void BeginGuessOnAnswer(char which);
+
+	void NewRound();
 };
 
 #endif

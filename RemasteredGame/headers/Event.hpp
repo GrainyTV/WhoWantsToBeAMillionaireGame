@@ -14,9 +14,6 @@ private:
 	// Holding object for incoming events
 	SDL_Event gameEvent;
 
-	// Event to call when screen needs redraw
-	SDL_Event invalidator;
-
 	// Outgoing method calls based on SDL events
 	unordered_map<unsigned int, function<void()>> eventCalls;
 
@@ -28,8 +25,6 @@ public:
 	bool IsValidEvent() const;
 
 	void ExecuteHandler();
-
-	void Invalidate();
 
 	void MouseClick();
 

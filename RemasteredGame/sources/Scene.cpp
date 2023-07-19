@@ -13,8 +13,21 @@ Scene::Scene() : renderedScene(make_unique<MainMenuScene>())
 	stateChange[gameState["InGame"]] = [&, this] ()
 	{
 		renderedScene = make_unique<InGameScene>();
-		(*static_cast<InGameScene*>(renderedScene.get())).InitiateNewGame();
+		//InGameScene newScene = (*static_cast<InGameScene*>(renderedScene.get()));
+		//auto newSceneTask = async(launch::async, &InGameScene::InitiateNewGame, &newScene);
+		thread createNewScene { [&, this] () { (*static_cast<InGameScene*>(renderedScene.get())).InitiateNewGame(); } };
+		createNewScene.detach();
 	};
+}
+
+/**
+ * 
+ * Method to push an invalidate call onto the event stack.
+ * 
+ */
+void Scene::Invalidate()
+{
+	SDL_PushEvent(&invalidator);
 }
 
 /**

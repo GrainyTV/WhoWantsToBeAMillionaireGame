@@ -6,6 +6,7 @@
 #include <memory>
 #include <string>
 #include <functional>
+#include <thread>
 #include "SDL.h"
 #include "Window.hpp"
 #include "DrawableScene.hpp"
@@ -18,12 +19,16 @@ using std::unique_ptr;
 using std::make_unique;
 using std::string;
 using std::function;
+using std::thread;
 
 class Scene
 {
 private:
 	// Observer for mouse position
 	unsigned int hitId { 0 };
+
+	// Event to call when screen needs redraw
+	SDL_Event invalidator { .type = SDL_RegisterEvents(1) };
 
 	// Copy of renderer from Window class
 	SDL_Renderer* renderer { Window::_Renderer() };
@@ -50,6 +55,8 @@ public:
 
 	// Equals operator not needed either
 	void operator=(const Scene&) = delete;
+
+	void Invalidate();
 
 	void Redraw();
 

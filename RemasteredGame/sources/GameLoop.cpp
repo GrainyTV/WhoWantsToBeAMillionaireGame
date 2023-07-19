@@ -2,6 +2,7 @@
 #include "SDL_ttf.h"
 #include "GameLoop.hpp"
 #include "Game.hpp"
+#include "Scene.hpp"
 
 /**
  * 
@@ -20,7 +21,7 @@ GameLoop::GameLoop()
 		throw runtime_error(TTF_GetError());
 	}
 
-	event.Invalidate();
+	Scene::Instance().Invalidate();
 }
 
 /**

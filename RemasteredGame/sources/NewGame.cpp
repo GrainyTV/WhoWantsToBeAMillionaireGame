@@ -5,12 +5,17 @@
  * New game constructor checks uniqueness of the selected items and stores them if they are. Then sets question index to 0.
  * 
  */
-NewGame::NewGame(const deque<Data>& selected) : chosenQuestions(selected), currentQuestionIdx(0)
+NewGame::NewGame(const deque<Data>& selected) : chosenQuestions(selected)
 {
 	if(UniqueCheck<Data>(chosenQuestions) == false)
 	{
 		throw invalid_argument("The number of unique questions do not match the required amount. Duplicate questions found.");
 	}
+
+	checkIfGuessIsCorrect['A'] = [&, this] () { return ThisRoundsData()._A().compare(ThisRoundsData()._Solution()) == 0; };
+	checkIfGuessIsCorrect['B'] = [&, this] () { return ThisRoundsData()._B().compare(ThisRoundsData()._Solution()) == 0; };
+	checkIfGuessIsCorrect['C'] = [&, this] () { return ThisRoundsData()._C().compare(ThisRoundsData()._Solution()) == 0; };
+	checkIfGuessIsCorrect['D'] = [&, this] () { return ThisRoundsData()._D().compare(ThisRoundsData()._Solution()) == 0; };
 }
 
 /**
@@ -31,24 +36,22 @@ Data NewGame::ThisRoundsData() const
  */
 void NewGame::IterateToNextRound()
 {
-	++currentQuestionIdx;
+	if(currentQuestionIdx + 1 < finalQuestion)
+	{
+		++currentQuestionIdx;
+	}
 }
 
-void NewGame::GuessAnswer(char answerLetter)
+bool NewGame::GuessAnswer(char answerLetter)
 {
-    switch(answerLetter)
-    {
-    case 'A':
-        break;
-    case 'B':
-        break;
-    case 'C':
-        break;
-    case 'D':
-        break;
-    default:
-        break;
-    }
+	bool result = (checkIfGuessIsCorrect[answerLetter]());
+
+	if(result == true)
+	{
+		IterateToNextRound();
+	}
+
+	return result;
 }
 
 /**

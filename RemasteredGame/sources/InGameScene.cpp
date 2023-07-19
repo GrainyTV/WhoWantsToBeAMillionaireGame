@@ -1,49 +1,38 @@
 #include "InGameScene.hpp"
+#include "Scene.hpp"
 #include "Game.hpp"
 
 InGameScene::InGameScene() : question(make_tuple(Hexa({ Vec2(340, 705), Vec2(390, 650), Vec2(390, 760), Vec2(1530, 650), Vec2(1530, 760), Vec2(1580, 705) }), nullptr))
 {
-	//
-	// Button for Answer A
-	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(340, 845), Vec2(390, 790), Vec2(390, 900), Vec2(896, 790), Vec2(896, 900), Vec2(946, 845) }),
 			nullptr,
-			[&, this] () { (*currentGame.get()).GuessAnswer('A'); }
+			[&, this] () { (*this).BeginGuessOnAnswer('A'); }
 		)
 	);
 
-	//
-	// Button for Answer B
-	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(974, 845), Vec2(1024, 790), Vec2(1024, 900), Vec2(1530, 790), Vec2(1530, 900), Vec2(1580, 845) }),
 			nullptr,
-			[&, this] () { (*currentGame.get()).GuessAnswer('B'); }
+			[&, this] () { (*this).BeginGuessOnAnswer('B'); }
 		)
 	);
 
-	//
-	// Button for Answer C
-	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(340, 985), Vec2(390, 930), Vec2(390, 1040), Vec2(896, 930), Vec2(896, 1040), Vec2(946, 985) }),
 			nullptr,
-			[&, this] () { (*currentGame.get()).GuessAnswer('C'); }
+			[&, this] () { (*this).BeginGuessOnAnswer('C'); }
 		)
 	);
 
-	//
-	// Button for Answer D
-	//
 	buttons.push_back(
 		make_tuple(
 			Hexa({ Vec2(974, 985), Vec2(1024, 930), Vec2(1024, 1040), Vec2(1530, 930), Vec2(1530, 1040), Vec2(1580, 985) }),
 			nullptr,
-			[&, this] () { (*currentGame.get()).GuessAnswer('D'); }
+			[&, this] () { (*this).BeginGuessOnAnswer('D'); }
 		)
 	);
 
@@ -113,17 +102,55 @@ void InGameScene::InitiateNewGame()
 {
 	currentGame = make_unique<NewGame>((*Game::Instance()).GenerateNewGame());
 
+	// Question
+	sleep_for(2000ms);
 	get<SDL_Texture*>(question) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._Question(), "question");
+	Scene::Instance().Invalidate();
 
 	// Answer A
+	sleep_for(2000ms);
 	get<SDL_Texture*>(buttons[0]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._A(), "answer");
+	Scene::Instance().Invalidate();
 
 	// Answer B
+	sleep_for(2000ms);
 	get<SDL_Texture*>(buttons[1]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._B(), "answer");
+	Scene::Instance().Invalidate();
 
 	// Answer C
+	sleep_for(2000ms);
 	get<SDL_Texture*>(buttons[2]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._C(), "answer");
+	Scene::Instance().Invalidate();
 
 	// Answer D
+	sleep_for(2000ms);
+	get<SDL_Texture*>(buttons[3]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._D(), "answer");
+	Scene::Instance().Invalidate();
+}
+
+void InGameScene::BeginGuessOnAnswer(char which)
+{
+	if((*currentGame.get()).GuessAnswer(which) == true)
+	{
+		(*this).NewRound();
+	}
+	else
+	{
+		gameState = GameState::Lost;
+	}
+}
+
+void InGameScene::NewRound()
+{
+	SDL_DestroyTexture(get<SDL_Texture*>(question));
+	SDL_DestroyTexture(get<SDL_Texture*>(buttons[0]));
+	SDL_DestroyTexture(get<SDL_Texture*>(buttons[1]));
+	SDL_DestroyTexture(get<SDL_Texture*>(buttons[2]));
+	SDL_DestroyTexture(get<SDL_Texture*>(buttons[3]));
+
+	get<SDL_Texture*>(question) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._Question(), "question");
+	get<SDL_Texture*>(buttons[0]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._A(), "answer");
+	get<SDL_Texture*>(buttons[1]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._B(), "answer");
+	get<SDL_Texture*>(buttons[2]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._C(), "answer");
 	get<SDL_Texture*>(buttons[3]) = CreateTextureFromText((*currentGame.get()).ThisRoundsData()._D(), "answer");
 }
