@@ -36,6 +36,9 @@ private:
 	// Hover color of a hexagon
 	const SDL_Color ORANGE;
 
+	// Correct answer color of a hexagon
+	const SDL_Color GREEN;
+
 	// Indicator wether hover is enabled
 	bool overlayEnabled;
 
@@ -46,7 +49,7 @@ private:
 	vector<shared_ptr<Primitive>> hexagonParts;
 
 	// Same as the previous for the hover hexagon
-	vector<shared_ptr<Primitive>> hexagonOverlay;
+	//vector<shared_ptr<Primitive>> hexagonOverlay;
 
 	// The individual parts of the stroke of the hexagon
 	vector<shared_ptr<Primitive>> hexagonStroke;
@@ -71,6 +74,8 @@ public:
 	int Width() const;
 
 	int Height() const;
+
+	void ChangeColor(SDL_Color color);
 
 	void _Overlay(bool enabled);
 };

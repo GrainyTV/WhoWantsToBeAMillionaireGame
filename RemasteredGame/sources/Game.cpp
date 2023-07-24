@@ -113,7 +113,7 @@ void Game::Testing()
 
 	for(auto enumKeyValue : category)
 	{
-		printf("%s - %d\n", enumKeyValue.name.c_str(), enumKeyValue.value);
+		printf("%s - %lu\n", enumKeyValue.name.c_str(), enumKeyValue.value);
 	}
 }
 

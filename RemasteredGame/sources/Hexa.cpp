@@ -12,6 +12,7 @@ Primitive(),
 BLACK(SDL_Color(0, 0, 0, 255)),
 BLUE(SDL_Color(95, 194, 253, 255)),
 ORANGE(SDL_Color(254, 125, 5, 255)),
+GREEN(SDL_Color(14, 146, 19, 255)),
 overlayEnabled(false)
 {
 	if(vertexList.size() != SIDES)
@@ -30,9 +31,9 @@ overlayEnabled(false)
 	hexagonParts.push_back(shared_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, BLACK)));
 	hexagonParts.push_back(shared_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, BLACK)));
 
-	hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, ORANGE)));
-	hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, ORANGE)));
-	hexagonOverlay.push_back(shared_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, ORANGE)));
+	//hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[0], vertices[1], vertices[2] }, ORANGE)));
+	//hexagonOverlay.push_back(shared_ptr<Triangle>(new Triangle({ vertices[3], vertices[4], vertices[5] }, ORANGE)));
+	//hexagonOverlay.push_back(shared_ptr<Quad>(new Quad({ vertices[1], vertices[2], vertices[3], vertices[4] }, ORANGE)));
 
 	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[0], vertices[1]))));
 	hexagonStroke.push_back(shared_ptr<Quad>(new Quad(CalculateBorderQuad(vertices[1], vertices[3]))));
@@ -134,10 +135,10 @@ void Hexa::Draw() const
 	{
 		(*hexagonParts[i].get()).Draw();
 
-		if(overlayEnabled)
+		/*if(overlayEnabled)
 		{
 			(*hexagonOverlay[i].get()).Draw();
-		}
+		}*/
 	}
 
 	for(int i = 0; i < hexagonStroke.size(); ++i)
@@ -267,6 +268,13 @@ int Hexa::Width() const
 int Hexa::Height() const
 {
 	return nodes[4].y - nodes[1].y;
+}
+
+void Hexa::ChangeColor(SDL_Color color)
+{
+	(*static_cast<Triangle*>(hexagonParts[0].get())).ChangeColor(color);
+	(*static_cast<Triangle*>(hexagonParts[1].get())).ChangeColor(color);
+	(*static_cast<Quad*>(hexagonParts[2].get())).ChangeColor(color);
 }
 
 /**

@@ -26,7 +26,7 @@ private:
 	unsigned int hitId { 0 };
 
 	// Event to call when screen needs redraw
-	SDL_Event invalidator { .type = SDL_RegisterEvents(1) };
+	SDL_Event invalidator { .type = SDL_USEREVENT };
 
 	// Copy of renderer from Window class
 	SDL_Renderer* renderer { Window::_Renderer() };
@@ -46,13 +46,13 @@ private:
 	// Constructor hidden from the outside
 	Scene();
 
-public:
-
 	// Copy constructor not needed
 	Scene(const Scene&) = delete;
 
 	// Equals operator not needed either
 	void operator=(const Scene&) = delete;
+
+public:
 
 	void Invalidate();
 

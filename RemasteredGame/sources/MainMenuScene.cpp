@@ -16,6 +16,7 @@ MainMenuScene::MainMenuScene()
 		make_tuple(
 			Hexa({ Vec2(657, 704), Vec2(707, 649), Vec2(707, 759), Vec2(1213, 649), Vec2(1213, 759), Vec2(1263, 704) }), 
 			CreateTextureFromText("Új játék", "answer"),
+			true,
 			[&, this] () { Scene::Instance().ChangeScene("InGame"); }
 		)
 	);
@@ -27,6 +28,7 @@ MainMenuScene::MainMenuScene()
 		make_tuple(
 			Hexa({ Vec2(657, 844), Vec2(707, 789), Vec2(707, 899), Vec2(1213, 789), Vec2(1213, 899), Vec2(1263, 844) }),
 			CreateTextureFromText("Opciók", "answer"),
+			true,
 			[&, this] () { /* TODO */ }
 		)
 	);
@@ -38,6 +40,7 @@ MainMenuScene::MainMenuScene()
 		make_tuple(
 			Hexa({ Vec2(657, 984), Vec2(707, 929), Vec2(707, 1039), Vec2(1213, 929), Vec2(1213, 1039), Vec2(1263, 984) }),
 			CreateTextureFromText("Kilépés", "answer"),
+			true,
 			[&, this] () { Game::Terminate(); }
 		)
 	);

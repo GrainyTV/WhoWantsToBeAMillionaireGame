@@ -39,11 +39,13 @@ unsigned int DrawableScene::Hit(SDL_Point mousePos)
 		if(get<Hexa>(buttons[i]).Hit(mousePos))
 		{
 			idx = i;
-			get<Hexa>(buttons[i])._Overlay(true);
+			//get<Hexa>(buttons[i])._Overlay(true);
+			get<Hexa>(buttons[i]).ChangeColor(SDL_Color{ 254, 125, 5, 255 });
 		}
 		else
 		{
-			get<Hexa>(buttons[i])._Overlay(false);
+			//get<Hexa>(buttons[i])._Overlay(false);
+			get<Hexa>(buttons[i]).ChangeColor(SDL_Color{ 0, 0, 0, 255 });
 		}
 	}
 

@@ -28,6 +28,8 @@ public:
 
 	bool Hit(int x, int y) const;
 
+	void ChangeColor(SDL_Color color);
+
 	static double TriangleArea(Vec2 x1, Vec2 x2, Vec2 x3);
 };
 

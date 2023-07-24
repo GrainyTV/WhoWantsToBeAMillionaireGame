@@ -15,8 +15,8 @@ Event::Event()
 	eventCalls[SDL_MOUSEBUTTONDOWN] = [&, this] () { (*this).MouseClick(); };
 	eventCalls[SDL_MOUSEMOTION] = [&, this] () { (*this).MouseMotion(gameEvent); };
 
-    // Testing Purposes
-    eventCalls[SDL_KEYDOWN] = [] () { Game::Terminate(); };
+	// Testing Purposes
+	eventCalls[SDL_KEYDOWN] = [] () { Game::Terminate(); };
 }
 
 /**
@@ -63,10 +63,10 @@ void Event::ExecuteHandler()
  */
 void Event::MouseClick()
 {
-    if(Scene::Instance().ClickOnCurrentHitId())
-    {
-        Scene::Instance().Invalidate();
-    }
+	if(Scene::Instance().ClickOnCurrentHitId())
+	{
+		Scene::Instance().Invalidate();
+	}
 }
 
 /**
@@ -78,8 +78,8 @@ void Event::MouseMotion(SDL_Event args)
 {
 	SDL_Point mousePos = { args.motion.x, args.motion.y };
 
-    if(Scene::Instance().CheckForHit(mousePos))
-    {
-        Scene::Instance().Invalidate();
-    }
+	if(Scene::Instance().CheckForHit(mousePos))
+	{
+		Scene::Instance().Invalidate();
+	}
 }

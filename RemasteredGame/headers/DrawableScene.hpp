@@ -29,7 +29,7 @@ private:
 protected:
 	// Our clickable buttons
 	// They consist of a hexagon, a texture of text and a backend function call
-	deque<tuple<Hexa, SDL_Texture*, function<void()>>> buttons;
+	deque<tuple<Hexa, SDL_Texture*, bool, function<void()>>> buttons;
 
 	// Lines under each of the buttons
 	deque<Line> buttonLines;

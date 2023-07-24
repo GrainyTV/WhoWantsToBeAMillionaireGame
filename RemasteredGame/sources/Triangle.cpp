@@ -55,6 +55,13 @@ bool Triangle::Hit(int x, int y) const
 	return (A == A1 + A2 + A3);
 }
 
+void Triangle::ChangeColor(SDL_Color color)
+{
+	vertices[0].color = color;
+	vertices[1].color = color;
+	vertices[2].color = color;
+}
+
 /**
  * 
  * A utility function to calculate area of triangle formed by (x1, y1), (x2, y2) and (x3, y3)
