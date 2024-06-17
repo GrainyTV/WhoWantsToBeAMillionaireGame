@@ -2,37 +2,38 @@
 #include "assert.hpp"
 
 Event::Event()
-    : firstDraw(true)
-    , continueProcessingEvents(true)
-    , currentScene(MainMenuScene())
-{
-    eventCalls.insert({ SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; }});
-    eventCalls.insert({ SDL_EVENT_USER, [&]() { std::visit(SceneResolver{}, currentScene); }});
-    eventCalls.insert({ SDL_EVENT_KEY_DOWN, [this]() { (*this).invalidate(); }});
-    eventCalls.insert({ SDL_EVENT_MOUSE_BUTTON_DOWN, [this]() { (*this).terminate(); }});
-    eventCalls.insert({ SDL_EVENT_WINDOW_SHOWN, [this]() { (*this).unhideWindowAtStart(); }});
-}
+    : continueProcessingEvents(true)
+    , eventCalls({
+          { SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; } },
+          { SDL_EVENT_USER, [&]() { std::visit(SceneRedrawer{}, currentScene); } },
+          { SDL_EVENT_KEY_DOWN, [this]() { (*this).invalidate(); } },
+          { SDL_EVENT_MOUSE_BUTTON_DOWN, [this]() { (*this).terminate(); } },
+          { SDL_EVENT_WINDOW_SHOWN, [this]() { (*this).unhideWindowAtStart(); } },
+      })
+{}
 
 void Event::processIncomingEvents()
 {
-    const auto detectEvents = SDL_WaitEvent(&event);
-    ASSERT(detectEvents == SDL_TRUE, "Failed to load event from queue with {}", SDL_GetError());
+    const auto detectEvents = SDL_WaitEvent(&presentEvent);
+    ASSERT(detectEvents == true, "Failed to load event from queue ({})", SDL_GetError());
 
     if (isValidEvent())
     {
-        eventCalls[event.type]();
+        eventCalls[presentEvent.type]();
     }
-    
+
     if (continueProcessingEvents)
     {
+#ifdef __clang__
         [[clang::musttail]]
+#endif
         return processIncomingEvents();
     }
 }
 
 bool Event::isValidEvent() const
 {
-    return eventCalls.contains(event.type) ? true : false;
+    return eventCalls.contains(presentEvent.type) ? true : false;
 }
 
 void Event::invalidate()
@@ -51,9 +52,6 @@ void Event::terminate()
 
 void Event::unhideWindowAtStart()
 {
-    if (firstDraw)
-    {
-        invalidate();
-        firstDraw = false;
-    }
+    invalidate();
+    eventCalls.erase(SDL_EVENT_WINDOW_SHOWN);
 }

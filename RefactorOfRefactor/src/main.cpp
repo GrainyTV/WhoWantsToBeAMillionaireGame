@@ -4,7 +4,7 @@
 int main()
 {
     Game::init();
-    const Defer _(Game::deinit);
+    DEFER(Game::deinit);
 
     Game::launch();
 }

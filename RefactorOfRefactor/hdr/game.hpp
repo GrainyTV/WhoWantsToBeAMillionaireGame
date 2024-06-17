@@ -1,35 +1,67 @@
 #pragma once
-#include "SDL3/SDL.h"
-#include "event.hpp"
+#include "SDL3/SDL_render.h"
+#include "SDL3/SDL_video.h"
+#include "SDL3_image/SDL_image.h"
 #include "assert.hpp"
+#include "event.hpp"
+#include "scenes.hpp"
+#include "texture.hpp"
+#include <cstdint>
 
 struct Game
 {
-    static inline SDL_Window* window{ NULL };
-    static inline SDL_Renderer* renderer{ NULL };
-    static inline Event eventHandler{};
+    static inline uint32_t ScreenWidth{ 0 };
+    static inline uint32_t ScreenHeight{ 0 };
+    static inline SDL_Window* Window;
+    static inline SDL_Renderer* Renderer;
+    static inline Event* EventHandler;
+    static inline Texture* TextureLoader;
 
     static void init()
     {
-        const auto initialization = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
-        ASSERT(initialization == 0, "Failed to initialize SDL with {}", SDL_GetError());
+        {
+            const auto init = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
+            ASSERT(init == 0, "Failed to initialize SDL ({})", SDL_GetError());
+        }
 
-        window = SDL_CreateWindow("Who Wants To Be A Millionaire?", 1920, 1080, SDL_WINDOW_FULLSCREEN | SDL_WINDOW_VULKAN);
-        ASSERT(window != NULL, "SDL_CreateWindow() failed with {}", SDL_GetError());
+        {
+            const auto init = IMG_Init(IMG_INIT_PNG);
+            ASSERT(init == IMG_INIT_PNG, "Failed to initialize SDL_image ({})", IMG_GetError());
+        }
 
-        renderer = SDL_CreateRenderer(window, NULL, SDL_RENDERER_ACCELERATED | SDL_RENDERER_SOFTWARE);
-        ASSERT(renderer != NULL, "SDL_CreateRenderer() failed with {}", SDL_GetError());
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
+        Window = SDL_CreateWindow("Who Wants To Be A Millionaire?", ScreenWidth, ScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
+        ASSERT(Window != NULL, "SDL_CreateWindow() failed ({})", SDL_GetError());
+
+        const auto screenProperties = SDL_GetCurrentDisplayMode(SDL_GetDisplayForWindow(Window));
+        ScreenWidth = (*screenProperties).w;
+        ScreenHeight = (*screenProperties).h;
+
+        SDL_SetWindowSize(Window, ScreenWidth, ScreenHeight);
+        SDL_SetWindowFullscreen(Window, true);
+        SDL_SyncWindow(Window);
+        SDL_ShowWindow(Window);
+
+        Renderer = SDL_CreateRenderer(Window, NULL, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+        ASSERT(Renderer != NULL, "SDL_CreateRenderer() failed ({})", SDL_GetError());
+
+        TextureLoader = new Texture();
+        EventHandler = new Event();
     }
 
     static void deinit()
     {
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
+        IMG_Quit();
+        SDL_DestroyRenderer(Renderer);
+        SDL_DestroyWindow(Window);
         SDL_Quit();
+
+        delete EventHandler;
+        delete TextureLoader;
     }
 
     static void launch()
     {
-        eventHandler.processIncomingEvents();
+        (*EventHandler).processIncomingEvents();
     }
 };
