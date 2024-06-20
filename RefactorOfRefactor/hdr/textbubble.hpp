@@ -1,5 +1,4 @@
 #pragma once
-#include "Eigen/Dense"
 #include "SDL3/SDL.h"
 #include <array>
 #include <vector>
@@ -20,12 +19,8 @@ private:
 
     std::vector<SDL_Vertex> generateStroke();
 
-    Eigen::Vector2f SDL_FPointToEigen(const SDL_FPoint& sdlPoint);
-
-    SDL_FPoint EigenToSDL_FPoint(const Eigen::Vector2f& eigenVector);
-
 public:
     TextBubble(const SDL_FRect& mainArea);
 
-    void render() const;
+    void draw() const;
 };

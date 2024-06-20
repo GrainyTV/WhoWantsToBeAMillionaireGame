@@ -1,54 +1,74 @@
 #include "texture.hpp"
 #include "SDL3_image/SDL_image.h"
 #include "defer.hpp"
+#include "extensions.hpp"
 #include "functionals.hpp"
 #include "game.hpp"
 #include <algorithm>
 #include <cstdint>
 #include <filesystem>
 #include <format>
-#include <numeric>
+#include <thread>
 
-bool Texture::regexGlobalMatches(const std::string& input, std::vector<std::smatch>& allMatches, const std::regex& regexToUse)
+void Texture::convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTexture)
 {
-    auto begin = std::sregex_iterator(input.begin(), input.end(), regexToUse);
-    auto end = std::sregex_iterator();
-    const auto foundEntryAmount = std::distance(begin, end);
+    DEFER(SDL_DestroySurface, surface);
 
-    if (foundEntryAmount == 0)
-    {
-        return false;
-    }
-    else
-    {
-        for (std::sregex_iterator i = begin; i != end; ++i)
+    *outTexture = SDL_CreateTextureFromSurface(Game::Renderer, surface);
+    ASSERT(*outTexture != NULL, "Failed to convert surface to texture ({})", SDL_GetError());
+
+    --numberOfTexturesLoading;
+    observer.notify_one();
+}
+
+void Texture::queueTextureLoadFromFile(const LoadProcess& process)
+{
+    ++numberOfTexturesLoading;
+    textureLoadTasks.emplace_back(process);
+}
+
+void Texture::beginTextureLoadProcess()
+{
+    std::thread detachedWorker{
+        [&]() 
         {
-            allMatches.push_back(*i);
-        }
+            fut::forEach(textureLoadTasks, [&](const auto& task, size_t _)
+            {
+                SDL_Surface* surfaceFromPath = IMG_Load(task.Path.c_str());
+                ASSERT(surfaceFromPath != NULL, "Failed to load surface ({})", task.Path);
 
-        return true;
-    }
+                const auto callback = new Invokable(&Texture::convertSurfaceToTexture, this, surfaceFromPath, task.Output);
+                Game::EventHandler.requestEvent({ .user = { .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = static_cast<void*>(callback), } });
+            });
+
+            {
+                std::unique_lock<std::mutex> lock{ mutualExclusion };
+                observer.wait(lock, [&]() { return numberOfTexturesLoading == 0; });
+                textureLoadTasks.clear();
+            }
+
+            Game::EventHandler.invalidate();
+        }
+    };
+    detachedWorker.detach();
 }
 
 MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture)
 {
     std::vector<MultiSizeTexture> resolutionsOfTexture;
+    const auto dir = std::filesystem::directory_iterator(std::format("assets/textures/{}", nameOfTexture));
 
-    fut::forEach(std::filesystem::directory_iterator("textures"), [&](const auto& entry, const size_t _) {
-        const auto entryName = entry.path().stem().string();
+    fut::forEach(dir, [&](const auto& entry, const size_t _) {
+        const auto name = entry.path().stem().string();
+        std::vector<StringMatch> matches;
+        std::regex numericValues(R"(\d+)");
 
-        if (entry.is_regular_file() && entryName.starts_with(nameOfTexture))
+        if (ext::regexGlobalMatches(name, matches, numericValues))
         {
-            std::regex numericValues(R"(\d+)");
-            std::vector<std::smatch> matches;
-
-            if (regexGlobalMatches(entryName, matches, numericValues))
-            {
-                ASSERT(matches.size() == 2, "Resolution should have two components in its filename (Found {} in {})", matches.size(), entryName);
-                const uint32_t width = std::stoi(matches[0].str());
-                const uint32_t height = std::stoi(matches[1].str());
-                resolutionsOfTexture.push_back(MultiSizeTexture{ .Name = entryName, .Width = width, .Height = height });
-            }
+            ASSERT(matches.size() == 2, "Resolution should have two components in its filename (Found {} in {})", matches.size(), name);
+            const uint32_t width = std::stoi(matches[0].str());
+            const uint32_t height = std::stoi(matches[1].str());
+            resolutionsOfTexture.push_back(MultiSizeTexture{ .Path = entry.path().string(), .Width = width, .Height = height });
         }
     });
 
@@ -62,85 +82,4 @@ MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t h
 
     ASSERT(acceptableTextures.empty() == false, "No acceptable sized texture found ({} -> {}x{})", nameOfTexture, width, height);
     return acceptableTextures[0];
-}
-
-void Texture::convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTexture)
-{
-    *outTexture = SDL_CreateTextureFromSurface(Game::Renderer, surface);
-    ASSERT(*outTexture != NULL, "Failed to convert surface to texture ({})", SDL_GetError());
-    DEFER(SDL_DestroySurface, surface);
-
-    texturesToLoad.pop();
-    --numberOfTexturesLoading;
-    // observer.notify_all();
-}
-
-/*void Texture::loadSurfaceFromFile(const char* fileName, SDL_Texture** outTexture)
-{
-    const auto path = std::format("textures/{}.png", fileName);
-
-    SDL_Surface* surface = IMG_Load(path);
-    ASSERT(surface != NULL, "Failed to load texture {}", path);
-
-    Game::EventHandler.invoke(&Texture::convertSurfaceToTexture, this, surface, outTexture);
-}*/
-
-void Texture::queueTextureLoadFromFile(const std::string& fileName, SDL_Texture** outTexture)
-{
-    ++numberOfTexturesLoading;
-    const auto path = std::format("textures/{}.png", fileName);
-    texturesToLoad.emplace(LoadProcess{ .Path = path, .Output = outTexture });
-
-    /*std::thread workerThread([&]() {
-        const auto path = std::format("textures/{}.png", fileName);
-
-        SDL_Surface* surface = IMG_Load(path.c_str());
-        ASSERT(surface != NULL, "Failed to load surface ({})", path);
-
-        Game::EventHandler.invoke(&Texture::convertSurfaceToTexture, this, surface, outTexture);
-    });
-    workerThread.detach();*/
-}
-
-void Texture::allTexturesLoaded()
-{
-    /*std::thread workerThread([&]() {
-        std::unique_lock<std::mutex> lock(cvMutex);
-        cv.wait(lock, [&]() { return numberOfTexturesLoading.load() == 0; });
-        Game::EventHandler.invalidate();
-    });
-    workerThread.detach();*/
-
-    /*std::thread workerThread([&]() {
-        // std::unique_lock<std::mutex> lock(mutuallyExclusiveFlag);
-        // cv.wait(lock, [&]() { return numberOfTexturesLoading.load() == 0; });
-
-        while (texturesToLoad.empty() == false)
-        {
-            const auto task = texturesToLoad.front();
-
-            SDL_Surface* surface = IMG_Load(task.Path);
-            ASSERT(surface != NULL, "Failed to load surface ({})", task.Path);
-
-            Game::EventHandler->invoke(&Texture::convertSurfaceToTexture, this, surface, task.Output);
-        }
-
-        std::unique_lock<std::mutex> lock(mutuallyExclusiveFlag);
-        observer.wait(lock, [&]() { return numberOfTexturesLoading.load() == 0; });
-        Game::EventHandler->invalidate();
-    });
-    workerThread.detach();*/
-
-    while (texturesToLoad.empty() == false)
-    {
-        const auto texture = texturesToLoad.front();
-
-        SDL_Surface* surface = IMG_Load(texture.Path.c_str());
-        ASSERT(surface != NULL, "Failed to load surface ({})", texture.Path);
-
-        (*this).convertSurfaceToTexture(surface, texture.Output);
-        // Game::EventHandler->invoke(&Texture::convertSurfaceToTexture, this, surface, texture.Output);
-    }
-
-    // Game::EventHandler->invalidate();
 }

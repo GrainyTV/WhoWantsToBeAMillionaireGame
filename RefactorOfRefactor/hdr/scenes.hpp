@@ -1,23 +1,24 @@
 #pragma once
 #include "SDL3/SDL.h"
-#include "SDL3/SDL_rect.h"
-#include "SDL3/SDL_render.h"
 #include "textbubble.hpp"
-#include <array>
 #include <cstdint>
-#include <string>
+#include <optional>
 
-template<typename T>
-struct Drawable
+struct TextureRegion
 {
-    T Resource;
-    SDL_FRect Area;
+    SDL_Texture* Resource;
+    std::optional<SDL_FRect> Area;
+
+    const SDL_FRect* getArea() const
+    {
+        return Area.has_value() ? &Area.value() : NULL;
+    }
 };
 
 struct SceneRedrawer
 {
-    template<typename T>
-    void operator()(const T& scene) const
+    template<typename Scene>
+    void operator()(const Scene& scene) const
     {
         scene.redraw();
     }
@@ -28,8 +29,8 @@ class MainMenuScene
 private:
     static constexpr uint32_t buttonCount = 4;
     uint32_t halfScreenHeight;
-    SDL_Texture* backgroundImage;
-    Drawable<SDL_Texture*> logo;
+    TextureRegion backgroundImage;
+    TextureRegion logo;
     TextBubble newGame;
     TextBubble howToPlay;
     TextBubble settings;

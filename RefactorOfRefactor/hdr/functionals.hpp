@@ -89,4 +89,4 @@ namespace fut
 
         return result;
     }
-} // namespace fut
+}

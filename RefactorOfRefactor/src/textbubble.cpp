@@ -1,6 +1,6 @@
 #include "textbubble.hpp"
-#include "assert.hpp"
 #include "colors.hpp"
+#include "extensions.hpp"
 #include "functionals.hpp"
 #include "game.hpp"
 #include <array>
@@ -26,37 +26,20 @@ TextBubble::TextBubble(const SDL_FRect& mainArea)
 {
 }
 
-void TextBubble::render() const
+void TextBubble::draw() const
 {
     const auto renderer = Game::Renderer;
 
-    {
-        SDL_SetRenderDrawColor(renderer, col::BLUE.r, col::BLUE.g, col::BLUE.b, col::BLUE.a);
-        const auto render = SDL_RenderFillRect(renderer, &strokeLine);
-        ASSERT(render == 0, "Failed to render stroke line ({})", SDL_GetError());
-    }
+    ext::changeDrawColorTo(renderer, col::BLUE);
+    ext::drawRectangle(renderer, &strokeLine);
 
-    {
-        SDL_SetRenderDrawColor(renderer, col::BLACK.r, col::BLACK.g, col::BLACK.b, col::BLACK.a);
-        const auto render = SDL_RenderFillRect(renderer, &innerRectangle);
-        ASSERT(render == 0, "Failed to render rectangle of text bubble ({})", SDL_GetError());
-    }
+    ext::changeDrawColorTo(renderer, col::BLACK);
+    ext::drawRectangle(renderer, &innerRectangle);
+    ext::drawVertices(renderer, leftTriangle);
+    ext::drawVertices(renderer, rightTriangle);
 
-    {
-        const auto render = SDL_RenderGeometry(renderer, NULL, leftTriangle.data(), leftTriangle.size(), NULL, 0);
-        ASSERT(render == 0, "Failed to render left triangle of text bubble ({})", SDL_GetError());
-    }
-
-    {
-        const auto render = SDL_RenderGeometry(renderer, NULL, rightTriangle.data(), rightTriangle.size(), NULL, 0);
-        ASSERT(render == 0, "Failed to render right triangle of text bubble ({})", SDL_GetError());
-    }
-
-    {
-        SDL_SetRenderDrawColor(renderer, col::BLUE.r, col::BLUE.g, col::BLUE.b, col::BLUE.a);
-        const auto render = SDL_RenderGeometry(renderer, NULL, strokeSegments.data(), strokeSegments.size(), NULL, 0);
-        ASSERT(render == 0, "Failed to render stroke of text bubble ({})", SDL_GetError());
-    }
+    ext::changeDrawColorTo(renderer, col::BLUE);
+    ext::drawVertices(renderer, strokeSegments);
 }
 
 std::array<SDL_FPoint, 6> TextBubble::retrievePositions()
@@ -104,25 +87,14 @@ std::array<SDL_FPoint, 6> TextBubble::retrievePositions()
     return std::array<SDL_FPoint, 6>{ pos0, pos1, pos2, pos3, pos4, pos5 };
 }
 
-Eigen::Vector2f TextBubble::SDL_FPointToEigen(const SDL_FPoint& sdlPoint)
-{
-    return Eigen::Vector2f{ sdlPoint.x, sdlPoint.y };
-}
-
-SDL_FPoint TextBubble::EigenToSDL_FPoint(const Eigen::Vector2f& eigenVector)
-{
-    return SDL_FPoint{ eigenVector.x(), eigenVector.y() };
-}
-
 std::vector<SDL_Vertex> TextBubble::generateStroke()
 {
     std::vector<SDL_Vertex> results;
 
-    fut::forEach(coords, [&](const auto& _, const size_t i)
-    {
+    fut::forEach(coords, [&](const auto& _, const size_t i) {
         const size_t j = (i + 1) % coords.size();
-        const Eigen::Vector2f startVertex = (*this).SDL_FPointToEigen(coords[i]);
-        const Eigen::Vector2f endVertex = (*this).SDL_FPointToEigen(coords[j]);
+        const Eigen::Vector2f startVertex = ext::fPointToEigen(coords[i]);
+        const Eigen::Vector2f endVertex = ext::fPointToEigen(coords[j]);
 
         Eigen::Vector2f direction = endVertex - startVertex;
         direction.normalize();
@@ -141,7 +113,7 @@ std::vector<SDL_Vertex> TextBubble::generateStroke()
 
         const auto strokeVertices = fut::map(indices, [&](const uint8_t index) {
             return SDL_Vertex{
-                .position = (*this).EigenToSDL_FPoint(areaCorners[index]),
+                .position = ext::eigenToFpoint(areaCorners[index]),
                 .color = col::NBLUE,
             };
         });
@@ -153,8 +125,7 @@ std::vector<SDL_Vertex> TextBubble::generateStroke()
     // Generate fillings for the small gaps in-between stroke sequences //
     // ================================================================ //
 
-    fut::forEach(coords, [&](const auto& _, const size_t i)
-    {
+    fut::forEach(coords, [&](const auto& _, const size_t i) {
         const size_t j = (i + 1) % coords.size();
 
         // ======================== //

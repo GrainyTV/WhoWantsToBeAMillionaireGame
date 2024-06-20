@@ -1,16 +1,30 @@
 #include "event.hpp"
 #include "assert.hpp"
+#include "defer.hpp"
+#include "invokable.hpp"
 
 Event::Event()
     : continueProcessingEvents(true)
     , eventCalls({
           { SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; } },
-          { SDL_EVENT_USER, [&]() { std::visit(SceneRedrawer{}, currentScene); } },
-          { SDL_EVENT_KEY_DOWN, [this]() { (*this).invalidate(); } },
-          { SDL_EVENT_MOUSE_BUTTON_DOWN, [this]() { (*this).terminate(); } },
-          { SDL_EVENT_WINDOW_SHOWN, [this]() { (*this).unhideWindowAtStart(); } },
+          { SDL_EVENT_KEY_DOWN, [&]() { invalidate(); } },
+          { SDL_EVENT_MOUSE_BUTTON_DOWN, [&]() { requestEvent({ .type = SDL_EVENT_QUIT }); } },
+          { SDL_EVENT_WINDOW_SHOWN, [&]() { unhideWindowAtStart(); } },
+          { EVENT_INVALIDATE, [&]() { std::visit(SceneRedrawer{}, *currentScene); } },
+          { EVENT_INVOKE_ON_UI_THREAD, [&]() { executeCallback(); } },
       })
 {}
+
+void Event::applyDefaultScene()
+{
+    // ==================================================== //
+    // Constructs a Scene collection object in-place        //
+    // A variant ALWAYS holds its first type as default     //
+    // MainMenuScene should be the first template parameter //
+    // ==================================================== //
+
+    currentScene.emplace();
+}
 
 void Event::processIncomingEvents()
 {
@@ -36,22 +50,27 @@ bool Event::isValidEvent() const
     return eventCalls.contains(presentEvent.type) ? true : false;
 }
 
-void Event::invalidate()
+void Event::requestEvent(SDL_Event&& newEvent)
 {
-    SDL_Event invalidateEvent;
-    invalidateEvent.type = SDL_EVENT_USER;
-    SDL_PushEvent(&invalidateEvent);
+    SDL_PushEvent(&newEvent);
 }
 
-void Event::terminate()
+void Event::invalidate()
 {
-    SDL_Event terminationEvent;
-    terminationEvent.type = SDL_EVENT_QUIT;
-    SDL_PushEvent(&terminationEvent);
+    requestEvent({ .type = EVENT_INVALIDATE });
 }
 
 void Event::unhideWindowAtStart()
 {
     invalidate();
     eventCalls.erase(SDL_EVENT_WINDOW_SHOWN);
+}
+
+void Event::executeCallback() const
+{
+    const auto callback = static_cast<Invokable*>(presentEvent.user.data1);
+    ASSERT(callback != NULL, "Failed to retrieve callback on UI thread");
+    DEFER([&callback]() { delete callback; });
+
+    (*callback).execute();
 }

@@ -1,127 +1,50 @@
 #include "scenes.hpp"
-// #include "SDL3_image/SDL_image.h"
-#include "assert.hpp"
+#include "colors.hpp"
 #include "game.hpp"
 #include "textbubble.hpp"
 #include "texture.hpp"
-#include <algorithm>
 #include <cstdint>
-#include <filesystem>
-#include <regex>
 #include <string>
-#include <vector>
-// #include <format>
-// #include <string>
-
-static constexpr SDL_Color BACKGROUND{ .r = 0, .g = 0, .b = 0, .a = 255 };
 
 MainMenuScene::MainMenuScene()
     : halfScreenHeight(Game::ScreenHeight / 2)
-    , logo({
-          .Resource = NULL,
-          .Area = (*this).initializeLogo(),
-      })
-    , newGame((*this).retrievePositionOfButton(1))
-    , howToPlay((*this).retrievePositionOfButton(2))
-    , settings((*this).retrievePositionOfButton(3))
-    , quit((*this).retrievePositionOfButton(4))
+    , logo({ .Area = initializeLogo() })
+    , newGame(retrievePositionOfButton(1))
+    , howToPlay(retrievePositionOfButton(2))
+    , settings(retrievePositionOfButton(3))
+    , quit(retrievePositionOfButton(4))
 {
-    // const auto halfScreenHeight = Game::ScreenHeight / 2;
-    // const auto fittingLogoTexture = Texture::findTextureThatFitsIntoArea(halfScreenHeight, halfScreenHeight, "logo");
-
-    // logo.Area.x = Game::ScreenWidth / 2.0f - fittingLogoTexture.Width / 2.0f;
-    // logo.Area.y = (halfScreenHeight - fittingLogoTexture.Height) / 2.0f;
-    // logo.Area.w = fittingLogoTexture.Width;
-    // logo.Area.h = fittingLogoTexture.Height;
-
-    /*const auto totalItemSpace = halfScreenHeight * 0.7f;
-    const auto individualItemSpace = totalItemSpace / buttonCount;
-    const auto totalPaddingSpace = halfScreenHeight - totalItemSpace;
-    const auto individualPaddingSpace = totalPaddingSpace / (buttonCount + 1);*/
-
-    /*SDL_FRect tbTemplate{
-        .x = logo.Area.x,
-        .y = -1,
-        .w = logo.Area.w,
-        .h = individualItemSpace,
-    };*/
-
-    /*button1.x = logo.Area.x;
-    button2.x = logo.Area.x;
-    button3.x = logo.Area.x;
-    button4.x = logo.Area.x;
-
-    button1.w = logo.Area.w;
-    button2.w = logo.Area.w;
-    button3.w = logo.Area.w;
-    button4.w = logo.Area.w;*/
-
-    /*tbTemplate.y = halfScreenHeight + 1 * individualPaddingSpace + 0 * individualItemSpace;
-    newGame = TextBubble{ tbTemplate };
-
-    tbTemplate.y = halfScreenHeight + 2 * individualPaddingSpace + 1 * individualItemSpace;
-    howToPlay = TextBubble{ tbTemplate };
-
-    tbTemplate.y = halfScreenHeight + 3 * individualPaddingSpace + 2 * individualItemSpace;
-    settings = TextBubble{ tbTemplate };
-
-    tbTemplate.y = halfScreenHeight + 4 * individualPaddingSpace + 3 * individualItemSpace;
-    quit = TextBubble{ tbTemplate };*/
-
-    /*button1.y = halfScreenHeight + 1 * individualPaddingSpace + 0 * individualItemSpace;
-    button2.y = halfScreenHeight + 2 * individualPaddingSpace + 1 * individualItemSpace;
-    button3.y = halfScreenHeight + 3 * individualPaddingSpace + 2 * individualItemSpace;
-    button4.y = halfScreenHeight + 4 * individualPaddingSpace + 3 * individualItemSpace;
-
-    button1.h = individualItemSpace;
-    button2.h = individualItemSpace;
-    button3.h = individualItemSpace;
-    button4.h = individualItemSpace;*/
-
-    Game::TextureLoader->queueTextureLoadFromFile("logo", &logo.Resource);
-    Game::TextureLoader->queueTextureLoadFromFile("background", &backgroundImage);
-    Game::TextureLoader->allTexturesLoaded();
+    Game::TextureLoader.queueTextureLoadFromFile({ .Path = "textures/background.png", .Output = &backgroundImage.Resource });
+    Game::TextureLoader.beginTextureLoadProcess();
 }
 
 MainMenuScene::~MainMenuScene()
 {
     SDL_DestroyTexture(logo.Resource);
-    SDL_DestroyTexture(backgroundImage);
+    SDL_DestroyTexture(backgroundImage.Resource);
 }
 
 void MainMenuScene::redraw() const
 {
     const auto renderer = Game::Renderer;
-    SDL_SetRenderDrawColor(renderer, BACKGROUND.r, BACKGROUND.g, BACKGROUND.b, BACKGROUND.a);
+    ext::changeDrawColorTo(renderer, col::BLACK);
     SDL_RenderClear(renderer);
 
-    if (backgroundImage != NULL)
-    {
-        const auto textureFilter = SDL_SetTextureScaleMode(backgroundImage, SDL_SCALEMODE_BEST);
-        ASSERT(textureFilter == 0, "Failed to change texture filtering mode ({})", SDL_GetError());
-        const auto render = SDL_RenderTexture(renderer, backgroundImage, NULL, NULL);
-        ASSERT(render == 0, "Failed to render background ({})", SDL_GetError());
-    }
+    ext::drawTextureRegion(renderer, backgroundImage);
+    ext::drawTextureRegion(renderer, logo);
 
-    if (logo.Resource != NULL)
-    {
-        const auto textureFilter = SDL_SetTextureScaleMode(logo.Resource, SDL_SCALEMODE_BEST);
-        ASSERT(textureFilter == 0, "Failed to change texture filtering mode ({})", SDL_GetError());
-        const auto render = SDL_RenderTexture(renderer, logo.Resource, NULL, &logo.Area);
-        ASSERT(render == 0, "Failed to render logo ({})", SDL_GetError());
-    }
-
-    newGame.render();
-    howToPlay.render();
-    settings.render();
-    quit.render();
+    newGame.draw();
+    howToPlay.draw();
+    settings.draw();
+    quit.draw();
 
     SDL_RenderPresent(renderer);
 }
 
 SDL_FRect MainMenuScene::initializeLogo()
 {
-    const auto fittingLogoTexture = Texture::findTextureThatFitsIntoArea(halfScreenHeight, halfScreenHeight, "logo");
+    const auto fittingLogoTexture = Game::TextureLoader.findTextureThatFitsIntoArea(halfScreenHeight, halfScreenHeight, "logo");
+    Game::TextureLoader.queueTextureLoadFromFile({ .Path = fittingLogoTexture.Path, .Output = &logo.Resource });
 
     return SDL_FRect{
         .x = Game::ScreenWidth / 2.0f - fittingLogoTexture.Width / 2.0f,
@@ -133,16 +56,15 @@ SDL_FRect MainMenuScene::initializeLogo()
 
 SDL_FRect MainMenuScene::retrievePositionOfButton(const uint32_t index) const
 {
-    const auto halfScreenHeight = Game::ScreenHeight / 2;
     const auto totalItemSpace = halfScreenHeight * 0.7f;
     const auto individualItemSpace = totalItemSpace / buttonCount;
     const auto totalPaddingSpace = halfScreenHeight - totalItemSpace;
     const auto individualPaddingSpace = totalPaddingSpace / (buttonCount + 1);
 
     return SDL_FRect{
-        .x = logo.Area.x,
+        .x = (*logo.Area).x,
         .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
-        .w = logo.Area.w,
+        .w = (*logo.Area).w,
         .h = individualItemSpace,
     };
 }

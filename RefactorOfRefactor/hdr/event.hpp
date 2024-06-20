@@ -1,56 +1,40 @@
 #pragma once
+#include "scenes.hpp"
 #include <functional>
 #include <unordered_map>
 #include <variant>
-// #include "SDL3/SDL.h"
-#include "scenes.hpp"
+
+enum CustomEvents
+{
+    EVENT_INVALIDATE = SDL_EVENT_USER,
+    EVENT_INVOKE_ON_UI_THREAD,
+};
+
+using ExclusiveScenes = std::variant<MainMenuScene, InGameScene>;
 
 class Event
 {
 private:
     SDL_Event presentEvent;
     bool continueProcessingEvents;
-    std::variant<MainMenuScene, InGameScene> currentScene;
+    std::optional<ExclusiveScenes> currentScene;
     std::unordered_map<uint32_t, std::function<void()>> eventCalls;
 
-    void terminate();
-
+private:
     void unhideWindowAtStart();
 
     bool isValidEvent() const;
 
+    void executeCallback() const;
+
 public:
     Event();
+
+    void applyDefaultScene();
 
     void processIncomingEvents();
 
     void invalidate();
 
-    /*template<typename Func, typename Obj, typename... Args>
-    void invoke(Func&& func, Obj&& obj, Args&&... args)
-    {
-        const auto delegate = [&]() {
-            (*obj.*func)(std::forward<Args>(args)...);
-        };
-
-        delegate();
-    }*/
-
-    /*template<typename Func, typename... Args>
-    void invoke(Func function, Args&&... arguments)
-    {
-        std::invoke(function, std::forward<Args>(arguments)...);
-    }
-
-    template<typename Func, typename Obj, typename... Args>
-    void invoke(Func function, Obj& object, Args&&... arguments)
-    {
-        std::invoke(function, object, std::forward<Args>(arguments)...);
-    }*/
-
-    template<typename Func, typename... Args>
-    void invoke(Func&& function, Args&&... arguments)
-    {
-        std::invoke(std::forward<Func>(function), std::forward<Args>(arguments)...);
-    }
+    void requestEvent(SDL_Event&& newEvent);
 };
