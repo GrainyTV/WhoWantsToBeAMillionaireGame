@@ -8,21 +8,31 @@
 
 MainMenuScene::MainMenuScene()
     : halfScreenHeight(Game::ScreenHeight / 2)
+    , sceneLoaded(false)
     , logo({ .Area = initializeLogo() })
     , newGame(retrievePositionOfButton(1))
     , howToPlay(retrievePositionOfButton(2))
     , settings(retrievePositionOfButton(3))
     , quit(retrievePositionOfButton(4))
+    , selectedButton(NULL)
 {
     Game::TextureLoader.queueTextureLoadFromFile({ .Path = "textures/background.png", .Output = &backgroundImage.Resource });
     Game::TextureLoader.beginTextureLoadProcess();
 }
 
-MainMenuScene::~MainMenuScene()
+void MainMenuScene::deinit() const
 {
-    SDL_DestroyTexture(logo.Resource);
+    LOG("MainMenuScene deinit called!");
     SDL_DestroyTexture(backgroundImage.Resource);
+    SDL_DestroyTexture(logo.Resource);
 }
+
+/*MainMenuScene::~MainMenuScene()
+{
+    LOG("MainMenuScene destructor called!");
+    SDL_DestroyTexture(backgroundImage.Resource);
+    SDL_DestroyTexture(logo.Resource);
+}*/
 
 void MainMenuScene::redraw() const
 {
@@ -30,15 +40,50 @@ void MainMenuScene::redraw() const
     ext::changeDrawColorTo(renderer, col::BLACK);
     SDL_RenderClear(renderer);
 
-    ext::drawTextureRegion(renderer, backgroundImage);
-    ext::drawTextureRegion(renderer, logo);
+    if (sceneLoaded)
+    {
+        ext::drawTextureRegion(renderer, backgroundImage);
+        ext::drawTextureRegion(renderer, logo);
 
-    newGame.draw();
-    howToPlay.draw();
-    settings.draw();
-    quit.draw();
+        newGame.draw();
+        howToPlay.draw();
+        settings.draw();
+        quit.draw();
+    }
 
     SDL_RenderPresent(renderer);
+}
+
+void MainMenuScene::intersects(SDL_FPoint&& location)
+{
+    TextBubble* newlySelectedButton = NULL;
+
+    if (newGame.isInsideItsHitbox(location))
+    {
+        newlySelectedButton = &newGame;
+    }
+
+    if (selectedButton != newlySelectedButton)
+    {
+        if (selectedButton != NULL)
+        {
+            (*selectedButton).disableHover();
+        }
+
+        selectedButton = newlySelectedButton;
+
+        if (selectedButton != NULL)
+        {
+            (*selectedButton).enableHover();
+        }
+
+        Game::EventHandler.invalidate();
+    }
+}
+
+void MainMenuScene::enable()
+{
+    sceneLoaded = true;
 }
 
 SDL_FRect MainMenuScene::initializeLogo()
@@ -73,7 +118,7 @@ void InGameScene::init()
 {
 }
 
-void InGameScene::deinit()
+void InGameScene::deinit() const
 {
 }
 
@@ -91,4 +136,8 @@ void InGameScene::redraw() const
     SDL_SetRenderDrawColor(renderer, r, g, b, 255);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
+}
+
+void InGameScene::intersects(SDL_FPoint&& location)
+{
 }

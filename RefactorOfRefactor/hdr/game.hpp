@@ -30,6 +30,9 @@ struct Game
         const auto msaa8 = SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
         ASSERT(msaa8 == 0, "Failed to enable multisample anti-aliasing x8 ({})", SDL_GetError());
 
+        const auto dbusAutoShutdown = SDL_SetHint(SDL_HINT_SHUTDOWN_DBUS_ON_QUIT, "1");
+        ASSERT(dbusAutoShutdown, "Failed to enable automatic DBUS shutdown");
+
         Window = SDL_CreateWindow("Who Wants To Be A Millionaire?", ScreenWidth, ScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
         ASSERT(Window != NULL, "SDL_CreateWindow() failed ({})", SDL_GetError());
 
@@ -48,6 +51,8 @@ struct Game
 
     static void deinit()
     {
+        LOG("Game::deinit called!");
+
         SDL_DestroyRenderer(Renderer);
         SDL_DestroyWindow(Window);
         IMG_Quit();

@@ -77,4 +77,16 @@ namespace ext
         const auto drawVertices = SDL_RenderGeometry(renderer, NULL, vertices.data(), vertices.size(), NULL, 0);
         ASSERT(drawVertices == 0, "Failed to draw vertices onto the screen ({})", SDL_GetError());
     }
+
+    inline float areaOfTriangleByItsVertices(const SDL_FPoint& a, const SDL_FPoint& b, const SDL_FPoint& c)
+    {
+        return 0.5f * std::abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y));
+    }
+
+    template<typename T>
+    inline void free(T* managedObj)
+    {
+        ASSERT(managedObj != NULL, "Trying to free a null pointer");
+        delete managedObj;
+    }
 }

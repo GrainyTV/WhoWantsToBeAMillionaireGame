@@ -1,0 +1,510 @@
+{
+   LLVM
+   Memcheck:Leak
+   ...
+   obj:/usr/lib/libLLVM-*
+}
+{
+   OPENGL
+   Memcheck:Leak
+   ...
+   fun:SDL_EGL_UnloadLibrary
+}
+{
+   LIBC
+   Memcheck:Leak
+   ...
+   fun:dlopen@@GLIBC*
+}
+{
+   SDL_Image
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:realloc
+   fun:real_realloc
+   fun:SDL_GetErrBuf
+   fun:SDL_ClearError_REAL
+   fun:SDL_ReadIO_REAL
+   fun:SDL_ReadU16LE_REAL
+   fun:SDL_ReadU16LE
+   fun:IMG_isICOCUR
+   fun:IMG_isCUR
+   fun:IMG_LoadTyped_IO
+   fun:IMG_Load
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:calloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:realloc
+   fun:real_realloc
+   fun:SDL_realloc_REAL
+   fun:SDL_SetTLS_REAL
+   fun:SDL_GetErrBuf
+   fun:SDL_ClearError_REAL
+   fun:SDL_ReadIO_REAL
+   fun:SDL_ReadU16LE_REAL
+   fun:SDL_ReadU16LE
+   fun:IMG_isICOCUR
+   fun:IMG_isCUR
+   fun:IMG_LoadTyped_IO
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_ZnwmSt11align_val_t
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:call_init
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl18getGeneralCategoryEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:call_init
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:calloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:SDL_EGL_LoadLibrary
+   fun:Wayland_GLES_LoadLibrary
+   fun:SDL_GL_LoadLibrary_REAL
+   fun:SDL_CreateWindowWithProperties_REAL
+   fun:SDL_CreateWindow_REAL
+   fun:SDL_CreateWindow
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:calloc
+   fun:do_lookup_unique
+   fun:do_lookup_x
+   fun:_dl_lookup_symbol_x
+   fun:resolve_map
+   fun:elf_machine_rela
+   fun:elf_dynamic_do_Rela
+   fun:_dl_relocate_object
+   fun:_dl_open_relocate_one_object
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl18getGeneralCategoryEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:call_init
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_ZnwmSt11align_val_t
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm19initTypeSizeOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm21initRandomSeedOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_ZnwmSt11align_val_t
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm21initRandomSeedOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_ZnwmSt11align_val_t
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm20initWithColorOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_ZN4llvm13StringMapImpl11RehashTableEj
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:call_init
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm20initWithColorOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm16initTimerOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_ZnwmSt11align_val_t
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:calloc
+   obj:*
+   obj:*
+   obj:*
+   fun:SDL_EGL_LoadLibrary
+   fun:Wayland_GLES_LoadLibrary
+   fun:SDL_GL_LoadLibrary_REAL
+   fun:SDL_CreateWindowWithProperties_REAL
+   fun:SDL_CreateWindow_REAL
+   fun:SDL_CreateWindow
+   fun:_ZN4Game4initEv
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:pool
+   fun:__static_initialization_and_destruction_0
+   fun:_GLOBAL__sub_I_eh_alloc.cc
+   fun:call_init
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_ZN4llvm13StringMapImpl15LookupBucketForENS_9StringRefE
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl18getGeneralCategoryEv
+   obj:/usr/lib/libLLVM-17.so
+   fun:call_init
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:calloc
+   obj:*
+   obj:*
+   fun:SDL_EGL_LoadLibrary
+   fun:Wayland_GLES_LoadLibrary
+   fun:SDL_GL_LoadLibrary_REAL
+   fun:SDL_CreateWindowWithProperties_REAL
+   fun:SDL_CreateWindow_REAL
+   fun:SDL_CreateWindow
+   fun:_ZN4Game4initEv
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm18initSignalsOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm19initTypeSizeOptionsEv
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_ZnwmSt11align_val_t
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_ZnwmSt11align_val_t
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   obj:/usr/lib/libLLVM-17.so
+   fun:_ZN4llvm2cl23ParseCommandLineOptionsEiPKPKcNS_9StringRefEPNS_11raw_ostreamES2_b
+   fun:LLVMParseCommandLineOptions
+   obj:*
+   fun:__pthread_once_slow
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}

@@ -24,17 +24,40 @@ struct SceneRedrawer
     }
 };
 
+struct IntersectsUiElement
+{
+    float x;
+    float y;
+
+    template<typename Scene>
+    void operator()(Scene& scene)
+    {
+        scene.intersects(SDL_FPoint{ x, y });
+    }
+};
+
+struct SceneDeinitialize
+{
+    template<typename Scene>
+    void operator()(const Scene& scene) const
+    {
+        scene.deinit();
+    }
+};
+
 class MainMenuScene
 {
 private:
     static constexpr uint32_t buttonCount = 4;
     uint32_t halfScreenHeight;
+    bool sceneLoaded;
     TextureRegion backgroundImage;
     TextureRegion logo;
     TextBubble newGame;
     TextBubble howToPlay;
     TextBubble settings;
     TextBubble quit;
+    TextBubble* selectedButton;
 
 private:
     SDL_FRect initializeLogo();
@@ -44,9 +67,15 @@ private:
 public:
     MainMenuScene();
 
-    ~MainMenuScene();
+    void deinit() const;
+
+    //~MainMenuScene();
 
     void redraw() const;
+
+    void intersects(SDL_FPoint&& location);
+
+    void enable();
 };
 
 class InGameScene
@@ -56,7 +85,9 @@ private:
 public:
     void init();
 
-    void deinit();
+    void deinit() const;
 
     void redraw() const;
+
+    void intersects(SDL_FPoint&& location);
 };

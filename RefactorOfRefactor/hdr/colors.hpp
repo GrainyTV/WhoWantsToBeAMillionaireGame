@@ -22,5 +22,6 @@ namespace col
     static constexpr SDL_Color GREEN{ .r = 14, .g = 146, .b = 19, .a = 255 };
 
     static constexpr SDL_FColor NBLACK = normalize(BLACK);
+    static constexpr SDL_FColor NORANGE = normalize(ORANGE);
     static constexpr SDL_FColor NBLUE = normalize(BLUE);
 }

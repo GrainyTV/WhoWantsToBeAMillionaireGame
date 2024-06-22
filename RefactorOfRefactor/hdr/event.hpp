@@ -7,6 +7,7 @@
 enum CustomEvents
 {
     EVENT_INVALIDATE = SDL_EVENT_USER,
+    EVENT_ENABLE_SCENE,
     EVENT_INVOKE_ON_UI_THREAD,
 };
 

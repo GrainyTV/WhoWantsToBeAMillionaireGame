@@ -9,7 +9,8 @@
 #include <vector>
 
 TextBubble::TextBubble(const SDL_FRect& mainArea)
-    : innerRectangle(mainArea)
+    : hover(false)
+    , innerRectangle(mainArea)
     , coords(retrievePositions())
     , leftTriangle({
           SDL_Vertex{ .position = coords[0], .color = col::NBLACK },
@@ -33,7 +34,7 @@ void TextBubble::draw() const
     ext::changeDrawColorTo(renderer, col::BLUE);
     ext::drawRectangle(renderer, &strokeLine);
 
-    ext::changeDrawColorTo(renderer, col::BLACK);
+    ext::changeDrawColorTo(renderer, hover ? col::ORANGE : col::BLACK);
     ext::drawRectangle(renderer, &innerRectangle);
     ext::drawVertices(renderer, leftTriangle);
     ext::drawVertices(renderer, rightTriangle);
@@ -146,4 +147,50 @@ std::vector<SDL_Vertex> TextBubble::generateStroke()
     });
 
     return results;
+}
+
+bool TextBubble::isInsideItsHitbox(const SDL_FPoint& location) const
+{
+    // ================================================ //
+    // To check if cursor is inside the hexagon,        //
+    // we need to check its rectangle and two triangles //
+    // ================================================ //
+
+    return SDL_PointInRectFloat(&location, &innerRectangle) ||
+           isInsideTriangle(location, leftTriangle) ||
+           isInsideTriangle(location, rightTriangle);
+}
+
+bool TextBubble::isInsideTriangle(const SDL_FPoint& p, const std::array<SDL_Vertex, 3>& triangle) const
+{
+    const SDL_FPoint x1 = triangle[0].position;
+    const SDL_FPoint x2 = triangle[1].position;
+    const SDL_FPoint x3 = triangle[2].position;
+
+    const float area = ext::areaOfTriangleByItsVertices(x1, x2, x3);
+    const float subArea1 = ext::areaOfTriangleByItsVertices(p, x1, x2);
+    const float subArea2 = ext::areaOfTriangleByItsVertices(p, x1, x3);
+    const float subArea3 = ext::areaOfTriangleByItsVertices(p, x2, x3);
+
+    return (subArea1 + subArea2 + subArea3) - area < 0.01f;
+}
+
+void TextBubble::enableHover()
+{
+    hover = true;
+
+    fut::forEach(leftTriangle, [&](const auto& _, size_t index) {
+        leftTriangle[index].color = col::NORANGE;
+        rightTriangle[index].color = col::NORANGE;
+    });
+}
+
+void TextBubble::disableHover()
+{
+    hover = false;
+
+    fut::forEach(leftTriangle, [&](const auto& _, size_t index) {
+        leftTriangle[index].color = col::NBLACK;
+        rightTriangle[index].color = col::NBLACK;
+    });
 }

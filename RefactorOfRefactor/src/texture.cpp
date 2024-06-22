@@ -29,7 +29,8 @@ void Texture::queueTextureLoadFromFile(const LoadProcess& process)
 
 void Texture::beginTextureLoadProcess()
 {
-    std::thread detachedWorker{
+    std::thread detachedWorker
+    {
         [&]() 
         {
             fut::forEach(textureLoadTasks, [&](const auto& task, size_t _)
@@ -47,6 +48,7 @@ void Texture::beginTextureLoadProcess()
                 textureLoadTasks.clear();
             }
 
+            Game::EventHandler.requestEvent({ .type = EVENT_ENABLE_SCENE });
             Game::EventHandler.invalidate();
         }
     };
@@ -58,7 +60,7 @@ MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t h
     std::vector<MultiSizeTexture> resolutionsOfTexture;
     const auto dir = std::filesystem::directory_iterator(std::format("assets/textures/{}", nameOfTexture));
 
-    fut::forEach(dir, [&](const auto& entry, const size_t _) {
+    fut::forEach(dir, [&](const auto& entry, size_t /*i*/) {
         const auto name = entry.path().stem().string();
         std::vector<StringMatch> matches;
         std::regex numericValues(R"(\d+)");
