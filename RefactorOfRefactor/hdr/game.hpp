@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL3_image/SDL_image.h"
+#include "SDL3_ttf/SDL_ttf.h"
 #include "assert.hpp"
 #include "event.hpp"
 #include "extensions.hpp"
@@ -27,6 +28,11 @@ struct Game
             ASSERT(init == IMG_INIT_PNG, "Failed to initialize SDL_image ({})", IMG_GetError());
         }
 
+        {
+            const auto init = TTF_Init();
+            ASSERT(init == 0, "Failed to initialize SDL_ttf ({})", TTF_GetError());
+        }
+
         const auto msaa8 = SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
         ASSERT(msaa8 == 0, "Failed to enable multisample anti-aliasing x8 ({})", SDL_GetError());
 
@@ -51,16 +57,17 @@ struct Game
 
     static void deinit()
     {
-        LOG("Game::deinit called!");
-
+        TextureLoader.deinitFontManager();
         SDL_DestroyRenderer(Renderer);
         SDL_DestroyWindow(Window);
+        TTF_Quit();
         IMG_Quit();
         SDL_Quit();
     }
 
     static void launch()
     {
+        TextureLoader.initFontManager();
         EventHandler.applyDefaultScene();
         EventHandler.processIncomingEvents();
     }

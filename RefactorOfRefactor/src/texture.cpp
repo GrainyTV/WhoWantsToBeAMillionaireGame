@@ -29,28 +29,28 @@ void Texture::queueTextureLoadFromFile(const LoadProcess& process)
 
 void Texture::beginTextureLoadProcess()
 {
-    std::thread detachedWorker
-    {
-        [&]() 
+    std::thread detachedWorker{
+        [&]() {
+        fut::forEach(textureLoadTasks, [&](const auto& task, const size_t /*i*/) {
+            SDL_Surface* surfaceFromPath = IMG_Load(task.Path.c_str());
+            ASSERT(surfaceFromPath != NULL, "Failed to load surface ({})", task.Path);
+
+            const auto callback = new Invokable(&Texture::convertSurfaceToTexture, this, surfaceFromPath, task.Output);
+            Game::EventHandler.requestEvent({ .user = {
+                                                  .type = EVENT_INVOKE_ON_UI_THREAD,
+                                                  .data1 = static_cast<void*>(callback),
+                                              } });
+        });
+
         {
-            fut::forEach(textureLoadTasks, [&](const auto& task, size_t _)
-            {
-                SDL_Surface* surfaceFromPath = IMG_Load(task.Path.c_str());
-                ASSERT(surfaceFromPath != NULL, "Failed to load surface ({})", task.Path);
-
-                const auto callback = new Invokable(&Texture::convertSurfaceToTexture, this, surfaceFromPath, task.Output);
-                Game::EventHandler.requestEvent({ .user = { .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = static_cast<void*>(callback), } });
-            });
-
-            {
-                std::unique_lock<std::mutex> lock{ mutualExclusion };
-                observer.wait(lock, [&]() { return numberOfTexturesLoading == 0; });
-                textureLoadTasks.clear();
-            }
-
-            Game::EventHandler.requestEvent({ .type = EVENT_ENABLE_SCENE });
-            Game::EventHandler.invalidate();
+            std::unique_lock<std::mutex> lock{ mutualExclusion };
+            observer.wait(lock, [&]() { return numberOfTexturesLoading == 0; });
+            textureLoadTasks.clear();
         }
+
+        Game::EventHandler.requestEvent({ .type = EVENT_ENABLE_SCENE });
+        Game::EventHandler.invalidate();
+    }
     };
     detachedWorker.detach();
 }
@@ -84,4 +84,35 @@ MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t h
 
     ASSERT(acceptableTextures.empty() == false, "No acceptable sized texture found ({} -> {}x{})", nameOfTexture, width, height);
     return acceptableTextures[0];
+}
+
+void Texture::initFontManager()
+{
+    fontManager = FontManager{ DEFAULT_FONT, DEFAULT_FONT_SIZE };
+}
+
+void Texture::deinitFontManager() const
+{
+    fontManager.free();
+}
+
+TextureRegion Texture::createTextureFromText(const SDL_FRect& area, const std::string& text)
+{
+    SDL_Surface* const surface = fontManager.texturize(text);
+    DEFER(SDL_DestroySurface, surface);
+
+    const auto width = (*surface).w;
+    const auto height = (*surface).h;
+
+    const SDL_FRect textBox = {
+        .x = area.x + (area.w - width) / 2.0f,
+        .y = area.y + (area.h - height) / 2.0f,
+        .w = +static_cast<float>(width),
+        .h = static_cast<float>(height),
+    };
+
+    return TextureRegion{
+        .Resource = SDL_CreateTextureFromSurface(Game::Renderer, surface),
+        .Area = textBox,
+    };
 }

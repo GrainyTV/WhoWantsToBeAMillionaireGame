@@ -1,12 +1,13 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include "textureregion.hpp"
 #include <array>
+#include <string>
 #include <vector>
 
 class TextBubble
 {
 private:
-    static constexpr uint8_t THICKNESS{ 5 };
     bool hover;
     SDL_FRect innerRectangle;
     std::array<SDL_FPoint, 6> coords;
@@ -14,6 +15,7 @@ private:
     std::array<SDL_Vertex, 3> rightTriangle;
     std::vector<SDL_Vertex> strokeSegments;
     SDL_FRect strokeLine;
+    TextureRegion text;
 
 private:
     std::array<SDL_FPoint, 6> retrievePositions();
@@ -23,7 +25,7 @@ private:
     bool isInsideTriangle(const SDL_FPoint& p, const std::array<SDL_Vertex, 3>& triangle) const;
 
 public:
-    TextBubble(const SDL_FRect& mainArea);
+    TextBubble(const SDL_FRect& mainArea, const std::string& text);
 
     void draw() const;
 

@@ -2,18 +2,6 @@
 #include "SDL3/SDL.h"
 #include "textbubble.hpp"
 #include <cstdint>
-#include <optional>
-
-struct TextureRegion
-{
-    SDL_Texture* Resource;
-    std::optional<SDL_FRect> Area;
-
-    const SDL_FRect* getArea() const
-    {
-        return Area.has_value() ? &Area.value() : NULL;
-    }
-};
 
 struct SceneRedrawer
 {
@@ -48,7 +36,6 @@ struct SceneDeinitialize
 class MainMenuScene
 {
 private:
-    static constexpr uint32_t buttonCount = 4;
     uint32_t halfScreenHeight;
     bool sceneLoaded;
     TextureRegion backgroundImage;
@@ -68,8 +55,6 @@ public:
     MainMenuScene();
 
     void deinit() const;
-
-    //~MainMenuScene();
 
     void redraw() const;
 

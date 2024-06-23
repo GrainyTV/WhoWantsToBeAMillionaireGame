@@ -6,9 +6,10 @@
 #include <array>
 #include <cstdint>
 #include <numeric>
-#include <vector>
 
-TextBubble::TextBubble(const SDL_FRect& mainArea)
+static constexpr uint8_t THICKNESS{ 5 };
+
+TextBubble::TextBubble(const SDL_FRect& mainArea, const std::string& text)
     : hover(false)
     , innerRectangle(mainArea)
     , coords(retrievePositions())
@@ -24,6 +25,7 @@ TextBubble::TextBubble(const SDL_FRect& mainArea)
       })
     , strokeSegments(generateStroke())
     , strokeLine({ .x = 0, .y = coords[0].y - THICKNESS / 2.0f, .w = static_cast<float>(Game::ScreenWidth), .h = THICKNESS })
+    , text(Game::TextureLoader.createTextureFromText(innerRectangle, text))
 {
 }
 
@@ -41,6 +43,8 @@ void TextBubble::draw() const
 
     ext::changeDrawColorTo(renderer, col::BLUE);
     ext::drawVertices(renderer, strokeSegments);
+
+    ext::drawTextureRegion(renderer, text);
 }
 
 std::array<SDL_FPoint, 6> TextBubble::retrievePositions()
@@ -92,7 +96,7 @@ std::vector<SDL_Vertex> TextBubble::generateStroke()
 {
     std::vector<SDL_Vertex> results;
 
-    fut::forEach(coords, [&](const auto& _, const size_t i) {
+    fut::forEach(coords, [&](const auto& /*coord*/, const size_t i) {
         const size_t j = (i + 1) % coords.size();
         const Eigen::Vector2f startVertex = ext::fPointToEigen(coords[i]);
         const Eigen::Vector2f endVertex = ext::fPointToEigen(coords[j]);
@@ -126,7 +130,7 @@ std::vector<SDL_Vertex> TextBubble::generateStroke()
     // Generate fillings for the small gaps in-between stroke sequences //
     // ================================================================ //
 
-    fut::forEach(coords, [&](const auto& _, const size_t i) {
+    fut::forEach(coords, [&](const auto& /*coord*/, const size_t i) {
         const size_t j = (i + 1) % coords.size();
 
         // ======================== //
@@ -179,9 +183,9 @@ void TextBubble::enableHover()
 {
     hover = true;
 
-    fut::forEach(leftTriangle, [&](const auto& _, size_t index) {
-        leftTriangle[index].color = col::NORANGE;
-        rightTriangle[index].color = col::NORANGE;
+    fut::forEach(leftTriangle, [&](const auto& /*vertex*/, const size_t i) {
+        leftTriangle[i].color = col::NORANGE;
+        rightTriangle[i].color = col::NORANGE;
     });
 }
 
@@ -189,8 +193,8 @@ void TextBubble::disableHover()
 {
     hover = false;
 
-    fut::forEach(leftTriangle, [&](const auto& _, size_t index) {
-        leftTriangle[index].color = col::NBLACK;
-        rightTriangle[index].color = col::NBLACK;
+    fut::forEach(leftTriangle, [&](const auto& /*vertex*/, const size_t i) {
+        leftTriangle[i].color = col::NBLACK;
+        rightTriangle[i].color = col::NBLACK;
     });
 }

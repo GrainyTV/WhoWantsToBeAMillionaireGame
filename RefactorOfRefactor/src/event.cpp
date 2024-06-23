@@ -8,7 +8,7 @@ Event::Event()
     : continueProcessingEvents(true)
     , eventCalls({
           { SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; std::visit(SceneDeinitialize{}, *currentScene); } },
-          { SDL_EVENT_KEY_DOWN, [&]() { requestEvent({ .type = SDL_EVENT_QUIT }); } },
+          { SDL_EVENT_KEY_DOWN, [&]() { /*requestEvent({ .type = SDL_EVENT_QUIT });*/ } },
           { SDL_EVENT_MOUSE_BUTTON_DOWN, [&]() { requestEvent({ .type = SDL_EVENT_QUIT }); } },
           { SDL_EVENT_MOUSE_MOTION, [&]() { std::visit(IntersectsUiElement{ .x = presentEvent.motion.x, .y = presentEvent.motion.y }, *currentScene); } },
           { SDL_EVENT_WINDOW_SHOWN, [&]() { unhideWindowAtStart(); } },

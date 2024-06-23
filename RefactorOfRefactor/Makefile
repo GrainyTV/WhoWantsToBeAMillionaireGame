@@ -10,10 +10,10 @@ OBJFILES := $(patsubst $(SOURCES)/%.cpp,$(BUILD)/%.o,$(CPPFILES))
 
 EXECUTABLE := a.out
 CXX := zig c++
-CXXFLAGS := -g -Wall -std=c++23 -I$(HEADERS)
+CXXFLAGS := -g -Wall -Wextra -Wpedantic -Werror -Wno-missing-field-initializers -std=c++23 -I$(HEADERS)
 LDFLAGS := $(addprefix -l,$(LIBNAMES)) -L$(LIBRARIES)
 
-.PHONY: all configure build clean
+.PHONY: all configure build memory-leaks clean
 
 all: configure build
 
@@ -31,7 +31,7 @@ compile_commands.json: $(wildcard $(BUILD)/*.json)
 	@sed -e '1s|^|[\n|' -e '$$s|,$$|\n]|' $^ > $@
 
 memory-leaks:
-	valgrind --gen-suppressions=all --suppressions=valgrind.supp --leak-check=full --show-leak-kinds=all ./$(EXECUTABLE)
+	valgrind --gen-suppressions=all --suppressions=valgrind.supp --leak-check=full --show-leak-kinds=all "./$(EXECUTABLE)"
 
 clean:
 	@rm -r $(BUILD)

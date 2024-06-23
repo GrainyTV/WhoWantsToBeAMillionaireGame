@@ -6,14 +6,16 @@
 #include <cstdint>
 #include <string>
 
+static constexpr uint32_t BUTTON_COUNT = 4;
+
 MainMenuScene::MainMenuScene()
     : halfScreenHeight(Game::ScreenHeight / 2)
     , sceneLoaded(false)
     , logo({ .Area = initializeLogo() })
-    , newGame(retrievePositionOfButton(1))
-    , howToPlay(retrievePositionOfButton(2))
-    , settings(retrievePositionOfButton(3))
-    , quit(retrievePositionOfButton(4))
+    , newGame(retrievePositionOfButton(1), "New Game")
+    , howToPlay(retrievePositionOfButton(2), "How to Play")
+    , settings(retrievePositionOfButton(3), "Settings")
+    , quit(retrievePositionOfButton(4), "Quit")
     , selectedButton(NULL)
 {
     Game::TextureLoader.queueTextureLoadFromFile({ .Path = "textures/background.png", .Output = &backgroundImage.Resource });
@@ -22,17 +24,9 @@ MainMenuScene::MainMenuScene()
 
 void MainMenuScene::deinit() const
 {
-    LOG("MainMenuScene deinit called!");
     SDL_DestroyTexture(backgroundImage.Resource);
     SDL_DestroyTexture(logo.Resource);
 }
-
-/*MainMenuScene::~MainMenuScene()
-{
-    LOG("MainMenuScene destructor called!");
-    SDL_DestroyTexture(backgroundImage.Resource);
-    SDL_DestroyTexture(logo.Resource);
-}*/
 
 void MainMenuScene::redraw() const
 {
@@ -102,9 +96,9 @@ SDL_FRect MainMenuScene::initializeLogo()
 SDL_FRect MainMenuScene::retrievePositionOfButton(const uint32_t index) const
 {
     const auto totalItemSpace = halfScreenHeight * 0.7f;
-    const auto individualItemSpace = totalItemSpace / buttonCount;
+    const auto individualItemSpace = totalItemSpace / BUTTON_COUNT;
     const auto totalPaddingSpace = halfScreenHeight - totalItemSpace;
-    const auto individualPaddingSpace = totalPaddingSpace / (buttonCount + 1);
+    const auto individualPaddingSpace = totalPaddingSpace / (BUTTON_COUNT + 1);
 
     return SDL_FRect{
         .x = (*logo.Area).x,
@@ -138,6 +132,6 @@ void InGameScene::redraw() const
     SDL_RenderPresent(renderer);
 }
 
-void InGameScene::intersects(SDL_FPoint&& location)
+void InGameScene::intersects(SDL_FPoint&& /*location*/)
 {
 }

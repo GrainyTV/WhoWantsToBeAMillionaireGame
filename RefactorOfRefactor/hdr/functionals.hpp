@@ -52,7 +52,8 @@ namespace fut
     {
         std::vector<ItemOf<Container>> filteredItems;
 
-        forEach(items, [&](const auto& item, size_t _) {
+        forEach(items, [&](const auto& item, size_t /*i*/)
+        {
             if (action(item))
             {
                 filteredItems.push_back(item);
@@ -70,7 +71,8 @@ namespace fut
         std::vector<OutputValueType> mappedItems;
         mappedItems.reserve(std::distance(std::ranges::begin(items), std::ranges::end(items)));
 
-        forEach(items, [&](const auto& item, size_t _) {
+        forEach(items, [&](const auto& item, size_t /*i*/)
+        {
             mappedItems.push_back(action(item));
         });
 
@@ -83,7 +85,8 @@ namespace fut
     {
         T result = initial;
 
-        forEach(items, [&](const auto& item, size_t _) {
+        forEach(items, [&](const auto& item, size_t /*i*/)
+        {
             result = action(result, item);
         });
 
