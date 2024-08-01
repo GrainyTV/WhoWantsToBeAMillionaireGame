@@ -6,6 +6,7 @@
         if ((expression) == false)                                                  \
         {                                                                           \
             std::println(stderr, "Assertion failed: {}", std::format(__VA_ARGS__)); \
+            std::println(stderr, "{}:{}", __FILE__, __LINE__);                      \
             std::abort();                                                           \
         }                                                                           \
     }

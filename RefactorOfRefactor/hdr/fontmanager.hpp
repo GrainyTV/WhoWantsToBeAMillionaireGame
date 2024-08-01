@@ -1,9 +1,11 @@
 #pragma once
 #include "SDL3_ttf/SDL_ttf.h"
-#include <string>
+#include "textbubble.hpp"
+#include <span>
+#include <string_view>
 
-static constexpr const char* DEFAULT_FONT = "assets/fonts/WarowniaBlackExtended.otf";
-static constexpr uint32_t DEFAULT_FONT_SIZE = 32;
+static constexpr const char* DEFAULT_FONT = "assets/fonts/ArgentumSans-Bold.otf";
+static constexpr uint32_t DEFAULT_FONT_SIZE = 64;
 
 class FontManager
 {
@@ -11,13 +13,11 @@ private:
     TTF_Font* font;
 
 public:
-    FontManager();
+    void init();
 
-    FontManager(const char* fontResource, const uint32_t fontSize);
+    void deinit() const;
 
-    FontManager& operator=(FontManager&& other) noexcept;
+    SDL_Surface* generateNew(std::string_view text) const;
 
-    void free() const;
-
-    SDL_Surface* texturize(const std::string& text) const;
+    uint32_t findSuitableFontSize(const std::span<TextBubble> sceneTextData, const uint32_t size = DEFAULT_FONT_SIZE) const;
 };

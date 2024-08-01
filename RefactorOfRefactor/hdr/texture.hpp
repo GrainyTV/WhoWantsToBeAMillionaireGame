@@ -1,6 +1,4 @@
 #pragma once
-#include "SDL3/SDL.h"
-#include "fontmanager.hpp"
 #include "textureregion.hpp"
 #include <atomic>
 #include <condition_variable>
@@ -8,6 +6,12 @@
 #include <mutex>
 #include <string>
 #include <vector>
+
+enum WhereToLoadTextureFrom
+{
+    FromDisk,
+    FromText,
+};
 
 struct MultiSizeTexture
 {
@@ -18,8 +22,10 @@ struct MultiSizeTexture
 
 struct LoadProcess
 {
-    std::string Path;
-    SDL_Texture** Output;
+    WhereToLoadTextureFrom Source;
+    std::string Asset;
+    TextureRegion* Output;
+    std::optional<SDL_FRect> HoldingArea;
 };
 
 class Texture
@@ -29,21 +35,16 @@ private:
     std::vector<LoadProcess> textureLoadTasks;
     std::condition_variable observer;
     std::mutex mutualExclusion;
-    FontManager fontManager;
 
 private:
     void convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTexture);
 
+    SDL_FRect initializeAreaFromSurface(SDL_FRect area, int32_t width, int32_t height);
+
 public:
-    void queueTextureLoadFromFile(const LoadProcess& process);
+    void queueTextureLoad(LoadProcess&& process);
 
     void beginTextureLoadProcess();
 
     MultiSizeTexture findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture);
-
-    void initFontManager();
-
-    void deinitFontManager() const;
-
-    TextureRegion createTextureFromText(const SDL_FRect& area, const std::string& text);
 };

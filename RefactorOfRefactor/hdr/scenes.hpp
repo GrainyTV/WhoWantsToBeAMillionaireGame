@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include "SDL3_mixer/SDL_mixer.h"
 #include "textbubble.hpp"
 #include <cstdint>
 
@@ -33,6 +34,8 @@ struct SceneDeinitialize
     }
 };
 
+static constexpr uint32_t BUTTON_COUNT = 4;
+
 class MainMenuScene
 {
 private:
@@ -40,11 +43,9 @@ private:
     bool sceneLoaded;
     TextureRegion backgroundImage;
     TextureRegion logo;
-    TextBubble newGame;
-    TextBubble howToPlay;
-    TextBubble settings;
-    TextBubble quit;
+    std::array<TextBubble, BUTTON_COUNT> buttons;
     TextBubble* selectedButton;
+    Mix_Chunk* firstStartSfx;
 
 private:
     SDL_FRect initializeLogo();

@@ -6,24 +6,74 @@
 #include <cstdint>
 #include <string>
 
-static constexpr uint32_t BUTTON_COUNT = 4;
-
 MainMenuScene::MainMenuScene()
     : halfScreenHeight(Game::ScreenHeight / 2)
     , sceneLoaded(false)
     , logo({ .Area = initializeLogo() })
-    , newGame(retrievePositionOfButton(1), "New Game")
-    , howToPlay(retrievePositionOfButton(2), "How to Play")
-    , settings(retrievePositionOfButton(3), "Settings")
-    , quit(retrievePositionOfButton(4), "Quit")
+    , buttons({
+          { retrievePositionOfButton(1), "New Game" },
+          { retrievePositionOfButton(2), "How to Play" },
+          { retrievePositionOfButton(3), "Settings" },
+          { retrievePositionOfButton(4), "Quit" },
+      })
     , selectedButton(NULL)
+    , firstStartSfx(Mix_LoadWAV("assets/audio/main-theme.mp3"))
 {
-    Game::TextureLoader.queueTextureLoadFromFile({ .Path = "textures/background.png", .Output = &backgroundImage.Resource });
+    uint32_t foundFontSize = Game::FontManager.findSuitableFontSize(buttons);
+    ASSERT(foundFontSize > 0, "Could not find valid font size for scene");
+    LOG("FontSize: {}", foundFontSize);
+
+    Game::TextureLoader.queueTextureLoad({
+        .Source = WhereToLoadTextureFrom::FromDisk,
+        .Asset = "textures/background.png",
+        .Output = &backgroundImage,
+    });
+
+    fut::forEach(buttons, [&](const auto& /*button*/, const size_t i)
+    {
+        Game::TextureLoader.queueTextureLoad({
+            .Source = WhereToLoadTextureFrom::FromText,
+            .Asset = buttons[i].getText(),
+            .Output = buttons[i].getLabel(),
+            .HoldingArea = buttons[i].getHoldingArea(),
+        });
+    });
+
+    // Game::TextureLoader.queueTextureLoad({
+    //     .Source = WhereToLoadTextureFrom::FromText,
+    //     .Asset = buttons[0].getText(),
+    //     .Output = buttons[0].getLabel(),
+    //     .HoldingArea = buttons[0].getHoldingArea(),
+    // });
+
+    // Game::TextureLoader.queueTextureLoad({
+    //     .Source = WhereToLoadTextureFrom::FromText,
+    //     .Asset = buttons[1].getText(),
+    //     .Output = buttons[1].getLabel(),
+    //     .HoldingArea = buttons[1].getHoldingArea(),
+    // });
+
+    // Game::TextureLoader.queueTextureLoad({
+    //     .Source = WhereToLoadTextureFrom::FromText,
+    //     .Asset = buttons[2].getText(),
+    //     .Output = buttons[2].getLabel(),
+    //     .HoldingArea = buttons[2].getHoldingArea(),
+    // });
+
+    // Game::TextureLoader.queueTextureLoad({
+    //     .Source = WhereToLoadTextureFrom::FromText,
+    //     .Asset = buttons[3].getText(),
+    //     .Output = buttons[3].getLabel(),
+    //     .HoldingArea = buttons[3].getHoldingArea(),
+    // });
+
     Game::TextureLoader.beginTextureLoadProcess();
+    Mix_PlayChannel(0, firstStartSfx, 0);
 }
 
 void MainMenuScene::deinit() const
 {
+    Mix_FreeChunk(firstStartSfx);
     SDL_DestroyTexture(backgroundImage.Resource);
     SDL_DestroyTexture(logo.Resource);
 }
@@ -39,10 +89,9 @@ void MainMenuScene::redraw() const
         ext::drawTextureRegion(renderer, backgroundImage);
         ext::drawTextureRegion(renderer, logo);
 
-        newGame.draw();
-        howToPlay.draw();
-        settings.draw();
-        quit.draw();
+        fut::forEach(buttons, [](const auto& button, const size_t /*i*/) {
+            button.draw();
+        });
     }
 
     SDL_RenderPresent(renderer);
@@ -52,10 +101,13 @@ void MainMenuScene::intersects(SDL_FPoint&& location)
 {
     TextBubble* newlySelectedButton = NULL;
 
-    if (newGame.isInsideItsHitbox(location))
+    fut::forEach(buttons, [&](const auto& button, const size_t i)
     {
-        newlySelectedButton = &newGame;
-    }
+        if (button.isInsideItsHitbox(location))
+        {
+            newlySelectedButton = &buttons[i];
+        }
+    });
 
     if (selectedButton != newlySelectedButton)
     {
@@ -83,7 +135,11 @@ void MainMenuScene::enable()
 SDL_FRect MainMenuScene::initializeLogo()
 {
     const auto fittingLogoTexture = Game::TextureLoader.findTextureThatFitsIntoArea(halfScreenHeight, halfScreenHeight, "logo");
-    Game::TextureLoader.queueTextureLoadFromFile({ .Path = fittingLogoTexture.Path, .Output = &logo.Resource });
+    Game::TextureLoader.queueTextureLoad({
+        .Source = WhereToLoadTextureFrom::FromDisk,
+        .Asset = fittingLogoTexture.Path,
+        .Output = &logo,
+    });
 
     return SDL_FRect{
         .x = Game::ScreenWidth / 2.0f - fittingLogoTexture.Width / 2.0f,

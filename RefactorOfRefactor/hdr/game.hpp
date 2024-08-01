@@ -1,11 +1,12 @@
 #pragma once
 #include "SDL3_image/SDL_image.h"
-#include "SDL3_ttf/SDL_ttf.h"
+#include "SDL3_mixer/SDL_mixer.h"
 #include "assert.hpp"
 #include "event.hpp"
 #include "extensions.hpp"
 #include "texture.hpp"
 #include <cstdint>
+#include "fontmanager.hpp"
 
 struct Game
 {
@@ -13,6 +14,7 @@ struct Game
     static inline uint32_t ScreenHeight{ 0 };
     static inline SDL_Window* Window{ NULL };
     static inline SDL_Renderer* Renderer{ NULL };
+    static inline FontManager FontManager{};
     static inline Texture TextureLoader{};
     static inline Event EventHandler{};
 
@@ -31,10 +33,22 @@ struct Game
         {
             const auto init = TTF_Init();
             ASSERT(init == 0, "Failed to initialize SDL_ttf ({})", TTF_GetError());
+            
+            FontManager.init();
+        }
+
+        {
+            const auto init = Mix_Init(MIX_INIT_MP3);
+            ASSERT(init == MIX_INIT_MP3, "Failed to initialize SDL_mixer ({})", Mix_GetError());
+
+            const auto audioDevice = Mix_OpenAudio(SDL_AUDIO_DEVICE_DEFAULT_OUTPUT, NULL);
+            ASSERT(audioDevice == 0, "Failed to select default audio playback ({})", Mix_GetError());
+
+            Mix_Volume(-1, MIX_MAX_VOLUME / 2);
         }
 
         const auto msaa8 = SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
-        ASSERT(msaa8 == 0, "Failed to enable multisample anti-aliasing x8 ({})", SDL_GetError());
+        ASSERT(msaa8 == 0, "Failed to enable multisarontPagemple anti-aliasing x8 ({})", SDL_GetError());
 
         const auto dbusAutoShutdown = SDL_SetHint(SDL_HINT_SHUTDOWN_DBUS_ON_QUIT, "1");
         ASSERT(dbusAutoShutdown, "Failed to enable automatic DBUS shutdown");
@@ -57,9 +71,11 @@ struct Game
 
     static void deinit()
     {
-        TextureLoader.deinitFontManager();
+        FontManager.deinit();
         SDL_DestroyRenderer(Renderer);
         SDL_DestroyWindow(Window);
+        Mix_CloseAudio();
+        Mix_Quit();
         TTF_Quit();
         IMG_Quit();
         SDL_Quit();
@@ -67,7 +83,6 @@ struct Game
 
     static void launch()
     {
-        TextureLoader.initFontManager();
         EventHandler.applyDefaultScene();
         EventHandler.processIncomingEvents();
     }

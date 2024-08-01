@@ -6,9 +6,16 @@ CORECOUNT=$( nproc )
 # SDL Build #
 # ========= #
 
-git clone --depth 1 --branch $( curl -s https://api.github.com/repos/libsdl-org/SDL/releases | jq -r '.[0].tag_name' ) https://github.com/libsdl-org/SDL.git
+git clone https://github.com/libsdl-org/SDL.git
 cd SDL
-CC="zig cc" CXX="zig c++" cmake -DSDL_STATIC=ON -DSDL_SHARED=OFF -B ./build
+
+CC=$CC CXX=$CXX cmake             \
+    -B ./build                    \
+    -DCMAKE_BUILD_TYPE=MinSizeRel \
+    -DSDL_STATIC=ON               \
+    -DSDL_SHARED=OFF              \
+    -DSDL_TEST_LIBRARY=OFF
+
 cd build
 make all -j $CORECOUNT
 cd ../..
@@ -30,7 +37,30 @@ cd ../..
 
 git clone https://github.com/libsdl-org/SDL_mixer.git
 cd SDL_mixer
-CC="zig cc" CXX="zig c++" cmake -DBUILD_SHARED_LIBS=OFF -DSDL3_DIR="../SDL/build" -B ./build
+git submodule init external/mpg123
+git submodule update external/mpg123
+
+CC=$CC CXX=$CXX cmake   \
+    -B ./build                    \
+    -DCMAKE_BUILD_TYPE=MinSizeRel \
+    -DBUILD_SHARED_LIBS=OFF       \
+    -DSDL3_DIR="../SDL/build"     \
+    -DSDL3MIXER_DEPS_SHARED=OFF   \
+    -DSDL3MIXER_MP3_MPG123=ON     \
+    -DSDL3MIXER_VENDORED=ON       \
+    -DSDL3MIXER_STRICT=ON         \
+    -DSDL3MIXER_FLAC=OFF          \
+    -DSDL3MIXER_GME=OFF           \
+    -DSDL3MIXER_MP3_MINIMP3=OFF   \
+    -DSDL3MIXER_OPUS=OFF          \
+    -DSDL3MIXER_VORBIS=OFF        \
+    -DSDL3MIXER_WAVE=OFF          \
+    -DSDL3MIXER_WAVPACK=OFF       \
+    -DSDL3MIXER_MOD=OFF           \
+    -DSDL3MIXER_CMD=OFF           \
+    -DSDL3MIXER_MIDI=OFF          \
+    -DSDL3MIXER_SAMPLES=OFF
+
 cd build
 make all -j $CORECOUNT
 cd ../..
@@ -50,7 +80,7 @@ CC=$CC CXX=$CXX cmake             \
     -DSDL3_DIR="../SDL/build"     \
     -DSDL3TTF_HARFBUZZ=ON         \
     -DSDL3TTF_VENDORED=ON         \
-    -DSDL3TTF_SAMPLES=OFF       
+    -DSDL3TTF_SAMPLES=OFF
 
 cd build
 make all -j $CORECOUNT

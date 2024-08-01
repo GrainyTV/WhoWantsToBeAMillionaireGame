@@ -13,10 +13,12 @@
 //   -> reducing to a single value   //
 // ================================= //
 
+namespace stdr = std::ranges;
+
 namespace fut
 {
     template<typename T>
-    using ItemOf = typename std::iterator_traits<decltype(std::ranges::begin(std::declval<T&>()))>::value_type;
+    using ItemOf = typename std::iterator_traits<decltype(stdr::begin(std::declval<T&>()))>::value_type;
 
     template<typename Func, typename T>
     concept UnaryVoidFunction = std::invocable<Func, T, size_t> && std::is_void_v<std::invoke_result_t<Func, T, size_t>>;
@@ -28,9 +30,10 @@ namespace fut
     concept BinaryFunction = std::invocable<Func, T, U> && std::is_same_v<std::invoke_result_t<Func, T, U>, Return>;
 
     template<typename T>
-    concept IEnumerable = requires(const T& item) {
-        std::ranges::begin(item);
-        std::ranges::end(item);
+    concept IEnumerable = requires(const T& item)
+    {
+        stdr::begin(item);
+        stdr::end(item);
     };
 
     template<typename Container, typename Func>
@@ -69,7 +72,7 @@ namespace fut
     {
         using OutputValueType = std::invoke_result_t<Func, ItemOf<Container>>;
         std::vector<OutputValueType> mappedItems;
-        mappedItems.reserve(std::distance(std::ranges::begin(items), std::ranges::end(items)));
+        mappedItems.reserve(std::distance(stdr::begin(items), stdr::end(items)));
 
         forEach(items, [&](const auto& item, size_t /*i*/)
         {

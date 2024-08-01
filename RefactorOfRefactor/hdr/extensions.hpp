@@ -47,7 +47,7 @@ namespace ext
         const auto begin = std::sregex_iterator(input.begin(), input.end(), regexToUse);
         const auto end = std::sregex_iterator();
 
-        fut::forEach(std::ranges::subrange{ begin, end }, [&](const auto& match, size_t /*i*/) {
+        fut::forEach(stdr::subrange{ begin, end }, [&](const auto& match, size_t /*i*/) {
             allMatches.push_back(match);
         });
 

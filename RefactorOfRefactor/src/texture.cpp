@@ -1,5 +1,4 @@
 #include "texture.hpp"
-#include "SDL3_image/SDL_image.h"
 #include "defer.hpp"
 #include "extensions.hpp"
 #include "functionals.hpp"
@@ -21,7 +20,7 @@ void Texture::convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTex
     observer.notify_one();
 }
 
-void Texture::queueTextureLoadFromFile(const LoadProcess& process)
+void Texture::queueTextureLoad(LoadProcess&& process)
 {
     ++numberOfTexturesLoading;
     textureLoadTasks.emplace_back(process);
@@ -30,28 +29,47 @@ void Texture::queueTextureLoadFromFile(const LoadProcess& process)
 void Texture::beginTextureLoadProcess()
 {
     std::thread detachedWorker{
-        [&]() {
-        fut::forEach(textureLoadTasks, [&](const auto& task, const size_t /*i*/) {
-            SDL_Surface* surfaceFromPath = IMG_Load(task.Path.c_str());
-            ASSERT(surfaceFromPath != NULL, "Failed to load surface ({})", task.Path);
-
-            const auto callback = new Invokable(&Texture::convertSurfaceToTexture, this, surfaceFromPath, task.Output);
-            Game::EventHandler.requestEvent({ .user = {
-                                                  .type = EVENT_INVOKE_ON_UI_THREAD,
-                                                  .data1 = static_cast<void*>(callback),
-                                              } });
-        });
-
+        [&]() 
         {
-            std::unique_lock<std::mutex> lock{ mutualExclusion };
-            observer.wait(lock, [&]() { return numberOfTexturesLoading == 0; });
-            textureLoadTasks.clear();
-        }
+            fut::forEach(textureLoadTasks, [&](const auto& task, const size_t /*i*/)
+            {
+                SDL_Surface* surface = [&]()
+                {
+                    switch (task.Source)
+                    {
+                        case FromDisk:
+                        {
+                            SDL_Surface* surfaceFromFile = IMG_Load(task.Asset.c_str());
+                            ASSERT(surfaceFromFile != NULL, "Failed to load surface {} ({})", task.Asset, IMG_GetError());
+                            return surfaceFromFile;
+                        }
 
-        Game::EventHandler.requestEvent({ .type = EVENT_ENABLE_SCENE });
-        Game::EventHandler.invalidate();
-    }
+                        case FromText:
+                        {
+                            SDL_Surface* surfaceFromText = Game::FontManager.generateNew(task.Asset);
+                            ASSERT(surfaceFromText != NULL, "Failed to create surface from text ({})", TTF_GetError());
+                            ASSERT(task.HoldingArea.has_value(), "Task associated with text surface has no holding area");
+                            (*task.Output).Area = initializeAreaFromSurface(task.HoldingArea.value(), (*surfaceFromText).w, (*surfaceFromText).h);
+                            return surfaceFromText;
+                        }
+                    }
+                }();
+
+                Invokable* const callback = new Invokable(&Texture::convertSurfaceToTexture, this, surface, &(*task.Output).Resource);
+                Game::EventHandler.requestEvent({ .user = { .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = static_cast<void*>(callback), } });
+            });
+
+            {
+                std::unique_lock<std::mutex> lock{ mutualExclusion };
+                observer.wait(lock, [&]() { return numberOfTexturesLoading == 0; });
+                textureLoadTasks.clear();
+            }
+
+            Game::EventHandler.requestEvent({ .type = EVENT_ENABLE_SCENE });
+            Game::EventHandler.invalidate();
+        }
     };
+    
     detachedWorker.detach();
 }
 
@@ -60,7 +78,8 @@ MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t h
     std::vector<MultiSizeTexture> resolutionsOfTexture;
     const auto dir = std::filesystem::directory_iterator(std::format("assets/textures/{}", nameOfTexture));
 
-    fut::forEach(dir, [&](const auto& entry, size_t /*i*/) {
+    fut::forEach(dir, [&](const auto& entry, size_t /*i*/)
+    {
         const auto name = entry.path().stem().string();
         std::vector<StringMatch> matches;
         std::regex numericValues(R"(\d+)");
@@ -74,11 +93,13 @@ MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t h
         }
     });
 
-    std::sort(resolutionsOfTexture.begin(), resolutionsOfTexture.end(), [](const auto& a, const auto& b) {
+    std::sort(resolutionsOfTexture.begin(), resolutionsOfTexture.end(), [](const auto& a, const auto& b)
+    {
         return a.Width > b.Width;
     });
 
-    const auto acceptableTextures = fut::filter(resolutionsOfTexture, [&](const auto& entry) {
+    const auto acceptableTextures = fut::filter(resolutionsOfTexture, [&](const auto& entry)
+    {
         return entry.Width < width && entry.Height < height;
     });
 
@@ -86,33 +107,12 @@ MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t h
     return acceptableTextures[0];
 }
 
-void Texture::initFontManager()
+SDL_FRect Texture::initializeAreaFromSurface(SDL_FRect area, int32_t width, int32_t height)
 {
-    fontManager = FontManager{ DEFAULT_FONT, DEFAULT_FONT_SIZE };
-}
-
-void Texture::deinitFontManager() const
-{
-    fontManager.free();
-}
-
-TextureRegion Texture::createTextureFromText(const SDL_FRect& area, const std::string& text)
-{
-    SDL_Surface* const surface = fontManager.texturize(text);
-    DEFER(SDL_DestroySurface, surface);
-
-    const auto width = (*surface).w;
-    const auto height = (*surface).h;
-
-    const SDL_FRect textBox = {
+    return SDL_FRect{ 
         .x = area.x + (area.w - width) / 2.0f,
         .y = area.y + (area.h - height) / 2.0f,
-        .w = +static_cast<float>(width),
+        .w = static_cast<float>(width),
         .h = static_cast<float>(height),
-    };
-
-    return TextureRegion{
-        .Resource = SDL_CreateTextureFromSurface(Game::Renderer, surface),
-        .Area = textBox,
     };
 }

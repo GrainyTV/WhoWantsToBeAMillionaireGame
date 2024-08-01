@@ -1,32 +1,38 @@
 #include "fontmanager.hpp"
 #include "assert.hpp"
 #include "colors.hpp"
+#include "functionals.hpp"
 
-FontManager::FontManager()
-    : font(NULL)
+void FontManager::init()
 {
-}
-
-FontManager::FontManager(const char* fontResource, const uint32_t fontSize)
-    : font(TTF_OpenFont(fontResource, fontSize))
-{
+    font = TTF_OpenFont(DEFAULT_FONT, DEFAULT_FONT_SIZE);
     ASSERT(font != NULL, "Failed to load the game's font ({})", TTF_GetError());
 }
 
-FontManager& FontManager::operator=(FontManager&& other) noexcept
-{
-    font = other.font;
-    other.font = NULL;
-    return *this;
-}
-
-void FontManager::free() const
+void FontManager::deinit() const
 {
     TTF_CloseFont(font);
 }
 
-SDL_Surface* FontManager::texturize(const std::string& text) const
+SDL_Surface* FontManager::generateNew(std::string_view text) const
 {
-    ASSERT(font != NULL, "Tried to create font based texture without a valid font");
-    return TTF_RenderText_Blended(font, text.c_str(), col::WHITE);
+    return TTF_RenderUTF8_Blended(font, text.data(), col::WHITE);
+}
+
+uint32_t FontManager::findSuitableFontSize(const std::span<TextBubble> sceneTextData, const uint32_t size) const
+{
+    TTF_SetFontSize(font, size);
+
+    const auto allFits = fut::filter(sceneTextData, [&](const TextBubble& data)
+    {
+        const std::string& text = data.getText();
+        SDL_FRect area = data.getHoldingArea();
+        int32_t width = 0;
+        int32_t height = 0;
+        
+        TTF_SizeUTF8(font, text.c_str(), &width, &height);
+        return width < 0.75f * area.w && height < 0.5f * area.h;
+    });
+
+    return allFits.size() != sceneTextData.size() ? findSuitableFontSize(sceneTextData, size - 2) : size;
 }
