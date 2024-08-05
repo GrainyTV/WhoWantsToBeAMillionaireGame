@@ -46,5 +46,5 @@ public:
 
     void beginTextureLoadProcess();
 
-    MultiSizeTexture findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture);
+    const MultiSizeTexture findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture);
 };

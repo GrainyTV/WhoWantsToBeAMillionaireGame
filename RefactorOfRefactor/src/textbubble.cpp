@@ -9,7 +9,7 @@
 
 static constexpr uint8_t THICKNESS{ 5 };
 
-TextBubble::TextBubble(const SDL_FRect& mainArea, const std::string& text)
+TextBubble::TextBubble(const SDL_FRect& mainArea, const std::string& text, const Invokable& onClick)
     : hover(false)
     , text(text)
     , innerRectangle(mainArea)
@@ -26,6 +26,7 @@ TextBubble::TextBubble(const SDL_FRect& mainArea, const std::string& text)
       })
     , strokeSegments(generateStroke())
     , strokeLine({ .x = 0, .y = coords[0].y - THICKNESS / 2.0f, .w = static_cast<float>(Game::ScreenWidth), .h = THICKNESS })
+    , onClick(onClick)
 {
 }
 
@@ -212,4 +213,9 @@ SDL_FRect TextBubble::getHoldingArea() const
 const std::string& TextBubble::getText() const
 {
     return text;
+}
+
+void TextBubble::click() const
+{
+    onClick.execute();
 }

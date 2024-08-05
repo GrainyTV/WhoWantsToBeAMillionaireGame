@@ -1,27 +1,24 @@
-#include "scenes.hpp"
+#include "mainmenuscene.hpp"
 #include "colors.hpp"
 #include "game.hpp"
 #include "textbubble.hpp"
 #include "texture.hpp"
 #include <cstdint>
-#include <string>
 
 MainMenuScene::MainMenuScene()
-    : halfScreenHeight(Game::ScreenHeight / 2)
-    , sceneLoaded(false)
+    : sceneLoaded(false)
     , logo({ .Area = initializeLogo() })
     , buttons({
-          { retrievePositionOfButton(1), "New Game" },
-          { retrievePositionOfButton(2), "How to Play" },
-          { retrievePositionOfButton(3), "Settings" },
-          { retrievePositionOfButton(4), "Quit" },
+          { retrievePositionOfButton(1), "New Game", []() { Game::EventHandler.changeSceneTo<InGameScene>(); } },
+          { retrievePositionOfButton(2), "How to Play", []() { Game::EventHandler.requestEvent({ .type = SDL_EVENT_QUIT }); } },
+          { retrievePositionOfButton(3), "Settings", []() { Game::EventHandler.requestEvent({ .type = SDL_EVENT_QUIT }); } },
+          { retrievePositionOfButton(4), "Quit", []() { Game::EventHandler.requestEvent({ .type = SDL_EVENT_QUIT }); } },
       })
     , selectedButton(NULL)
     , firstStartSfx(Mix_LoadWAV("assets/audio/main-theme.mp3"))
 {
     uint32_t foundFontSize = Game::FontManager.findSuitableFontSize(buttons);
     ASSERT(foundFontSize > 0, "Could not find valid font size for scene");
-    LOG("FontSize: {}", foundFontSize);
 
     Game::TextureLoader.queueTextureLoad({
         .Source = WhereToLoadTextureFrom::FromDisk,
@@ -29,43 +26,15 @@ MainMenuScene::MainMenuScene()
         .Output = &backgroundImage,
     });
 
-    fut::forEach(buttons, [&](const auto& /*button*/, const size_t i)
+    fut::forEach(buttons, [&](auto&& button, const size_t i)
     {
         Game::TextureLoader.queueTextureLoad({
             .Source = WhereToLoadTextureFrom::FromText,
-            .Asset = buttons[i].getText(),
+            .Asset = button.getText(),
             .Output = buttons[i].getLabel(),
-            .HoldingArea = buttons[i].getHoldingArea(),
+            .HoldingArea = button.getHoldingArea(),
         });
     });
-
-    // Game::TextureLoader.queueTextureLoad({
-    //     .Source = WhereToLoadTextureFrom::FromText,
-    //     .Asset = buttons[0].getText(),
-    //     .Output = buttons[0].getLabel(),
-    //     .HoldingArea = buttons[0].getHoldingArea(),
-    // });
-
-    // Game::TextureLoader.queueTextureLoad({
-    //     .Source = WhereToLoadTextureFrom::FromText,
-    //     .Asset = buttons[1].getText(),
-    //     .Output = buttons[1].getLabel(),
-    //     .HoldingArea = buttons[1].getHoldingArea(),
-    // });
-
-    // Game::TextureLoader.queueTextureLoad({
-    //     .Source = WhereToLoadTextureFrom::FromText,
-    //     .Asset = buttons[2].getText(),
-    //     .Output = buttons[2].getLabel(),
-    //     .HoldingArea = buttons[2].getHoldingArea(),
-    // });
-
-    // Game::TextureLoader.queueTextureLoad({
-    //     .Source = WhereToLoadTextureFrom::FromText,
-    //     .Asset = buttons[3].getText(),
-    //     .Output = buttons[3].getLabel(),
-    //     .HoldingArea = buttons[3].getHoldingArea(),
-    // });
 
     Game::TextureLoader.beginTextureLoadProcess();
     Mix_PlayChannel(0, firstStartSfx, 0);
@@ -76,6 +45,7 @@ void MainMenuScene::deinit() const
     Mix_FreeChunk(firstStartSfx);
     SDL_DestroyTexture(backgroundImage.Resource);
     SDL_DestroyTexture(logo.Resource);
+    // SDL_DestroyTexture((*buttons[0].getLabel()).Resource);
 }
 
 void MainMenuScene::redraw() const
@@ -134,6 +104,7 @@ void MainMenuScene::enable()
 
 SDL_FRect MainMenuScene::initializeLogo()
 {
+    const uint32_t halfScreenHeight = Game::ScreenHeight / 2;
     const auto fittingLogoTexture = Game::TextureLoader.findTextureThatFitsIntoArea(halfScreenHeight, halfScreenHeight, "logo");
     Game::TextureLoader.queueTextureLoad({
         .Source = WhereToLoadTextureFrom::FromDisk,
@@ -151,10 +122,11 @@ SDL_FRect MainMenuScene::initializeLogo()
 
 SDL_FRect MainMenuScene::retrievePositionOfButton(const uint32_t index) const
 {
-    const auto totalItemSpace = halfScreenHeight * 0.7f;
-    const auto individualItemSpace = totalItemSpace / BUTTON_COUNT;
-    const auto totalPaddingSpace = halfScreenHeight - totalItemSpace;
-    const auto individualPaddingSpace = totalPaddingSpace / (BUTTON_COUNT + 1);
+    const uint32_t halfScreenHeight = Game::ScreenHeight / 2;
+    const float totalItemSpace = halfScreenHeight * 0.7f;
+    const float individualItemSpace = totalItemSpace / BUTTON_COUNT;
+    const float totalPaddingSpace = halfScreenHeight - totalItemSpace;
+    const float individualPaddingSpace = totalPaddingSpace / (BUTTON_COUNT + 1);
 
     return SDL_FRect{
         .x = (*logo.Area).x,
@@ -164,30 +136,10 @@ SDL_FRect MainMenuScene::retrievePositionOfButton(const uint32_t index) const
     };
 }
 
-void InGameScene::init()
+void MainMenuScene::clicks()
 {
-}
-
-void InGameScene::deinit() const
-{
-}
-
-void InGameScene::redraw() const
-{
-    const auto renderer = Game::Renderer;
-
-    int max_number = 255;
-    int minimum_number = 0;
-
-    int r = rand() % (max_number + 1 - minimum_number) + minimum_number;
-    int g = rand() % (max_number + 1 - minimum_number) + minimum_number;
-    int b = rand() % (max_number + 1 - minimum_number) + minimum_number;
-
-    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
-}
-
-void InGameScene::intersects(SDL_FPoint&& /*location*/)
-{
+    if (selectedButton != NULL)
+    {
+        (*selectedButton).click();
+    }
 }

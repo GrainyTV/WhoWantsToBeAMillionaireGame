@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL3_image/SDL_image.h"
 #include "SDL3_mixer/SDL_mixer.h"
-#include "assert.hpp"
+#include "debug.hpp"
 #include "event.hpp"
 #include "extensions.hpp"
 #include "texture.hpp"

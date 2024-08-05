@@ -1,5 +1,7 @@
 #pragma once
-#include "scenes.hpp"
+#include "ingamescene.hpp"
+#include "mainmenuscene.hpp"
+#include "sceneinterfaces.hpp"
 #include <functional>
 #include <unordered_map>
 #include <variant>
@@ -38,4 +40,11 @@ public:
     void invalidate();
 
     void requestEvent(SDL_Event&& newEvent);
+
+    template<typename NewScene>
+    void changeSceneTo()
+    {
+        std::visit(SceneDeinitialize{}, *currentScene);
+        currentScene = NewScene{};
+    }
 };

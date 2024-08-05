@@ -1,4 +1,5 @@
 #pragma once
+#include "invokable.hpp"
 #include "textureregion.hpp"
 #include <array>
 #include <vector>
@@ -15,6 +16,7 @@ private:
     std::vector<SDL_Vertex> strokeSegments;
     SDL_FRect strokeLine;
     TextureRegion label;
+    Invokable onClick;
 
 private:
     std::array<SDL_FPoint, 6> retrievePositions();
@@ -24,7 +26,7 @@ private:
     bool isInsideTriangle(const SDL_FPoint& p, const std::array<SDL_Vertex, 3>& triangle) const;
 
 public:
-    TextBubble(const SDL_FRect& mainArea, const std::string& text);
+    TextBubble(const SDL_FRect& mainArea, const std::string& text, const Invokable& onClick);
 
     void draw() const;
 
@@ -39,4 +41,6 @@ public:
     SDL_FRect getHoldingArea() const;
 
     const std::string& getText() const;
+
+    void click() const;
 };

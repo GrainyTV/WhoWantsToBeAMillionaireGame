@@ -1,5 +1,5 @@
 #include "event.hpp"
-#include "assert.hpp"
+#include "debug.hpp"
 #include "defer.hpp"
 #include "extensions.hpp"
 #include "invokable.hpp"
@@ -8,8 +8,8 @@ Event::Event()
     : continueProcessingEvents(true)
     , eventCalls({
           { SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; std::visit(SceneDeinitialize{}, *currentScene); } },
-          { SDL_EVENT_KEY_DOWN, [&]() { /*requestEvent({ .type = SDL_EVENT_QUIT });*/ } },
-          { SDL_EVENT_MOUSE_BUTTON_DOWN, [&]() { requestEvent({ .type = SDL_EVENT_QUIT }); } },
+          { SDL_EVENT_KEY_DOWN, [&]() {} },
+          { SDL_EVENT_MOUSE_BUTTON_DOWN, [&]() { std::visit(ClicksUiElement{}, *currentScene); } },
           { SDL_EVENT_MOUSE_MOTION, [&]() { std::visit(IntersectsUiElement{ .x = presentEvent.motion.x, .y = presentEvent.motion.y }, *currentScene); } },
           { SDL_EVENT_WINDOW_SHOWN, [&]() { unhideWindowAtStart(); } },
           { EVENT_INVALIDATE, [&]() { std::visit(SceneRedrawer{}, *currentScene); } },
@@ -41,9 +41,7 @@ void Event::processIncomingEvents()
 
     if (continueProcessingEvents)
     {
-#ifdef __clang__
-        [[clang::musttail]]
-#endif
+        __TAILREC__
         return processIncomingEvents();
     }
 }

@@ -1,5 +1,5 @@
 #include "fontmanager.hpp"
-#include "assert.hpp"
+#include "debug.hpp"
 #include "colors.hpp"
 #include "functionals.hpp"
 
@@ -23,7 +23,7 @@ uint32_t FontManager::findSuitableFontSize(const std::span<TextBubble> sceneText
 {
     TTF_SetFontSize(font, size);
 
-    const auto allFits = fut::filter(sceneTextData, [&](const TextBubble& data)
+    std::span<const TextBubble> allFits = fut::filter(sceneTextData, [&](const TextBubble& data)
     {
         const std::string& text = data.getText();
         SDL_FRect area = data.getHoldingArea();
@@ -34,5 +34,11 @@ uint32_t FontManager::findSuitableFontSize(const std::span<TextBubble> sceneText
         return width < 0.75f * area.w && height < 0.5f * area.h;
     });
 
-    return allFits.size() != sceneTextData.size() ? findSuitableFontSize(sceneTextData, size - 2) : size;
+    if (allFits.size() == sceneTextData.size())
+    {
+        return size;
+    }
+
+    __TAILREC__
+    return findSuitableFontSize(sceneTextData, size - 2);
 }

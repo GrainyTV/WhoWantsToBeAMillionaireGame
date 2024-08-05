@@ -15,3 +15,9 @@
     {                                                            \
         std::println(stderr, format __VA_OPT__(, ) __VA_ARGS__); \
     }
+
+#ifdef __clang__
+    #define __TAILREC__ [[clang::musttail]]
+#else
+    #define __TAILREC__
+#endif

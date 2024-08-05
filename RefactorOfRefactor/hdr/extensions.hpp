@@ -1,9 +1,9 @@
 #pragma once
 #include "Eigen/Dense"
 #include "SDL3/SDL.h"
-#include "assert.hpp"
+#include "debug.hpp"
 #include "functionals.hpp"
-#include "scenes.hpp"
+#include "textureregion.hpp"
 #include <regex>
 #include <span>
 

@@ -73,7 +73,7 @@ void Texture::beginTextureLoadProcess()
     detachedWorker.detach();
 }
 
-MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture)
+const MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture)
 {
     std::vector<MultiSizeTexture> resolutionsOfTexture;
     const auto dir = std::filesystem::directory_iterator(std::format("assets/textures/{}", nameOfTexture));
@@ -98,13 +98,13 @@ MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t h
         return a.Width > b.Width;
     });
 
-    const auto acceptableTextures = fut::filter(resolutionsOfTexture, [&](const auto& entry)
+    std::vector<const MultiSizeTexture> acceptableTextures = fut::filter(resolutionsOfTexture, [&](const auto& entry)
     {
         return entry.Width < width && entry.Height < height;
     });
 
     ASSERT(acceptableTextures.empty() == false, "No acceptable sized texture found ({} -> {}x{})", nameOfTexture, width, height);
-    return acceptableTextures[0];
+    return acceptableTextures.front();
 }
 
 SDL_FRect Texture::initializeAreaFromSurface(SDL_FRect area, int32_t width, int32_t height)
