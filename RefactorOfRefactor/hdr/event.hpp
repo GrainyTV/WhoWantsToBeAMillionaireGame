@@ -1,7 +1,7 @@
 #pragma once
 #include "ingamescene.hpp"
 #include "mainmenuscene.hpp"
-#include "sceneinterfaces.hpp"
+#include "sceneinterface.hpp"
 #include <functional>
 #include <unordered_map>
 #include <variant>
@@ -13,14 +13,14 @@ enum CustomEvents
     EVENT_INVOKE_ON_UI_THREAD,
 };
 
-using ExclusiveScenes = std::variant<MainMenuScene, InGameScene>;
+using ExclusiveScenes = std::variant<DefaultScene, MainMenuScene, InGameScene>;
 
 class Event
 {
 private:
     SDL_Event presentEvent;
     bool continueProcessingEvents;
-    std::optional<ExclusiveScenes> currentScene;
+    ExclusiveScenes currentScene;
     std::unordered_map<uint32_t, std::function<void()>> eventCalls;
 
 private:
@@ -44,7 +44,8 @@ public:
     template<typename NewScene>
     void changeSceneTo()
     {
-        std::visit(SceneDeinitialize{}, *currentScene);
-        currentScene = NewScene{};
+        std::visit(SceneInterface{SceneOperation::Deinitialize}, currentScene);
+        currentScene.emplace<NewScene>();
+        invalidate();
     }
 };

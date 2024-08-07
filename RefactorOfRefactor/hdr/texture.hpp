@@ -25,7 +25,7 @@ struct LoadProcess
     WhereToLoadTextureFrom Source;
     std::string Asset;
     TextureRegion* Output;
-    std::optional<SDL_FRect> HoldingArea;
+    SDL_FRect HoldingArea;
 };
 
 class Texture

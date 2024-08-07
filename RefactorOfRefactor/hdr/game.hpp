@@ -4,9 +4,9 @@
 #include "debug.hpp"
 #include "event.hpp"
 #include "extensions.hpp"
+#include "fontmanager.hpp"
 #include "texture.hpp"
 #include <cstdint>
-#include "fontmanager.hpp"
 
 struct Game
 {
@@ -14,7 +14,7 @@ struct Game
     static inline uint32_t ScreenHeight{ 0 };
     static inline SDL_Window* Window{ NULL };
     static inline SDL_Renderer* Renderer{ NULL };
-    static inline FontManager FontManager{};
+    static inline FontManager fontManager{};
     static inline Texture TextureLoader{};
     static inline Event EventHandler{};
 
@@ -33,8 +33,8 @@ struct Game
         {
             const auto init = TTF_Init();
             ASSERT(init == 0, "Failed to initialize SDL_ttf ({})", TTF_GetError());
-            
-            FontManager.init();
+
+            fontManager.init();
         }
 
         {
@@ -71,7 +71,7 @@ struct Game
 
     static void deinit()
     {
-        FontManager.deinit();
+        fontManager.deinit();
         SDL_DestroyRenderer(Renderer);
         SDL_DestroyWindow(Window);
         Mix_CloseAudio();

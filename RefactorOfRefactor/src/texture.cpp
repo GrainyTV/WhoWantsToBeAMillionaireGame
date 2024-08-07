@@ -33,27 +33,25 @@ void Texture::beginTextureLoadProcess()
         {
             fut::forEach(textureLoadTasks, [&](const auto& task, const size_t /*i*/)
             {
-                SDL_Surface* surface = [&]()
+                SDL_Surface* surface = NULL;
+                
+                switch (task.Source)
                 {
-                    switch (task.Source)
+                    case FromDisk:
                     {
-                        case FromDisk:
-                        {
-                            SDL_Surface* surfaceFromFile = IMG_Load(task.Asset.c_str());
-                            ASSERT(surfaceFromFile != NULL, "Failed to load surface {} ({})", task.Asset, IMG_GetError());
-                            return surfaceFromFile;
-                        }
-
-                        case FromText:
-                        {
-                            SDL_Surface* surfaceFromText = Game::FontManager.generateNew(task.Asset);
-                            ASSERT(surfaceFromText != NULL, "Failed to create surface from text ({})", TTF_GetError());
-                            ASSERT(task.HoldingArea.has_value(), "Task associated with text surface has no holding area");
-                            (*task.Output).Area = initializeAreaFromSurface(task.HoldingArea.value(), (*surfaceFromText).w, (*surfaceFromText).h);
-                            return surfaceFromText;
-                        }
+                        surface = IMG_Load(task.Asset.c_str());
+                        ASSERT(surface != NULL, "Failed to load surface {} ({})", task.Asset, IMG_GetError());
+                        break;
                     }
-                }();
+
+                    case FromText:
+                    {
+                        surface = Game::fontManager.generateNew(task.Asset);
+                        ASSERT(surface != NULL, "Failed to create surface from text ({})", TTF_GetError());
+                        (*task.Output).Area = initializeAreaFromSurface(task.HoldingArea, (*surface).w, (*surface).h);
+                        break;
+                    }
+                }
 
                 Invokable* const callback = new Invokable(&Texture::convertSurfaceToTexture, this, surface, &(*task.Output).Resource);
                 Game::EventHandler.requestEvent({ .user = { .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = static_cast<void*>(callback), } });
@@ -98,9 +96,9 @@ const MultiSizeTexture Texture::findTextureThatFitsIntoArea(uint32_t width, uint
         return a.Width > b.Width;
     });
 
-    std::vector<const MultiSizeTexture> acceptableTextures = fut::filter(resolutionsOfTexture, [&](const auto& entry)
+    std::vector<MultiSizeTexture> acceptableTextures = fut::filter(resolutionsOfTexture, [&](const auto& entry)
     {
-        return entry.Width < width && entry.Height < height;
+        return entry.Width <= width && entry.Height <= height;
     });
 
     ASSERT(acceptableTextures.empty() == false, "No acceptable sized texture found ({} -> {}x{})", nameOfTexture, width, height);

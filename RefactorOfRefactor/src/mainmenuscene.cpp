@@ -17,17 +17,17 @@ MainMenuScene::MainMenuScene()
     , selectedButton(NULL)
     , firstStartSfx(Mix_LoadWAV("assets/audio/main-theme.mp3"))
 {
-    uint32_t foundFontSize = Game::FontManager.findSuitableFontSize(buttons);
+    uint32_t foundFontSize = Game::fontManager.findSuitableFontSize(buttons);
     ASSERT(foundFontSize > 0, "Could not find valid font size for scene");
 
+    MultiSizeTexture background = Game::TextureLoader.findTextureThatFitsIntoArea(Game::ScreenWidth, Game::ScreenHeight, "background");
     Game::TextureLoader.queueTextureLoad({
         .Source = WhereToLoadTextureFrom::FromDisk,
-        .Asset = "textures/background.png",
+        .Asset = background.Path,
         .Output = &backgroundImage,
     });
 
-    fut::forEach(buttons, [&](auto&& button, const size_t i)
-    {
+    fut::forEach(buttons, [&](auto&& button, const size_t i) {
         Game::TextureLoader.queueTextureLoad({
             .Source = WhereToLoadTextureFrom::FromText,
             .Asset = button.getText(),
@@ -67,7 +67,7 @@ void MainMenuScene::redraw() const
     SDL_RenderPresent(renderer);
 }
 
-void MainMenuScene::intersects(SDL_FPoint&& location)
+void MainMenuScene::intersects(const SDL_FPoint location)
 {
     TextBubble* newlySelectedButton = NULL;
 

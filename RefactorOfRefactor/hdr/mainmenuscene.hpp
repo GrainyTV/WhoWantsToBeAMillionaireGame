@@ -3,11 +3,10 @@
 #include "textbubble.hpp"
 #include <cstdint>
 
-static constexpr uint32_t BUTTON_COUNT = 4;
-
 class MainMenuScene
 {
 private:
+    static constexpr uint32_t BUTTON_COUNT = 4;
     bool sceneLoaded;
     TextureRegion backgroundImage;
     TextureRegion logo;
@@ -23,11 +22,13 @@ private:
 public:
     MainMenuScene();
 
+    MainMenuScene(MainMenuScene&& rhs);
+
     void deinit() const;
 
     void redraw() const;
 
-    void intersects(SDL_FPoint&& location);
+    void intersects(const SDL_FPoint location);
 
     void enable();
 

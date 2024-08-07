@@ -1,6 +1,7 @@
 #pragma once
 #include <iterator>
 #include <ranges>
+#include <vector>
 
 // ================================= //
 // Functional Utilities Namespace    //
@@ -53,7 +54,7 @@ namespace fut
     requires IEnumerable<Container> && UnaryBooleanFunction<Func, ItemOf<Container>>
     auto filter(const Container& items, Func&& action)
     {
-        std::vector<const ItemOf<Container>> filteredItems;
+        std::vector<ItemOf<Container>> filteredItems;
 
         forEach(items, [&](const auto& item, size_t /*i*/)
         {

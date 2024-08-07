@@ -7,26 +7,20 @@
 Event::Event()
     : continueProcessingEvents(true)
     , eventCalls({
-          { SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; std::visit(SceneDeinitialize{}, *currentScene); } },
+          { SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; std::visit(SceneInterface{SceneOperation::Deinitialize}, currentScene); } },
           { SDL_EVENT_KEY_DOWN, [&]() {} },
-          { SDL_EVENT_MOUSE_BUTTON_DOWN, [&]() { std::visit(ClicksUiElement{}, *currentScene); } },
-          { SDL_EVENT_MOUSE_MOTION, [&]() { std::visit(IntersectsUiElement{ .x = presentEvent.motion.x, .y = presentEvent.motion.y }, *currentScene); } },
+          { SDL_EVENT_MOUSE_BUTTON_DOWN, [&]() { std::visit(SceneInterface{SceneOperation::Clicks}, currentScene); } },
+          { SDL_EVENT_MOUSE_MOTION, [&]() { std::visit(SceneInterface{SceneOperation::Intersects, presentEvent.motion.x, presentEvent.motion.y }, currentScene); } },
           { SDL_EVENT_WINDOW_SHOWN, [&]() { unhideWindowAtStart(); } },
-          { EVENT_INVALIDATE, [&]() { std::visit(SceneRedrawer{}, *currentScene); } },
-          { EVENT_ENABLE_SCENE, [&]() { if (MainMenuScene* mms = std::get_if<MainMenuScene>(&(*currentScene))) { (*mms).enable(); } } },
+          { EVENT_INVALIDATE, [&]() { std::visit(SceneInterface{SceneOperation::Redraw}, currentScene); } },
+          { EVENT_ENABLE_SCENE, [&]() { if (MainMenuScene* mms = std::get_if<MainMenuScene>(&currentScene)) { (*mms).enable(); } } },
           { EVENT_INVOKE_ON_UI_THREAD, [&]() { executeCallback(); } },
       })
 {}
 
 void Event::applyDefaultScene()
 {
-    // ==================================================== //
-    // Constructs a Scene collection object in-place        //
-    // A variant ALWAYS holds its first type as default!!!  //
-    // MainMenuScene should be the first template parameter //
-    // ==================================================== //
-
-    currentScene.emplace();
+    currentScene.emplace<MainMenuScene>();
 }
 
 void Event::processIncomingEvents()

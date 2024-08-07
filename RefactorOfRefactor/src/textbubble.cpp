@@ -26,6 +26,7 @@ TextBubble::TextBubble(const SDL_FRect& mainArea, const std::string& text, const
       })
     , strokeSegments(generateStroke())
     , strokeLine({ .x = 0, .y = coords[0].y - THICKNESS / 2.0f, .w = static_cast<float>(Game::ScreenWidth), .h = THICKNESS })
+    , label({ .Resource = NULL })
     , onClick(onClick)
 {
 }

@@ -2,6 +2,7 @@
 #include "invokable.hpp"
 #include "textureregion.hpp"
 #include <array>
+#include <string>
 #include <vector>
 
 class TextBubble
