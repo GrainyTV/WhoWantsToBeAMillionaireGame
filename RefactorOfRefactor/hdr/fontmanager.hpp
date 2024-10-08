@@ -1,23 +1,81 @@
 #pragma once
-#include "SDL3_ttf/SDL_ttf.h"
+
+//#include "fontmanager.hpp"
+// #include "debug.hpp"
+//#include "colors.hpp"
+//#include "functionals.hpp"
+//#include "result.hpp"
+// #include "SDL3_ttf/SDL_ttf.h"
+// //#include "textbubble.hpp"
+// #include <span>
+// #include <string_view>
+
+// export module FontManager;
+
+// import Color;
+// import Option;
+// import Result;
+// import Functionals;
+// import TextBubble;
+
+// static constexpr const char* DEFAULT_FONT = "assets/fonts/ArgentumSans-Bold.otf";
+// static constexpr uint32_t DEFAULT_FONT_SIZE = 64;
+
+// auto fontResource = Option<TTF_Font*>::None();
+
+#include "SDL3/SDL_surface.h"
 #include "textbubble.hpp"
+#include <cstdint>
 #include <span>
 #include <string_view>
 
-static constexpr const char* DEFAULT_FONT = "assets/fonts/ArgentumSans-Bold.otf";
-static constexpr uint32_t DEFAULT_FONT_SIZE = 64;
-
-class FontManager
+namespace FontManager
 {
-private:
-    TTF_Font* font;
-
-public:
     void init();
+    // {
+    //     const auto loadedFont = Result<TTF_Font*>(
+    //         TTF_OpenFont(DEFAULT_FONT, DEFAULT_FONT_SIZE),
+    //         "Failed to load the game's font"
+    //     );
+    //     loadedFont.assertOk();
 
-    void deinit() const;
+    //     fontResource = Option<TTF_Font*>::Some(loadedFont.value());
+    // }
 
-    SDL_Surface* generateNew(std::string_view text) const;
+    void deinit();
+    // {
+    //     TTF_CloseFont(fontResource.value());
+    // }
 
-    uint32_t findSuitableFontSize(const std::span<TextBubble> sceneTextData, const uint32_t size = DEFAULT_FONT_SIZE) const;
-};
+    SDL_Surface* generateNew(std::string_view text);
+    // {
+    //     return TTF_RenderUTF8_Blended(fontResource.value(), text.data(), col::WHITE);
+    // }
+
+    uint32_t findSuitableFontSize(std::span<const TextBubble> sceneTextData);
+
+    //std::span<const TextBubble> sceneTextData);
+    // {
+    //     TTF_Font* const font = fontResource.value();
+    //     TTF_SetFontSize(font, size);
+
+    //     std::span<const TextBubble> allFits = fut::filter(sceneTextData, [&](const TextBubble& data)
+    //     {
+    //         const std::string& text = data.getText();
+    //         SDL_FRect area = data.getHoldingArea();
+    //         int32_t width = 0;
+    //         int32_t height = 0;
+            
+    //         TTF_SizeUTF8(font, text.c_str(), &width, &height);
+    //         return width < 0.75f * area.w && height < 0.5f * area.h;
+    //     });
+
+    //     if (allFits.size() == sceneTextData.size())
+    //     {
+    //         return size;
+    //     }
+
+    //     // __TAILREC__
+    //     return findSuitableFontSize(sceneTextData, size - 2);
+    // }
+}

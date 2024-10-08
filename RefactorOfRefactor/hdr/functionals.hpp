@@ -2,21 +2,12 @@
 #include <iterator>
 #include <ranges>
 #include <vector>
-
-// ================================= //
-// Functional Utilities Namespace    //
-// ================================= //
-// Contains helper functions for the //
-// most frequently used constructs:  //
-//   -> iterating over a range       //
-//   -> mapping a range of items     //
-//   -> selecting specific items     //
-//   -> reducing to a single value   //
-// ================================= //
+#include <concepts>
+#include <type_traits>
 
 namespace stdr = std::ranges;
 
-namespace fut
+namespace Functionals
 {
     template<typename T>
     using ItemOf = typename std::iterator_traits<decltype(stdr::begin(std::declval<T&>()))>::value_type;

@@ -5,7 +5,7 @@
 class InGameScene
 {
 private:
-    static constexpr uint32_t BUTTON_COUNT = 4;
+    static constexpr uint32_t BUTTON_COUNT = 5;
     bool sceneLoaded;
     std::array<TextBubble, BUTTON_COUNT> buttons;
 

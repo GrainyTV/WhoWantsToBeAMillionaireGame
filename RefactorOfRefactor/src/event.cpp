@@ -1,26 +1,76 @@
 #include "event.hpp"
+
+#include "SDL3/SDL_events.h"
 #include "debug.hpp"
 #include "defer.hpp"
-#include "extensions.hpp"
-#include "invokable.hpp"
+#include <functional>
+#include <unordered_map>
+#include "utility.hpp"
+#include "iscene.hpp"
+#include "mainmenuscene.hpp"
+#include "ingamescene.hpp"
+#include "globals.hpp"
 
-Event::Event()
-    : continueProcessingEvents(true)
-    , eventCalls({
-          { SDL_EVENT_QUIT, [&]() { continueProcessingEvents = false; std::visit(SceneInterface{SceneOperation::Deinitialize}, currentScene); } },
-          { SDL_EVENT_KEY_DOWN, [&]() {} },
-          { SDL_EVENT_MOUSE_BUTTON_DOWN, [&]() { std::visit(SceneInterface{SceneOperation::Clicks}, currentScene); } },
-          { SDL_EVENT_MOUSE_MOTION, [&]() { std::visit(SceneInterface{SceneOperation::Intersects, presentEvent.motion.x, presentEvent.motion.y }, currentScene); } },
-          { SDL_EVENT_WINDOW_SHOWN, [&]() { unhideWindowAtStart(); } },
-          { EVENT_INVALIDATE, [&]() { std::visit(SceneInterface{SceneOperation::Redraw}, currentScene); } },
-          { EVENT_ENABLE_SCENE, [&]() { if (MainMenuScene* mms = std::get_if<MainMenuScene>(&currentScene)) { (*mms).enable(); } } },
-          { EVENT_INVOKE_ON_UI_THREAD, [&]() { executeCallback(); } },
-      })
-{}
+using ExclusiveScenes = std::variant<std::monostate, MainMenuScene, InGameScene>;
+using enum Utility::CustomEvents;
+using Globals::GameProperties;
 
-void Event::applyDefaultScene()
+static SDL_Event presentEvent;
+static bool continueProcessingEvents = true;
+static ExclusiveScenes currentScene;
+static std::unordered_map<uint32_t, std::function<void()>> eventCalls;
+
+static bool isValidEvent()
 {
-    currentScene.emplace<MainMenuScene>();
+    return eventCalls.contains(presentEvent.type) ? true : false;
+}
+
+static void executeCallback()
+{
+    const auto callback = static_cast<Invokable*>(presentEvent.user.data1);
+    ASSERT(callback != nullptr, "Failed to retrieve callback on UI thread");
+    DEFER(Utility::free<Invokable>, callback);
+
+    (*callback).execute();
+}
+
+static void changeSceneTo()
+{
+    const size_t newSceneId = presentEvent.user.code;
+
+    if (newSceneId != currentScene.index())
+    {
+        std::visit(IScene(SceneOperation::Deinitialize), currentScene);
+
+        switch (newSceneId)
+        {
+            case 1:
+                currentScene.emplace<MainMenuScene>();
+                break;
+
+            case 2:
+                currentScene.emplace<InGameScene>();
+                break;
+
+            default:
+                ASSERT(false, "Tried to access an unregistered scene with index ()", newSceneId);
+                break;
+        }
+
+        Utility::invalidate();
+    }
+}
+
+static void subscribeToEvents()
+{
+    eventCalls.emplace(SDL_EVENT_QUIT, []() { continueProcessingEvents = false; std::visit(IScene(SceneOperation::Deinitialize), currentScene); });
+    eventCalls.emplace(SDL_EVENT_KEY_DOWN, []() {});
+    eventCalls.emplace(SDL_EVENT_MOUSE_BUTTON_DOWN, []() { std::visit(IScene(SceneOperation::Clicks), currentScene); });
+    eventCalls.emplace(SDL_EVENT_MOUSE_MOTION, []() { std::visit(IScene(SceneOperation::Intersects, presentEvent.motion.x, presentEvent.motion.y), currentScene); });
+    eventCalls.emplace(EVENT_INVALIDATE, []() { std::visit(IScene(SceneOperation::Redraw), currentScene); });
+    eventCalls.emplace(EVENT_ENABLE_SCENE, []() { std::visit(IScene(SceneOperation::Enable), currentScene); });
+    eventCalls.emplace(EVENT_INVOKE_ON_UI_THREAD, executeCallback);
+    eventCalls.emplace(EVENT_CHANGE_SCENE, changeSceneTo);
 }
 
 void Event::processIncomingEvents()
@@ -40,32 +90,15 @@ void Event::processIncomingEvents()
     }
 }
 
-bool Event::isValidEvent() const
+void Event::applyDefaultSettings()
 {
-    return eventCalls.contains(presentEvent.type) ? true : false;
-}
+    const GameProperties properties = Globals::Properties.value();
+    SDL_SetWindowSize(properties.Window, properties.ScreenWidth, properties.ScreenHeight);
+    SDL_SetWindowFullscreen(properties.Window, true);
 
-void Event::requestEvent(SDL_Event&& newEvent)
-{
-    SDL_PushEvent(&newEvent);
-}
+    subscribeToEvents();
 
-void Event::invalidate()
-{
-    requestEvent({ .type = EVENT_INVALIDATE });
-}
+    FontManager::init();
 
-void Event::unhideWindowAtStart()
-{
-    invalidate();
-    eventCalls.erase(SDL_EVENT_WINDOW_SHOWN);
-}
-
-void Event::executeCallback() const
-{
-    const auto callback = static_cast<Invokable*>(presentEvent.user.data1);
-    ASSERT(callback != NULL, "Failed to retrieve callback on UI thread");
-    DEFER(ext::free<Invokable>, callback);
-
-    (*callback).execute();
+    currentScene.emplace<MainMenuScene>();
 }
