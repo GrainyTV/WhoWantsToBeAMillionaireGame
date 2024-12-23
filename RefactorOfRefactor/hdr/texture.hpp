@@ -141,24 +141,25 @@ enum WhereToLoadTextureFrom
     FromText,
 };
 
-struct MultiSizeTexture
-{
-    std::string Path;
-    uint32_t Width;
-    uint32_t Height;
-};
+// struct MultiSizeTexture
+// {
+//     std::string Path;
+//     uint32_t Width;
+//     uint32_t Height;
+// };
 
 struct LoadProcess
 {
     WhereToLoadTextureFrom Source;
     std::string Asset;
     TextureRegion* Output;
+    SDL_ScaleMode Filter;
     SDL_FRect HoldingArea;
 };
 
 namespace texture
 {
-    void convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTexture);
+    void convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTexture, SDL_ScaleMode filter);
     // {
     //     DEFER(SDL_DestroySurface, surface);
 
@@ -220,7 +221,7 @@ namespace texture
     //     detachedWorker.detach();
     // }
 
-    const MultiSizeTexture findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture);
+    // const MultiSizeTexture findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture);
     // {
     //     std::vector<MultiSizeTexture> resolutionsOfTexture;
     //     const auto dir = std::filesystem::directory_iterator(std::format("assets/textures/{}", nameOfTexture));

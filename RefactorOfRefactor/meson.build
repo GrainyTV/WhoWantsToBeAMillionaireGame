@@ -6,8 +6,10 @@ project('Who Wants to Be a Millionaire?', 'cpp',
 sources = files(
     'src/utility.cpp',
     'src/fontmanager.cpp',
+    'src/opengl.cpp',
     'src/texture.cpp',
     'src/ingamescene.cpp',
+    'src/mainmenuscene.cpp',
     'src/event.cpp',
     'src/game.cpp',
     'src/main.cpp'
@@ -29,22 +31,38 @@ needed_libraries = [
     ),
     cxx.find_library('SDL3_ttf',
         dirs: [absolute_libdir],
-    )
+    ),
+    cxx.find_library('cpptrace',
+        dirs: [absolute_libdir],
+        static: true
+    ),
+    cxx.find_library('dwarf',
+        dirs: [absolute_libdir],
+        static: true
+    ),
+    cxx.find_library('zstd',
+        dirs: [absolute_libdir],
+        static: true
+    ),
+    cxx.find_library('z'),
+    cxx.find_library('dl')
 ]
 
-libcpp_experimental = cxx.find_library('stdc++exp',
-    static: true
-)
+#libcpp_experimental = cxx.find_library('stdc++exp',
+#    static: true
+#)
 
 output_prefix = meson.current_build_dir() / 'bin'
 
 executable('a.out', sources,
     include_directories: ['hdr'],
-    dependencies: [needed_libraries, libcpp_experimental],
+    dependencies: [needed_libraries],
     cpp_args: [
         '-Wno-missing-field-initializers',
         '-Wno-return-type',
-        '-fmax-errors=5',
+        #'-fmax-errors=5',
+        '-ferror-limit=1',
+        '-DCPPTRACE_STATIC_DEFINE'
     ],
     install: true,
     install_dir: output_prefix,

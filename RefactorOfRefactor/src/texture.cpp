@@ -136,11 +136,14 @@
 #include "defer.hpp"
 #include "fontmanager.hpp"
 #include "globals.hpp"
+#include "result.hpp"
 #include "utility.hpp"
 #include <atomic>
 #include <condition_variable>
-#include <filesystem>
+#include <thread>
+//#include <filesystem>
 #include "functionals.hpp"
+#include "opengl.hpp"
 
 using enum Utility::CustomEvents;
 using namespace Functionals;
@@ -150,12 +153,15 @@ static std::vector<LoadProcess> textureLoadTasks;
 static std::condition_variable observer;
 static std::mutex mutualExclusion;
 
-void texture::convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTexture)
+void texture::convertSurfaceToTexture(SDL_Surface* surface, SDL_Texture** outTexture, SDL_ScaleMode filter)
 {
     DEFER(SDL_DestroySurface, surface);
 
     *outTexture = SDL_CreateTextureFromSurface(Globals::Properties.value().Renderer, surface);
     ASSERT(*outTexture != nullptr, "Failed to convert surface to texture ({})", SDL_GetError());
+
+    OpenGL::bindTexture(*outTexture);
+    OpenGL::applyTextureFiltering(filter);
 
     --numberOfTexturesLoading;
     observer.notify_one();
@@ -172,29 +178,35 @@ void texture::beginTextureLoadProcess()
     std::thread detachedWorker{
         [&]() 
         {
-            forEach(textureLoadTasks, [&](const auto& task, const size_t /*i*/)
+            forEach(textureLoadTasks, [&](const auto& task)
             {
-                SDL_Surface* surface = NULL;
+                SDL_Surface* surface = nullptr;
                 
                 switch (task.Source)
                 {
                     case FromDisk:
                     {
-                        surface = IMG_Load(task.Asset.c_str());
-                        ASSERT(surface != NULL, "Failed to load surface {} ({})", task.Asset, IMG_GetError());
+                        //surface = IMG_Load(task.Asset.c_str());
+                        const auto dataResult = Result<SDL_Surface*>(
+                            IMG_Load(task.Asset.c_str()),
+                            "Failed to load surface");
+                        dataResult.assertOk();
+
+                        surface = dataResult.value();
+                        //ASSERT(surface != NULL, "Failed to load surface {} ({})", task.Asset, IMG_GetError());
                         break;
                     }
 
                     case FromText:
                     {
                         surface = FontManager::generateNew(task.Asset);
-                        ASSERT(surface != NULL, "Failed to create surface from text ({})", TTF_GetError());
+                        ASSERT(surface != nullptr, "Failed to create surface from text ({})", TTF_GetError());
                         (*task.Output).Area = Option<SDL_FRect>::Some(initializeAreaFromSurface(task.HoldingArea, (*surface).w, (*surface).h));
                         break;
                     }
                 }
 
-                Invokable* const callback = new Invokable(texture::convertSurfaceToTexture, surface, &(*task.Output).Resource);
+                Invokable* const callback = new Invokable(texture::convertSurfaceToTexture, surface, &(*task.Output).Resource, task.Filter);
                 Utility::requestEvent({ .user = { .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = static_cast<void*>(callback), } });
             });
 
@@ -206,46 +218,45 @@ void texture::beginTextureLoadProcess()
 
             Utility::requestEvent({ .type = EVENT_ENABLE_SCENE });
             Utility::invalidate();
-            LOG("All textures loaded!");
         }
     };
     
     detachedWorker.detach();
 }
 
-const MultiSizeTexture texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture)
-{
-    std::vector<MultiSizeTexture> resolutionsOfTexture;
-    const auto dir = std::filesystem::directory_iterator(std::format("assets/textures/{}", nameOfTexture));
+// const MultiSizeTexture texture::findTextureThatFitsIntoArea(uint32_t width, uint32_t height, const std::string& nameOfTexture)
+// {
+//     std::vector<MultiSizeTexture> resolutionsOfTexture;
+//     const auto dir = std::filesystem::directory_iterator(std::format("assets/textures/{}", nameOfTexture));
 
-    forEach(dir, [&](const auto& entry, size_t /*i*/)
-    {
-        const auto name = entry.path().stem().string();
-        std::vector<StringMatch> matches;
-        std::regex numericValues(R"(\d+)");
+//     forEach(dir, [&](const auto& entry, size_t /*i*/)
+//     {
+//         const auto name = entry.path().stem().string();
+//         std::vector<StringMatch> matches;
+//         std::regex numericValues(R"(\d+)");
 
-        if (Utility::regexSearch(name, matches, numericValues))
-        {
-            ASSERT(matches.size() == 2, "Resolution should have two components in its filename (Found {} in {})", matches.size(), name);
-            const uint32_t width = std::stoi(matches[0].str());
-            const uint32_t height = std::stoi(matches[1].str());
-            resolutionsOfTexture.push_back(MultiSizeTexture{ .Path = entry.path().string(), .Width = width, .Height = height });
-        }
-    });
+//         if (Utility::regexSearch(name, matches, numericValues))
+//         {
+//             ASSERT(matches.size() == 2, "Resolution should have two components in its filename (Found {} in {})", matches.size(), name);
+//             const uint32_t width = std::stoi(matches[0].str());
+//             const uint32_t height = std::stoi(matches[1].str());
+//             resolutionsOfTexture.push_back(MultiSizeTexture{ .Path = entry.path().string(), .Width = width, .Height = height });
+//         }
+//     });
 
-    std::sort(resolutionsOfTexture.begin(), resolutionsOfTexture.end(), [](const auto& a, const auto& b)
-    {
-        return a.Width > b.Width;
-    });
+//     std::sort(resolutionsOfTexture.begin(), resolutionsOfTexture.end(), [](const auto& a, const auto& b)
+//     {
+//         return a.Width > b.Width;
+//     });
 
-    std::vector<MultiSizeTexture> acceptableTextures = filter(resolutionsOfTexture, [&](const auto& entry)
-    {
-        return entry.Width <= width && entry.Height <= height;
-    });
+//     std::vector<MultiSizeTexture> acceptableTextures = filter(resolutionsOfTexture, [&](const auto& entry)
+//     {
+//         return entry.Width <= width && entry.Height <= height;
+//     });
 
-    ASSERT(acceptableTextures.empty() == false, "No acceptable sized texture found ({} -> {}x{})", nameOfTexture, width, height);
-    return acceptableTextures.front();
-}
+//     ASSERT(acceptableTextures.empty() == false, "No acceptable sized texture found ({} -> {}x{})", nameOfTexture, width, height);
+//     return acceptableTextures.front();
+// }
 
 SDL_FRect texture::initializeAreaFromSurface(SDL_FRect area, int32_t width, int32_t height)
 {

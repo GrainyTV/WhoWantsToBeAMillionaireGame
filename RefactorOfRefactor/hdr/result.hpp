@@ -1,7 +1,6 @@
 #pragma once
-
-// #include "SDL3/SDL_error.h"
-// #include "debug.hpp"
+#include "SDL3/SDL.h"
+#include "debug.hpp"
 #include <string>
 #include <type_traits>
 #include <variant>
@@ -23,6 +22,12 @@ public:
                            : std::variant<int32_t, std::string>(std::in_place_type<std::string>, failMessage))
     {}
 
+    Result(const int32_t result, const std::string& failMessage, const int32_t min, const int32_t max)
+        : valueOrError((result >= min && result <= max) 
+                           ? std::variant<int32_t, std::string>(std::in_place_type<int32_t>, result)
+                           : std::variant<int32_t, std::string>(std::in_place_type<std::string>, failMessage))
+    {}
+
     template<typename U>
     requires std::is_pointer_v<T> && std::is_same_v<T, U>
     Result(const U& result, const std::string& failMessage)
@@ -33,7 +38,7 @@ public:
 
     bool isOk() const
     {
-        return valueOrError.has_value();
+        return std::holds_alternative<T>(valueOrError);
     }
 
     bool isError() const
@@ -41,22 +46,14 @@ public:
         return isOk() == false;
     }
 
-    void printError() const
-    {
-        if (isError())
-        {
-            // LOG("Error({})", valueOrError.error());
-        }
-    }
-
     void assertOk() const
     {
-        // ASSERT(isOk(), "{} ({})", valueOrError.error(), SDL_GetError());
+        ASSERT(isOk(), "{} ({})", std::get<std::string>(valueOrError), SDL_GetError());
     }
 
     const T& value() const
     {
-        // ASSERT(isOk(), "Tried to access inner value of result object in error state!");
-        return std::get<0>(valueOrError);
+        ASSERT(isOk(), "Tried to access inner value of result object in error state!");
+        return std::get<T>(valueOrError);
     }
 };

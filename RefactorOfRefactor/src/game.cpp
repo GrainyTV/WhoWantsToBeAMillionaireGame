@@ -50,6 +50,7 @@ void Game::init()
         .ScreenHeight = screenHeight,
         .Window = window,
         .Renderer = renderer,
+        .FirstInit = true,
     });
 }
 

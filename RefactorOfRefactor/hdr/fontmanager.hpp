@@ -23,10 +23,9 @@
 
 // auto fontResource = Option<TTF_Font*>::None();
 
-#include "SDL3/SDL_surface.h"
+//#include "SDL3/SDL_surface.h"
 #include "textbubble.hpp"
 #include <cstdint>
-#include <span>
 #include <string_view>
 
 namespace FontManager
@@ -52,7 +51,8 @@ namespace FontManager
     //     return TTF_RenderUTF8_Blended(fontResource.value(), text.data(), col::WHITE);
     // }
 
-    uint32_t findSuitableFontSize(std::span<const TextBubble> sceneTextData);
+    template<size_t N>
+    uint32_t findSuitableFontSize(const std::array<TextBubble, N>& sceneTextData);
 
     //std::span<const TextBubble> sceneTextData);
     // {

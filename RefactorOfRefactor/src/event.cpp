@@ -5,19 +5,18 @@
 #include "defer.hpp"
 #include <functional>
 #include <unordered_map>
+#include <memory>
+#include "fontmanager.hpp"
 #include "utility.hpp"
-#include "iscene.hpp"
-#include "mainmenuscene.hpp"
-#include "ingamescene.hpp"
+#include "scene.hpp"
 #include "globals.hpp"
 
-using ExclusiveScenes = std::variant<std::monostate, MainMenuScene, InGameScene>;
 using enum Utility::CustomEvents;
 using Globals::GameProperties;
 
 static SDL_Event presentEvent;
 static bool continueProcessingEvents = true;
-static ExclusiveScenes currentScene;
+static std::unique_ptr<IScene> currentScene;
 static std::unordered_map<uint32_t, std::function<void()>> eventCalls;
 
 static bool isValidEvent()
@@ -36,39 +35,18 @@ static void executeCallback()
 
 static void changeSceneTo()
 {
-    const size_t newSceneId = presentEvent.user.code;
-
-    if (newSceneId != currentScene.index())
-    {
-        std::visit(IScene(SceneOperation::Deinitialize), currentScene);
-
-        switch (newSceneId)
-        {
-            case 1:
-                currentScene.emplace<MainMenuScene>();
-                break;
-
-            case 2:
-                currentScene.emplace<InGameScene>();
-                break;
-
-            default:
-                ASSERT(false, "Tried to access an unregistered scene with index ()", newSceneId);
-                break;
-        }
-
-        Utility::invalidate();
-    }
+    const auto newScene = static_cast<IScene*>(presentEvent.user.data1);
+    currentScene.reset(newScene);
 }
 
 static void subscribeToEvents()
 {
-    eventCalls.emplace(SDL_EVENT_QUIT, []() { continueProcessingEvents = false; std::visit(IScene(SceneOperation::Deinitialize), currentScene); });
+    eventCalls.emplace(SDL_EVENT_QUIT, []() { continueProcessingEvents = false; (*currentScene).deinit(); });
     eventCalls.emplace(SDL_EVENT_KEY_DOWN, []() {});
-    eventCalls.emplace(SDL_EVENT_MOUSE_BUTTON_DOWN, []() { std::visit(IScene(SceneOperation::Clicks), currentScene); });
-    eventCalls.emplace(SDL_EVENT_MOUSE_MOTION, []() { std::visit(IScene(SceneOperation::Intersects, presentEvent.motion.x, presentEvent.motion.y), currentScene); });
-    eventCalls.emplace(EVENT_INVALIDATE, []() { std::visit(IScene(SceneOperation::Redraw), currentScene); });
-    eventCalls.emplace(EVENT_ENABLE_SCENE, []() { std::visit(IScene(SceneOperation::Enable), currentScene); });
+    eventCalls.emplace(SDL_EVENT_MOUSE_BUTTON_DOWN, []() { (*currentScene).clicks(); });
+    eventCalls.emplace(SDL_EVENT_MOUSE_MOTION, []() { (*currentScene).intersects({ presentEvent.motion.x, presentEvent.motion.y }); });
+    eventCalls.emplace(EVENT_INVALIDATE, []() { (*currentScene).redraw(); });
+    eventCalls.emplace(EVENT_ENABLE_SCENE, []() { (*currentScene).enable(); });
     eventCalls.emplace(EVENT_INVOKE_ON_UI_THREAD, executeCallback);
     eventCalls.emplace(EVENT_CHANGE_SCENE, changeSceneTo);
 }
@@ -80,6 +58,11 @@ void Event::processIncomingEvents()
 
     if (isValidEvent())
     {
+        // if (presentEvent.type != 1024)
+        // {
+        //     LOG("Valid event ({})", presentEvent.type);
+        // }
+        
         eventCalls[presentEvent.type]();
     }
 
@@ -100,5 +83,5 @@ void Event::applyDefaultSettings()
 
     FontManager::init();
 
-    currentScene.emplace<MainMenuScene>();
+    currentScene = std::make_unique<MainMenuScene>();
 }

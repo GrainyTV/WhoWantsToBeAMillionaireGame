@@ -36,26 +36,35 @@ const SDL_DisplayMode* Utility::displayInfo(SDL_Window* window)
     return displayInfo;
 }
 
-bool Utility::regexSearch(const std::string& input, std::vector<StringMatch>& allMatches, const std::regex& regexToUse)
-{
-    const auto begin = std::sregex_iterator(input.begin(), input.end(), regexToUse);
-    const auto end = std::sregex_iterator();
+// bool Utility::regexSearch(const std::string& input, std::vector<StringMatch>& allMatches, const std::regex& regexToUse)
+// {
+//     const auto begin = std::sregex_iterator(input.begin(), input.end(), regexToUse);
+//     const auto end = std::sregex_iterator();
 
-    forEach(stdr::subrange(begin, end), [&](const auto& match, size_t /*i*/) {
-        allMatches.push_back(match);
-    });
+//     forEach(stdr::subrange(begin, end), [&](const auto& match, size_t /*i*/) {
+//         allMatches.push_back(match);
+//     });
 
-    return allMatches.empty() ? false : true;
-}
+//     return allMatches.empty() ? false : true;
+// }
 
 void Utility::drawTextureRegion(SDL_Renderer* renderer, const TextureRegion& textureRegion)
 {
     if (textureRegion.Resource != NULL)
     {
-        const auto textureFiltering = SDL_SetTextureScaleMode(textureRegion.Resource, SDL_SCALEMODE_BEST);
-        ASSERT(textureFiltering == 0, "Failed to set texture filtering mode ({})", SDL_GetError());
+        // if (textureRegion.Area.isSome())
+        // {
+        //     const auto textureFiltering = SDL_SetTextureScaleMode(textureRegion.Resource, textureRegion.Area.value().x == 0 ? SDL_SCALEMODE_NEAREST : SDL_SCALEMODE_LINEAR);
+        //     ASSERT(textureFiltering == 0, "Failed to set texture filtering mode ({})", SDL_GetError());
+        // }
 
-        const auto drawTexture = SDL_RenderTexture(renderer, textureRegion.Resource, NULL, textureRegion.getArea());
+        const auto drawTexture = SDL_RenderTexture(
+            renderer,
+            textureRegion.Resource,
+            nullptr,
+            textureRegion.Area.isSome()
+                ? &textureRegion.Area.value()
+                : nullptr);
         ASSERT(drawTexture == 0, "Failed to draw texture onto the screen ({})", SDL_GetError());
     }
 }
@@ -80,6 +89,11 @@ float Utility::areaOfTriangleByItsVertices(const SDL_FPoint& a, const SDL_FPoint
 void Utility::requestEvent(SDL_Event&& newEvent)
 {
     SDL_PushEvent(&newEvent);
+}
+
+void Utility::requestUserEvent(SDL_UserEvent&& newEvent)
+{
+    requestEvent({ .user = newEvent });
 }
 
 void Utility::invalidate()
