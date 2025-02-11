@@ -17,9 +17,9 @@ subdir('cmake' / 'sdl3')
 dependencies = [
     dependency('svl'),
     dependency('sdl3'),
+    dependency('sdl3_image'),
     dependency('sdl3_mixer'),
-    dependency('sdl3_ttf'),
-    dependency('sdl3_image')
+    dependency('sdl3_ttf')
 ]
 
 if build_mode == 'debug'

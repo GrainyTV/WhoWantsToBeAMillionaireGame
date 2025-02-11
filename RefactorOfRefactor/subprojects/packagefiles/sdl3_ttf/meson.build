@@ -4,6 +4,7 @@ project(
     version: 'stable-3.1.0'
 )
 
+sdl3 = dependency('sdl3')
 freetype = dependency('freetype2')
 harfbuzz = dependency('harfbuzz')
 

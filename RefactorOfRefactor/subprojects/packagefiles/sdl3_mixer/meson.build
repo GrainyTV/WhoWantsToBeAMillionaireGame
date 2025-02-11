@@ -44,7 +44,10 @@ sdl3_mixer_lib = static_library(
     meson.project_name(),
     sources,
     include_directories: incdirs,
-    dependencies: sdl3
+    dependencies: sdl3,
+    c_args: [
+        '-DMUSIC_MP3_MINIMP3'
+    ]
 )
 
 sdl3_mixer_dep = declare_dependency(

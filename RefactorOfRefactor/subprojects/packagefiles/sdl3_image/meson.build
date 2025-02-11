@@ -5,6 +5,7 @@ project(
 )
 
 sdl3 = dependency('sdl3')
+libpng = dependency('libpng')
 
 sources = files(
     'src/IMG.c',
@@ -38,7 +39,11 @@ sdl3_image_lib = static_library(
     meson.project_name(),
     sources,
     include_directories: incdir,
-    dependencies: sdl3
+    dependencies: [sdl3, libpng],
+    c_args: [
+        '-DSDL_IMAGE_USE_COMMON_BACKEND',
+        '-DLOAD_PNG'
+    ]
 )
 
 sdl3_image_dep = declare_dependency(
