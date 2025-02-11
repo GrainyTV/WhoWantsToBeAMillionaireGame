@@ -15,29 +15,19 @@
 
 static constexpr uint8_t THICKNESS{ 5 };
 
-using namespace Functionals;
-
-// =========== //
-//   1-----2   //
-//  /|     |\  //
-// 0 |     | 3 //
-//  \|     |/  //
-//   5-----4   //
-// =========== //
-
 class TextBubble
 {
 private:
     bool hover;
-    //std::string text;
-    //SDL_FRect innerRectangle;
+    std::string text;
+    SDL_FRect area;
     std::array<SDL_FPoint, 6> coords;
     std::array<SDL_Vertex, 3> leftTriangle;
     std::array<SDL_Vertex, 3> rightTriangle;
     std::vector<SDL_Vertex> strokeSegments;
-    //TextureRegion label;
+    TextureRegion label;
     Invokable onClick;
-    Option<SDL_FRect> strokeLine = Option<SDL_FRect>::None();
+    Option::Option<SDL_FRect> strokeLine = Option::None<SDL_FRect>();
 
 private:
     std::array<SDL_FPoint, 6> retrieveCoordinatesOfHexagon()
@@ -47,10 +37,18 @@ private:
         // const SDL_FPoint pos4 = { .x = innerRectangle.x + innerRectangle.w, .y = innerRectangle.y + innerRectangle.h };
         // const SDL_FPoint pos5 = { .x = innerRectangle.x, .y = innerRectangle.y + innerRectangle.h };
 
-        const SDL_FPoint pos1 = { .x = Area.x, .y = Area.y };
-        const SDL_FPoint pos2 = { .x = Area.x + Area.w, .y = Area.y };
-        const SDL_FPoint pos4 = { .x = Area.x + Area.w, .y = Area.y + Area.h };
-        const SDL_FPoint pos5 = { .x = Area.x, .y = Area.y + Area.h };
+        // =========== //
+        //   1-----2   //
+        //  /|     |\  //
+        // 0 |     | 3 //
+        //  \|     |/  //
+        //   5-----4   //
+        // =========== //
+
+        const SDL_FPoint pos1 = { .x = area.x, .y = area.y };
+        const SDL_FPoint pos2 = { .x = area.x + area.w, .y = area.y };
+        const SDL_FPoint pos4 = { .x = area.x + area.w, .y = area.y + area.h };
+        const SDL_FPoint pos5 = { .x = area.x, .y = area.y + area.h };
 
         const float verticalDistance = pos5.y - pos1.y;
         const float midPoint = std::midpoint(pos5.y, pos1.y);
@@ -84,7 +82,8 @@ private:
     {
         std::vector<SDL_Vertex> results;
 
-        forEach(coords, [&](const auto& /*coord*/, const size_t i) {
+        coords
+        | Seq::iteri([&](const auto& /*coord*/, const size_t i) {
             const size_t j = (i + 1) % coords.size();
             const Vec2 startVertex = Utility::fPointToSvl(coords[i]);
             const Vec2 endVertex = Utility::fPointToSvl(coords[j]);
@@ -104,13 +103,16 @@ private:
 
             const std::array<size_t, 6> indices = { 0, 1, 2, 1, 2, 3 };
 
-            const std::vector<SDL_Vertex> strokeVertices = map(indices, [&](const size_t index) {
-                ASSERT(index >= 0 && index < areaCorners.size(), "Index outside the bounds of the array");
-                return SDL_Vertex({
-                    .position = Utility::svlToFpoint(areaCorners[index]),
-                    .color = col::NBLUE,
-                });
-            });
+            const std::vector<SDL_Vertex> strokeVertices = 
+                indices
+                | Seq::map([&](const size_t index)
+                    {
+                        ASSERT(index < areaCorners.size(), "Index outside the bounds of the array");
+                        return SDL_Vertex({
+                            .position = Utility::svlToFpoint(areaCorners[index]),
+                            .color = col::NBLUE,
+                        });
+                    });
 
             results.insert(results.end(), strokeVertices.begin(), strokeVertices.end());
         });
@@ -119,7 +121,8 @@ private:
         // Generate fillings for the small gaps in-between stroke sequences //
         // ================================================================ //
 
-        forEach(coords, [&](const auto& /*coord*/, const size_t i) {
+        coords
+        | Seq::iteri([&](const auto& /*coord*/, const size_t i) {
             const size_t j = (i + 1) % coords.size();
 
             // ======================== //
@@ -149,23 +152,23 @@ private:
         const SDL_FPoint x3 = triangle[2].position;
 
         const float area = Utility::areaOfTriangleByItsVertices(x1, x2, x3);
-        const float subArea1 = Utility::areaOfTriangleByItsVertices(p, x1, x2);
-        const float subArea2 = Utility::areaOfTriangleByItsVertices(p, x1, x3);
-        const float subArea3 = Utility::areaOfTriangleByItsVertices(p, x2, x3);
+        const float subarea1 = Utility::areaOfTriangleByItsVertices(p, x1, x2);
+        const float subarea2 = Utility::areaOfTriangleByItsVertices(p, x1, x3);
+        const float subarea3 = Utility::areaOfTriangleByItsVertices(p, x2, x3);
 
-        return (subArea1 + subArea2 + subArea3) - area < 0.01f;
+        return (subarea1 + subarea2 + subarea3) - area < 0.01f;
     }
 
 public:
-    SDL_FRect Area;
-    std::string Text;
-    TextureRegion Label;
+    //SDL_FRect area;
+    //std::string Text;
+    //TextureRegion Label;
 
-    /*TextBubble(const SDL_FRect& mainArea, const std::string& text, const Invokable& onClick, const bool lineNeeded = true)
+    TextBubble(const SDL_FRect& mainarea, const std::string& text, const Invokable& onClick, const bool lineNeeded = true)
         : hover(false)
-        //, text(text)
-        //, innerRectangle(mainArea)
-        , coords(retrievePositions())
+        , text(text)
+        , area(mainarea)
+        , coords(retrieveCoordinatesOfHexagon())
         , leftTriangle({
               SDL_Vertex{ .position = coords[0], .color = col::NBLACK },
               SDL_Vertex{ .position = coords[1], .color = col::NBLACK },
@@ -179,11 +182,11 @@ public:
         , strokeSegments(generateStroke())
         , onClick(onClick)
         , strokeLine(lineNeeded
-                         ? Option<SDL_FRect>::Some({ .x = 0, .y = coords[0].y - THICKNESS / 2.0f, .w = static_cast<float>(Globals::Properties.value().ScreenWidth), .h = THICKNESS })
-                         : Option<SDL_FRect>::None())
-    {}*/
+                         ? Option::Some(SDL_FRect({ .x = 0, .y = coords[0].y - THICKNESS / 2.0f, .w = static_cast<float>(Globals::Properties.value().ScreenWidth), .h = THICKNESS }))
+                         : Option::None<SDL_FRect>())
+    {}
 
-    void init(const std::string& text, const Invokable& onClick, const bool lineNeeded = true)
+    /*void init(const std::string& text, const Invokable& onClick, const bool lineNeeded = true)
     {
         Text = text;
         (*this).onClick = onClick;
@@ -209,7 +212,7 @@ public:
             : Option<SDL_FRect>::None();
 
         hover = false;
-    }
+    } */
 
     void draw() const
     {
@@ -222,14 +225,14 @@ public:
         }
 
         Utility::changeDrawColorTo(renderer, hover ? col::ORANGE : col::BLACK);
-        Utility::drawRectangle(renderer, &Area);
+        Utility::drawRectangle(renderer, &area);
         Utility::drawVertices(renderer, leftTriangle);
         Utility::drawVertices(renderer, rightTriangle);
 
         Utility::changeDrawColorTo(renderer, col::BLUE);
         Utility::drawVertices(renderer, strokeSegments);
 
-        Utility::drawTextureRegion(renderer, Label);
+        Utility::drawTextureRegion(renderer, label);
     }
 
     bool isInsideItsHitbox(const SDL_FPoint& location) const
@@ -239,7 +242,7 @@ public:
         // we need to check its rectangle and two triangles //
         // ================================================ //
 
-        return SDL_PointInRectFloat(&location, &Area) ||
+        return SDL_PointInRectFloat(&location, &area) ||
                isInsideTriangle(location, leftTriangle) ||
                isInsideTriangle(location, rightTriangle);
     }
@@ -248,20 +251,24 @@ public:
     {
         hover = true;
 
-        forEach(leftTriangle, [&](const auto& /*vertex*/, const size_t i) {
-            leftTriangle[i].color = col::NORANGE;
-            rightTriangle[i].color = col::NORANGE;
-        });
+        leftTriangle
+        | Seq::iteri([&](const auto& /*vertex*/, const size_t i)
+            {
+                leftTriangle[i].color = col::NORANGE;
+                rightTriangle[i].color = col::NORANGE;
+            });
     }
 
     void disableHover()
     {
         hover = false;
 
-        forEach(leftTriangle, [&](const auto& /*vertex*/, const size_t i) {
-            leftTriangle[i].color = col::NBLACK;
-            rightTriangle[i].color = col::NBLACK;
-        });
+        leftTriangle
+        | Seq::iteri([&](const auto& /*vertex*/, const size_t i)
+            {
+                leftTriangle[i].color = col::NBLACK;
+                rightTriangle[i].color = col::NBLACK;
+            });
     }
 
     // TextureRegion* getLabel()
@@ -269,7 +276,7 @@ public:
     //     return &label;
     // }
 
-    // SDL_FRect getHoldingArea() const
+    // SDL_FRect getHoldingarea() const
     // {
     //     return innerRectangle;
     // }
@@ -282,5 +289,15 @@ public:
     void click() const
     {
         onClick.execute();
+    }
+
+    SDL_FRect getArea() const
+    {
+        return area;
+    }
+
+    std::string getText() const
+    {
+        return text;
     }
 };

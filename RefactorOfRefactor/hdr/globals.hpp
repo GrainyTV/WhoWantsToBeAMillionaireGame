@@ -1,9 +1,7 @@
 #pragma once
 
-#include "SDL3/SDL_render.h"
-#include "SDL3/SDL_video.h"
+#include "SDL3/SDL.h"
 #include "option.hpp"
-#include "textureregion.hpp"
 #include <cstdint>
 
 namespace Globals
@@ -14,9 +12,7 @@ namespace Globals
         int32_t ScreenHeight;
         SDL_Window* Window;
         SDL_Renderer* Renderer;
-        bool FirstInit;
     };
 
-    inline auto Properties = Option<GameProperties>::None();
-    inline TextureRegion BackgroundImage;
+    inline auto Properties = Option::None<GameProperties>();
 }

@@ -1,39 +1,39 @@
 #include "mainmenuscene.hpp"
+#include "SDL3/SDL.h"
+#include "SDL3/SDL_rect.h"
+#include "asset.hpp"
 #include "fontmanager.hpp"
-#include "ingamescene.hpp"
+#include "functionals.hpp"
+#include "invokable.hpp"
+#include "option.hpp"
+#include "textbubble.hpp"
 #include "texture.hpp"
+#include "textureregion.hpp"
+#include "utility.hpp"
 
 using enum Utility::CustomEvents;
-using Globals::GameProperties;
 
-static void initializeLogo(TextureRegion& logo)
+static SDL_FRect initializeLogoArea()
 {
-    const GameProperties properties = Globals::Properties.value();
+    const auto properties = Globals::Properties.value();
     const int32_t screenWidth = properties.ScreenWidth;
     const int32_t screenHeight = properties.ScreenHeight;
 
     const uint32_t halfScreenHeight = screenHeight / 2;
     const float logoSize = halfScreenHeight * 0.9f;
-    
-    texture::queueTextureLoad({
-        .Source = WhereToLoadTextureFrom::FromDisk,
-        .Asset = "assets/textures/logo.png",
-        .Output = &logo,
-        .Filter = SDL_SCALEMODE_LINEAR,
-    });
 
-    logo.Area = Option<SDL_FRect>::Some({
+    return {
         .x = screenWidth / 2.0f - logoSize / 2.0f,
         .y = (halfScreenHeight - logoSize) / 2.0f,
         .w = logoSize,
         .h = logoSize,
-    });
+    };
 }
 
-static void initializeButtons(TextureRegion& logo, std::span<TextBubble> buttons)
+static std::array<TextBubble, 4> initializeButtonAreas(const SDL_FRect logoArea)
 {
-    const size_t buttonCount = buttons.size();
-    const GameProperties properties = Globals::Properties.value();
+    constexpr size_t buttonCount = 4;
+    const auto properties = Globals::Properties.value();
     const int32_t screenHeight = properties.ScreenHeight;
 
     const uint32_t halfScreenHeight = screenHeight / 2;
@@ -42,17 +42,24 @@ static void initializeButtons(TextureRegion& logo, std::span<TextBubble> buttons
     const float totalPaddingSpace = halfScreenHeight - totalItemSpace;
     const float individualPaddingSpace = totalPaddingSpace / (buttonCount + 1);
 
-    const SDL_FRect logoArea = logo.Area.value();
+    const std::vector<SDL_FRect> buttonAreas = 
+        Seq::range<1, 5>()
+        | Seq::map([&](const int32_t index)
+            {
+                return SDL_FRect({
+                    .x = logoArea.x,
+                    .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
+                    .w = logoArea.w,
+                    .h = individualItemSpace,
+                });
+            });
 
-    const std::vector<SDL_FRect> buttonAreas = map(range<1, 5>(), [&](const int32_t& index)
-    {
-        return SDL_FRect({
-            .x = logoArea.x,
-            .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
-            .w = logoArea.w,
-            .h = individualItemSpace,
-        });
-    });
+    return { 
+        TextBubble(buttonAreas[0], "New Game", Invokable([]() {})),
+        TextBubble(buttonAreas[1], "How to Play", Invokable([]() {})),
+        TextBubble(buttonAreas[2], "Settings", Invokable([]() {})),
+        TextBubble(buttonAreas[3], "Quit", Invokable([]() {})),
+    };
 
     // return SDL_FRect({
     //     .x = logoArea.x,
@@ -83,87 +90,112 @@ static void initializeButtons(TextureRegion& logo, std::span<TextBubble> buttons
     //     ++index;
     // }
 
-    buttons[0].Area = buttonAreas[0];
-    buttons[1].Area = buttonAreas[1];
-    buttons[2].Area = buttonAreas[2];
-    buttons[3].Area = buttonAreas[3];
+    // buttons[0].Area = buttonAreas[0];
+    // buttons[1].Area = buttonAreas[1];
+    // buttons[2].Area = buttonAreas[2];
+    // buttons[3].Area = buttonAreas[3];
 
-    buttons[0].init("New Game", []() { Utility::changeSceneTo<InGameScene>(); });
-    buttons[1].init("How to Play", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
-    buttons[2].init("Settings", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
-    buttons[3].init("Quit", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
+    // buttons[0].init("New Game", []() { /*Utility::changeSceneTo<InGameScene>();*/ Utility::requestUserEvent({ .type = EVENT_CHANGE_SCENE }); });
+    // buttons[1].init("How to Play", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
+    // buttons[2].init("Settings", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
+    // buttons[3].init("Quit", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
 }
 
 MainMenuScene::MainMenuScene()
     : sceneLoaded(false)
-    // , logo(initializeLogo())
-    // , buttons({
-    //       { retrievePositionOfButton(1), "New Game", []() { Utility::requestEvent({ .user = { .type = EVENT_CHANGE_SCENE, .code = 2, } }); } },
-    //       { retrievePositionOfButton(2), "How to Play", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); } },
-    //       { retrievePositionOfButton(3), "Settings", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); } },
-    //       { retrievePositionOfButton(4), "Quit", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); } },
-    //   })
-    , selectedButton(NULL)
-    , firstStartSfx(Mix_LoadWAV("assets/audio/main-theme.mp3"))
+    //, logo(Option<SDL_FRect>::Some(initializeLogoArea()))
+    //, buttons()
+    , selectedButton(Option::None<int32_t>())
+    , logoArea(initializeLogoArea())
+    , buttons(initializeButtonAreas(logoArea))
+    //, firstStartSfx(Mix_LoadWAV("assets/audio/main-theme.mp3"))
 {
-    initializeLogo(logo);
-    initializeButtons(logo, buttons);
+    assets | Seq::iter([](const auto& asset) { Asset::queueToLoad(asset); });
+    Asset::beginLoadProcess();
 
-    uint32_t foundFontSize = FontManager::findSuitableFontSize(buttons);
-    ASSERT(foundFontSize > 0, "Could not find valid font size for mainmenu");
+    //initializeLogo(logo);
+    //initializeButtons(logo, buttons);
+
+    //uint32_t foundFontSize = FontManager::findSuitableFontSize(buttons);
+    //ASSERT(foundFontSize > 0, "Could not find valid font size for mainmenu");
     
-    GameProperties properties = Globals::Properties.value();
+    //GameProperties properties = Globals::Properties.value();
 
-    if (properties.FirstInit)
-    {
-        texture::queueTextureLoad({
-            .Source = WhereToLoadTextureFrom::FromDisk,
-            .Asset = "assets/textures/background.png",
-            .Output = &Globals::BackgroundImage,
-            .Filter = SDL_SCALEMODE_LINEAR,
-        });
+    // if (properties.FirstInit)
+    // {
+    //     Texture::queueToLoad({
+    //         .Source = WhereToLoadTextureFrom::FromDisk,
+    //         .Asset = "assets/textures/background.png",
+    //         .Output = &Globals::BackgroundImage,
+    //         .Filter = SDL_SCALEMODE_LINEAR,
+    //     });
 
-        properties.FirstInit = false;
-    }
+    //     properties.FirstInit = false;
+    // }
 
-    forEach(buttons, [](TextBubble& button)
-    {
-        texture::queueTextureLoad({
-            .Source = WhereToLoadTextureFrom::FromText,
-            .Asset = button.Text,
-            .Output = &button.Label,
-            .Filter = SDL_SCALEMODE_LINEAR,
-            .HoldingArea = button.Area,
-        });
-    });
+    // forEach(buttons, [](TextBubble& button)
+    // {
+    //     texture::queueTextureLoad({
+    //         .Source = WhereToLoadTextureFrom::FromText,
+    //         .Asset = button.Text,
+    //         .Output = &button.Label,
+    //         .Filter = SDL_SCALEMODE_LINEAR,
+    //         .HoldingArea = button.Area,
+    //     });
+    // });
 
-    texture::beginTextureLoadProcess();
-    Mix_PlayChannel(0, firstStartSfx, 0);
+    // buttons
+    // | Seq::iter([](TextBubble& button) {
+    //     Texture::queueToLoad({
+    //         .Source = WhereToLoadTextureFrom::FromText,
+    //         .Asset = button.Text,
+    //         .Output = &button.Label,
+    //         .Filter = SDL_SCALEMODE_LINEAR,
+    //         .HoldingArea = button.Area,
+    //     });
+    //   });
+
+    //Texture::beginLoadProcess();
+    //Mix_PlayChannel(0, firstStartSfx, 0);
     Utility::invalidate();
 }
 
 void MainMenuScene::deinit() const
 {
-    Mix_FreeChunk(firstStartSfx);
+    //Mix_FreeChunk(firstStartSfx);
     //SDL_DestroyTexture(backgroundImage.Resource);
-    SDL_DestroyTexture(logo.Resource);
+    //SDL_DestroyTexture(logo.Resource);
     // SDL_DestroyTexture((*buttons[0].getLabel()).Resource);
 }
 
 void MainMenuScene::redraw() const
 {
+    LOG("Redraw called!");
+
     SDL_Renderer* const renderer = Globals::Properties.value().Renderer;
     Utility::changeDrawColorTo(renderer, col::BLACK);
     SDL_RenderClear(renderer);
 
     if (sceneLoaded)
     {
-        Utility::drawTextureRegion(renderer, Globals::BackgroundImage);
-        Utility::drawTextureRegion(renderer, logo);
+        //Utility::drawTextureRegion(renderer, Globals::BackgroundImage);
+        //Utility::drawTextureRegion(renderer, logo);
 
-        forEach(buttons, [](const TextBubble& button) {
-            button.draw();
-        });
+        TextureRegion shit;
+        shit.Area = Option::Some(logoArea);
+        shit.Resource = Asset::getTextureById(Logo);
+
+        TextureRegion shit2;
+        shit2.Resource = Asset::getTextureById(Background);
+
+        Utility::drawTextureRegion(renderer, shit2);
+        Utility::drawTextureRegion(renderer, shit);
+
+        // buttons
+        // | Seq::iter([](const TextBubble& button)
+        //     {
+        //         button.draw();
+        //     });
     }
 
     SDL_RenderPresent(renderer);
@@ -171,31 +203,39 @@ void MainMenuScene::redraw() const
 
 void MainMenuScene::intersects(const SDL_FPoint location)
 {
-    TextBubble* newlySelectedButton = NULL;
+    auto newlySelectedButton = Option::None<int32_t>();
 
-    forEach(buttons, [&](const auto& button, const size_t i)
+    buttons
+    | Seq::iteri([&](const auto& button, const size_t i)
+        {
+            if (button.isInsideItsHitbox(location))
+            {
+                newlySelectedButton = Option::Some((int32_t) i);
+            }
+        });
+
+    if (selectedButton.isSome())
     {
-        if (button.isInsideItsHitbox(location))
-        {
-            newlySelectedButton = &buttons[i];
-        }
-    });
+        const int32_t previousIndex = selectedButton.value();
 
-    if (selectedButton != newlySelectedButton)
+        if (newlySelectedButton.isNone() || (newlySelectedButton.isSome() && newlySelectedButton.value() != previousIndex))
+        {
+            buttons[previousIndex].disableHover();
+            selectedButton = Option::None<int32_t>();
+            Utility::invalidate();
+        }
+    }
+
+    if (newlySelectedButton.isSome())
     {
-        if (selectedButton != NULL)
+        const int32_t newIndex = newlySelectedButton.value();
+        
+        if (selectedButton.isNone() || selectedButton.value() != newIndex)
         {
-            (*selectedButton).disableHover();
+            buttons[newIndex].enableHover();
+            selectedButton = newlySelectedButton;
+            Utility::invalidate();
         }
-
-        selectedButton = newlySelectedButton;
-
-        if (selectedButton != NULL)
-        {
-            (*selectedButton).enableHover();
-        }
-
-        Utility::invalidate();
     }
 }
 
@@ -206,8 +246,9 @@ void MainMenuScene::enable()
 
 void MainMenuScene::clicks()
 {
-    if (selectedButton != NULL)
+    if (selectedButton.isSome())
     {
-        (*selectedButton).click();
+        const int32_t index = selectedButton.value();
+        buttons[index].click();
     }
 }

@@ -1,0 +1,6 @@
+[wrap-file]
+directory = SDL_mixer-4be37aed1a4b76df71a814fbfa8ec9983f3b5508
+source_url = https://github.com/libsdl-org/SDL_mixer/archive/4be37aed1a4b76df71a814fbfa8ec9983f3b5508.tar.gz
+source_filename = SDL_mixer-4be37aed1a4b76df71a814fbfa8ec9983f3b5508.tar.gz
+source_hash = 3e9ccbea62b7ca046c9da4958f691b6f120083f9ee108c43edaea9e49114b886
+patch_directory = sdl3_mixer

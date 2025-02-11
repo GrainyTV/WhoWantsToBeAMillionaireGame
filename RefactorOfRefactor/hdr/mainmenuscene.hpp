@@ -1,18 +1,23 @@
 #pragma once
-#include "SDL3_mixer/SDL_mixer.h"
-#include "iscene.hpp"
+//#include "SDL3_mixer/SDL_mixer.h"
+//#include "iscene.hpp"
 #include "textbubble.hpp"
-#include "textureregion.hpp"
+//#include "textureregion.hpp"
 #include <array>
+#include <cstdint>
+#include "asset.hpp"
 
-class MainMenuScene : public IScene
+class MainMenuScene
 {
+using enum Asset::Identifier;
 private:
     bool sceneLoaded;
-    TextureRegion logo;
+    Option::Option<int32_t> selectedButton;
+    SDL_FRect logoArea;
     std::array<TextBubble, 4> buttons;
-    TextBubble* selectedButton;
-    Mix_Chunk* firstStartSfx;
+   
+    static constexpr Asset::Identifier assets[] = { Logo, Background };
+    //Mix_Chunk* firstStartSfx;
 
 public:
     MainMenuScene();

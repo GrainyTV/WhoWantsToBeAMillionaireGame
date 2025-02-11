@@ -15,11 +15,11 @@ void OpenGL::bindTexture(SDL_Texture* texture)
     const SDL_PropertiesID textureProperties = SDL_GetTextureProperties(texture);
     DEFER(SDL_DestroyProperties, textureProperties);
 
-    const auto textureId = Result<int32_t>(
+    const auto textureId = Result(
         SDL_GetNumberProperty(textureProperties, SDL_PROP_TEXTURE_OPENGL_TEXTURE_NUMBER, 0),
         "Failed to read ID of texture",
-        1,
-        INT_MAX);
+        (int64_t) 1,
+        LONG_MAX);
 
     if (textureId.isOk())
     {
@@ -35,7 +35,6 @@ void OpenGL::applyTextureFiltering(SDL_ScaleMode filter)
 
     switch (filter)
     {
-        case SDL_SCALEMODE_BEST:
         case SDL_SCALEMODE_LINEAR:
             glGenerateMipmap(GL_TEXTURE_2D);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);

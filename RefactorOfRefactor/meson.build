@@ -1,13 +1,41 @@
-project('Who Wants to Be a Millionaire?', 'cpp',
-    default_options: ['cpp_std=c++23', 'warning_level=3', 'werror=true'],
-    version: '1.0'
+project(
+    'Who Wants to Be a Millionaire?',
+    'cpp',
+    default_options: {
+        'cpp_std': 'c++20',
+        'buildtype': 'debug',
+        'prefix': meson.current_build_dir() / 'bin',
+        'libdir': 'lib64'
+    },
+    version: '1.0',
+    meson_version: '>=1.3.0'
 )
+
+build_mode = get_option('buildtype')
+subdir('cmake' / 'sdl3')
+
+dependencies = [
+    dependency('svl'),
+    dependency('sdl3'),
+    dependency('sdl3_mixer'),
+    dependency('sdl3_ttf'),
+    dependency('sdl3_image')
+]
+
+if build_mode == 'debug'
+    subdir('cmake' / 'cpptrace')
+
+    dependencies += [
+        dependency('cpptrace'),
+        dependency('fmt')
+    ]
+endif
 
 sources = files(
     'src/utility.cpp',
     'src/fontmanager.cpp',
     'src/opengl.cpp',
-    'src/texture.cpp',
+    'src/asset.cpp',
     'src/ingamescene.cpp',
     'src/mainmenuscene.cpp',
     'src/event.cpp',
@@ -15,64 +43,26 @@ sources = files(
     'src/main.cpp'
 )
 
-cxx = meson.get_compiler('cpp')
-relative_libdir = 'lib'
-absolute_libdir = meson.current_source_dir() / relative_libdir
+output_prefix = get_option('prefix')
 
-needed_libraries = [
-    cxx.find_library('SDL3',
-        dirs: [absolute_libdir],
-    ),
-    cxx.find_library('SDL3_image',
-        dirs: [absolute_libdir],
-    ),
-    cxx.find_library('SDL3_mixer',
-        dirs: [absolute_libdir],
-    ),
-    cxx.find_library('SDL3_ttf',
-        dirs: [absolute_libdir],
-    ),
-    cxx.find_library('cpptrace',
-        dirs: [absolute_libdir],
-        static: true
-    ),
-    cxx.find_library('dwarf',
-        dirs: [absolute_libdir],
-        static: true
-    ),
-    cxx.find_library('zstd',
-        dirs: [absolute_libdir],
-        static: true
-    ),
-    cxx.find_library('z'),
-    cxx.find_library('dl')
-]
-
-#libcpp_experimental = cxx.find_library('stdc++exp',
-#    static: true
-#)
-
-output_prefix = meson.current_build_dir() / 'bin'
-
-executable('a.out', sources,
-    include_directories: ['hdr'],
-    dependencies: [needed_libraries],
+executable(
+    meson.project_name(),
+    sources,
+    include_directories: 'hdr',
+    dependencies: dependencies,
     cpp_args: [
         '-Wno-missing-field-initializers',
-        '-Wno-return-type',
-        #'-fmax-errors=5',
-        '-ferror-limit=1',
-        '-DCPPTRACE_STATIC_DEFINE'
+        '-Wno-return-type'
     ],
+    override_options: {
+        'warning_level': '3',
+        'werror': true,
+        'b_asneeded': false,
+        'b_ndebug': 'if-release'
+    },
     install: true,
     install_dir: output_prefix,
-    install_rpath: relative_libdir
-)
-
-install_subdir(relative_libdir,
-    install_dir: output_prefix,
-    follow_symlinks: false,
-    exclude_files: ['dependencies.json']
+    install_rpath: get_option('libdir')
 )
 
 install_subdir('assets',

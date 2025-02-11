@@ -1,10 +1,8 @@
 #include "utility.hpp"
 #include "debug.hpp"
-#include "functionals.hpp"
+#include "result.hpp"
 
-namespace stdr = std::ranges;
 using enum Utility::CustomEvents;
-using namespace Functionals;
 
 Vec2 Utility::fPointToSvl(const SDL_FPoint fPoint)
 {
@@ -21,8 +19,8 @@ SDL_FPoint Utility::svlToFpoint(const Vec2 svlVec2)
 
 void Utility::changeDrawColorTo(SDL_Renderer* renderer, const SDL_Color& color)
 {
-    const auto success = SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-    ASSERT(success == 0, "Failed to change draw color ({})", SDL_GetError());
+    const auto colorChange = SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+    ASSERT(colorChange, "Failed to change draw color ({})", SDL_GetError());
 }
 
 const SDL_DisplayMode* Utility::displayInfo(SDL_Window* window)
@@ -50,22 +48,13 @@ const SDL_DisplayMode* Utility::displayInfo(SDL_Window* window)
 
 void Utility::drawTextureRegion(SDL_Renderer* renderer, const TextureRegion& textureRegion)
 {
-    if (textureRegion.Resource != NULL)
+    if (textureRegion.Resource != nullptr)
     {
-        // if (textureRegion.Area.isSome())
-        // {
-        //     const auto textureFiltering = SDL_SetTextureScaleMode(textureRegion.Resource, textureRegion.Area.value().x == 0 ? SDL_SCALEMODE_NEAREST : SDL_SCALEMODE_LINEAR);
-        //     ASSERT(textureFiltering == 0, "Failed to set texture filtering mode ({})", SDL_GetError());
-        // }
-
-        const auto drawTexture = SDL_RenderTexture(
-            renderer,
-            textureRegion.Resource,
-            nullptr,
-            textureRegion.Area.isSome()
-                ? &textureRegion.Area.value()
-                : nullptr);
-        ASSERT(drawTexture == 0, "Failed to draw texture onto the screen ({})", SDL_GetError());
+        const auto drawTexture = Result(
+            SDL_RenderTexture(renderer, textureRegion.Resource, nullptr, textureRegion.Area.isSome() ? &textureRegion.Area.value() : nullptr),
+            "Failed to draw texture onto the screen"
+        );
+        ASSERT(drawTexture.isOk(), "{}", drawTexture.cause());
     }
 }
 
@@ -77,8 +66,8 @@ void Utility::drawRectangle(SDL_Renderer* renderer, const SDL_FRect* rectangle)
 
 void Utility::drawVertices(SDL_Renderer* renderer, std::span<const SDL_Vertex> vertices)
 {
-    const auto drawVertices = SDL_RenderGeometry(renderer, NULL, vertices.data(), vertices.size(), NULL, 0);
-    ASSERT(drawVertices == 0, "Failed to draw vertices onto the screen ({})", SDL_GetError());
+    const auto drawVertices = SDL_RenderGeometry(renderer, nullptr, vertices.data(), vertices.size(), nullptr, 0);
+    ASSERT(drawVertices, "Failed to draw vertices onto the screen ({})", SDL_GetError());
 }
 
 float Utility::areaOfTriangleByItsVertices(const SDL_FPoint& a, const SDL_FPoint& b, const SDL_FPoint& c)

@@ -1,17 +1,60 @@
 #pragma once
-#include "SDL3/SDL_rect.h"
+#include "SDL3/SDL.h"
+#include <variant>
 
-struct IScene
+enum class SceneOperation
 {
-    virtual ~IScene() = default;
+    Deinitialize,
+    Click,
+    Hover,
+    Redraw,
+    Enable
+};
 
-    virtual void deinit() const = 0;
+class IScene
+{
+private:
+    SceneOperation selected;
+    SDL_FPoint cursor;
 
-    virtual void redraw() const = 0;
+public:
+    IScene(const SceneOperation op)
+        : selected(op)
+    {}
 
-    virtual void intersects(const SDL_FPoint) = 0;
+    IScene(const SceneOperation op, const SDL_FPoint pos)
+        : selected(op)
+        , cursor(pos)
+    {}
 
-    virtual void clicks() = 0;
+    void operator() (std::monostate) {}
 
-    virtual void enable() = 0;
+    template<typename Scene>
+    void operator() (Scene& currentScene)
+    {
+        using enum SceneOperation;
+        
+        switch (selected)
+        {
+            case Deinitialize:
+                currentScene.deinit();
+                break;
+            
+            case Click:
+                currentScene.clicks();
+                break;
+            
+            case Hover:
+                currentScene.intersects(cursor);
+                break;
+            
+            case Redraw:
+                currentScene.redraw();
+                break;
+            
+            case Enable:
+                currentScene.enable();
+                break;
+        }
+    }
 };

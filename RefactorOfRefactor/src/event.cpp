@@ -1,87 +1,93 @@
 #include "event.hpp"
-
-#include "SDL3/SDL_events.h"
 #include "debug.hpp"
 #include "defer.hpp"
 #include <functional>
 #include <unordered_map>
-#include <memory>
 #include "fontmanager.hpp"
+#include "ingamescene.hpp"
+#include "mainmenuscene.hpp"
 #include "utility.hpp"
-#include "scene.hpp"
 #include "globals.hpp"
+#include "iscene.hpp"
 
-using enum Utility::CustomEvents;
-using Globals::GameProperties;
-
-static SDL_Event presentEvent;
-static bool continueProcessingEvents = true;
-static std::unique_ptr<IScene> currentScene;
-static std::unordered_map<uint32_t, std::function<void()>> eventCalls;
-
-static bool isValidEvent()
+namespace Event
 {
-    return eventCalls.contains(presentEvent.type) ? true : false;
-}
-
-static void executeCallback()
-{
-    const auto callback = static_cast<Invokable*>(presentEvent.user.data1);
-    ASSERT(callback != nullptr, "Failed to retrieve callback on UI thread");
-    DEFER(Utility::free<Invokable>, callback);
-
-    (*callback).execute();
-}
-
-static void changeSceneTo()
-{
-    const auto newScene = static_cast<IScene*>(presentEvent.user.data1);
-    currentScene.reset(newScene);
-}
-
-static void subscribeToEvents()
-{
-    eventCalls.emplace(SDL_EVENT_QUIT, []() { continueProcessingEvents = false; (*currentScene).deinit(); });
-    eventCalls.emplace(SDL_EVENT_KEY_DOWN, []() {});
-    eventCalls.emplace(SDL_EVENT_MOUSE_BUTTON_DOWN, []() { (*currentScene).clicks(); });
-    eventCalls.emplace(SDL_EVENT_MOUSE_MOTION, []() { (*currentScene).intersects({ presentEvent.motion.x, presentEvent.motion.y }); });
-    eventCalls.emplace(EVENT_INVALIDATE, []() { (*currentScene).redraw(); });
-    eventCalls.emplace(EVENT_ENABLE_SCENE, []() { (*currentScene).enable(); });
-    eventCalls.emplace(EVENT_INVOKE_ON_UI_THREAD, executeCallback);
-    eventCalls.emplace(EVENT_CHANGE_SCENE, changeSceneTo);
-}
-
-void Event::processIncomingEvents()
-{
-    const auto detectedEvents = SDL_WaitEvent(&presentEvent);
-    ASSERT(detectedEvents, "Failed to load event from queue ({})", SDL_GetError());
-
-    if (isValidEvent())
+    namespace
     {
-        // if (presentEvent.type != 1024)
+        using enum Utility::CustomEvents;
+        using enum SceneOperation;
+        using ExclusiveScene = std::variant<std::monostate, MainMenuScene, InGameScene>;
+
+        SDL_Event presentEvent;
+        ExclusiveScene currentScene;
+        bool continueRunning = true;
+
+        void executeCallback()
+        {
+            const auto callback = static_cast<Invokable*>(presentEvent.user.data1);
+            ASSERT(callback != nullptr, "Failed to retrieve callback on UI thread");
+            DEFER(Utility::free<Invokable>, callback);
+
+            (*callback).execute();
+        }
+
+        // void changeSceneTo()
         // {
-        //     LOG("Valid event ({})", presentEvent.type);
+        //     const auto newScene = static_cast<IScene*>(presentEvent.user.data1);
+        //     currentScene.reset(newScene);
         // }
-        
-        eventCalls[presentEvent.type]();
+
+        // void changeSceneToMainMenu()
+        // {
+        //     currentScene.emplace<MainMenuScene>();
+        // }
+
+        void changeSceneToInGame()
+        {
+            currentScene.emplace<InGameScene>();
+        }
+
+        // void changeSceneToSettings()
+        // {
+        //     currentScene.emplace<MainMenuScene>();
+        // }
+
+        std::unordered_map<uint32_t, std::function<void()>> eventCalls =
+        {
+            { SDL_EVENT_QUIT, []() { continueRunning = false; std::visit(IScene(Deinitialize), currentScene); }},
+            { SDL_EVENT_MOUSE_BUTTON_DOWN, []() { std::visit(IScene(Click), currentScene); }},
+            { SDL_EVENT_MOUSE_MOTION, []() { std::visit(IScene(Hover, { presentEvent.motion.x, presentEvent.motion.y }), currentScene); }},
+            { EVENT_INVALIDATE, []() { std::visit(IScene(Redraw), currentScene); }},
+            { EVENT_ENABLE_SCENE, []() { std::visit(IScene(Enable), currentScene); }},
+            { EVENT_INVOKE_ON_UI_THREAD, executeCallback },
+            { EVENT_CHANGE_SCENE, changeSceneToInGame }
+        };
     }
 
-    if (continueProcessingEvents)
+    void processIncomingEvents()
     {
-        __TAILREC__
-        return processIncomingEvents();
+        while (continueRunning)
+        {
+            const auto detectedEvent = SDL_WaitEvent(&presentEvent);
+            ASSERT(detectedEvent, "Failed to load event from queue ({})", SDL_GetError());
+
+            if (eventCalls.contains(presentEvent.type))
+            {
+                eventCalls[presentEvent.type]();
+            }
+        }
+    }
+
+    void applyDefaultSettings()
+    {
+        const auto properties = Globals::Properties.value();
+        SDL_SetWindowSize(properties.Window, properties.ScreenWidth, properties.ScreenHeight);
+        SDL_SetWindowFullscreen(properties.Window, true);
+
+        FontManager::init();
+
+        currentScene.emplace<MainMenuScene>();
     }
 }
 
-void Event::applyDefaultSettings()
-{
-    const GameProperties properties = Globals::Properties.value();
-    SDL_SetWindowSize(properties.Window, properties.ScreenWidth, properties.ScreenHeight);
-    SDL_SetWindowFullscreen(properties.Window, true);
 
-    subscribeToEvents();
-
-    FontManager::init();
-
-    currentScene = std::make_unique<MainMenuScene>();
-}

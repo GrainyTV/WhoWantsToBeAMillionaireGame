@@ -3,7 +3,7 @@
 
 namespace OpenGL
 {
-    void bindTexture(SDL_Texture* texture);
+    void bindTexture(SDL_Texture*);
 
-    void applyTextureFiltering(SDL_ScaleMode filter);
+    void applyTextureFiltering(SDL_ScaleMode);
 }

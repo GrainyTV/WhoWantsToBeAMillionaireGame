@@ -1,0 +1,6 @@
+[wrap-file]
+directory = svl-1.5
+source_url = https://www.cs.cmu.edu/%7Eajw/public/dist/svl-1.5.tar.gz
+source_filename = svl-1.5.tar.gz
+source_hash = f31bdbb881feb4853b080b717576d4e2312b59b2dd8a1855cc006252d2969c7a
+patch_directory = svl

@@ -6,10 +6,15 @@
 struct TextureRegion
 {
     SDL_Texture* Resource;
-    Option<SDL_FRect> Area;
+    Option::Option<SDL_FRect> Area;
 
     TextureRegion()
         : Resource(nullptr)
-        , Area(Option<SDL_FRect>::None())
+        , Area(Option::None<SDL_FRect>())
+    {}
+
+    TextureRegion(Option::Option<SDL_FRect>&& area)
+        : Resource(nullptr)
+        , Area(area)
     {}
 };

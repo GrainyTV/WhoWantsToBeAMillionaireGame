@@ -6,13 +6,10 @@
 #include "result.hpp"
 #include "SDL3_ttf/SDL_ttf.h"
 #include "textbubble.hpp"
-#include "functionals.hpp"
-
-using namespace Functionals;
 
 static constexpr const char* DEFAULT_FONT = "assets/fonts/ArgentumSans-Bold.otf";
 static constexpr uint32_t DEFAULT_FONT_SIZE = 64;
-static auto fontResource = Option<TTF_Font*>::None();
+static auto fontResource = Option::None<TTF_Font*>();
 
 template<size_t N>
 static uint32_t findSuitableFontSize(const std::array<TextBubble, N>& sceneTextData, const uint32_t size)
@@ -20,17 +17,19 @@ static uint32_t findSuitableFontSize(const std::array<TextBubble, N>& sceneTextD
     TTF_Font* const font = fontResource.value();
     TTF_SetFontSize(font, size);
 
-    std::span<const TextBubble> allFits = filter(sceneTextData, [&](const TextBubble& data)
-    {
-        const std::string& text = data.Text;
-        const SDL_FRect area = data.Area;
-        
-        int32_t width = 0;
-        int32_t height = 0;
-        
-        TTF_SizeUTF8(font, text.c_str(), &width, &height);
-        return width < 0.75f * area.w && height < 0.5f * area.h;
-    });
+    std::span<const TextBubble> allFits = 
+        sceneTextData
+        | Seq::filter([&](const TextBubble& data)
+            {
+                const std::string& text = data.getText();
+                const SDL_FRect area = data.getArea();
+                
+                int32_t width = 0;
+                int32_t height = 0;
+                
+                TTF_GetStringSize(font, text.c_str(), text.size(), &width, &height);
+                return width < 0.75f * area.w && height < 0.5f * area.h;
+            });
 
     if (allFits.size() == sceneTextData.size())
     {
@@ -43,13 +42,13 @@ static uint32_t findSuitableFontSize(const std::array<TextBubble, N>& sceneTextD
 
 void FontManager::init()
 {
-    const auto loadedFont = Result<TTF_Font*>(
+    const auto loadedFont = Result(
         TTF_OpenFont(DEFAULT_FONT, DEFAULT_FONT_SIZE),
         "Failed to load the game's font"
     );
-    loadedFont.assertOk();
+    ASSERT(loadedFont.isOk(), "{}", loadedFont.cause());
 
-    fontResource = Option<TTF_Font*>::Some(loadedFont.value());
+    fontResource = Option::Some(loadedFont.value());
 }
 
 void FontManager::deinit()
@@ -59,7 +58,7 @@ void FontManager::deinit()
 
 SDL_Surface* FontManager::generateNew(std::string_view text)
 {
-    return TTF_RenderUTF8_Blended(fontResource.value(), text.data(), col::WHITE);
+    return TTF_RenderText_Blended(fontResource.value(), text.data(), text.size(), col::WHITE);
 }
 
 // uint32_t FontManager::findSuitableFontSize(const std::vector<TextBubble>& sceneTextData)

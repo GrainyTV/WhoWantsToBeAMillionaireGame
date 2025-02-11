@@ -1,8 +1,8 @@
 #pragma once
-#include "SDL3/SDL_rect.h"
-#include "iscene.hpp"
+#include "SDL3/SDL.h"
+//#include "iscene.hpp"
 
-struct InGameScene : public IScene
+struct InGameScene //: public IScene
 {
     InGameScene();
 

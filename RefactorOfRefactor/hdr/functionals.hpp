@@ -1,89 +1,106 @@
 #pragma once
-#include <ranges>
 #include <numeric>
 #include <type_traits>
 #include <algorithm>
 #include <vector>
 
-namespace stdr = std::ranges;
-
 template<typename T>
-concept IEnumerable = stdr::range<T>;
+concept IEnumerable = requires (const T& seq)
+{
+    std::begin(seq);
+    std::end(seq);
+};
 
 template<IEnumerable T>
 using ItemOf = typename T::value_type;
 
-template<typename Func, typename Item>
-concept ForEachFunction = 
-    (std::is_invocable_v<Func, const Item&> &&
-     std::is_same_v<std::invoke_result_t<Func, const Item&>, void>) ||
-    (std::is_invocable_v<Func, Item&> &&
-     std::is_same_v<std::invoke_result_t<Func, Item&>, void>);
-
-template<typename Func, typename Item>
-concept ForEachFunctionIndex =
-    (std::is_invocable_v<Func, const Item&, const size_t> &&
-     std::is_same_v<std::invoke_result_t<Func, const Item&, const size_t>, void>) ||
-    (std::is_invocable_v<Func, Item&, const size_t> &&
-     std::is_same_v<std::invoke_result_t<Func, Item&, const size_t>, void>);
-
-template<typename Func, typename Item>
-concept FilterFunction =
-    std::is_invocable_v<Func, Item> &&
-    std::is_same_v<std::invoke_result_t<Func, Item>, bool>;
-
-template<typename Func, typename Item>
-concept MapFunction = std::is_invocable_v<Func, Item>;
-
-namespace Functionals
+template<IEnumerable T, typename Func>
+constexpr auto operator|(T&& input, Func&& func)
 {
-    template<IEnumerable T, ForEachFunction<ItemOf<T>> Func>
-    void forEach(T& container, Func&& action)
-    {
-        std::for_each(std::begin(container), std::end(container), action);
-    }
+    return func(std::forward<T>(input));
+}
 
-    template<IEnumerable T, ForEachFunctionIndex<ItemOf<T>> Func>
-    void forEach(T& container, Func&& action)
+namespace Seq
+{
+    template<typename Action>
+    auto iter(Action act)
     {
-        size_t index = 0;     
-        
-        std::for_each(std::begin(container), std::end(container), [&](ItemOf<T>& item)
+        return [act](auto& container)
         {
-            action(item, index);
-            ++index;
-        });
+            for (auto& item : container)
+            {
+                act(item);
+            }
+        };
     }
 
-    template<IEnumerable T, FilterFunction<ItemOf<T>> Func>
-    auto filter(const T& container, Func&& predicate)
+    template<typename Action>
+    auto iteri(Action act)
     {
-        std::vector<ItemOf<T>> filteredItems;
-        filteredItems.reserve(container.size());
+        return [act](auto& container)
+        {
+            size_t i = 0;
 
-        std::copy_if(
-            container.cbegin(),
-            container.cend(),
-            std::back_inserter(filteredItems),
-            predicate);
-        
-        return filteredItems;
+            for (auto& item : container)
+            {
+                act(item, i);
+                ++i;
+            }
+        };
     }
 
-    template<IEnumerable T, MapFunction<ItemOf<T>> Func>
-    auto map(const T& container, Func&& transform)
+    template<typename Predicate>
+    auto filter(Predicate pred)
     {
-        using ResultType = std::invoke_result_t<Func, ItemOf<T>>;
-        std::vector<ResultType> mappedItems;
-        mappedItems.reserve(container.size());
-        
-        std::transform(
-            container.cbegin(),
-            container.cend(),
-            std::back_inserter(mappedItems),
-            transform);
+        return [pred](const auto& container)
+        {
+            using ResultType = ItemOf<std::decay_t<decltype(container)>>;
+            std::vector<ResultType> result;
+            
+            for (const auto& item : container)
+            {
+                if (pred(item))
+                {
+                    result.push_back(item);
+                }
+            }
+            
+            return result;
+        };
+    }
 
-        return mappedItems;
+    template<typename Transform>
+    auto map(Transform transform)
+    {
+        return [transform](const auto& container)
+        {
+            using ItemType = ItemOf<std::decay_t<decltype(container)>>;
+            using ResultType = std::invoke_result_t<Transform, ItemType>;
+            std::vector<ResultType> result;
+            
+            for (const auto& item : container)
+            {
+                result.push_back(transform(item));
+            }
+            
+            return result;
+        };
+    }
+
+    template<IEnumerable T>
+    auto sum() 
+    {
+        return [](const T& container)
+        {
+            ItemOf<T> total = 0;
+            
+            for (const auto& item : container)
+            {
+                total += item;
+            }
+            
+            return total;
+        };
     }
 
     template<int32_t inclusiveMin, int32_t exclusiveMax>
@@ -94,83 +111,4 @@ namespace Functionals
         std::iota(elements.begin(), elements.end(), inclusiveMin);
         return elements;
     }
-
-    // template<typename T>
-    // using ItemOf = typename std::iterator_traits<decltype(stdr::begin(std::declval<T&>()))>::value_type;
-
-    // template<typename Func, typename T>
-    // concept UnaryVoidFunction = std::invocable<Func, T, size_t> && std::is_void_v<std::invoke_result_t<Func, T, size_t>>;
-
-    // template<typename Func, typename T>
-    // concept UnaryBooleanFunction = std::invocable<Func, T> && std::is_same_v<std::invoke_result_t<Func, T>, bool>;
-
-    // template<typename Func, typename T, typename U, typename Return>
-    // concept BinaryFunction = std::invocable<Func, T, U> && std::is_same_v<std::invoke_result_t<Func, T, U>, Return>;
-
-    // template<typename T>
-    // concept IEnumerable = requires(const T& item)
-    // {
-    //     stdr::begin(item);
-    //     stdr::end(item);
-    // };
-
-    // template<typename Container, typename Func>
-    // requires IEnumerable<Container> && UnaryVoidFunction<Func, ItemOf<Container>>
-    // void forEach(const Container& items, Func&& action)
-    // {
-    //     size_t index = 0;
-
-    //     for (const auto& item : items)
-    //     {
-    //         action(item, index);
-    //         ++index;
-    //     }
-    // }
-
-    // template<typename Container, typename Func>
-    // requires IEnumerable<Container> && UnaryBooleanFunction<Func, ItemOf<Container>>
-    // auto filter(const Container& items, Func&& action)
-    // {
-    //     std::vector<ItemOf<Container>> filteredItems;
-
-    //     forEach(items, [&](const auto& item, size_t /*i*/)
-    //     {
-    //         if (action(item))
-    //         {
-    //             filteredItems.push_back(item);
-    //         }
-    //     });
-
-    //     return filteredItems;
-    // }
-
-    // template<typename Container, typename Func>
-    // requires IEnumerable<Container>
-    // auto map(const Container& items, Func&& action)
-    // {
-    //     using OutputValueType = std::invoke_result_t<Func, ItemOf<Container>>;
-    //     std::vector<OutputValueType> mappedItems;
-    //     mappedItems.reserve(std::distance(stdr::begin(items), stdr::end(items)));
-
-    //     forEach(items, [&](const auto& item, size_t /*i*/)
-    //     {
-    //         mappedItems.push_back(action(item));
-    //     });
-
-    //     return mappedItems;
-    // }
-
-    // template<typename Container, typename Func, typename T>
-    // requires IEnumerable<Container> && BinaryFunction<Func, T, ItemOf<Container>, T>
-    // auto reduce(const Container& items, const T initial, Func&& action)
-    // {
-    //     T result = initial;
-
-    //     forEach(items, [&](const auto& item, size_t /*i*/)
-    //     {
-    //         result = action(result, item);
-    //     });
-
-    //     return result;
-    // }
 }
