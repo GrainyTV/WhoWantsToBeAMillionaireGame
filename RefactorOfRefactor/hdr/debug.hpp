@@ -1,19 +1,19 @@
 #pragma once
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #ifndef NDEBUG
     #include "cpptrace/cpptrace.hpp"
     #include "fmt/base.h"
     #include "fmt/format.h"
 
-    #define ASSERT(expression, ...)                                                  \
-    {                                                                                \
-        if ((expression) == false)                                                   \
-        {                                                                            \
-            fmt::println(stderr, "Assertion failed: {}", fmt::format(__VA_ARGS__));  \
-            fmt::println(stderr, "{}", cpptrace::stacktrace::current().to_string()); \
-            std::abort();                                                            \
-        }                                                                            \
+    #define ASSERT(expression, ...)                                                 \
+    {                                                                               \
+        if ((expression) == false)                                                  \
+        {                                                                           \
+            fmt::println(stderr, "Assertion failed: {}", fmt::format(__VA_ARGS__)); \
+            cpptrace::generate_trace().print_with_snippets();                       \
+            std::abort();                                                           \
+        }                                                                           \
     }
 
     #define LOG(format, ...)                                     \
@@ -26,7 +26,7 @@
     #define LOG(format, ...)
 
 #endif
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

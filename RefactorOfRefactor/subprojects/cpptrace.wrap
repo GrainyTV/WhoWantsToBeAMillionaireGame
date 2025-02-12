@@ -3,3 +3,4 @@ directory = cpptrace-0.7.5
 source_url = https://github.com/jeremy-rifkin/cpptrace/archive/refs/tags/v0.7.5.tar.gz
 source_filename = cpptrace-v0.7.5.tar.gz
 source_hash = 7df0cae3d7da9be2dc82616292cc86a4a08a8209898716231aef80477a8ca35d
+patch_directory = cpptrace

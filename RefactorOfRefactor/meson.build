@@ -11,7 +11,6 @@ project(
     meson_version: '>=1.3.0'
 )
 
-build_mode = get_option('buildtype')
 subdir('cmake' / 'sdl3')
 
 dependencies = [
@@ -22,9 +21,7 @@ dependencies = [
     dependency('sdl3_ttf')
 ]
 
-if build_mode == 'debug'
-    subdir('cmake' / 'cpptrace')
-
+if get_option('buildtype') == 'debug'
     dependencies += [
         dependency('cpptrace'),
         dependency('fmt')

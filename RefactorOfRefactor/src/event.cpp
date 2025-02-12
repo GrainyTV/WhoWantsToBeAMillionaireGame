@@ -69,7 +69,7 @@ namespace Event
         while (continueRunning)
         {
             const auto detectedEvent = SDL_WaitEvent(&presentEvent);
-            ASSERT(detectedEvent, "Failed to load event from queue ({})", SDL_GetError());
+            ASSERT(detectedEvent == false, "Failed to load event from queue ({})", SDL_GetError());
 
             if (eventCalls.contains(presentEvent.type))
             {
