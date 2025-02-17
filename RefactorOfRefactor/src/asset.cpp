@@ -1,14 +1,12 @@
 #include "asset.hpp"
-#include "SDL3/SDL_stdinc.h"
-#include "SDL3/SDL_surface.h"
 #include "SDL3_image/SDL_image.h"
+#include "countdownevent.hpp"
 #include "debug.hpp"
 #include "defer.hpp"
 #include "functionals.hpp"
 #include "globals.hpp"
 #include "opengl.hpp"
 #include "result.hpp"
-#include "countdownevent.hpp"
 #include "utility.hpp"
 #include <string_view>
 #include <thread>
@@ -19,7 +17,7 @@ namespace Asset
 {
     namespace
     {
-        enum class AssetType
+        enum class AssetType : std::uint8_t
         {
             Texture,
             Sfx,
@@ -112,7 +110,7 @@ namespace Asset
     void queueToLoad(const Identifier id)
     {
         ASSERT(assetDescriptor.contains(id), "Asset Descriptor is missing provided indentifier {}", static_cast<int32_t>(id));
-        neededEntries.emplace_back(std::make_pair(id, assetDescriptor[id]));
+        neededEntries.emplace_back(id, assetDescriptor[id]);
     }
 
     void beginLoadProcess()

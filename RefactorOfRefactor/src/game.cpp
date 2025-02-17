@@ -5,7 +5,7 @@
 #include "debug.hpp"
 #include "event.hpp"
 #include "globals.hpp"
-#include "option.hpp"
+#include "optionwrap.hpp"
 #include "result.hpp"
 #include "utility.hpp"
 #include <cstdint>
@@ -20,7 +20,7 @@ void Game::init()
     //const auto sdlImageInit = Result<int32_t>(IMG_Init(IMG_INIT_PNG), "Failed to initialize SDL_image", IMG_INIT_PNG);
     //ASSERT(sdlImageInit.isOk(), "{}", sdlImageInit.cause());
 
-    const auto sdlAudioInit = Result(Mix_Init(MIX_INIT_MP3), "Failed to initialize SDL_mixer", (uint32_t) MIX_INIT_MP3);
+    const auto sdlAudioInit = Result(Mix_Init(MIX_INIT_MP3), "Failed to initialize SDL_mixer", static_cast<uint32_t>(MIX_INIT_MP3));
     ASSERT(sdlAudioInit.isOk(), "{}", sdlAudioInit.cause());
 
     const auto sdlTextInit = Result(TTF_Init(), "Failed to initialize SDL_ttf");

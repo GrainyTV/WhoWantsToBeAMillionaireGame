@@ -1,17 +1,18 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include <cstdint>
 
 namespace Asset
 {
-    enum class Identifier
+    enum class Identifier : std::uint8_t
     {
         Logo,
         Background,
     };
 
-    void queueToLoad(const Identifier);
+    void queueToLoad(Identifier);
 
     void beginLoadProcess();
 
-    SDL_Texture* getTextureById(const Identifier);
+    SDL_Texture* getTextureById(Identifier);
 }

@@ -12,7 +12,7 @@ private:
 
 public:
     template<typename Func, typename... Args>
-    Defer(Func&& function, Args&&... arguments)
+    explicit Defer(Func&& function, Args&&... arguments)
         : deferredAction(std::forward<Func>(function), std::forward<Args>(arguments)...)
     {}
 

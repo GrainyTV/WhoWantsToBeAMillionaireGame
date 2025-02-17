@@ -1,12 +1,9 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include "debug.hpp"
 #include "svl/SVL.h"
 #include "textureregion.hpp"
-#include <regex>
 #include <span>
-#include "debug.hpp"
-
-using StringMatch = std::smatch;
 
 namespace Utility
 {
@@ -25,8 +22,6 @@ namespace Utility
     void changeDrawColorTo(SDL_Renderer* renderer, const SDL_Color& color);
 
     const SDL_DisplayMode* displayInfo(SDL_Window* window);
-
-    bool regexSearch(const std::string& input, std::vector<StringMatch>& allMatches, const std::regex& regexToUse);
 
     void drawTextureRegion(SDL_Renderer* renderer, const TextureRegion& textureRegion);
 

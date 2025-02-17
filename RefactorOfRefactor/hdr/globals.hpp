@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SDL3/SDL.h"
-#include "option.hpp"
+#include "optionwrap.hpp"
 #include <cstdint>
 
 namespace Globals

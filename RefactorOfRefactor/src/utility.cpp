@@ -6,15 +6,12 @@ using enum Utility::CustomEvents;
 
 Vec2 Utility::fPointToSvl(const SDL_FPoint fPoint)
 {
-    return Vec2(fPoint.x, fPoint.y);
+    return { fPoint.x, fPoint.y };
 }
 
 SDL_FPoint Utility::svlToFpoint(const Vec2 svlVec2)
 {
-    return SDL_FPoint({
-        .x = svlVec2[0],
-        .y = svlVec2[1],
-    });
+    return { svlVec2[0], svlVec2[1] };
 }
 
 void Utility::changeDrawColorTo(SDL_Renderer* renderer, const SDL_Color& color)
@@ -29,22 +26,10 @@ const SDL_DisplayMode* Utility::displayInfo(SDL_Window* window)
     ASSERT(displayId > 0, "Failed to retrieve monitor ID of the window ({})", SDL_GetError());
 
     const SDL_DisplayMode* displayInfo = SDL_GetCurrentDisplayMode(displayId);
-    ASSERT(displayInfo != NULL, "Failed to retrieve info from monitor[{}] ({})", displayId, SDL_GetError());
+    ASSERT(displayInfo != nullptr, "Failed to retrieve info from monitor[{}] ({})", displayId, SDL_GetError());
 
     return displayInfo;
 }
-
-// bool Utility::regexSearch(const std::string& input, std::vector<StringMatch>& allMatches, const std::regex& regexToUse)
-// {
-//     const auto begin = std::sregex_iterator(input.begin(), input.end(), regexToUse);
-//     const auto end = std::sregex_iterator();
-
-//     forEach(stdr::subrange(begin, end), [&](const auto& match, size_t /*i*/) {
-//         allMatches.push_back(match);
-//     });
-
-//     return allMatches.empty() ? false : true;
-// }
 
 void Utility::drawTextureRegion(SDL_Renderer* renderer, const TextureRegion& textureRegion)
 {
@@ -70,9 +55,9 @@ void Utility::drawVertices(SDL_Renderer* renderer, std::span<const SDL_Vertex> v
     ASSERT(drawVertices, "Failed to draw vertices onto the screen ({})", SDL_GetError());
 }
 
-float Utility::areaOfTriangleByItsVertices(const SDL_FPoint& a, const SDL_FPoint& b, const SDL_FPoint& c)
+float Utility::areaOfTriangleByItsVertices(const SDL_FPoint& vertA, const SDL_FPoint& vertB, const SDL_FPoint& vertC)
 {
-    return 0.5f * std::abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y));
+    return 0.5f * std::abs(vertA.x * (vertB.y - vertC.y) + vertB.x * (vertC.y - vertA.y) + vertC.x * (vertA.y - vertB.y));
 }
 
 void Utility::requestEvent(SDL_Event&& newEvent)

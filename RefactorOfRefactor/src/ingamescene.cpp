@@ -2,7 +2,6 @@
 #include "globals.hpp"
 #include "utility.hpp"
 #include "functionals.hpp"
-#include "texture.hpp"
 #include "textbubble.hpp"
 
 static bool sceneLoaded = false;

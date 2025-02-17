@@ -1,17 +1,17 @@
 #include "mainmenuscene.hpp"
 #include "SDL3/SDL.h"
-#include "SDL3/SDL_rect.h"
 #include "asset.hpp"
 #include "fontmanager.hpp"
 #include "functionals.hpp"
+#include "globals.hpp"
+#include "hexagon.hpp"
 #include "invokable.hpp"
-#include "option.hpp"
 #include "textbubble.hpp"
-#include "texture.hpp"
 #include "textureregion.hpp"
 #include "utility.hpp"
 
 using enum Utility::CustomEvents;
+static constexpr size_t BUTTON_COUNT = 4;
 
 static SDL_FRect initializeLogoArea()
 {
@@ -30,17 +30,16 @@ static SDL_FRect initializeLogoArea()
     };
 }
 
-static std::array<TextBubble, 4> initializeButtonAreas(const SDL_FRect logoArea)
+static std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect logoArea)
 {
-    constexpr size_t buttonCount = 4;
     const auto properties = Globals::Properties.value();
     const int32_t screenHeight = properties.ScreenHeight;
 
     const uint32_t halfScreenHeight = screenHeight / 2;
     const float totalItemSpace = halfScreenHeight * 0.7f;
-    const float individualItemSpace = totalItemSpace / buttonCount;
+    const float individualItemSpace = totalItemSpace / BUTTON_COUNT;
     const float totalPaddingSpace = halfScreenHeight - totalItemSpace;
-    const float individualPaddingSpace = totalPaddingSpace / (buttonCount + 1);
+    const float individualPaddingSpace = totalPaddingSpace / (BUTTON_COUNT + 1);
 
     const std::vector<SDL_FRect> buttonAreas = 
         Seq::range<1, 5>()
@@ -55,10 +54,25 @@ static std::array<TextBubble, 4> initializeButtonAreas(const SDL_FRect logoArea)
             });
 
     return { 
-        TextBubble(buttonAreas[0], "New Game", Invokable([]() {})),
-        TextBubble(buttonAreas[1], "How to Play", Invokable([]() {})),
-        TextBubble(buttonAreas[2], "Settings", Invokable([]() {})),
-        TextBubble(buttonAreas[3], "Quit", Invokable([]() {})),
+        TextBubble({ 
+            .Frontend = Hexagon(buttonAreas[0], "New Game"),
+            .Backend = Invokable()
+        }),
+        
+        TextBubble({ 
+            .Frontend = Hexagon(buttonAreas[1], "How to Play"),
+            .Backend = Invokable()
+        }),
+        
+        TextBubble({ 
+            .Frontend = Hexagon(buttonAreas[2], "Settings"),
+            .Backend = Invokable()
+        }),
+        
+        TextBubble({ 
+            .Frontend = Hexagon(buttonAreas[3], "Quit"),
+            .Backend = Invokable()
+        })
     };
 
     // return SDL_FRect({
@@ -107,7 +121,7 @@ MainMenuScene::MainMenuScene()
     //, buttons()
     , selectedButton(Option::None<int32_t>())
     , logoArea(initializeLogoArea())
-    , buttons(initializeButtonAreas(logoArea))
+    , uiButtons(initializeButtons(logoArea))
     //, firstStartSfx(Mix_LoadWAV("assets/audio/main-theme.mp3"))
 {
     assets | Seq::iter([](const auto& asset) { Asset::queueToLoad(asset); });
@@ -170,8 +184,6 @@ void MainMenuScene::deinit() const
 
 void MainMenuScene::redraw() const
 {
-    LOG("Redraw called!");
-
     SDL_Renderer* const renderer = Globals::Properties.value().Renderer;
     Utility::changeDrawColorTo(renderer, col::BLACK);
     SDL_RenderClear(renderer);
@@ -191,6 +203,11 @@ void MainMenuScene::redraw() const
         Utility::drawTextureRegion(renderer, shit2);
         Utility::drawTextureRegion(renderer, shit);
 
+        uiButtons[0].Frontend.draw();
+        uiButtons[1].Frontend.draw();
+        uiButtons[2].Frontend.draw();
+        uiButtons[3].Frontend.draw();
+
         // buttons
         // | Seq::iter([](const TextBubble& button)
         //     {
@@ -201,42 +218,42 @@ void MainMenuScene::redraw() const
     SDL_RenderPresent(renderer);
 }
 
-void MainMenuScene::intersects(const SDL_FPoint location)
+void MainMenuScene::intersects(const SDL_FPoint)
 {
-    auto newlySelectedButton = Option::None<int32_t>();
+    // auto newlySelectedButton = Option::None<int32_t>();
 
-    buttons
-    | Seq::iteri([&](const auto& button, const size_t i)
-        {
-            if (button.isInsideItsHitbox(location))
-            {
-                newlySelectedButton = Option::Some((int32_t) i);
-            }
-        });
+    // uiButtons
+    // | Seq::iteri([&](const auto& button, const size_t i)
+    //     {
+    //         if (button.isInsideItsHitbox(location))
+    //         {
+    //             newlySelectedButton = Option::Some((int32_t) i);
+    //         }
+    //     });
 
-    if (selectedButton.isSome())
-    {
-        const int32_t previousIndex = selectedButton.value();
+    // if (selectedButton.isSome())
+    // {
+    //     const int32_t previousIndex = selectedButton.value();
 
-        if (newlySelectedButton.isNone() || (newlySelectedButton.isSome() && newlySelectedButton.value() != previousIndex))
-        {
-            buttons[previousIndex].disableHover();
-            selectedButton = Option::None<int32_t>();
-            Utility::invalidate();
-        }
-    }
+    //     if (newlySelectedButton.isNone() || (newlySelectedButton.isSome() && newlySelectedButton.value() != previousIndex))
+    //     {
+    //         buttons[previousIndex].disableHover();
+    //         selectedButton = Option::None<int32_t>();
+    //         Utility::invalidate();
+    //     }
+    // }
 
-    if (newlySelectedButton.isSome())
-    {
-        const int32_t newIndex = newlySelectedButton.value();
+    // if (newlySelectedButton.isSome())
+    // {
+    //     const int32_t newIndex = newlySelectedButton.value();
         
-        if (selectedButton.isNone() || selectedButton.value() != newIndex)
-        {
-            buttons[newIndex].enableHover();
-            selectedButton = newlySelectedButton;
-            Utility::invalidate();
-        }
-    }
+    //     if (selectedButton.isNone() || selectedButton.value() != newIndex)
+    //     {
+    //         buttons[newIndex].enableHover();
+    //         selectedButton = newlySelectedButton;
+    //         Utility::invalidate();
+    //     }
+    // }
 }
 
 void MainMenuScene::enable()
@@ -246,9 +263,9 @@ void MainMenuScene::enable()
 
 void MainMenuScene::clicks()
 {
-    if (selectedButton.isSome())
-    {
-        const int32_t index = selectedButton.value();
-        buttons[index].click();
-    }
+    // if (selectedButton.isSome())
+    // {
+    //     const int32_t index = selectedButton.value();
+    //     buttons[index].click();
+    // }
 }

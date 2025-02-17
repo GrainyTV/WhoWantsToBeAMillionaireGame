@@ -5,11 +5,11 @@ static consteval SDL_FColor normalize(const SDL_Color& color)
 {
     constexpr float max = 255.0f;
 
-    return SDL_FColor{
-        .r = color.r / max,
-        .g = color.g / max,
-        .b = color.b / max,
-        .a = color.a / max,
+    return {
+        static_cast<float>(color.r) / max,
+        static_cast<float>(color.g) / max,
+        static_cast<float>(color.b) / max,
+        static_cast<float>(color.a) / max,
     };
 }
 

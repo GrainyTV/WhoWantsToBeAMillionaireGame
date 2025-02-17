@@ -2,7 +2,7 @@
 #include "debug.hpp"
 #include "color.hpp"
 #include "functionals.hpp"
-#include "option.hpp"
+#include "optionwrap.hpp"
 #include "result.hpp"
 #include "SDL3_ttf/SDL_ttf.h"
 #include "textbubble.hpp"

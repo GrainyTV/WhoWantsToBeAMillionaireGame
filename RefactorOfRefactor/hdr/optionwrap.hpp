@@ -1,27 +1,42 @@
 #pragma once
-
 #include "debug.hpp"
 #include <optional>
 #include <string>
 #include <typeinfo>
+#include <utility>
 
 namespace Option
 {
     template<typename T>
-    class Option
+    class Inst;
+    
+    template<typename T>
+    Inst<T> Some(T value)
+    {
+        return Inst<T>(std::move(value));
+    }
+
+    template<typename T>
+    Inst<T> None()
+    {
+        return Inst<T>();
+    }
+
+    template<typename T>
+    class Inst
     {
     private:
         std::optional<T> valueOrNone;
 
-    public:
-        constexpr Option(const T& value)
-            : valueOrNone(value)
+        explicit Inst(T value)
+            : valueOrNone(std::move(value))
         {}
 
-        constexpr Option()
+        explicit Inst()
             : valueOrNone(std::nullopt)
         {}
-        
+
+    public:
         bool isSome() const
         {
             return valueOrNone.has_value();
@@ -37,39 +52,15 @@ namespace Option
             return isSome() ? "Some(" + std::string(typeid(*valueOrNone).name()) + ')' : "None()";
         }
 
-        // T& valueAsReadWrite()
-        // {
-        //     ASSERT(isSome(), "Tried to access inner value of empty optional!");
-        //     return *valueOrNone;
-        // }
-
         const T& value() const
         {
             ASSERT(isSome(), "Tried to access inner value of empty optional!");
             return *valueOrNone;
         }
 
-        // static constexpr Option Some(const T& value)
-        // {
-        //     return Option(value);
-        // }
+        friend Inst Some<T>(T);
 
-        // static constexpr Option None()
-        // {
-        //     return Option();
-        // }
+        friend Inst None<T>();
     };
-
-    template<typename T>
-    constexpr Option<T> Some(const T& value)
-    {
-        return Option<T>(value);
-    }
-
-    template<typename T>
-    constexpr Option<T> None()
-    {
-        return Option<T>();
-    }
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL3/SDL.h"
 #include "debug.hpp"
-#include "option.hpp"
+#include "optionwrap.hpp"
 #include <string_view>
 #include <type_traits>
 
@@ -10,13 +10,13 @@ class Result
 {
 private:
     bool isSuccess;
-    Option::Option<T> successValue;
-    Option::Option<std::string_view> errorMessage;
+    Option::Inst<T> successValue;
+    Option::Inst<std::string_view> errorMessage;
 
+public:
     Result(const Result&) = delete;
     Result(Result&&) = delete;
 
-public:
     template<typename U = T>
     requires std::is_same_v<T, bool>
     explicit Result(const U booleanExpression, std::string_view errorMessage)
@@ -65,12 +65,12 @@ public:
         return successValue.value();
     }
 
-    const std::string cause() const
+    std::string cause() const
     {
         ASSERT(isError(), "Tried to access error message of result object in success state!");
-        char buffer[512];
-        SDL_snprintf(buffer, sizeof(buffer), "%s (%s)", errorMessage.value().data(), SDL_GetError());
-        return std::string(buffer); 
+        std::array<char, 512> buffer;
+        SDL_snprintf(buffer.data(), sizeof(buffer), "%s (%s)", errorMessage.value().data(), SDL_GetError());
+        return { buffer.data() }; 
     }
 };
 

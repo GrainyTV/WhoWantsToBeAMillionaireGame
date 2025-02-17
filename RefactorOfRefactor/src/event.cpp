@@ -1,14 +1,14 @@
 #include "event.hpp"
 #include "debug.hpp"
 #include "defer.hpp"
-#include <functional>
-#include <unordered_map>
 #include "fontmanager.hpp"
+#include "globals.hpp"
 #include "ingamescene.hpp"
+#include "iscene.hpp"
 #include "mainmenuscene.hpp"
 #include "utility.hpp"
-#include "globals.hpp"
-#include "iscene.hpp"
+#include <functional>
+#include <unordered_map>
 
 namespace Event
 {
@@ -24,7 +24,7 @@ namespace Event
 
         void executeCallback()
         {
-            const auto callback = static_cast<Invokable*>(presentEvent.user.data1);
+            auto* const callback = static_cast<Invokable*>(presentEvent.user.data1);
             ASSERT(callback != nullptr, "Failed to retrieve callback on UI thread");
             DEFER(Utility::free<Invokable>, callback);
 
@@ -68,8 +68,8 @@ namespace Event
     {
         while (continueRunning)
         {
-            const auto detectedEvent = SDL_WaitEvent(&presentEvent);
-            ASSERT(detectedEvent == false, "Failed to load event from queue ({})", SDL_GetError());
+            const bool detectedEvent = SDL_WaitEvent(&presentEvent);
+            ASSERT(detectedEvent, "Failed to load event from queue ({})", SDL_GetError());
 
             if (eventCalls.contains(presentEvent.type))
             {
@@ -89,5 +89,3 @@ namespace Event
         currentScene.emplace<MainMenuScene>();
     }
 }
-
-

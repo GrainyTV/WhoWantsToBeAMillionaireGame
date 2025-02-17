@@ -45,7 +45,7 @@ output_prefix = get_option('prefix')
 executable(
     meson.project_name(),
     sources,
-    include_directories: 'hdr',
+    include_directories: include_directories('hdr'),
     dependencies: dependencies,
     cpp_args: [
         '-Wno-missing-field-initializers',

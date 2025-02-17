@@ -1,20 +1,20 @@
 #pragma once
 
 #include "SDL3/SDL.h"
-#include "option.hpp"
+#include "optionwrap.hpp"
 
 struct TextureRegion
 {
     SDL_Texture* Resource;
-    Option::Option<SDL_FRect> Area;
+    Option::Inst<SDL_FRect> Area;
 
-    TextureRegion()
+    explicit TextureRegion()
         : Resource(nullptr)
         , Area(Option::None<SDL_FRect>())
     {}
 
-    TextureRegion(Option::Option<SDL_FRect>&& area)
+    explicit TextureRegion(SDL_FRect area)
         : Resource(nullptr)
-        , Area(area)
+        , Area(Option::Some(area))
     {}
 };

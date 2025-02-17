@@ -2,7 +2,7 @@
 #include "SDL3/SDL.h"
 #include <variant>
 
-enum class SceneOperation
+enum class SceneOperation : std::uint8_t
 {
     Deinitialize,
     Click,
@@ -18,16 +18,17 @@ private:
     SDL_FPoint cursor;
 
 public:
-    IScene(const SceneOperation op)
-        : selected(op)
+    explicit IScene(const SceneOperation oper)
+        : selected(oper)
+        , cursor(-1, -1)
     {}
 
-    IScene(const SceneOperation op, const SDL_FPoint pos)
-        : selected(op)
+    IScene(const SceneOperation oper, const SDL_FPoint pos)
+        : selected(oper)
         , cursor(pos)
     {}
 
-    void operator() (std::monostate) {}
+    void operator() (std::monostate /*unused*/) {}
 
     template<typename Scene>
     void operator() (Scene& currentScene)
