@@ -51,4 +51,12 @@ namespace Utility
         void* newSceneAsVoid = static_cast<void*>(newScene);
         requestUserEvent({ .type = EVENT_CHANGE_SCENE, .data1 = newSceneAsVoid });
     }
+
+    template<typename ...Args>
+    size_t formattedSize(const char* fmt, Args&& ...args)
+    {
+        int32_t byteCount = SDL_snprintf(nullptr, 0, fmt, std::forward<Args>(args)...);
+        ASSERT(byteCount > 0, "Failed to determine required bytes for stack based string format");
+        return byteCount + 1;
+    }
 }

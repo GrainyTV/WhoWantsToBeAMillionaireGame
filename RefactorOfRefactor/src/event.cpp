@@ -1,7 +1,6 @@
 #include "event.hpp"
 #include "debug.hpp"
 #include "defer.hpp"
-#include "fontmanager.hpp"
 #include "globals.hpp"
 #include "ingamescene.hpp"
 #include "iscene.hpp"

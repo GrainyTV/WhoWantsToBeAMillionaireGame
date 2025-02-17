@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL3/SDL.h"
+#include "fontmanager.hpp"
 #include "optionwrap.hpp"
 
 struct TextureRegion
@@ -16,5 +17,10 @@ struct TextureRegion
     explicit TextureRegion(SDL_FRect area)
         : Resource(nullptr)
         , Area(Option::Some(area))
+    {}
+
+    explicit TextureRegion(SDL_Texture* texture, SDL_FRect area)
+        : Resource(texture)
+        , Area(Option::Some(FontManager::centerInsideArea(texture, area)))
     {}
 };

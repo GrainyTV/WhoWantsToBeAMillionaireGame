@@ -3,6 +3,7 @@
 #include "SDL3/SDL_rect.h"
 #include "color.hpp"
 #include "debug.hpp"
+#include "fontmanager.hpp"
 #include "functionals.hpp"
 #include "globals.hpp"
 #include "optionwrap.hpp"
@@ -16,7 +17,7 @@
 class Hexagon
 {
 private:
-    std::string_view text;
+    TextureRegion renderedText;
     SDL_FRect middlePart;
     std::array<SDL_Vertex, 6> sideParts;
     std::array<SDL_Vertex, 48> stroke;
@@ -58,12 +59,12 @@ private:
         // ┃ a = ?                                    ┃
         // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-        const float c2 = sqr(2.0f / 3.0f * verticalDistance);
-        const float b2 = sqr(verticalDistance) / 4.0f;
-        const float a = sqrtf(c2 - b2);
+        const float cSquared = sqr(2.0f / 3.0f * verticalDistance);
+        const float bSquared = sqr(verticalDistance) / 4.0f;
+        const float aSide = sqrtf(cSquared - bSquared);
 
-        pos0.x = pos1.x - a;
-        pos3.x = pos2.x + a;
+        pos0.x = pos1.x - aSide;
+        pos3.x = pos2.x + aSide;
 
         return { 
             SDL_Vertex({ .position = pos0, .color = col::NBLACK }),
@@ -143,9 +144,26 @@ private:
         return result;
     }
 
+    SDL_FRect reserveTextArea(const SDL_FRect availableArea)
+    {
+        constexpr float WIDTH_LIMIT = 0.75f;
+        constexpr float HEIGHT_LIMIT = 0.5f;
+
+        return { 
+            availableArea.x + (1 - WIDTH_LIMIT) * 0.5f * availableArea.w, 
+            availableArea.y + (1 - HEIGHT_LIMIT) * 0.5f * availableArea.h, 
+            WIDTH_LIMIT * availableArea.w, 
+            HEIGHT_LIMIT * availableArea.h
+        };
+    }
+
 public:
     Hexagon(const SDL_FRect availableArea, std::string_view text, const bool lineNeeded = true)
-        : text(text)
+        : Hexagon(availableArea, text, reserveTextArea(availableArea), lineNeeded)
+    {}
+
+    Hexagon(const SDL_FRect availableArea, std::string_view text, const SDL_FRect targetArea, const bool lineNeeded = true)
+        : renderedText(FontManager::generateFromText(text, std::make_pair(targetArea.w, targetArea.h)), targetArea)
         , middlePart(availableArea)
         , sideParts(calculateSidesFromMiddlePart())
         , stroke(generateStroke())
@@ -175,5 +193,7 @@ public:
         static constexpr std::array<int32_t, 6> sidePartTriangleIndices = { 0, 1, 5, 2, 3, 4 };
         SDL_RenderGeometry(renderer, nullptr, sideParts.data(), sideParts.size(), sidePartTriangleIndices.data(), sidePartTriangleIndices.size());
         SDL_RenderGeometry(renderer, nullptr, stroke.data(), stroke.size(), nullptr, 0);
+
+        Utility::drawTextureRegion(renderer, renderedText);
     }
 };

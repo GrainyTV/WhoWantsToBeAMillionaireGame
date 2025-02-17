@@ -1,8 +1,10 @@
 #include "asset.hpp"
 #include "SDL3_image/SDL_image.h"
+#include "SDL3_ttf/SDL_ttf.h"
 #include "countdownevent.hpp"
 #include "debug.hpp"
 #include "defer.hpp"
+#include "fontmanager.hpp"
 #include "functionals.hpp"
 #include "globals.hpp"
 #include "opengl.hpp"
@@ -39,6 +41,7 @@ namespace Asset
         {
             { Logo, { .Type = Texture, .Name = "logo" }},
             { Background, { .Type = Texture, .Name = "background" }},
+            //{ ArgentumSans, { .Type = Font, .Name = "ArgentumSans-Bold" }},
         };
 
         std::unordered_map<Identifier, SDL_Texture*> textureCache;
