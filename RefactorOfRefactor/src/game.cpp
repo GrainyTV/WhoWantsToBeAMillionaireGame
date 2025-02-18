@@ -17,9 +17,6 @@ void Game::init()
     const auto sdlInit = Result(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS), "Failed to initialize SDL");
     ASSERT(sdlInit.isOk(), "{}", sdlInit.cause());
 
-    //const auto sdlImageInit = Result<int32_t>(IMG_Init(IMG_INIT_PNG), "Failed to initialize SDL_image", IMG_INIT_PNG);
-    //ASSERT(sdlImageInit.isOk(), "{}", sdlImageInit.cause());
-
     const auto sdlAudioInit = Result(Mix_Init(MIX_INIT_MP3), "Failed to initialize SDL_mixer", static_cast<uint32_t>(MIX_INIT_MP3));
     ASSERT(sdlAudioInit.isOk(), "{}", sdlAudioInit.cause());
 
@@ -42,7 +39,6 @@ void Game::init()
     SDL_SetNumberProperty(rendererProperties, SDL_PROP_RENDERER_CREATE_PRESENT_VSYNC_NUMBER, 1);
 
     const auto rendererInit = Result(
-        //SDL_CreateRenderer(window, nullptr, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC),
         SDL_CreateRendererWithProperties(rendererProperties),
         "SDL_CreateRenderer() failed");
     ASSERT(rendererInit.isOk(), "{}", rendererInit.cause());
@@ -67,12 +63,10 @@ void Game::deinit()
     SDL_DestroyWindow(properties.Window);
     TTF_Quit();
     Mix_Quit();
-    //IMG_Quit();
     SDL_Quit();
 }
 
 void Game::launch()
 {
-    Event::applyDefaultSettings();
-    Event::processIncomingEvents();
+    Event::startRunningOnMainUiThread();
 }

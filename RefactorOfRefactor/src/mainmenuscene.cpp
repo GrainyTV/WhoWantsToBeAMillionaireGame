@@ -53,10 +53,12 @@ static std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect lo
                 });
             });
 
+    using enum Utility::CustomEvents;
+
     return { 
         TextBubble({ 
             .Frontend = Hexagon(buttonAreas[0], "New Game"),
-            .Backend = Invokable()
+            .Backend = Invokable([]() { Utility::requestUserEvent({ .type = EVENT_CHANGE_SCENE_INGAME }); })
         }),
         
         TextBubble({ 
@@ -74,103 +76,17 @@ static std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect lo
             .Backend = Invokable()
         })
     };
-
-    // return SDL_FRect({
-    //     .x = logoArea.x,
-    //     .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
-    //     .w = logoArea.w,
-    //     .h = individualItemSpace,
-    // });
-
-    // forEach(buttons, [&](TextBubble button, const size_t index)
-    // {
-    //     button.Area = SDL_FRect({
-    //         .x = logoArea.x,
-    //         .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
-    //         .w = logoArea.w,
-    //         .h = individualItemSpace,
-    //     });
-    // });
-
-    // size_t index = 1;
-    // for (TextBubble& button : buttons)
-    // {
-    //     button.Area = SDL_FRect({
-    //         .x = logoArea.x,
-    //         .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
-    //         .w = logoArea.w,
-    //         .h = individualItemSpace,
-    //     });
-    //     ++index;
-    // }
-
-    // buttons[0].Area = buttonAreas[0];
-    // buttons[1].Area = buttonAreas[1];
-    // buttons[2].Area = buttonAreas[2];
-    // buttons[3].Area = buttonAreas[3];
-
-    // buttons[0].init("New Game", []() { /*Utility::changeSceneTo<InGameScene>();*/ Utility::requestUserEvent({ .type = EVENT_CHANGE_SCENE }); });
-    // buttons[1].init("How to Play", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
-    // buttons[2].init("Settings", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
-    // buttons[3].init("Quit", []() { Utility::requestEvent({ .type = SDL_EVENT_QUIT }); });
 }
 
 MainMenuScene::MainMenuScene()
     : sceneLoaded(false)
-    //, logo(Option<SDL_FRect>::Some(initializeLogoArea()))
-    //, buttons()
     , selectedButton(Option::None<int32_t>())
     , logoArea(initializeLogoArea())
     , uiButtons(initializeButtons(logoArea))
-    //, firstStartSfx(Mix_LoadWAV("assets/audio/main-theme.mp3"))
 {
-    assets | Seq::iter([](const auto& asset) { Asset::queueToLoad(asset); });
+    ASSETS | Seq::iter([](const Asset::Identifier iden) { Asset::queueToLoad(iden); });
     Asset::beginLoadProcess();
 
-    //initializeLogo(logo);
-    //initializeButtons(logo, buttons);
-
-    //uint32_t foundFontSize = FontManager::findSuitableFontSize(buttons);
-    //ASSERT(foundFontSize > 0, "Could not find valid font size for mainmenu");
-    
-    //GameProperties properties = Globals::Properties.value();
-
-    // if (properties.FirstInit)
-    // {
-    //     Texture::queueToLoad({
-    //         .Source = WhereToLoadTextureFrom::FromDisk,
-    //         .Asset = "assets/textures/background.png",
-    //         .Output = &Globals::BackgroundImage,
-    //         .Filter = SDL_SCALEMODE_LINEAR,
-    //     });
-
-    //     properties.FirstInit = false;
-    // }
-
-    // forEach(buttons, [](TextBubble& button)
-    // {
-    //     texture::queueTextureLoad({
-    //         .Source = WhereToLoadTextureFrom::FromText,
-    //         .Asset = button.Text,
-    //         .Output = &button.Label,
-    //         .Filter = SDL_SCALEMODE_LINEAR,
-    //         .HoldingArea = button.Area,
-    //     });
-    // });
-
-    // buttons
-    // | Seq::iter([](TextBubble& button) {
-    //     Texture::queueToLoad({
-    //         .Source = WhereToLoadTextureFrom::FromText,
-    //         .Asset = button.Text,
-    //         .Output = &button.Label,
-    //         .Filter = SDL_SCALEMODE_LINEAR,
-    //         .HoldingArea = button.Area,
-    //     });
-    //   });
-
-    //Texture::beginLoadProcess();
-    //Mix_PlayChannel(0, firstStartSfx, 0);
     Utility::invalidate();
 }
 
@@ -185,49 +101,33 @@ void MainMenuScene::deinit() const
 void MainMenuScene::redraw() const
 {
     SDL_Renderer* const renderer = Globals::Properties.value().Renderer;
-    Utility::changeDrawColorTo(renderer, col::BLACK);
+    Utility::changeDrawColorTo(renderer, Color::BLACK);
     SDL_RenderClear(renderer);
 
     if (sceneLoaded)
     {
-        //Utility::drawTextureRegion(renderer, Globals::BackgroundImage);
-        //Utility::drawTextureRegion(renderer, logo);
-
-        TextureRegion shit;
-        shit.Area = Option::Some(logoArea);
-        shit.Resource = Asset::getTextureById(Logo);
-
-        TextureRegion shit2;
-        shit2.Resource = Asset::getTextureById(Background);
-
-        Utility::drawTextureRegion(renderer, shit2);
-        Utility::drawTextureRegion(renderer, shit);
+        Utility::drawTextureRegion(renderer, TextureRegion(Asset::getTextureById(Background)));
+        Utility::drawTextureRegion(renderer, TextureRegion(Asset::getTextureById(Logo), logoArea));
 
         uiButtons[0].Frontend.draw();
         uiButtons[1].Frontend.draw();
         uiButtons[2].Frontend.draw();
         uiButtons[3].Frontend.draw();
-
-        // buttons
-        // | Seq::iter([](const TextBubble& button)
-        //     {
-        //         button.draw();
-        //     });
     }
 
     SDL_RenderPresent(renderer);
 }
 
-void MainMenuScene::intersects(const SDL_FPoint)
+void MainMenuScene::intersects(const SDL_FPoint /*location*/)
 {
     // auto newlySelectedButton = Option::None<int32_t>();
 
-    // uiButtons
-    // | Seq::iteri([&](const auto& button, const size_t i)
+    // Seq::range<0, BUTTON_COUNT>()
+    // | Seq::iter([&](int32_t i)
     //     {
-    //         if (button.isInsideItsHitbox(location))
+    //         if (uiButtons[i].isInsideItsHitbox(location))
     //         {
-    //             newlySelectedButton = Option::Some((int32_t) i);
+    //             newlySelectedButton = Option::Some(i);
     //         }
     //     });
 
@@ -237,7 +137,7 @@ void MainMenuScene::intersects(const SDL_FPoint)
 
     //     if (newlySelectedButton.isNone() || (newlySelectedButton.isSome() && newlySelectedButton.value() != previousIndex))
     //     {
-    //         buttons[previousIndex].disableHover();
+    //         uiButtons[previousIndex].disableHover();
     //         selectedButton = Option::None<int32_t>();
     //         Utility::invalidate();
     //     }
@@ -249,7 +149,7 @@ void MainMenuScene::intersects(const SDL_FPoint)
         
     //     if (selectedButton.isNone() || selectedButton.value() != newIndex)
     //     {
-    //         buttons[newIndex].enableHover();
+    //         uiButtons[newIndex].enableHover();
     //         selectedButton = newlySelectedButton;
     //         Utility::invalidate();
     //     }
@@ -268,4 +168,6 @@ void MainMenuScene::clicks()
     //     const int32_t index = selectedButton.value();
     //     buttons[index].click();
     // }
+
+    uiButtons[0].Backend.execute();
 }

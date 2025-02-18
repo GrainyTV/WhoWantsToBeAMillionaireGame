@@ -1,15 +1,30 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include "asset.hpp"
+#include "optionwrap.hpp"
+#include "textbubble.hpp"
+#include <array>
 
-struct InGameScene
+class InGameScene
 {
+using enum Asset::Identifier;
+private:
+    static constexpr std::array ASSETS = { Background };
+    static constexpr size_t BUTTON_COUNT = 5;
+    bool sceneEnabled;
+    Option::Inst<int32_t> selectedButton;
+    std::array<TextBubble, BUTTON_COUNT> uiButtons;
+
+    std::array<TextBubble, BUTTON_COUNT> initializeButtons();
+
+public:
     InGameScene();
 
     void deinit() const;
 
     void redraw() const;
 
-    void intersects(const SDL_FPoint);
+    void intersects(SDL_FPoint);
 
     void enable();
 

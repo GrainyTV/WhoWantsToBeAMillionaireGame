@@ -2,7 +2,5 @@
 
 namespace Event
 {
-    void processIncomingEvents();
-
-    void applyDefaultSettings();
+    void startRunningOnMainUiThread();
 }

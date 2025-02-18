@@ -12,6 +12,7 @@ private:
 
 public:
     template<typename Func, typename... Args>
+    requires Action<Func, Args...>
     explicit Defer(Func&& function, Args&&... arguments)
         : deferredAction(std::forward<Func>(function), std::forward<Args>(arguments)...)
     {}

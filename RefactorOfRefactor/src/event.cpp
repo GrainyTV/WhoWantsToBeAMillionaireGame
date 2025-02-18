@@ -30,26 +30,15 @@ namespace Event
             (*callback).execute();
         }
 
-        // void changeSceneTo()
-        // {
-        //     const auto newScene = static_cast<IScene*>(presentEvent.user.data1);
-        //     currentScene.reset(newScene);
-        // }
-
-        // void changeSceneToMainMenu()
-        // {
-        //     currentScene.emplace<MainMenuScene>();
-        // }
+        void changeSceneToMainMenu()
+        {
+            currentScene.emplace<MainMenuScene>();
+        }
 
         void changeSceneToInGame()
         {
             currentScene.emplace<InGameScene>();
         }
-
-        // void changeSceneToSettings()
-        // {
-        //     currentScene.emplace<MainMenuScene>();
-        // }
 
         std::unordered_map<uint32_t, std::function<void()>> eventCalls =
         {
@@ -59,12 +48,20 @@ namespace Event
             { EVENT_INVALIDATE, []() { std::visit(IScene(Redraw), currentScene); }},
             { EVENT_ENABLE_SCENE, []() { std::visit(IScene(Enable), currentScene); }},
             { EVENT_INVOKE_ON_UI_THREAD, executeCallback },
-            { EVENT_CHANGE_SCENE, changeSceneToInGame }
+            { EVENT_CHANGE_SCENE_MAINMENU, changeSceneToMainMenu },
+            { EVENT_CHANGE_SCENE_INGAME, changeSceneToInGame },
         };
     }
 
-    void processIncomingEvents()
+    void startRunningOnMainUiThread()
     {
+        const auto properties = Globals::Properties.value();
+        SDL_SetWindowSize(properties.Window, properties.ScreenWidth, properties.ScreenHeight);
+        SDL_SetWindowFullscreen(properties.Window, true);
+
+        FontManager::init();
+        changeSceneToMainMenu();
+
         while (continueRunning)
         {
             const bool detectedEvent = SDL_WaitEvent(&presentEvent);
@@ -75,16 +72,5 @@ namespace Event
                 eventCalls[presentEvent.type]();
             }
         }
-    }
-
-    void applyDefaultSettings()
-    {
-        const auto properties = Globals::Properties.value();
-        SDL_SetWindowSize(properties.Window, properties.ScreenWidth, properties.ScreenHeight);
-        SDL_SetWindowFullscreen(properties.Window, true);
-
-        FontManager::init();
-
-        currentScene.emplace<MainMenuScene>();
     }
 }

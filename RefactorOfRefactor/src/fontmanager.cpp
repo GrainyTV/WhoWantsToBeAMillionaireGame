@@ -20,7 +20,7 @@ namespace FontManager
             const bool sizeChanged = TTF_SetFontSize(fontResource, static_cast<float>(size));
             ASSERT(sizeChanged, "Failed to change size of font");
 
-            SDL_Surface* const surface = TTF_RenderText_Blended(fontResource, text.data(), text.size(), col::WHITE);
+            SDL_Surface* const surface = TTF_RenderText_Blended(fontResource, text.data(), text.size(), Color::WHITE);
             DEFER(SDL_DestroySurface, surface);
 
             float width = static_cast<float>((*surface).w);

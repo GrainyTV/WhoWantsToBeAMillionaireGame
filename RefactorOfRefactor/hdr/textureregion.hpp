@@ -19,6 +19,11 @@ struct TextureRegion
         , Area(Option::Some(area))
     {}
 
+    explicit TextureRegion(SDL_Texture* texture)
+        : Resource(texture)
+        , Area(Option::None<SDL_FRect>())
+    {}
+
     explicit TextureRegion(SDL_Texture* texture, SDL_FRect area)
         : Resource(texture)
         , Area(Option::Some(FontManager::centerInsideArea(texture, area)))

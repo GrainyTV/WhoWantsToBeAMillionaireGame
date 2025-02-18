@@ -41,7 +41,6 @@ namespace Asset
         {
             { Logo, { .Type = Texture, .Name = "logo" }},
             { Background, { .Type = Texture, .Name = "background" }},
-            //{ ArgentumSans, { .Type = Font, .Name = "ArgentumSans-Bold" }},
         };
 
         std::unordered_map<Identifier, SDL_Texture*> textureCache;
@@ -82,17 +81,16 @@ namespace Asset
                     {
                         case Texture:
                         {
-                            char buffer[100];
-                            SDL_snprintf(buffer, sizeof(buffer), "assets/textures/%s.png", metadata.Name);
+                            constexpr const char* TEXTURE_PATH = "assets/textures/%s.png";
+                            const size_t bufferSize = Utility::formattedSize(TEXTURE_PATH, metadata.Name);
+                            std::unique_ptr<char[]> buffer = std::make_unique<char[]>(bufferSize);
+                            SDL_snprintf(buffer.get(), bufferSize, TEXTURE_PATH, metadata.Name);
 
-                            const auto surface = Result(
-                                IMG_Load(buffer),
-                                "Failed to load surface"
-                            );
+                            const auto surface = Result(IMG_Load(buffer.get()), "Failed to load surface");
                             ASSERT(surface.isOk(), "{}", surface.cause());
                             
-                            Invokable* const callback = new Invokable(convertSurfaceToTexture, surface.value(), id);
-                            Utility::requestUserEvent({ .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = static_cast<void*>(callback), });
+                            auto* const callback = new Invokable(convertSurfaceToTexture, surface.value(), id);
+                            Utility::requestUserEvent({ .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = callback });
                             break;
                         }
 
@@ -113,13 +111,25 @@ namespace Asset
     void queueToLoad(const Identifier id)
     {
         ASSERT(assetDescriptor.contains(id), "Asset Descriptor is missing provided indentifier {}", static_cast<int32_t>(id));
-        neededEntries.emplace_back(id, assetDescriptor[id]);
+        
+        if (textureCache.contains(id) == false)
+        {
+            neededEntries.emplace_back(id, assetDescriptor[id]);
+        }   
     }
 
     void beginLoadProcess()
     {
-        std::thread worker(daemonProcess);
-        worker.detach();
+        if (neededEntries.empty() == false)
+        {
+            std::thread worker(daemonProcess);
+            worker.detach();
+        }
+        else
+        {
+            Utility::requestEvent({ .type = EVENT_ENABLE_SCENE });
+            Utility::invalidate();
+        }
     }
 
     SDL_Texture* getTextureById(const Identifier id)

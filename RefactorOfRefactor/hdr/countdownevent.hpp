@@ -8,12 +8,12 @@
 class CountDownEvent
 {
 private:
-    std::atomic<int32_t> numberOfRemainingItems;
+    std::atomic<size_t> numberOfRemainingItems;
     std::condition_variable observer;
     std::mutex m;
 
 public:
-    void reset(const int32_t size)
+    void reset(const size_t size)
     {
         ASSERT(size > 0, "CountDownEvent size must be larger than 0");
         numberOfRemainingItems = size;

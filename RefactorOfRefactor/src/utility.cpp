@@ -31,15 +31,15 @@ const SDL_DisplayMode* Utility::displayInfo(SDL_Window* window)
     return displayInfo;
 }
 
-void Utility::drawTextureRegion(SDL_Renderer* renderer, const TextureRegion& textureRegion)
+void Utility::drawTextureRegion(SDL_Renderer* renderer, TextureRegion&& textureRegion)
 {
     if (textureRegion.Resource != nullptr)
     {
-        const auto drawTexture = Result(
-            SDL_RenderTexture(renderer, textureRegion.Resource, nullptr, textureRegion.Area.isSome() ? &textureRegion.Area.value() : nullptr),
-            "Failed to draw texture onto the screen"
-        );
-        ASSERT(drawTexture.isOk(), "{}", drawTexture.cause());
+        const bool drawnTexture = SDL_RenderTexture(renderer, textureRegion.Resource, nullptr,
+            textureRegion.Area.isSome()
+            ? &textureRegion.Area.value()
+            : nullptr);
+        ASSERT(drawnTexture, "Failed to draw texture onto the screen", SDL_GetError());
     }
 }
 
@@ -55,7 +55,7 @@ void Utility::drawVertices(SDL_Renderer* renderer, std::span<const SDL_Vertex> v
     ASSERT(drawVertices, "Failed to draw vertices onto the screen ({})", SDL_GetError());
 }
 
-float Utility::areaOfTriangleByItsVertices(const SDL_FPoint& vertA, const SDL_FPoint& vertB, const SDL_FPoint& vertC)
+float Utility::areaOfTriangleByItsVertices(const SDL_FPoint vertA, const SDL_FPoint vertB, const SDL_FPoint vertC)
 {
     return 0.5f * std::abs(vertA.x * (vertB.y - vertC.y) + vertB.x * (vertC.y - vertA.y) + vertC.x * (vertA.y - vertB.y));
 }

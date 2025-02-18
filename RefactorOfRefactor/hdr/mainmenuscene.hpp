@@ -8,11 +8,12 @@ class MainMenuScene
 {
 using enum Asset::Identifier;
 private:
+    static constexpr std::array ASSETS = { Logo, Background };
+    static constexpr size_t BUTTON_COUNT = 4;
     bool sceneLoaded;
     Option::Inst<int32_t> selectedButton;
     SDL_FRect logoArea;
-    std::array<TextBubble, 4> uiButtons;
-    static constexpr std::array assets = { Logo, Background };
+    std::array<TextBubble, BUTTON_COUNT> uiButtons;
 
 public:
     MainMenuScene();

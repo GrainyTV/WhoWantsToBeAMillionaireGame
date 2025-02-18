@@ -12,7 +12,8 @@ namespace Utility
         EVENT_INVALIDATE = SDL_EVENT_USER,
         EVENT_ENABLE_SCENE,
         EVENT_INVOKE_ON_UI_THREAD,
-        EVENT_CHANGE_SCENE,
+        EVENT_CHANGE_SCENE_MAINMENU,
+        EVENT_CHANGE_SCENE_INGAME,
     };
 
     Vec2 fPointToSvl(const SDL_FPoint fPoint);
@@ -23,13 +24,13 @@ namespace Utility
 
     const SDL_DisplayMode* displayInfo(SDL_Window* window);
 
-    void drawTextureRegion(SDL_Renderer* renderer, const TextureRegion& textureRegion);
+    void drawTextureRegion(SDL_Renderer*, TextureRegion&&);
 
     void drawRectangle(SDL_Renderer* renderer, const SDL_FRect* rectangle);
 
     void drawVertices(SDL_Renderer* renderer, std::span<const SDL_Vertex> vertices);
 
-    float areaOfTriangleByItsVertices(const SDL_FPoint& a, const SDL_FPoint& b, const SDL_FPoint& c);
+    float areaOfTriangleByItsVertices(SDL_FPoint, SDL_FPoint, SDL_FPoint);
 
     void requestEvent(SDL_Event&& newEvent);
 
@@ -42,14 +43,6 @@ namespace Utility
     {
         ASSERT(managedObj != nullptr, "Trying to free a null pointer");
         delete managedObj;
-    }
-
-    template<typename NewScene>
-    void changeSceneTo()
-    {
-        auto newScene = new NewScene();
-        void* newSceneAsVoid = static_cast<void*>(newScene);
-        requestUserEvent({ .type = EVENT_CHANGE_SCENE, .data1 = newSceneAsVoid });
     }
 
     template<typename ...Args>

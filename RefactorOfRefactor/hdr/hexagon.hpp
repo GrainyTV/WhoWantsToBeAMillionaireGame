@@ -1,6 +1,5 @@
 #pragma once
 #include "SDL3/SDL.h"
-#include "SDL3/SDL_rect.h"
 #include "color.hpp"
 #include "debug.hpp"
 #include "fontmanager.hpp"
@@ -67,12 +66,12 @@ private:
         pos3.x = pos2.x + aSide;
 
         return { 
-            SDL_Vertex({ .position = pos0, .color = col::NBLACK }),
-            SDL_Vertex({ .position = pos1, .color = col::NBLACK }),
-            SDL_Vertex({ .position = pos2, .color = col::NBLACK }),
-            SDL_Vertex({ .position = pos3, .color = col::NBLACK }),
-            SDL_Vertex({ .position = pos4, .color = col::NBLACK }),
-            SDL_Vertex({ .position = pos5, .color = col::NBLACK })
+            SDL_Vertex({ .position = pos0, .color = Color::NBLACK }),
+            SDL_Vertex({ .position = pos1, .color = Color::NBLACK }),
+            SDL_Vertex({ .position = pos2, .color = Color::NBLACK }),
+            SDL_Vertex({ .position = pos3, .color = Color::NBLACK }),
+            SDL_Vertex({ .position = pos4, .color = Color::NBLACK }),
+            SDL_Vertex({ .position = pos5, .color = Color::NBLACK })
         };
     }
 
@@ -107,12 +106,12 @@ private:
                     // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
                     return std::array<SDL_Vertex, 6>{
-                        SDL_Vertex({ .position = strokeSegmentCorners[0], .color = col::NBLUE }),
-                        SDL_Vertex({ .position = strokeSegmentCorners[1], .color = col::NBLUE }),
-                        SDL_Vertex({ .position = strokeSegmentCorners[2], .color = col::NBLUE }),
-                        SDL_Vertex({ .position = strokeSegmentCorners[1], .color = col::NBLUE }),
-                        SDL_Vertex({ .position = strokeSegmentCorners[2], .color = col::NBLUE }),
-                        SDL_Vertex({ .position = strokeSegmentCorners[3], .color = col::NBLUE })
+                        SDL_Vertex({ .position = strokeSegmentCorners[0], .color = Color::NBLUE }),
+                        SDL_Vertex({ .position = strokeSegmentCorners[1], .color = Color::NBLUE }),
+                        SDL_Vertex({ .position = strokeSegmentCorners[2], .color = Color::NBLUE }),
+                        SDL_Vertex({ .position = strokeSegmentCorners[1], .color = Color::NBLUE }),
+                        SDL_Vertex({ .position = strokeSegmentCorners[2], .color = Color::NBLUE }),
+                        SDL_Vertex({ .position = strokeSegmentCorners[3], .color = Color::NBLUE })
                     };
                 })
             | Seq::flatten();
@@ -183,17 +182,17 @@ public:
 
         if (horizontalLine.isSome())
         {
-            Utility::changeDrawColorTo(renderer, col::BLUE);
+            Utility::changeDrawColorTo(renderer, Color::BLUE);
             SDL_RenderFillRect(renderer, &horizontalLine.value());
         }
 
-        Utility::changeDrawColorTo(renderer, col::BLACK);
+        Utility::changeDrawColorTo(renderer, Color::BLACK);
         SDL_RenderFillRect(renderer, &middlePart);
         
         static constexpr std::array<int32_t, 6> sidePartTriangleIndices = { 0, 1, 5, 2, 3, 4 };
         SDL_RenderGeometry(renderer, nullptr, sideParts.data(), sideParts.size(), sidePartTriangleIndices.data(), sidePartTriangleIndices.size());
         SDL_RenderGeometry(renderer, nullptr, stroke.data(), stroke.size(), nullptr, 0);
 
-        Utility::drawTextureRegion(renderer, renderedText);
+        Utility::drawTextureRegion(renderer, TextureRegion(renderedText));
     }
 };
