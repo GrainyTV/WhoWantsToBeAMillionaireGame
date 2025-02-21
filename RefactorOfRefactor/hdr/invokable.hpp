@@ -17,7 +17,10 @@ public:
     template<typename Func, typename... Args>
     requires Action<Func, Args...>
     explicit Invokable(Func&& function, Args&&... arguments)
-        : action(std::bind(std::forward<Func>(function), std::forward<Args>(arguments)...))
+        : action([func = std::forward<Func>(function), ...args = std::forward<Args>(arguments)]() mutable
+            { 
+                func(std::move(args)...); 
+            })
     {}
 
     void execute() const

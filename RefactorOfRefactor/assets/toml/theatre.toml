@@ -1,0 +1,289 @@
+[[entry]]
+difficulty = "medium"
+question = "In Jeff Wayne's Musical Version of War of the Worlds, the chances of anything coming from Mars are..."
+correctAnswer = "A million to one"
+incorrectAnswers = [
+  "A billion to one",
+  "A trillion to one",
+  "A hundred to one",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was George Bizet's last opera?"
+correctAnswer = "Carmen"
+incorrectAnswers = [
+  "Don Rodrigue",
+  "Grisélidis",
+  "Les pêcheurs de perles",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which Shakespeare play inspired the musical 'West Side Story'?"
+correctAnswer = "Romeo & Juliet"
+incorrectAnswers = [
+  "Hamlet",
+  "Macbeth",
+  "Othello",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who wrote the play 'Angels in America'?"
+correctAnswer = "Tony Kusher"
+incorrectAnswers = [
+  "Tom Stoppard",
+  "Matthew Lopez",
+  "Anthony Neilson",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who serves as the speaker of the prologue in Shakespeare's Romeo and Juliet?"
+correctAnswer = "Chorus"
+incorrectAnswers = [
+  "Montague",
+  "Refrain",
+  "Capulet",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who played \"Charlie Price\" in the musical \"Kinky Boots\" on Broadway in New York from May 26th - Aug 6th 2017?"
+correctAnswer = "Brendon Urie"
+incorrectAnswers = [
+  "Ed Sheeren",
+  "Tom Cruise",
+  "Dallon Weekes",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following is not a piece from the 1950's musical West Side Story?"
+correctAnswer = "The Back Alley"
+incorrectAnswers = [
+  "Maria",
+  "Tonight",
+  "Mambo",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In Shakespeare's play Julius Caesar, Caesar's last words were..."
+correctAnswer = "Et tu, Brute? "
+incorrectAnswers = [
+  "Iacta alea est!",
+  "Vidi, vini, vici.",
+  "Aegri somnia vana.",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Andrew Lloyd Webber musical \"Cats\" is based off a book of poems written by which author?"
+correctAnswer = "T.S. Elliot"
+incorrectAnswers = [
+  "Andrew Lloyd Webber",
+  "Emily Dickenson",
+  "Robert Frost",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In which Shakespearean play will you find the suicide of Ophelia?"
+correctAnswer = "Hamlet"
+incorrectAnswers = [
+  "Macbeth",
+  "Othello",
+  "King Lear",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who played Marquis de Lafayette and Thomas Jefferson in the original Broadway run of Hamilton?"
+correctAnswer = "Daveed Diggs"
+incorrectAnswers = [
+  "Lin-Manuel Miranda",
+  "Javier Muñoz",
+  "Wayne Brady",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the name of Broadway's first \"long-run\" musical?"
+correctAnswer = "The Elves"
+incorrectAnswers = [
+  "Wicked",
+  "Hamilton",
+  "The Book of Mormon",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The World Chess Championship in Chess, Act 1 is set in which Italian city?"
+correctAnswer = "Merano"
+incorrectAnswers = [
+  "Venice",
+  "Milan",
+  "Rome",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which Shakespeare play features the stage direction \"Enter a messenger, with two heads and a hand\"?"
+correctAnswer = "Titus Andronicus"
+incorrectAnswers = [
+  "Othello",
+  "Macbeth",
+  "King Lear",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these plays was famously first performed posthumously after the playwright committed suicide?"
+correctAnswer = "4.48 Psychosis"
+incorrectAnswers = [
+  "Hamilton",
+  "Much Ado About Nothing",
+  "The Birthday Party",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many plays is Shakespeare generally considered to have written?"
+correctAnswer = "37"
+incorrectAnswers = [
+  "18",
+  "54",
+  "25",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In which Shakespeare play does the character Marcellus say, \"Something is rotten in the state of Denmark\"?"
+correctAnswer = "Hamlet"
+incorrectAnswers = [
+  "Macbeth",
+  "King Lear",
+  "Twelfth Night",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was the play \"Macbeth\" written?"
+correctAnswer = "1606"
+incorrectAnswers = [
+  "1605",
+  "1723",
+  "1628",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Les Misérables, who is Prison Code 24601?"
+correctAnswer = "Jean Valjean"
+incorrectAnswers = [
+  "Marius Pontmercy",
+  "Javert",
+  "Jean Claude Van Damme",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who wrote the award winning musical \"In The Heights\"?"
+correctAnswer = "Lin-Manuel Miranda"
+incorrectAnswers = [
+  "Steven Sondheim",
+  "Francis Scott Key",
+  "John Phillips Sousa",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who wrote the lyrics for Leonard Bernstein's 1957 Brodway musical West Side Story?"
+correctAnswer = "Stephen Sondheim"
+incorrectAnswers = [
+  "Himself",
+  "Oscar Hammerstein",
+  "Richard Rodgers",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "After England, more Shakespeare plays are set in this present day country than in any other."
+correctAnswer = "Italy"
+incorrectAnswers = [
+  "United States",
+  "Greece",
+  "France",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these musicals won the Tony Award for Best Musical?"
+correctAnswer = "Rent"
+incorrectAnswers = [
+  "The Color Purple",
+  "American Idiot",
+  "Newsies",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "\"Doctor Who\" star David Tennant performed in a rendition of which Shakespearean play?"
+correctAnswer = "Hamlet"
+incorrectAnswers = [
+  "The Tempest",
+  "Othello",
+  "The Taming of the Shrew",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is the musical director for the award winning musical \"Hamilton\"?"
+correctAnswer = "Alex Lacamoire"
+incorrectAnswers = [
+  "Lin-Manuel Miranda",
+  "Renee Elise-Goldberry",
+  "Leslie Odom Jr.",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is Jean ValJean's first prisoner number?"
+correctAnswer = "24601"
+incorrectAnswers = [
+  "9430",
+  "1729",
+  "32769",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Macbeth, the eyes of what animals were used in the Witches' cauldron?"
+correctAnswer = "Newts"
+incorrectAnswers = [
+  "Humans",
+  "Sharks",
+  "Squids",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The musical \"Dirty Rotten Scoundrels\" is set in what country?"
+correctAnswer = "France"
+incorrectAnswers = [
+  "USA",
+  "Germany",
+  "Sweden",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What play is the quote \"Hell is other people\" from?"
+correctAnswer = "No Exit"
+incorrectAnswers = [
+  "The Devil and the Good Lord",
+  "The Condemned of Altona",
+  "The Flies",
+]

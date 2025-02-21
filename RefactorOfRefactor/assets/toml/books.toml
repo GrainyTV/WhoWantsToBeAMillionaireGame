@@ -1,0 +1,889 @@
+[[entry]]
+difficulty = "hard"
+question = "In the Beatrix Potter books, what type of animal is Tommy Brock?"
+correctAnswer = "Badger"
+incorrectAnswers = [
+  "Fox",
+  "Frog",
+  "Rabbit",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "By what nickname is Jack Dawkins known in the Charles Dickens novel, 'Oliver Twist'?"
+correctAnswer = "The Artful Dodger"
+incorrectAnswers = [
+  "Fagin",
+  "Bull’s-eye",
+  "Mr. Fang",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What position does Harry Potter play in Quidditch?"
+correctAnswer = "Seeker"
+incorrectAnswers = [
+  "Beater",
+  "Chaser",
+  "Keeper",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the \"Harry Potter\" novels, what must a Hogwarts student do to enter the Ravenclaw Common Room?"
+correctAnswer = "Answer a riddle"
+incorrectAnswers = [
+  "Rhythmically tap barrels with a wand",
+  "Speak a password",
+  "Knock in sequence",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the name of the Mysterious Island, in Jules Verne's \"The Mysterious Island\"?"
+correctAnswer = "Lincoln Island"
+incorrectAnswers = [
+  "Vulcania Island",
+  "Prometheus Island",
+  "Neptune Island",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "How many books are in the Chronicles of Narnia series?"
+correctAnswer = "7"
+incorrectAnswers = [
+  "6",
+  "8",
+  "5",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who wrote \"A Tale of Two Cities\"?"
+correctAnswer = "Charles Dickens"
+incorrectAnswers = [
+  "Charles Darwin",
+  "Mark Twain",
+  "Roald Dahl",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these does Charlie NOT read in The Perks of Being a Wallflower?"
+correctAnswer = "The Grapes of Wrath"
+incorrectAnswers = [
+  "Hamlet",
+  "The Great Gatsby",
+  "Peter Pan",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Magic: The Gathering universe, the Fallen Empires expansion takes place on which continent?"
+correctAnswer = "Sarpadia"
+incorrectAnswers = [
+  "Otaria",
+  "Terisiare",
+  "Shiv",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The book \"The Little Prince\" was written by..."
+correctAnswer = "Antoine de Saint-Exupéry"
+incorrectAnswers = [
+  "Miguel de Cervantes Saavedra",
+  "Jane Austen",
+  "F. Scott Fitzgerald",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the name of the town in which Lily and James Potter are buried?"
+correctAnswer = "Godric's Hollow"
+incorrectAnswers = [
+  "Hogsmeade",
+  "Ottery St. Catchpole",
+  "Little Hangleton",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following is not a work authored by Fyodor Dostoevsky?"
+correctAnswer = "Anna Karenina"
+incorrectAnswers = [
+  "Notes from the Underground",
+  "Crime and Punishment",
+  "The Brothers Karamazov",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is NOT a work done by Shakespeare?"
+correctAnswer = "Trial of Temperance"
+incorrectAnswers = [
+  "Measure For Measure",
+  "Titus Andronicus",
+  "Cymbeline",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which famous book is sub-titled 'The Modern Prometheus'?"
+correctAnswer = "Frankenstein"
+incorrectAnswers = [
+  "Dracula",
+  "The Strange Case of Dr. Jekyll and Mr. Hyde ",
+  "The Legend of Sleepy Hollow",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the book \"The Martian\", how long was Mark Watney trapped on Mars (in Sols)?"
+correctAnswer = "549 Days"
+incorrectAnswers = [
+  "765 Days",
+  "401 Days",
+  "324 Days",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following was the author of \"Username Evie\"?"
+correctAnswer = "Joe Sugg"
+incorrectAnswers = [
+  "Zoe Sugg",
+  "Joe Weller",
+  "Alfie Deyes",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Harry Potter universe, who does Draco Malfoy end up marrying?"
+correctAnswer = "Astoria Greengrass"
+incorrectAnswers = [
+  "Pansy Parkinson",
+  "Millicent Bulstrode",
+  "Hermione Granger",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is Hermione Granger's middle name?"
+correctAnswer = "Jean"
+incorrectAnswers = [
+  "Jane",
+  "Emma",
+  "Jo",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was Sir Handel's original name in \"The Railway Series\" and it's animated counterpart \"Thomas and Friends?\""
+correctAnswer = "Falcon"
+incorrectAnswers = [
+  "Eagle",
+  "Kyte",
+  "Swallow",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What's the second book in George R. R. Martin's 'A Song of Ice and Fire' series?"
+correctAnswer = "A Clash of Kings"
+incorrectAnswers = [
+  "A Dance with Dragons",
+  "A Storm of Swords",
+  "A Feast for Crows",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Magic: The Gathering universe,  the Antiquities, Ice Age, and Alliances expansions take place on which continent?"
+correctAnswer = "Terisiare"
+incorrectAnswers = [
+  "Aerona",
+  "Shiv",
+  "Jamuraa",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The novel \"Of Mice And Men\" was written by what author? "
+correctAnswer = "John Steinbeck "
+incorrectAnswers = [
+  "George Orwell",
+  "Mark Twain ",
+  "Harper Lee",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Harry Potter universe, what is Cornelius Fudge's middle name?"
+correctAnswer = "Oswald"
+incorrectAnswers = [
+  "James",
+  "Harold",
+  "Christopher",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "\"Green Eggs And Ham\" is a book by which author?"
+correctAnswer = "Dr. Seuss"
+incorrectAnswers = [
+  "Beatrix Potter",
+  "Roald Dahl",
+  "A.A. Milne",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "According to The Hitchhiker's Guide to the Galaxy book, the answer to life, the universe and everything else is..."
+correctAnswer = "42"
+incorrectAnswers = [
+  "Loving everyone around you",
+  "Chocolate",
+  "Death",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the novel \"Lord of the Rings\", how many rings of power were given to the race of man?"
+correctAnswer = "9"
+incorrectAnswers = [
+  "5",
+  "11",
+  "13",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The book \"Fahrenheit 451\" was written by whom?"
+correctAnswer = "Ray Bradbury"
+incorrectAnswers = [
+  "R. L. Stine",
+  "Wolfgang Amadeus Mozart",
+  "Stephen King",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many Harry Potter books are there?"
+correctAnswer = "7"
+incorrectAnswers = [
+  "8",
+  "5",
+  "6",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Michael Crichton's novel \"Jurassic Park\", John Hammond meets his demise at the claws of which dinosaur?"
+correctAnswer = "Procompsognathus"
+incorrectAnswers = [
+  "Dilophosaurus",
+  "Tyrannosaurus Rex",
+  "Velociraptor",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who wrote the 1967 horror novel \"Rosemary's Baby\"?"
+correctAnswer = "Ira Levin"
+incorrectAnswers = [
+  "Stephen King",
+  "Robert Bloch",
+  "Mary Shelley",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Margaret Atwood's \"The Handmaid's Tale\", what is Offred's real name is implied to be?"
+correctAnswer = "June"
+incorrectAnswers = [
+  "August",
+  "April",
+  "May",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which author co-wrote \"The Communist Manifesto\" alongside Karl Marx?"
+correctAnswer = "Friedrich Engels"
+incorrectAnswers = [
+  "Robert Owen",
+  "Alexander Kerensky",
+  "Paul Lafargue",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these book series is by James Patterson?"
+correctAnswer = "Maximum Ride"
+incorrectAnswers = [
+  "Harry Potter",
+  "The Legend of Xanth",
+  "The Bartemaeus Trilogy",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Where does the book \"The Silence of the Lambs\" get its title from?"
+correctAnswer = "The main character's trauma in childhood"
+incorrectAnswers = [
+  "The relation it has with killing the innocents",
+  "The villain's favourite meal",
+  "The voice of innocent people being shut by the powerful",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the last message of the Dolphins in \"The Hitchhiker's Guide to the Galaxy\"?"
+correctAnswer = "\"So long, and thanks for all the fish.\""
+incorrectAnswers = [
+  "\"The answer is 42.\"",
+  "\"Land of the brave.\"",
+  "\"Goodbye cruel world!\"",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which novel by John Grisham was conceived on a road trip to Florida while thinking about stolen books with his wife?"
+correctAnswer = "Camino Island"
+incorrectAnswers = [
+  "Rogue Lawyer",
+  "Gray Mountain",
+  "The Litigators",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who wrote \"Harry Potter\"?"
+correctAnswer = "J.K. Rowling"
+incorrectAnswers = [
+  "J.R.R. Tolkien",
+  "Terry Pratchett",
+  "Daniel Radcliffe",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the title of the first Sherlock Holmes book by Arthur Conan Doyle?"
+correctAnswer = "A Study in Scarlet"
+incorrectAnswers = [
+  "The Sign of the Four",
+  "A Case of Identity",
+  "The Doings of Raffles Haw",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was the name of Captain Nemo's submarine in \"20,000 Leagues Under the Sea\"?"
+correctAnswer = "The Nautilus"
+incorrectAnswers = [
+  "The Neptune",
+  "The Poseidon  ",
+  "The Atlantis",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is Ron Weasley's middle name?"
+correctAnswer = "Bilius"
+incorrectAnswers = [
+  "Arthur",
+  "John",
+  "Dominic",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Romance of the Three Kingdoms, who was not a member of the Peach Garden Oath?"
+correctAnswer = "Zhao Yun"
+incorrectAnswers = [
+  "Liu Bei",
+  "Guan Yu",
+  "Zhang Fei",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which American author was also a budding travel writer and wrote of his adventures with his dog Charley?"
+correctAnswer = "John Steinbeck"
+incorrectAnswers = [
+  "F. Scott Fitzgerald",
+  "Ernest Hemingway",
+  "William Faulkner",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the \"The Hobbit\", who kills Smaug?"
+correctAnswer = "Bard"
+incorrectAnswers = [
+  "Bilbo Baggins",
+  "Gandalf the Grey",
+  "Frodo",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Magic: The Gathering universe, which plane does the Homelands expansion take place in?"
+correctAnswer = "Ulgrotha"
+incorrectAnswers = [
+  "Bant",
+  "Llanowar",
+  "Tazeem",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which famous spy novelist wrote the childrens' story \"Chitty-Chitty-Bang-Bang\"?"
+correctAnswer = "Ian Fleming"
+incorrectAnswers = [
+  "Joseph Conrad",
+  "John Buchan",
+  "Graham Greene",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of the protagonist of J.D. Salinger's novel Catcher in the Rye?"
+correctAnswer = "Holden Caulfield"
+incorrectAnswers = [
+  "Fletcher Christian",
+  "Jay Gatsby",
+  "Randall Flagg",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the \"Harry Potter\" series, what is Headmaster Dumbledore's full name?"
+correctAnswer = "Albus Percival Wulfric Brian Dumbledore"
+incorrectAnswers = [
+  "Albus Valum Jetta Mobius Dumbledore",
+  "Albus James Lunae Otto Dumbledore",
+  "Albus Valencium Horatio Kul Dumbledore",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which author and poet famously wrote the line, \"The female of the species is more deadly than the male\"?"
+correctAnswer = "Rudyard Kipling"
+incorrectAnswers = [
+  "Edgar Allan Poe",
+  "William Shakespeare",
+  "William Wordsworth",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of the three headed dog in Harry Potter and the Sorcerer's Stone?"
+correctAnswer = "Fluffy"
+incorrectAnswers = [
+  "Spike",
+  "Poofy",
+  "Spot",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The novel \"Jane Eyre\" was written by what author? "
+correctAnswer = "Charlotte Brontë"
+incorrectAnswers = [
+  "Emily Brontë",
+  "Jane Austen",
+  "Louisa May Alcott",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which Russian author wrote the epic novel War and Peace?"
+correctAnswer = "Leo Tolstoy"
+incorrectAnswers = [
+  "Fyodor Dostoyevsky",
+  "Alexander Pushkin",
+  "Vladimir Nabokov",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "George Orwell wrote this book, which is often considered a statement on government oversight."
+correctAnswer = "1984"
+incorrectAnswers = [
+  "The Old Man and the Sea",
+  "Catcher and the Rye",
+  "To Kill a Mockingbird",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the year 1818, novelist Mary Shelly is credited with writing a fiction novel and creating this infamous character."
+correctAnswer = "Frankenstein's monster"
+incorrectAnswers = [
+  "Dracula",
+  "The Thing",
+  "The Invisible Man",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who wrote the novel 'Fear And Loathing In Las Vegas'?"
+correctAnswer = "Hunter S. Thompson"
+incorrectAnswers = [
+  "F. Scott Fitzgerald",
+  "Henry Miller",
+  "William S. Burroughs",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The title of Adolf Hitler's autobiography \"Mein Kampf\" is what when translated to English?"
+correctAnswer = "My Struggle"
+incorrectAnswers = [
+  "My Hatred",
+  "My Sadness",
+  "My Desire",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following is the world's best-selling book?"
+correctAnswer = "The Lord of the Rings"
+incorrectAnswers = [
+  "The Little Prince",
+  "Harry Potter and the Philosopher's Stone",
+  "The Da Vinci Code",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "J.K. Rowling completed \"Harry Potter and the Deathly Hallows\" in which hotel in Edinburgh, Scotland?"
+correctAnswer = "The Balmoral"
+incorrectAnswers = [
+  "The Dunstane Hotel",
+  "Hotel Novotel",
+  "Sheraton Grand Hotel & Spa",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In The Lies of Locke Lamora, what title is Locke known by in the criminal world?"
+correctAnswer = "The Thorn of Camorr"
+incorrectAnswers = [
+  "The Rose of the Marrows",
+  "The Thorn of Emberlain",
+  "The Thorn of the Marrows",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Abel Magwitch is a character from which Charles Dickens novel?"
+correctAnswer = "Great Expectations"
+incorrectAnswers = [
+  "The Pickwick Papers",
+  "Nicholas Nickleby",
+  "Oliver Twist",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the fourth book of the Old Testament?"
+correctAnswer = "Numbers"
+incorrectAnswers = [
+  "Genesis",
+  "Exodus",
+  "Leviticus",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is the author of the series \"Malazan Book of the Fallen\"?"
+correctAnswer = "Steven Erikson"
+incorrectAnswers = [
+  "Ian Cameron Esslemont",
+  "George R. R. Martin",
+  "J. R. R. Tolkien",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What's Harry Potter's dad's name?"
+correctAnswer = "James Potter"
+incorrectAnswers = [
+  "Joey Potter",
+  "Frank Potter",
+  "Hairy Potter Sr.",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of Eragon's dragon in \"Eragon\"?"
+correctAnswer = "Saphira"
+incorrectAnswers = [
+  "Glaedr",
+  "Thorn",
+  "Arya",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following authors was not born in England? "
+correctAnswer = "Arthur Conan Doyle"
+incorrectAnswers = [
+  "Graham Greene",
+  "H G Wells",
+  "Arthur C Clarke",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was the first ever entry written for the SCP Foundation collaborative writing project?"
+correctAnswer = "SCP-173"
+incorrectAnswers = [
+  "SCP-001",
+  "SCP-999",
+  "SCP-1459",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the pen name of novelist, Mary Ann Evans?"
+correctAnswer = "George Eliot"
+incorrectAnswers = [
+  "George Orwell",
+  "George Bernard Shaw",
+  "George Saunders",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of Sherlock Holmes's brother?"
+correctAnswer = "Mycroft Holmes"
+incorrectAnswers = [
+  "Mederi Holmes",
+  "Martin Holmes",
+  "Herbie Hancock Holmes",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the book series \"Odd Thomas\", Danny Jessup has what genetic disease? "
+correctAnswer = " Osteogenesis Imperfecta"
+incorrectAnswers = [
+  "Spinocerebellar ataxia",
+  "Adrenoleukodystrophy",
+  "Cystic Fibrosis",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who was the original author of Frankenstein?"
+correctAnswer = "Mary Shelley"
+incorrectAnswers = [
+  "Edgar Allan Poe",
+  "Bram Stoker",
+  "H. P. Lovecraft",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In the novel 1984, written by George Orwell, what is the name of the totalitarian regime that controls Oceania?"
+correctAnswer = "INGSOC"
+incorrectAnswers = [
+  "Neo-Bolshevism",
+  "Obliteration of the Self",
+  "Earth Alliance",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who wrote the young adult novel \"The Fault in Our Stars\"?"
+correctAnswer = "John Green"
+incorrectAnswers = [
+  "Stephenie Meyer",
+  "Suzanne Collins",
+  "Stephen Chbosky",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Alice in Wonderland, what is the name of Alice's kitten?"
+correctAnswer = "Dinah"
+incorrectAnswers = [
+  "Oscar",
+  "Heath",
+  "Smokey",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What book series published by Jim Butcher follows a wizard in modern day Chicago?"
+correctAnswer = "The Dresden Files"
+incorrectAnswers = [
+  "A Hat in Time",
+  "The Cinder Spires",
+  "My Life as a Teenage Wizard",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who wrote the children's story \"The Little Match Girl\"?"
+correctAnswer = "Hans Christian Andersen"
+incorrectAnswers = [
+  "Charles Dickens",
+  "Lewis Carroll",
+  "Oscar Wilde",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who wrote the \"A Song of Ice And Fire\" fantasy novel series?"
+correctAnswer = "George R. R. Martin"
+incorrectAnswers = [
+  "George Lucas",
+  "George Orwell",
+  "George Eliot",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In The Lies Of Locke Lamora, what does \"Lamora\" mean in Throne Therin?"
+correctAnswer = "Shadow"
+incorrectAnswers = [
+  "Thievery",
+  "Justice",
+  "Chaos",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In \"Little Women\", which of the March sisters married Laurie?"
+correctAnswer = "Amy"
+incorrectAnswers = [
+  "Beth",
+  "Jo",
+  "Meg",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Terry Pratchett's Discworld novel 'Wyrd Sisters', which of these are not one of the three main witches?"
+correctAnswer = "Winny Hathersham"
+incorrectAnswers = [
+  "Granny Weatherwax",
+  "Nanny Ogg",
+  "Magrat Garlick",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who was the author of the 1954 novel, \"Lord of the Flies\"?"
+correctAnswer = "William Golding"
+incorrectAnswers = [
+  "Stephen King",
+  "F. Scott Fitzgerald",
+  "Hunter Fox",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the Lord of the Rings, who is the father of the dwarf Gimli?"
+correctAnswer = "Gloin"
+incorrectAnswers = [
+  "Thorin Oakenshield",
+  "Bombur",
+  "Dwalin",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In which classic novel is there a character named Homer Simpson?"
+correctAnswer = "The Day of the Locust"
+incorrectAnswers = [
+  "Catch-22",
+  "Of Mice and Men",
+  "A Separate Peace",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "By what name was the author Eric Blair better known?"
+correctAnswer = "George Orwell"
+incorrectAnswers = [
+  "Aldous Huxley",
+  "Ernest Hemingway",
+  "Ray Bradbury",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the make and model of the tour vehicles in \"Jurassic Park\" (1990)?"
+correctAnswer = "1989 Toyota Land Cruiser"
+incorrectAnswers = [
+  "1989 Jeep Wrangler YJ Sahar",
+  "1989 Ford Explorer XLT",
+  "Mercedes M-Class",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which fictional English county was the setting for Thomas Hardy's novels?"
+correctAnswer = "Wessex"
+incorrectAnswers = [
+  "Barsetshire",
+  "Fulchester",
+  "Ambridge",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In which classic novel by Mark Twain did a beggar and Prince of Wales switch clothes, and learn about social class inequality?"
+correctAnswer = "The Prince and the Pauper"
+incorrectAnswers = [
+  "Hamlet",
+  "Wealthy Boy and the Schmuck",
+  "A Modern Twain Story",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who wrote the novel \"Moby-Dick\"?"
+correctAnswer = "Herman Melville"
+incorrectAnswers = [
+  "William Golding",
+  "William Shakespeare",
+  "J. R. R. Tolkien",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Under what pseudonym did Stephen King publish five novels between 1977 and 1984?"
+correctAnswer = "Richard Bachman"
+incorrectAnswers = [
+  "J. D. Robb",
+  "Mark Twain",
+  "Lewis Carroll",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the gang that Ponyboy is a part of in the book, The Outsiders?"
+correctAnswer = "The Greasers"
+incorrectAnswers = [
+  "The Outsiders",
+  "The Mafia",
+  "The Socs",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which is NOT a book in the Harry Potter Series?"
+correctAnswer = "The House Elf"
+incorrectAnswers = [
+  "The Chamber of Secrets",
+  "The Prisoner of Azkaban",
+  "The Deathly Hallows",
+]

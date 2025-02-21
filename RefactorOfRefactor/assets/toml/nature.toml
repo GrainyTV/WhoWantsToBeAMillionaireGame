@@ -1,0 +1,1959 @@
+[[entry]]
+difficulty = "easy"
+question = "Rhinoplasty is a surgical procedure on what part of the human body?"
+correctAnswer = "Nose"
+incorrectAnswers = [
+  "Ears",
+  "Chin",
+  "Neck",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does DNA stand for?"
+correctAnswer = "Deoxyribonucleic Acid"
+incorrectAnswers = [
+  "Deoxyribogenetic Acid",
+  "Deoxyribogenetic Atoms",
+  "Detoxic Acid",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the official name of the star located closest to the North Celestial Pole?"
+correctAnswer = "Polaris"
+incorrectAnswers = [
+  "Eridanus",
+  "Gamma Cephei",
+  "Iota Cephei",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many legs is it biologically impossible for a centipede to have?"
+correctAnswer = "100"
+incorrectAnswers = [
+  "26",
+  "50",
+  "74",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the study of the cells and tissues of plants and animals?"
+correctAnswer = "Histology"
+incorrectAnswers = [
+  "Microbiology",
+  "Anatomy",
+  "Biochemistry",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the same in Celsius and Fahrenheit?"
+correctAnswer = "-40"
+incorrectAnswers = [
+  "32",
+  "-39",
+  "-42",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Coulrophobia is the irrational fear of what?"
+correctAnswer = "Clowns"
+incorrectAnswers = [
+  "Cemeteries",
+  "Needles",
+  "Tunnels",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many objects are equivalent to one mole?"
+correctAnswer = "6.022 x 10^23"
+incorrectAnswers = [
+  "6.002 x 10^22",
+  "6.022 x 10^22",
+  "6.002 x 10^23",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which constellation contains the center of the Milky Way?"
+correctAnswer = "Sagittarius"
+incorrectAnswers = [
+  "Scorpius",
+  "Ophiuchus",
+  "Capricornus",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which gas forms about 78% of the Earth’s atmosphere?"
+correctAnswer = "Nitrogen"
+incorrectAnswers = [
+  "Oxygen",
+  "Argon",
+  "Carbon Dioxide",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Where did the Great Storm of 1987 make landfall at, first?"
+correctAnswer = "Cornwall"
+incorrectAnswers = [
+  "Surrey",
+  "Wales",
+  "The Midlands",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is the term for \"surgical complications resulting from surgical sponges left inside the patient's body?"
+correctAnswer = "Gossypiboma"
+incorrectAnswers = [
+  "Gongoozler",
+  "Jentacular",
+  "Meupareunia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The medial meniscus forms which part of what joint in the human body?"
+correctAnswer = "Knee"
+incorrectAnswers = [
+  "Elbow",
+  "Ankle",
+  "Shoulder",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which element has the atomic number of 7?"
+correctAnswer = "Nitrogen"
+incorrectAnswers = [
+  "Oxygen",
+  "Hydrogen",
+  "Neon",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the scientific name of the red fox?"
+correctAnswer = "Vulpes Vulpes"
+incorrectAnswers = [
+  "Vulpes Redus",
+  "Red Fox",
+  "Vulpes Vulpie",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Gannymede is the largest moon of which planet?"
+correctAnswer = "Jupiter"
+incorrectAnswers = [
+  "Uranus",
+  "Neptune",
+  "Mars",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Burning which of these metals will produce a bright white flame?"
+correctAnswer = "Magnesium"
+incorrectAnswers = [
+  "Copper",
+  "Lithium",
+  "Lead",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The \"Tibia\" is found in which part of the body?"
+correctAnswer = "Leg"
+incorrectAnswers = [
+  "Arm",
+  "Hand",
+  "Head",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these elements on the Periodic Table is a Noble Gas?"
+correctAnswer = "Neon"
+incorrectAnswers = [
+  "Potassium",
+  "Iodine",
+  "Colbalt",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is NOT a real element?"
+correctAnswer = "Vitrainium"
+incorrectAnswers = [
+  "Praseodymium",
+  "Hassium",
+  "Lutetium",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What polymer is used to make CDs, safety goggles and riot shields?"
+correctAnswer = "Polycarbonate"
+incorrectAnswers = [
+  "Rubber",
+  "Nylon",
+  "Bakelite",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which is not a type of neuron?"
+correctAnswer = "Perceptual Neuron"
+incorrectAnswers = [
+  "Sensory Neuron",
+  "Motor Neuron",
+  "Interneuron",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which one of these is scientific term for \"Brain Freeze\"?"
+correctAnswer = "Sphenopalatine Ganglioneuralgia"
+incorrectAnswers = [
+  "Hyacinthoides Italica",
+  "Amaranthus Retroflexus",
+  "Amblyomma Americanum",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What mineral has the lowest number on the Mohs scale?"
+correctAnswer = "Talc"
+incorrectAnswers = [
+  "Quartz",
+  "Diamond",
+  "Gypsum",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the first organic compound to be synthesized from inorganic compounds?"
+correctAnswer = "Urea"
+incorrectAnswers = [
+  "Propane",
+  "Ethanol",
+  "Formaldehyde",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many bones are in the human body?"
+correctAnswer = "206"
+incorrectAnswers = [
+  "203",
+  "209",
+  "200",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the standard SI unit for temperature?"
+correctAnswer = "Kelvin"
+incorrectAnswers = [
+  "Fahrenheit",
+  "Celsius",
+  "Rankine",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following spacecraft never touched the moon?"
+correctAnswer = "Mariner 4"
+incorrectAnswers = [
+  "Apollo 11",
+  "Luna 2",
+  "SMART-1",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "On the periodic table of elements, what is the symbol for Tin?"
+correctAnswer = "Sn"
+incorrectAnswers = [
+  "Ti",
+  "Ni",
+  "Na",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these animals belongs in class Chondrichthyes?"
+correctAnswer = "Great white shark"
+incorrectAnswers = [
+  "Octopus",
+  "Killer whale",
+  "Catfish",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How long is a light-year?"
+correctAnswer = "9.461 Trillion Kilometres"
+incorrectAnswers = [
+  "1 AU",
+  "105.40 Earth-years",
+  "501.2 Million Miles",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What name is given to all baby marsupials?"
+correctAnswer = "Joey"
+incorrectAnswers = [
+  "Calf",
+  "Pup",
+  "Cub",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The medical condition osteoporosis affects which part of the body?"
+correctAnswer = "Bones"
+incorrectAnswers = [
+  "Skin",
+  "Brain",
+  "Heart",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the name for the auditory illusion of a note that seems to be rising infinitely?"
+correctAnswer = "Shepard Tone"
+incorrectAnswers = [
+  "Glissandro Illusion",
+  "Fransen Effect",
+  "McGurck Effect",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "On the Beaufort Scale of wind force, what wind name is given to number 8?"
+correctAnswer = "Gale"
+incorrectAnswers = [
+  "Storm",
+  "Hurricane",
+  "Breeze",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "A positron is an antiparticle of a what?"
+correctAnswer = "Electron"
+incorrectAnswers = [
+  "Neutron",
+  "Proton",
+  "Photon",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "All of the following human genetic haplogroup names are shared between Y-chromosome and mitochondrial DNA haplogroups EXCEPT:"
+correctAnswer = "Haplogroup U"
+incorrectAnswers = [
+  "Haplogroup L",
+  "Haplogroup T",
+  "Haplogroup J",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many protons are in an oxygen atom?"
+correctAnswer = "Eight"
+incorrectAnswers = [
+  "Four",
+  "Two",
+  "Six",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many planets are in our Solar System?"
+correctAnswer = "Eight"
+incorrectAnswers = [
+  "Nine",
+  "Seven",
+  "Ten",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Alzheimer's disease primarily affects which part of the human body?"
+correctAnswer = "Brain"
+incorrectAnswers = [
+  "Lungs",
+  "Skin",
+  "Heart",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which noble gas has the lowest atomic number?"
+correctAnswer = "Helium"
+incorrectAnswers = [
+  "Neon",
+  "Argon",
+  "Krypton",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which major extinction event was caused by an asteroid collision and eliminated the majority of non-avian dinosaurs?"
+correctAnswer = "Cretaceous-Paleogene"
+incorrectAnswers = [
+  "Triassic–Jurassic",
+  "Permian–Triassic",
+  "Ordovician–Silurian",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which moon is the only satellite in our solar system to possess a dense atmosphere?"
+correctAnswer = "Titan"
+incorrectAnswers = [
+  "Europa",
+  "Miranda",
+  "Callisto",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Psychology, which need appears highest in the \"Maslow's hierarchy of needs\" pyramid?"
+correctAnswer = "Esteem"
+incorrectAnswers = [
+  "Love",
+  "Safety",
+  "Physiological",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the hottest planet in the Solar System?"
+correctAnswer = "Venus"
+incorrectAnswers = [
+  "Mars",
+  "Mercury",
+  "Jupiter",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "71% of the Earth's surface is made up of"
+correctAnswer = "Water"
+incorrectAnswers = [
+  "Deserts",
+  "Continents",
+  "Forests",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Human cells typically have how many copies of each gene?"
+correctAnswer = "2"
+incorrectAnswers = [
+  "1",
+  "4",
+  "3",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The element involved in making human blood red is which of the following?"
+correctAnswer = "Iron"
+incorrectAnswers = [
+  "Copper",
+  "Iridium",
+  "Cobalt",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which portion of the Marijuana plant produces the psychoactive substance known as THC?"
+correctAnswer = "Female Flower"
+incorrectAnswers = [
+  "Leaves",
+  "Male Flower",
+  "Root Ball",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What causes the sound of a heartbeat?"
+correctAnswer = "Closure of the heart valves"
+incorrectAnswers = [
+  "Contraction of the heart chambers",
+  "Blood exiting the heart",
+  "Relaxation of the heart chambers",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the largest animal currently on Earth?"
+correctAnswer = "Blue Whale"
+incorrectAnswers = [
+  "Orca",
+  "Colossal Squid",
+  "Giraffe",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What are human nails made of?"
+correctAnswer = "Keratin"
+incorrectAnswers = [
+  "Bone",
+  "Chitin",
+  "Calcium",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the atomic mass of Carbon?"
+correctAnswer = "12"
+incorrectAnswers = [
+  "14",
+  "16",
+  "10",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "\"The Big Bang Theory\" was first theorized by a priest of what religious ideology?"
+correctAnswer = "Catholic"
+incorrectAnswers = [
+  "Christian",
+  "Jewish",
+  "Islamic",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following blood vessels carries deoxygenated blood?"
+correctAnswer = "Pulmonary Artery"
+incorrectAnswers = [
+  "Pulmonary Vein",
+  "Aorta",
+  "Coronary Artery",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Autosomal-dominant Compelling Helio-Ophthalmic Outburst syndrome is the need to do what when seeing the Sun?"
+correctAnswer = "Sneeze"
+incorrectAnswers = [
+  "Cough",
+  "Yawn",
+  "Hiccup",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What are the smallest blood vessels in the human body?"
+correctAnswer = "Capillaries"
+incorrectAnswers = [
+  "Arterioles",
+  "Veinules",
+  "Lymphatics",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of these Elements is a metalloid?"
+correctAnswer = "Antimony"
+incorrectAnswers = [
+  "Tin",
+  "Bromine",
+  "Rubidium",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the chemical makeup of water?"
+correctAnswer = "H20"
+incorrectAnswers = [
+  "C12H6O2",
+  "CO2",
+  "H",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who developed the first successful polio vaccine in the 1950s?"
+correctAnswer = "Jonas Salk"
+incorrectAnswers = [
+  "John F. Enders",
+  "Thomas Weller",
+  "Frederick Robbins",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these is a stop codon in DNA?"
+correctAnswer = "TAA"
+incorrectAnswers = [
+  "ACT",
+  "ACA",
+  "GTA",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When the Falcon Heavy was launched on it's test flight, what was the only part of the operation that failed?"
+correctAnswer = "Center Core Landing"
+incorrectAnswers = [
+  "Side Booster Landing",
+  "Deployment of Starman",
+  "Ignition and Liftoff",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which chemical element was originally known as Alabamine?"
+correctAnswer = "Astatine"
+incorrectAnswers = [
+  "Selenium",
+  "Antimony",
+  "Molybdenum",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "If you planted the seeds of Quercus robur what would grow?"
+correctAnswer = "Trees"
+incorrectAnswers = [
+  "Flowers",
+  "Vegtables",
+  "Grains",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What physics principle relates the net electric flux out of a closed surface to the charge enclosed by that surface?"
+correctAnswer = "Gauss's Law"
+incorrectAnswers = [
+  "Faraday's Law",
+  "Ampere's Law",
+  "Biot-Savart Law",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following bones is not in the leg?"
+correctAnswer = "Radius"
+incorrectAnswers = [
+  "Patella",
+  "Tibia",
+  "Fibula ",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the atomic number of the element Strontium?"
+correctAnswer = "38"
+incorrectAnswers = [
+  "73",
+  "47",
+  "11",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Deuterium is an isotope of which element?"
+correctAnswer = "Hydrogen"
+incorrectAnswers = [
+  "Nitrogen",
+  "Helium",
+  "Neon",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Folic acid is the synthetic form of which vitamin?"
+correctAnswer = "Vitamin B"
+incorrectAnswers = [
+  "Vitamin A",
+  "Vitamin C",
+  "Vitamin D",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is a major muscle of the back?"
+correctAnswer = "Trapezius"
+incorrectAnswers = [
+  "Trapezium",
+  "Trapezoid",
+  "Triquetrum",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Chemistry, how many isomers does Butanol (C4H9OH) have?"
+correctAnswer = "4"
+incorrectAnswers = [
+  "3",
+  "5",
+  "6",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How much radiation does a banana emit?"
+correctAnswer = "0.1 Microsievert"
+incorrectAnswers = [
+  "0.3 Microsievert",
+  "0.5 Microsievert",
+  "0.7 Microsievert",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which part of the body does glaucoma affect?"
+correctAnswer = "Eyes"
+incorrectAnswers = [
+  "Throat",
+  "Stomach",
+  "Blood",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Where did the dog breed \"Chihuahua\" originate?"
+correctAnswer = "Mexico"
+incorrectAnswers = [
+  "France",
+  "Spain",
+  "Russia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "How old is the universe?"
+correctAnswer = "13.8 Billion Years"
+incorrectAnswers = [
+  "4.5 Billion Years",
+  "7.9 Billion Years",
+  "16.2 Billion Years",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these is NOT a part of the structure of a typical neuron?"
+correctAnswer = "Islets of Langerhans"
+incorrectAnswers = [
+  "Node of Ranvier",
+  "Schwann cell",
+  "Myelin sheath",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the speed of light in a vacuum?"
+correctAnswer = "299,792,458 m/s"
+incorrectAnswers = [
+  "50,461 m/s",
+  "308,215,043 m/s",
+  "751,665,014,151 m/s",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does LASER stand for?"
+correctAnswer = "Light amplification by stimulated emission of radiation"
+incorrectAnswers = [
+  "Lite analysing by stereo ecorazer",
+  "Light amplifier by standby energy of radio",
+  "Life antimatter by standing entry of range",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does the letter 'S' stand for in 'NASA'?"
+correctAnswer = "Space"
+incorrectAnswers = [
+  "Science",
+  "Society",
+  "Star",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is radiation measured in?"
+correctAnswer = "Gray "
+incorrectAnswers = [
+  "Watt",
+  "Decibel",
+  "Kelvin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the primary addictive substance found in tobacco?"
+correctAnswer = "Nicotine"
+incorrectAnswers = [
+  "Cathinone",
+  "Ephedrine",
+  "Glaucine",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "After which Danish city is the 72th element on the periodic table named?"
+correctAnswer = "Copenhagen"
+incorrectAnswers = [
+  "Odense",
+  "Herning",
+  "Skagen",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of these bones is hardest to break?"
+correctAnswer = "Femur"
+incorrectAnswers = [
+  "Cranium",
+  "Humerus",
+  "Tibia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Down Syndrome is usually caused by an extra copy of which chromosome?"
+correctAnswer = "21"
+incorrectAnswers = [
+  "23",
+  "15",
+  "24",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which is the chemical name of H2O?"
+correctAnswer = "Dihydrogen Monoxide"
+incorrectAnswers = [
+  "Ammonium chloride",
+  "Anhydrous Sodium Carbonate",
+  "Manganese dioxide",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which is the longest bone in the human body? "
+correctAnswer = "Femur"
+incorrectAnswers = [
+  "Scapula",
+  "Fibula",
+  "Ulna",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which element has the highest melting point?"
+correctAnswer = "Carbon"
+incorrectAnswers = [
+  "Tungsten",
+  "Platinum",
+  "Osmium",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Where is the Gluteus Maximus muscle located?"
+correctAnswer = "Butt"
+incorrectAnswers = [
+  "Arm",
+  "Head",
+  "Torso",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "To the nearest minute, how long does it take for light to travel from the Sun to the Earth?"
+correctAnswer = "8 Minutes"
+incorrectAnswers = [
+  "6 Minutes",
+  "2 Minutes",
+  "12 Minutes",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is \"Stenoma\"?"
+correctAnswer = "A genus of moths"
+incorrectAnswers = [
+  "A combat stimulant from WW2",
+  "A type of seasoning",
+  "A port city in the carribean",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the first element on the periodic table?"
+correctAnswer = "Hydrogen"
+incorrectAnswers = [
+  "Helium",
+  "Oxygen",
+  "Lithium",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the \"powerhouse\" of the Eukaryotic animal cell?"
+correctAnswer = "Mitochondria"
+incorrectAnswers = [
+  "Nucleus",
+  "Chloroplast",
+  "Endoplasmic Reticulum",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which scientific unit is named after an Italian nobleman?"
+correctAnswer = "Volt"
+incorrectAnswers = [
+  "Pascal",
+  "Ohm",
+  "Hertz",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What lies at the center of our galaxy?"
+correctAnswer = "A black hole"
+incorrectAnswers = [
+  "A wormhole",
+  "A supernova",
+  "A quasar",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What animal takes part in Schrödinger's most famous thought experiment?"
+correctAnswer = "Cat"
+incorrectAnswers = [
+  "Dog",
+  "Bat",
+  "Butterfly",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the molecular formula of Ozone?"
+correctAnswer = "O3"
+incorrectAnswers = [
+  "C6H2O6",
+  "N2O",
+  "SO4",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following plastic is commonly used for window frames, gutters and drain pipes?"
+correctAnswer = "Polyvinylchloride (PVC) "
+incorrectAnswers = [
+  "Polyethylene (PE)",
+  "Polypropylene (PP)",
+  "Polystyrene (PS)",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many planets make up our Solar System?"
+correctAnswer = "8"
+incorrectAnswers = [
+  "7",
+  "9",
+  "6",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What common name is given to the medial condition, tibial stress syndrome (MTSS)?"
+correctAnswer = "Shin Splints"
+incorrectAnswers = [
+  "Tennis Elbow",
+  "Carpal Tunnel",
+  "Housemaid's Knee",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the unit of electrical inductance?"
+correctAnswer = "Henry"
+incorrectAnswers = [
+  "Weber",
+  "Coulomb",
+  "Mho",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In physics, conservation of energy and conservation of momentum are both consequences of which of the following?"
+correctAnswer = "Noether's Theorem"
+incorrectAnswers = [
+  "Bell's Theorem",
+  "Wick's Theorem",
+  "Carnot's Theorem",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What nucleotide pairs with guanine?"
+correctAnswer = "Cytosine"
+incorrectAnswers = [
+  "Thymine",
+  "Adenine",
+  "Uracil",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following elements is typically used in the doping of the semiconductor silicon?"
+correctAnswer = "Boron"
+incorrectAnswers = [
+  "Oxygen",
+  "Carbon",
+  "Iron",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the half-life of Uranium-235?"
+correctAnswer = "703,800,000 years"
+incorrectAnswers = [
+  "4,300,400,000 years",
+  "1,260,900,000 years",
+  "Uranium-235 is a stable isotope",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is isobutylphenylpropanoic acid more commonly known as?"
+correctAnswer = "Ibuprofen"
+incorrectAnswers = [
+  "Morphine",
+  "Ketamine",
+  "Aspirin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which type of rock is created by intense heat AND pressure?"
+correctAnswer = "Metamorphic"
+incorrectAnswers = [
+  "Sedimentary",
+  "Igneous",
+  "Diamond",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the molecular formula of Glucose?"
+correctAnswer = "C6H12O6"
+incorrectAnswers = [
+  "C2H4O2",
+  "K+",
+  "CH4",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "About how old is Earth?"
+correctAnswer = "4.5 Billion Years"
+incorrectAnswers = [
+  "3.5 Billion Years",
+  "2.5 Billion Years",
+  "5.5 Billion Years",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What does the yellow diamond on the NFPA 704 fire diamond represent?"
+correctAnswer = "Reactivity"
+incorrectAnswers = [
+  "Health",
+  "Flammability",
+  "Radioactivity",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What does the term \"isolation\" refer to in microbiology?"
+correctAnswer = "The separation of a strain from a natural, mixed population of living microbes"
+incorrectAnswers = [
+  "A lack of nutrition in microenviroments",
+  "The nitrogen level in soil",
+  "Testing effects of certain microorganisms in an isolated enviroments, such as caves",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What genetic disease is caused by having an extra Y chromosome (XYY)?"
+correctAnswer = "Jacob's Syndrome"
+incorrectAnswers = [
+  "Klinefelter's Syndrome",
+  "Turner's Syndrome",
+  "Down Syndrome",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is Hypernatremia?"
+correctAnswer = "Increase in blood sodium"
+incorrectAnswers = [
+  "Decrease in blood potassium",
+  "Increase in blood glucose",
+  "Decrease in blood iron",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which is the most abundant element in the universe?"
+correctAnswer = "Hydrogen"
+incorrectAnswers = [
+  "Helium",
+  "Lithium",
+  "Oxygen",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these choices is not one of the phases of mitosis?"
+correctAnswer = "Diplophase"
+incorrectAnswers = [
+  "Metaphase",
+  "Anaphase",
+  "Telophase",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The medical term for the belly button is which of the following?"
+correctAnswer = "Umbilicus"
+incorrectAnswers = [
+  "Nevus",
+  "Nares",
+  "Paxillus",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Approximately how long is a year on Uranus?"
+correctAnswer = "84 Earth years"
+incorrectAnswers = [
+  "47 Earth years",
+  "62 Earth years",
+  "109 Earth years",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was the name of the first artificial Earth satellite, launched by the Soviet Union in 1957?"
+correctAnswer = "Sputnik 1"
+incorrectAnswers = [
+  "Soyuz 7K-OK",
+  "Zenit-2",
+  "Voskhod 3KV",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "A comet's gaseous envelope (which creates the tail) is called what?"
+correctAnswer = "The coma"
+incorrectAnswers = [
+  "The wake",
+  "The backwash",
+  "The ablative",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which psychological term refers to the stress of holding contrasting beliefs?"
+correctAnswer = "Cognitive Dissonance"
+incorrectAnswers = [
+  "Flip-Flop Syndrome",
+  "Split-Brain",
+  "Blind Sight",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "How many degrees Fahrenheit is 100 degrees Celsius? "
+correctAnswer = "212"
+incorrectAnswers = [
+  "326",
+  "100",
+  "451",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who made the discovery of X-rays?"
+correctAnswer = "Wilhelm Conrad Röntgen"
+incorrectAnswers = [
+  "Thomas Alva Edison",
+  "James Watt",
+  "Albert Einstein",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following are cells of the adaptive immune system?"
+correctAnswer = "Cytotoxic T cells"
+incorrectAnswers = [
+  "Dendritic cells",
+  "Natural killer cells",
+  "White blood cells",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The 'Islets of Langerhans' is found in which human organ?"
+correctAnswer = "Pancreas"
+incorrectAnswers = [
+  "Kidney",
+  "Liver",
+  "Brain",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is an alternative name for multiple personality disorder?"
+correctAnswer = "Dissociative identity disorder"
+incorrectAnswers = [
+  "Body integrity identity disorder",
+  "Identity crisis",
+  "Schizophrenia",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who is the chemical element Curium named after?"
+correctAnswer = "Marie & Pierre Curie"
+incorrectAnswers = [
+  "The Curiosity Rover",
+  "Curious George",
+  "Stephen Curry",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many chromosomes are in your body cells?"
+correctAnswer = "23"
+incorrectAnswers = [
+  "21",
+  "22",
+  "24",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the scientific name for the extinct hominin known as \"Lucy\"?"
+correctAnswer = "Australopithecus Afarensis"
+incorrectAnswers = [
+  "Australopithecus Africanus",
+  "Australopithecus Architeuthis",
+  "Australopithecus Antaris",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which chemical element has the lowest boiling point?"
+correctAnswer = "Helium"
+incorrectAnswers = [
+  "Hydrogen",
+  "Neon",
+  "Nitrogen",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Botanically speaking, which of these fruits is NOT a berry?"
+correctAnswer = "Strawberry"
+incorrectAnswers = [
+  "Blueberry",
+  "Banana",
+  "Concord Grape",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these stars is the largest?"
+correctAnswer = "UY Scuti"
+incorrectAnswers = [
+  "VY Canis Majoris",
+  "Betelgeuse",
+  "RW Cephei",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the largest living organism currently known to man?"
+correctAnswer = "Honey Fungus"
+incorrectAnswers = [
+  "Blue Whale",
+  "Redwood Tree",
+  "The Coral Reef",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "All the following metal elements are liquids at or near room temperature EXCEPT:"
+correctAnswer = "Beryllium"
+incorrectAnswers = [
+  "Gallium",
+  "Caesium",
+  "Mercury",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the powerhouse of the cell?"
+correctAnswer = "Mitochondria"
+incorrectAnswers = [
+  "Ribosome",
+  "Redbull",
+  "Nucleus",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the scientific name of the knee cap?"
+correctAnswer = "Patella"
+incorrectAnswers = [
+  "Femur",
+  "Foramen Magnum",
+  "Scapula",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "An organic compound is considered an alcohol if it has what functional group?"
+correctAnswer = "Hydroxyl"
+incorrectAnswers = [
+  "Carbonyl",
+  "Alkyl",
+  "Aldehyde",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "This element, when overcome with extreme heat and pressure, creates diamonds."
+correctAnswer = "Carbon"
+incorrectAnswers = [
+  "Nitrogen",
+  "Oxygen",
+  "Hydrogen",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What stage of development do the majority of eukaryotic cells remain in for most of their life?"
+correctAnswer = "Interphase"
+incorrectAnswers = [
+  "Prophase",
+  "Stasis",
+  "Telophase",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the chemical formula for ammonia?"
+correctAnswer = "NH3"
+incorrectAnswers = [
+  "CO2",
+  "NO3",
+  "CH4",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The human heart has how many chambers?"
+correctAnswer = "4"
+incorrectAnswers = [
+  "2",
+  "6",
+  "3",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What do you study if you are studying entomology?"
+correctAnswer = "Insects"
+incorrectAnswers = [
+  "Humans",
+  "the Brain",
+  "Fish",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Dry ice is the solid form of what substance?"
+correctAnswer = "Carbon dioxide"
+incorrectAnswers = [
+  "Nitrogen",
+  "Ammonia",
+  "Oxygen",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is NOT a word used to describe an earthquake?"
+correctAnswer = "Drop-slide"
+incorrectAnswers = [
+  "Foreshock",
+  "Strike-slip",
+  "Temblor",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The humerus, paired radius, and ulna come together to form what joint?"
+correctAnswer = "Elbow"
+incorrectAnswers = [
+  "Knee",
+  "Sholder",
+  "Ankle",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The moons, Miranda, Ariel, Umbriel, Titania and Oberon orbit which planet?"
+correctAnswer = "Uranus"
+incorrectAnswers = [
+  "Jupiter",
+  "Venus",
+  "Neptune",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following liquids is least viscous? Assume temperature is 25°C."
+correctAnswer = "Acetone"
+incorrectAnswers = [
+  "Water",
+  "Mercury",
+  "Benzene",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was the first mammal successfully cloned?"
+correctAnswer = "1996"
+incorrectAnswers = [
+  "2009",
+  "1999",
+  "1985",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What term is best associated with Sigmund Freud?"
+correctAnswer = "Psychoanalysis"
+incorrectAnswers = [
+  "Cognitive-Behavioral Therapy",
+  "Theory of Gravity",
+  "Dialectical Behavior Therapy",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many types of quarks are there in the standard model of physics?"
+correctAnswer = "6"
+incorrectAnswers = [
+  "2",
+  "3",
+  "4",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Deionized water is water with which of the following removed?"
+correctAnswer = "Iron"
+incorrectAnswers = [
+  "Oxygen",
+  "Hydrogen",
+  "Uncharged atoms",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Au on the Periodic Table refers to which element?"
+correctAnswer = "Gold"
+incorrectAnswers = [
+  "Silver",
+  "Oxygen",
+  "Nickel",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which color cannot be produced in Roses, even through genetic alteration?"
+correctAnswer = "Blue"
+incorrectAnswers = [
+  "Black",
+  "Orange",
+  "Brown",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following is NOT a passive electrical component?"
+correctAnswer = "Transistor"
+incorrectAnswers = [
+  "Resistor",
+  "Capacitor",
+  "Inductor",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is considered classical conditioning?"
+correctAnswer = "Pavlov's dog experiments"
+incorrectAnswers = [
+  "Skinner box experiment",
+  "Schrödinger's cat experiment",
+  "Harlow’s monkey experiments",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The core of the Sun can reach which temperature?"
+correctAnswer = "27° Million F (15° Million C)"
+incorrectAnswers = [
+  "938,000° F (521093.3° C)",
+  "8° Billion F (°4.4 Billion C)",
+  "Absolute Zero (Both F and C)",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In aeronautics, flaps and slats are used to control what on an aircraft?"
+correctAnswer = "Lift"
+incorrectAnswers = [
+  "Thrust",
+  "Drag",
+  "Weight ",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following men does not have a chemical element named after him?"
+correctAnswer = "Sir Isaac Newton"
+incorrectAnswers = [
+  "Albert Einstein",
+  "Niels Bohr",
+  "Enrico Fermi",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the Linnean name of the domestic apple tree?"
+correctAnswer = "Malus pumila"
+incorrectAnswers = [
+  "Malus americana",
+  "Pomus domestica",
+  "Appelus delectica",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which planet did the \"Viking 1\" spacecraft send surface images of, starting in 1976?"
+correctAnswer = "Mars"
+incorrectAnswers = [
+  "Saturn",
+  "Jupiter",
+  "Venus",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these chemical compounds is NOT found in gastric acid?"
+correctAnswer = "Sulfuric acid"
+incorrectAnswers = [
+  "Hydrochloric acid",
+  "Potassium chloride",
+  "Sodium chloride",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Myopia is the scientific term for which condition?"
+correctAnswer = "Shortsightedness"
+incorrectAnswers = [
+  "Farsightedness",
+  "Double Vision",
+  "Clouded Vision",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Muscle fiber is constructed of bundles small long organelles called what?"
+correctAnswer = "Myofibrils"
+incorrectAnswers = [
+  "Epimysium",
+  "Myofiaments",
+  "Myocardium",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the standard atomic weight of a Plutonium nucleus?"
+correctAnswer = "244"
+incorrectAnswers = [
+  "94",
+  "481",
+  "128",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The word \"science\" stems from the word \"scire\" meaning what?"
+correctAnswer = "To know"
+incorrectAnswers = [
+  "To measure",
+  "To live",
+  "To count",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the scientific term for 'taste'?"
+correctAnswer = "Gustatory Perception"
+incorrectAnswers = [
+  "Olfaction",
+  "Somatosensation",
+  "Auditory Perception",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The asteroid belt is located between which two planets?"
+correctAnswer = "Mars and Jupiter"
+incorrectAnswers = [
+  "Jupiter and Saturn",
+  "Mercury and Venus",
+  "Earth and Mars",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who discovered the Law of Gravity?"
+correctAnswer = "Sir Isaac Newton"
+incorrectAnswers = [
+  "Galileo Galilei",
+  "Charles Darwin",
+  "Albert Einstein",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What element on the periodic table has 92 electrons?"
+correctAnswer = "Uranium"
+incorrectAnswers = [
+  "Sulfur",
+  "Hydrogen",
+  "Iron",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the colour of unoxidized blood?"
+correctAnswer = "Red"
+incorrectAnswers = [
+  "Blue",
+  "Purple",
+  "Green",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The biggest distinction between a eukaryotic cell and a prokaryotic cell is:"
+correctAnswer = "The presence or absence of a nucleus"
+incorrectAnswers = [
+  "The overall size",
+  "The presence or absence of certain organelles",
+  "The mode of reproduction",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the first living creature in space?"
+correctAnswer = "Fruit Flies "
+incorrectAnswers = [
+  "Monkey",
+  "Dog",
+  "Mouse",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is considered the rarest form of color blindness?"
+correctAnswer = "Blue"
+incorrectAnswers = [
+  "Red",
+  "Green",
+  "Purple",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "How many officially recognized dwarf planets in the solar system are named after Polynesian deities?"
+correctAnswer = "2"
+incorrectAnswers = [
+  "0",
+  "1",
+  "5",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the unit of electrical capacitance?"
+correctAnswer = "Farad"
+incorrectAnswers = [
+  "Gauss",
+  "Henry",
+  "Watt",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which one of these scientists conducted the Gold Foil Experiment which concluded that atoms are mostly made of empty space?"
+correctAnswer = "Ernest Rutherford"
+incorrectAnswers = [
+  "Joseph John Thomson",
+  "Archimedes",
+  "Niels Henrik David Bohr",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the most potent toxin known?"
+correctAnswer = "Botulinum toxin"
+incorrectAnswers = [
+  "Ricin",
+  "Cyanide",
+  "Asbestos",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Axiom of Preventive Medicine states that people with ___ risk for a disease should be screened and we should treat ___ of those people."
+correctAnswer = "low, all"
+incorrectAnswers = [
+  "low, some",
+  "high, all",
+  "high, some",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which desert is the only desert in the world where the \"Saguaro\" cactus grows indigenously?"
+correctAnswer = "The Sonoran Desert"
+incorrectAnswers = [
+  "The Gobi Desert",
+  "The Yuma Desert",
+  "The Arabian Desert",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Sun consists of mostly which two elements?"
+correctAnswer = "Hydrogen & Helium"
+incorrectAnswers = [
+  "Hydrogen & Nitrogen",
+  "Carbon & Nitrogen",
+  "Carbon & Helium",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the cognitive bias wherein a person with low ability in a particular skill mistake themselves as being superior?"
+correctAnswer = "Dunning-Kruger effect"
+incorrectAnswers = [
+  "Meyers-Briggs effect",
+  "Müller-Lyer effect",
+  "Freud-Hall effect",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these is a type of stretch/deep tendon reflex?"
+correctAnswer = "Ankle jerk reflex"
+incorrectAnswers = [
+  "Gag reflex",
+  "Pupillary light reflex",
+  "Scratch reflex",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "On which mission did the Space Shuttle Columbia break up upon re-entry?"
+correctAnswer = "STS-107"
+incorrectAnswers = [
+  "STS-51-L",
+  "STS-61-C",
+  "STS-109",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The Western Lowland Gorilla is scientifically know as?"
+correctAnswer = "Gorilla Gorilla Gorilla"
+incorrectAnswers = [
+  "Gorilla Gorilla Diehli",
+  "Gorilla Beringei Graueri",
+  "Gorilla Beringei Beringei",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which horizon in a soil profile consists of bedrock?"
+correctAnswer = "R"
+incorrectAnswers = [
+  "O",
+  "B",
+  "D",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the elemental symbol for mercury?"
+correctAnswer = "Hg"
+incorrectAnswers = [
+  "Me",
+  "Mc",
+  "Hy",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In quantum physics, which of these theorised sub-atomic particles has yet to be observed?"
+correctAnswer = "Graviton"
+incorrectAnswers = [
+  "Z boson",
+  "Tau neutrino",
+  "Gluon",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "An organism described as \"heliotropic\" has a tendancy to move towards which of these things?"
+correctAnswer = "Light"
+incorrectAnswers = [
+  "Water",
+  "Trees",
+  "Pollen",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the unit of electrical resistance?"
+correctAnswer = "Ohm"
+incorrectAnswers = [
+  "Mho",
+  "Tesla",
+  "Joule",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Along with Oxygen, which element is primarily responsible for the sky appearing blue?"
+correctAnswer = "Nitrogen"
+incorrectAnswers = [
+  "Helium",
+  "Carbon",
+  "Hydrogen",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Scoville scale, what is the hottest chemical?"
+correctAnswer = "Resiniferatoxin"
+incorrectAnswers = [
+  "Capsaicin",
+  "Dihydrocapsaicin",
+  "Tinyatoxin",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the molecular formula of the active component of chili peppers(Capsaicin)?"
+correctAnswer = "C18H27NO3"
+incorrectAnswers = [
+  "C21H23NO3",
+  "C6H4Cl2",
+  "C13H25NO4",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which element has the chemical symbol 'Fe'?"
+correctAnswer = "Iron"
+incorrectAnswers = [
+  "Gold",
+  "Silver",
+  "Tin",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What part of the brain takes its name from the Greek for seahorse?"
+correctAnswer = "Hippocampus"
+incorrectAnswers = [
+  "Cerebellum",
+  "Thalamus",
+  "Amygdala",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In human biology, a circadium rhythm relates to a period of roughly how many hours?"
+correctAnswer = "24"
+incorrectAnswers = [
+  "8",
+  "16",
+  "32",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "At what temperature does water boil?"
+correctAnswer = "212°F"
+incorrectAnswers = [
+  "200°F",
+  "181°F",
+  "178°F",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which Apollo mission was the first one to land on the Moon?"
+correctAnswer = "Apollo 11"
+incorrectAnswers = [
+  "Apollo 10",
+  "Apollo 9",
+  "Apollo 13",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The human right lung has how many lobes?"
+correctAnswer = "3"
+incorrectAnswers = [
+  "4",
+  "2",
+  "1",
+]

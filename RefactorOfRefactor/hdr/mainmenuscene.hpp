@@ -8,7 +8,7 @@ class MainMenuScene
 {
 using enum Asset::Identifier;
 private:
-    static constexpr std::array ASSETS = { Logo, Background };
+    static constexpr std::array ASSETS = { Logo, Background, InputFiles };
     static constexpr size_t BUTTON_COUNT = 4;
     bool sceneLoaded;
     Option::Inst<int32_t> selectedButton;

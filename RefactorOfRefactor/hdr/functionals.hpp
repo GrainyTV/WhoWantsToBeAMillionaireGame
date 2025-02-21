@@ -4,12 +4,15 @@
 #include <type_traits>
 #include <vector>
 
+// template<typename T>
+// concept IEnumerable = requires (T& seq)
+// {
+//     std::begin(seq);
+//     std::end(seq);
+// };
+
 template<typename T>
-concept IEnumerable = requires (const T& seq)
-{
-    std::begin(seq);
-    std::end(seq);
-};
+concept IEnumerable = std::ranges::range<T>;
 
 template<IEnumerable T>
 using ItemOf = typename T::value_type;
@@ -25,7 +28,7 @@ namespace Seq
     template<typename Action>
     auto iter(Action act)
     {
-        return [act](auto& container)
+        return [act](auto&& container)
         {
             for (auto& item : container)
             {
@@ -37,7 +40,7 @@ namespace Seq
     template<typename Action>
     auto iteri(Action act)
     {
-        return [act](auto& container)
+        return [act](auto&& container)
         {
             size_t i = 0;
 
@@ -81,6 +84,26 @@ namespace Seq
             for (const auto& item : container)
             {
                 result.push_back(transform(item));
+            }
+            
+            return result;
+        };
+    }
+
+    template<typename Transform>
+    auto mapi(Transform transform)
+    {
+        return [transform](const auto& container)
+        {
+            using ItemType = ItemOf<std::decay_t<decltype(container)>>;
+            using ResultType = std::invoke_result_t<Transform, ItemType, size_t>;
+            std::vector<ResultType> result;
+            size_t i = 0;
+            
+            for (const auto& item : container)
+            {
+                result.push_back(transform(item, i));
+                ++i;
             }
             
             return result;

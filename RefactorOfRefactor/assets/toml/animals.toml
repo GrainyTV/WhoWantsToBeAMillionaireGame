@@ -1,0 +1,559 @@
+[[entry]]
+difficulty = "hard"
+question = "What is the collective noun for vultures?"
+correctAnswer = "Wake"
+incorrectAnswers = [
+  "Ambush",
+  "Building",
+  "Gaze",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which species is a \"mountain chicken\"?"
+correctAnswer = "Frog"
+incorrectAnswers = [
+  "Chicken",
+  "Horse",
+  "Fly",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these animals is NOT a lizard?"
+correctAnswer = "Tuatara"
+incorrectAnswers = [
+  "Komodo Dragon",
+  "Gila Monster",
+  "Green Iguana",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many teeth does an adult rabbit have?"
+correctAnswer = "28"
+incorrectAnswers = [
+  "30",
+  "26",
+  "24",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What are the scales on all snakes and most lizards are made of?"
+correctAnswer = "Keratin"
+incorrectAnswers = [
+  "Ecdysis",
+  "Epidermis",
+  "Ankyloglossia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "\"Decapods\" are an order of ten-footed crustaceans.  Which of these are NOT decapods?"
+correctAnswer = "Krill"
+incorrectAnswers = [
+  "Lobsters",
+  "Shrimp",
+  "Crabs",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What bird is born with claws on its wing digits?"
+correctAnswer = "Hoatzin"
+incorrectAnswers = [
+  "Cormorant",
+  "Cassowary",
+  "Secretary bird",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "A carnivorous animal eats flesh, what does a nucivorous animal eat?"
+correctAnswer = "Nuts"
+incorrectAnswers = [
+  "Nothing",
+  "Fruit",
+  "Seaweed",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What does \"hippopotamus\" mean and in what langauge?"
+correctAnswer = "River Horse (Greek)"
+incorrectAnswers = [
+  "River Horse (Latin)",
+  "Fat Pig (Greek)",
+  "Fat Pig (Latin)",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Cashmere is the wool from which kind of animal?"
+correctAnswer = "Goat"
+incorrectAnswers = [
+  "Sheep",
+  "Camel",
+  "Llama",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "To which biological phylum do all mammals, birds and reptiles belong?"
+correctAnswer = "Chordata"
+incorrectAnswers = [
+  "Echinodermata",
+  "Annelida",
+  "Placazoa",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What type of animal is a natterjack?"
+correctAnswer = "Toad"
+incorrectAnswers = [
+  "Bird",
+  "Fish",
+  "Insect",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these is a colony of polyps and not a jellyfish?"
+correctAnswer = "Portuguese Man-of-War"
+incorrectAnswers = [
+  "Sea Wasp",
+  "Irukandji",
+  "Sea Nettle",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the Gray Wolf's scientific name?"
+correctAnswer = "Canis Lupus"
+incorrectAnswers = [
+  "Canis Aureus",
+  "Canis Latrans",
+  "Canis Lupus Lycaon",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the collective noun for a group of crows?"
+correctAnswer = "Murder"
+incorrectAnswers = [
+  "Pack",
+  "Gaggle",
+  "Herd",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the family that the domestic cat is a member of?"
+correctAnswer = "Felidae"
+incorrectAnswers = [
+  "Felinae",
+  "Felis",
+  "Cat",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What type of creature is a Bonobo?"
+correctAnswer = "Ape"
+incorrectAnswers = [
+  "Lion",
+  "Parrot",
+  "Wildcat",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the scientific name for the \"Polar Bear\"?"
+correctAnswer = "Ursus Maritimus"
+incorrectAnswers = [
+  "Polar Bear",
+  "Ursus Spelaeus",
+  "Ursus Arctos",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Snakes and lizards are known to flick their tongue, this behavior is to?"
+correctAnswer = "Capture scent particles"
+incorrectAnswers = [
+  "Taste the sweet air",
+  "Threaten other species",
+  "Attract female mates",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What do you call a baby bat?"
+correctAnswer = "Pup"
+incorrectAnswers = [
+  "Cub",
+  "Chick",
+  "Kid",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What scientific suborder does the family Hyaenidae belong to?"
+correctAnswer = "Feliformia"
+incorrectAnswers = [
+  "Haplorhini",
+  "Caniformia",
+  "Ciconiiformes",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the scientific name of the Budgerigar?"
+correctAnswer = "Melopsittacus undulatus"
+incorrectAnswers = [
+  "Nymphicus hollandicus",
+  "Pyrrhura molinae",
+  "Ara macao",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many known living species of hyenas are there?"
+correctAnswer = "4"
+incorrectAnswers = [
+  "8",
+  "2",
+  "6",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the common term for bovine spongiform encephalopathy (BSE)?"
+correctAnswer = "Mad Cow disease"
+incorrectAnswers = [
+  "Weil's disease",
+  "Milk fever",
+  "Foot-and-mouth disease",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which species of Brown Bear is not extinct?"
+correctAnswer = "Syrian Brown Bear"
+incorrectAnswers = [
+  "California Grizzly Bear",
+  "Atlas Bear",
+  "Mexican Grizzly Bear",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "For what reason would a spotted hyena \"laugh\"?"
+correctAnswer = "Nervousness"
+incorrectAnswers = [
+  "Excitement",
+  "Aggression",
+  "Exhaustion",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The now extinct species \"Thylacine\" was native to where?"
+correctAnswer = "Tasmania, Australia"
+incorrectAnswers = [
+  "Baluchistan, Pakistan",
+  "Wallachia, Romania",
+  "Oregon, United States",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What are rhino's horn made of?"
+correctAnswer = "Keratin"
+incorrectAnswers = [
+  "Bone",
+  "Ivory",
+  "Skin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of a rabbit's abode?"
+correctAnswer = "Burrow"
+incorrectAnswers = [
+  "Nest",
+  "Den",
+  "Dray",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is another name for the \"Poecilotheria Metallica Tarantula\"?"
+correctAnswer = "Gooty"
+incorrectAnswers = [
+  "Hopper",
+  "Silver Stripe",
+  "Woebegone",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What dog breed is one of the oldest breeds of dog and has flourished since before 400 BCE."
+correctAnswer = "Pugs"
+incorrectAnswers = [
+  "Bulldogs",
+  "Boxers",
+  "Chihuahua",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the collective noun for rats?"
+correctAnswer = "Mischief"
+incorrectAnswers = [
+  "Pack",
+  "Race",
+  "Drift",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the scientific name for modern day humans?"
+correctAnswer = "Homo Sapiens"
+incorrectAnswers = [
+  "Homo Ergaster",
+  "Homo Erectus",
+  "Homo Neanderthalensis",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the name of the Ethiopian Wolf before they knew it was related to wolves?"
+correctAnswer = "Simien Jackel"
+incorrectAnswers = [
+  "Ethiopian Coyote",
+  "Amharic Fox",
+  "Canis Simiensis",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many legs do butterflies have?"
+correctAnswer = "6"
+incorrectAnswers = [
+  "2",
+  "4",
+  "0",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Unlike on most salamanders, this part of a newt is flat?"
+correctAnswer = "Tail"
+incorrectAnswers = [
+  "Head",
+  "Teeth",
+  "Feet",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the fastest animal?"
+correctAnswer = "Peregrine Falcon"
+incorrectAnswers = [
+  "Golden Eagle",
+  "Cheetah",
+  "Horsefly",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "By definition, where does an abyssopelagic animal live?"
+correctAnswer = "At the bottom of the ocean"
+incorrectAnswers = [
+  "In the desert",
+  "On top of a mountain",
+  "Inside a tree",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the fastest  land animal?"
+correctAnswer = "Cheetah"
+incorrectAnswers = [
+  "Lion",
+  "Thomson’s Gazelle",
+  "Pronghorn Antelope",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following is NOT a venomous snake?"
+correctAnswer = "Reticulated python"
+incorrectAnswers = [
+  "Malayan Krait",
+  "Yellow bellied sea snake",
+  "Black mamba",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the collective noun for bears?"
+correctAnswer = "Sloth"
+incorrectAnswers = [
+  "Drove",
+  "Tribe",
+  "Husk",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the world's longest venomous snake?"
+correctAnswer = "King Cobra"
+incorrectAnswers = [
+  "Green Anaconda",
+  "Inland Taipan",
+  "Yellow Bellied Sea Snake",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What colour is the female blackbird?"
+correctAnswer = "Brown"
+incorrectAnswers = [
+  "Black",
+  "White",
+  "Yellow",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What color/colour is a polar bear's skin?"
+correctAnswer = "Black"
+incorrectAnswers = [
+  "White",
+  "Pink",
+  "Green",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The dish Fugu, is made from what family of fish?"
+correctAnswer = "Pufferfish"
+incorrectAnswers = [
+  "Bass",
+  "Salmon",
+  "Mackerel",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the name of the copper-rich protein that creates the blue blood in the Antarctic octopus?"
+correctAnswer = "Hemocyanin"
+incorrectAnswers = [
+  "Cytochrome",
+  "Iron",
+  "Methionine",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which animal was part of an Russian domestication experiment in 1959?"
+correctAnswer = "Foxes"
+incorrectAnswers = [
+  "Pigeons",
+  "Bears",
+  "Alligators",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What scientific family does the Aardwolf belong to?"
+correctAnswer = "Hyaenidae"
+incorrectAnswers = [
+  "Canidae",
+  "Felidae",
+  "Eupleridae",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which class of animals are newts members of?"
+correctAnswer = "Amphibian"
+incorrectAnswers = [
+  "Fish",
+  "Reptiles",
+  "Mammals",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the scientific name of the cheetah?"
+correctAnswer = "Acinonyx jubatus"
+incorrectAnswers = [
+  "Panthera onca",
+  "Lynx rufus",
+  "Felis catus",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these species is not extinct?"
+correctAnswer = "Komodo dragon"
+incorrectAnswers = [
+  "Japanese sea lion",
+  "Tasmanian tiger",
+  "Saudi gazelle",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The Kākāpō is a large, flightless, nocturnal parrot native to which country?"
+correctAnswer = "New Zealand"
+incorrectAnswers = [
+  "South Africa",
+  "Australia",
+  "Madagascar",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name for a male bee that comes from an unfertilized egg?"
+correctAnswer = "Drone"
+incorrectAnswers = [
+  "Soldier",
+  "Worker",
+  "Male",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is Grumpy Cat's real name?"
+correctAnswer = "Tardar Sauce"
+incorrectAnswers = [
+  "Sauce",
+  "Minnie",
+  "Broccoli",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the scientific name of the Common Chimpanzee?"
+correctAnswer = "Pan troglodytes"
+incorrectAnswers = [
+  "Gorilla gorilla",
+  "Pan paniscus",
+  "Panthera leo",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Hippocampus is the Latin name for which marine creature?"
+correctAnswer = "Seahorse"
+incorrectAnswers = [
+  "Dolphin",
+  "Whale",
+  "Octopus",
+]

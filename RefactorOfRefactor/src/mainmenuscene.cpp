@@ -58,7 +58,7 @@ static std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect lo
     return { 
         TextBubble({ 
             .Frontend = Hexagon(buttonAreas[0], "New Game"),
-            .Backend = Invokable([]() { Utility::requestUserEvent({ .type = EVENT_CHANGE_SCENE_INGAME }); })
+            .Backend = Invokable(Utility::requestUserEvent, SDL_UserEvent(EVENT_CHANGE_SCENE_INGAME))
         }),
         
         TextBubble({ 
@@ -73,7 +73,7 @@ static std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect lo
         
         TextBubble({ 
             .Frontend = Hexagon(buttonAreas[3], "Quit"),
-            .Backend = Invokable()
+            .Backend = Invokable(Utility::requestEvent, SDL_Event(SDL_EVENT_QUIT))
         })
     };
 }

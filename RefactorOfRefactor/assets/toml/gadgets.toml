@@ -1,0 +1,259 @@
+[[entry]]
+difficulty = "medium"
+question = "Out of all of the NASA Space Shuttles, which 2 have been destroyed in disasters?"
+correctAnswer = "Challenger and Columbia"
+incorrectAnswers = [
+  "Enterprise and Atlantis",
+  "Discovery and Endeavour",
+  "None of the Above",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The term \"battery\" to describe an electrical storage device was coined by?"
+correctAnswer = "Benjamin Franklin"
+incorrectAnswers = [
+  "Nikola Tesla",
+  "Luigi Galvani",
+  " Alessandro Volta",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following cellular device companies is NOT headquartered in Asia?"
+correctAnswer = "Nokia"
+incorrectAnswers = [
+  "LG Electronics",
+  "Samsung",
+  "HTC",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which round does a WW2 M1 Garand fire?"
+correctAnswer = ".30-06"
+incorrectAnswers = [
+  ".308",
+  "7.62",
+  "7.62x51mm",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What round is a classic AK-47 chambered in?"
+correctAnswer = "7.62x39mm"
+incorrectAnswers = [
+  "7.62x51mm",
+  "5.56x45mm",
+  "5.45x39mm",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When was the Tamagotchi digital pet released?"
+correctAnswer = "1996"
+incorrectAnswers = [
+  "1989",
+  "1992",
+  "1990",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following is not a type of computer mouse?"
+correctAnswer = "Smoothie mouse"
+incorrectAnswers = [
+  "Drum mouse",
+  "Trackball mouse",
+  "Optical mouse",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which company designed the \"Betamax\" video cassette format?"
+correctAnswer = "Sony"
+incorrectAnswers = [
+  "Panasonic",
+  "LG",
+  "Fujitsu",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which gaming console is developed by Sony?"
+correctAnswer = "PlayStation"
+incorrectAnswers = [
+  "Xbox",
+  "Atari",
+  "Nintendo Switch",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the most significant side venture the popular firearms company, Remington, has pursued?"
+correctAnswer = "Typewriters"
+incorrectAnswers = [
+  "Blenders",
+  "Ceiling Fans",
+  "Door Knobs",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is the standard THX subwoofer crossover frequency?"
+correctAnswer = "80 Hz"
+incorrectAnswers = [
+  "70 Hz",
+  "90 Hz",
+  "100 Hz",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which virtual assistant is developed by Amazon?"
+correctAnswer = "Alexa"
+incorrectAnswers = [
+  "Google Assistant",
+  "Siri",
+  "Cortana",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is used to measure blood pressure?"
+correctAnswer = "Sphygmomanometer"
+incorrectAnswers = [
+  "Barometer",
+  "Ruler",
+  "Haemoerythrometer",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does SSD stand for in the context of computer storage?"
+correctAnswer = " Solid State Drive"
+incorrectAnswers = [
+  "Software Storage Device",
+  "Super Speed Data",
+  "Secure System Disk",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When did the CD begin to appear on the consumer market?"
+correctAnswer = "1982"
+incorrectAnswers = [
+  "1992",
+  "1972",
+  "1962",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Mobile hardware and software company \"Blackberry Limited\" was founded in which country?"
+correctAnswer = "Canada"
+incorrectAnswers = [
+  "Norway",
+  "United States of America",
+  "United Kingdom",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which buzzword did Apple Inc. use to describe their removal of the headphone jack?"
+correctAnswer = "Courage"
+incorrectAnswers = [
+  "Innovation",
+  "Revolution",
+  "Bravery",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does GPS stand for?"
+correctAnswer = "Global Positioning System"
+incorrectAnswers = [
+  "Global Personal System",
+  "General Positioning System",
+  "General Personal Satellite",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When was the iPhone released?"
+correctAnswer = "2007"
+incorrectAnswers = [
+  "2005",
+  "2006",
+  "2004",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who patented a steam engine that produced continuous rotary motion?"
+correctAnswer = "James Watt"
+incorrectAnswers = [
+  "Nikola Tesla",
+  "Albert Einstein",
+  "Alessandro Volta",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who built the first laser?"
+correctAnswer = "Theodore Harold Maiman"
+incorrectAnswers = [
+  "Nikola Tesla",
+  "Jack Kilby",
+  "Edith Clarke",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the \"Mitsubishi Wakamaru\"?"
+correctAnswer = "A robot"
+incorrectAnswers = [
+  "A pickup truck",
+  "An motorcycle",
+  "A motorboat",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When was the DVD invented?"
+correctAnswer = "1995"
+incorrectAnswers = [
+  "2000",
+  "1990",
+  "1980",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which company developed the Hololens?"
+correctAnswer = "Microsoft"
+incorrectAnswers = [
+  "HTC",
+  "Oculus",
+  "Tobii",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In what year was the Oculus Rift revealed to the public through a Kickstarter campaign?"
+correctAnswer = "2012"
+incorrectAnswers = [
+  "2010",
+  "2011",
+  "2013",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What are the base station trackers used for the HTC Vive called?"
+correctAnswer = "Lighthouse"
+incorrectAnswers = [
+  "Motion",
+  "Constellation ",
+  "Trackers",
+]

@@ -1,0 +1,2459 @@
+[[entry]]
+difficulty = "easy"
+question = "What is the Zodiac symbol for Gemini?"
+correctAnswer = "Twins"
+incorrectAnswers = [
+  "Fish",
+  "Scales",
+  "Maiden",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "According to the 2014-2015 Australian Bureau of Statistics, what percentage of Australians were born overseas?"
+correctAnswer = "28%"
+incorrectAnswers = [
+  "13%",
+  "20%",
+  "7%",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the profession of Elon Musk's mom, Maye Musk?"
+correctAnswer = "Model"
+incorrectAnswers = [
+  "Professor",
+  "Biologist",
+  "Musician",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Frank Lloyd Wright was the architect behind what famous building?"
+correctAnswer = "The Guggenheim"
+incorrectAnswers = [
+  "Villa Savoye",
+  "Sydney Opera House",
+  "The Space Needle",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was the name of the WWF professional wrestling tag team made up of the wrestlers Ax and Smash?"
+correctAnswer = "Demolition"
+incorrectAnswers = [
+  "The Dream Team",
+  "The Bushwhackers",
+  "The British Bulldogs",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What year was the RoboSapien toy robot released?"
+correctAnswer = "2004"
+incorrectAnswers = [
+  "2000",
+  "2001",
+  "2006",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What fast food chain has the most locations globally? "
+correctAnswer = "Subway"
+incorrectAnswers = [
+  "Starbucks",
+  "McDonalds",
+  "KFC",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How would one say goodbye in Spanish?"
+correctAnswer = "Adiós"
+incorrectAnswers = [
+  " Hola",
+  "Au Revoir",
+  "Salir",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How long did it take the motorized window washers of the original World Trade Center to clean the entire exterior of the building?"
+correctAnswer = "1 Month"
+incorrectAnswers = [
+  "3 Weeks",
+  "1 Week",
+  "2 Months",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of these Marvel games was released on the Playstation 2?"
+correctAnswer = "Spider-Man 2"
+incorrectAnswers = [
+  "Silver Surfer",
+  "Howard the Duck",
+  "Wolverine: Adamantium Rage",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the closest planet to our solar system's sun?"
+correctAnswer = "Mercury"
+incorrectAnswers = [
+  "Mars",
+  "Jupiter",
+  "Earth",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which company did Valve cooperate with in the creation of the Vive?"
+correctAnswer = "HTC"
+incorrectAnswers = [
+  "Oculus",
+  "Google",
+  "Razer",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What direction does the Statue of Liberty face?"
+correctAnswer = "Southeast"
+incorrectAnswers = [
+  "Southwest",
+  "Northwest",
+  "Northeast",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What nuts are used in the production of marzipan?"
+correctAnswer = "Almonds"
+incorrectAnswers = [
+  "Peanuts",
+  "Walnuts",
+  "Pistachios",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is a co-founder of music streaming service Spotify?"
+correctAnswer = "Daniel Ek"
+incorrectAnswers = [
+  "Sean Parker",
+  "Felix Miller",
+  "Michael Breidenbruecker",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The likeness of which president is featured on the rare $2 bill of USA currency?"
+correctAnswer = "Thomas Jefferson"
+incorrectAnswers = [
+  "Martin Van Buren",
+  "Ulysses Grant",
+  "John Quincy Adams",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following carbonated soft drinks were introduced first?"
+correctAnswer = "Dr. Pepper"
+incorrectAnswers = [
+  "Coca-Cola",
+  "Sprite",
+  "Mountain Dew",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the Italian word for \"tomato\"?"
+correctAnswer = "Pomodoro"
+incorrectAnswers = [
+  "Aglio",
+  "Cipolla",
+  "Peperoncino",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of the company in Lethal Company?"
+correctAnswer = "The Company"
+incorrectAnswers = [
+  "Planet Scrap Co.",
+  "Lethal Robotics",
+  "Gordian Shipping Co.",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the Spanish word for \"donkey\"?"
+correctAnswer = "Burro"
+incorrectAnswers = [
+  "Caballo",
+  "Toro",
+  "Perro",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The website \"Shut Up & Sit Down\" reviews which form of media?"
+correctAnswer = "Board Games"
+incorrectAnswers = [
+  "Television Shows",
+  "Video Games",
+  "Films",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Scotch whisky and Drambuie make up which cocktail?"
+correctAnswer = "Rusty Nail"
+incorrectAnswers = [
+  "Screwdriver",
+  "Sex on the Beach",
+  "Manhattan",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the original name of the search engine \"Google\"?"
+correctAnswer = "BackRub"
+incorrectAnswers = [
+  "CatMassage",
+  "SearchPro",
+  "Netscape Navigator",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the nickname of the US state of California?"
+correctAnswer = "Golden State"
+incorrectAnswers = [
+  "Sunshine State",
+  "Bay State",
+  "Treasure State",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name given to Indian food cooked over charcoal in a clay oven?"
+correctAnswer = "Tandoori"
+incorrectAnswers = [
+  "Biryani",
+  "Pani puri",
+  "Tiki masala",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When one is \"envious\", they are said to be what color?"
+correctAnswer = "Green"
+incorrectAnswers = [
+  "Red",
+  "Blue",
+  "Yellow",
+]
+
+[[entry]]
+difficulty = "easy"
+question = " Which chemical element, number 11 in the Periodic table, has the symbol Na?"
+correctAnswer = "Sodium"
+incorrectAnswers = [
+  "Carbon",
+  "Lead",
+  "Nitrogen",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was the nickname given to the Hughes H-4 Hercules, a heavy transport flying boat which achieved flight in 1947?"
+correctAnswer = "Spruce Goose"
+incorrectAnswers = [
+  "Noah's Ark",
+  "Fat Man",
+  "Trojan Horse",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What airline was the owner of the plane that crashed off the coast of Nova Scotia in 1998?"
+correctAnswer = "Swiss Air"
+incorrectAnswers = [
+  "Air France",
+  "British Airways",
+  "TWA",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the weight of a Gold Bar in Fallout: New Vegas?"
+correctAnswer = "35 Pounds"
+incorrectAnswers = [
+  "30 Pounds",
+  "40 Pounds",
+  "32.50 Pounds",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The word \"aprosexia\" means which of the following?"
+correctAnswer = "The inability to concentrate on anything"
+incorrectAnswers = [
+  "The inability to make decisions",
+  "A feverish desire to rip one's clothes off",
+  "The inability to stand up",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Terry Gilliam was an animator that worked with which British comedy group?"
+correctAnswer = "Monty Python"
+incorrectAnswers = [
+  "The Goodies‎",
+  "The League of Gentlemen‎",
+  "The Penny Dreadfuls",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many furlongs are there in a mile?"
+correctAnswer = "Eight"
+incorrectAnswers = [
+  "Two",
+  "Four",
+  "Six",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following presidents is not on Mount Rushmore?"
+correctAnswer = "John F. Kennedy"
+incorrectAnswers = [
+  "Theodore Roosevelt",
+  "Abraham Lincoln",
+  "Thomas Jefferson",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "According to Sherlock Holmes, \"If you eliminate the impossible, whatever remains, however improbable, must be the...\""
+correctAnswer = "Truth"
+incorrectAnswers = [
+  "Answer",
+  "Cause",
+  "Source",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of these colours is NOT featured in the logo for Google?"
+correctAnswer = "Pink"
+incorrectAnswers = [
+  "Yellow",
+  "Blue",
+  "Green",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which one of these Swedish companies was founded in 1943?"
+correctAnswer = "IKEA"
+incorrectAnswers = [
+  "H & M",
+  "Lindex",
+  "Clas Ohlson",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In what year was McDonald's founded?"
+correctAnswer = "1955"
+incorrectAnswers = [
+  "1964",
+  "1951",
+  "1947",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which film star has his statue in Leicester Square?"
+correctAnswer = "Charlie Chaplin"
+incorrectAnswers = [
+  "Paul Newman",
+  "Rowan Atkinson ",
+  "Alfred Hitchcock",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was the Declaration of Independence approved by the Second Continental Congress?"
+correctAnswer = "July 4, 1776"
+incorrectAnswers = [
+  "May 4, 1776",
+  "June 4, 1776",
+  "July 2, 1776",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is a Burgee?"
+correctAnswer = "A flag"
+incorrectAnswers = [
+  "A rope",
+  "A window",
+  "A type of food",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "According to the United States' CDC, one in how many Americans die annually due to smoking?"
+correctAnswer = "Five"
+incorrectAnswers = [
+  "Twenty",
+  "Ten",
+  "One hundred",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "A doctor with a PhD is a doctor of what?"
+correctAnswer = "Philosophy"
+incorrectAnswers = [
+  "Psychology",
+  "Phrenology",
+  "Physical Therapy",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In ancient Greece, if your job were a \"hippeus\" which of these would you own?"
+correctAnswer = "Horse"
+incorrectAnswers = [
+  "Weave",
+  "Guitar",
+  "Boat",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Whose greyscale face is on the kappa emoticon on Twitch?"
+correctAnswer = "Josh DeSeno"
+incorrectAnswers = [
+  "Justin DeSeno",
+  "John DeSeno",
+  "Jimmy DeSeno",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The “fairy” type made it’s debut in which generation of the Pokemon core series games?"
+correctAnswer = "6th"
+incorrectAnswers = [
+  "2nd",
+  "7th",
+  "4th",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "According to Fair Works Australia, how long do you have to work to get Long Service Leave?"
+correctAnswer = "7 years"
+incorrectAnswers = [
+  "2 years",
+  "8 years",
+  "6 months",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In a standard set of playing cards, which is the only king without a moustache?"
+correctAnswer = "Hearts"
+incorrectAnswers = [
+  "Spades",
+  "Diamonds",
+  "Clubs",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does VR stand for?"
+correctAnswer = "Virtual Reality"
+incorrectAnswers = [
+  "Very Real",
+  "Visual Recognition",
+  "Voice Recognition",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which American-owned brewery led the country in sales by volume in 2015?"
+correctAnswer = "D. G. Yuengling and Son, Inc"
+incorrectAnswers = [
+  "Anheuser Busch",
+  "Boston Beer Company",
+  "Miller Coors",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which best selling toy of 1983 caused hysteria, resulting in riots breaking out in stores?"
+correctAnswer = "Cabbage Patch Kids"
+incorrectAnswers = [
+  "Transformers",
+  "Care Bears",
+  "Rubik’s Cube",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What alcoholic drink is mainly made from juniper berries?"
+correctAnswer = "Gin"
+incorrectAnswers = [
+  "Vodka",
+  "Rum",
+  "Tequila",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The new One World Trade Center in Manhattan, New York City was designed by which architect? "
+correctAnswer = "David Childs"
+incorrectAnswers = [
+  "Bjarke Ingels",
+  "Michael Arad",
+  "Fumihiko Maki",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Mexican Beer \"Corona\" is what type of beer?"
+correctAnswer = "Pale Lager"
+incorrectAnswers = [
+  "India Pale Ale",
+  "Pilfsner",
+  "Baltic Porter",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The Swedish word \"Grunka\" means what in English?"
+correctAnswer = "Thing"
+incorrectAnswers = [
+  "People",
+  "Place",
+  "Pineapple",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was Nintendo founded?"
+correctAnswer = "September 23rd, 1889"
+incorrectAnswers = [
+  "October 19th, 1891",
+  "March 4th, 1887",
+  "December 27th, 1894",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What did the Spanish autonomous community of Catalonia ban in 2010, that took effect in 2012?"
+correctAnswer = "Bullfighting"
+incorrectAnswers = [
+  "Fiestas",
+  "Flamenco",
+  "Mariachi",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What do the letters in the GMT time zone stand for?"
+correctAnswer = "Greenwich Mean Time"
+incorrectAnswers = [
+  "Global Meridian Time",
+  "General Median Time",
+  "Glasgow Man Time",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which country has the Union Jack in its flag?"
+correctAnswer = "New Zealand"
+incorrectAnswers = [
+  "South Africa",
+  "Canada",
+  "Hong Kong",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Where does water from Poland Spring water bottles come from?"
+correctAnswer = "Maine, United States"
+incorrectAnswers = [
+  "Hesse, Germany",
+  "Masovia, Poland",
+  "Bavaria, Poland",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In Half-Life, what is the name of the alien that attaches to heads?"
+correctAnswer = "Headcrab"
+incorrectAnswers = [
+  "Bullsquid",
+  "Vortigaunt",
+  "Facehugger",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the average life span of a garden ant?"
+correctAnswer = "15 years"
+incorrectAnswers = [
+  "24 hours",
+  "1 week",
+  "3 years",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What does a milliner make and sell?"
+correctAnswer = "Hats"
+incorrectAnswers = [
+  "Shoes",
+  "Belts",
+  "Shirts",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How tall is the Burj Khalifa?"
+correctAnswer = "2,722 ft"
+incorrectAnswers = [
+  "2,717 ft",
+  "2,546 ft",
+  "3,024 ft",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In which fast food chain can you order a Jamocha Shake?"
+correctAnswer = "Arby's"
+incorrectAnswers = [
+  "McDonald's",
+  "Burger King",
+  "Wendy's",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Area 51 is located in which US state?"
+correctAnswer = "Nevada"
+incorrectAnswers = [
+  "Arizona",
+  "New Mexico",
+  "Utah",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Amsterdam Centraal station is twinned with what station?"
+correctAnswer = "London Liverpool Street"
+incorrectAnswers = [
+  "Frankfurt (Main) Hauptbahnhof",
+  "Paris Gare du Nord",
+  "Brussels Midi",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Nephelococcygia is the practice of doing what?"
+correctAnswer = "Finding shapes in clouds"
+incorrectAnswers = [
+  "Sleeping with your eyes open",
+  "Breaking glass with your voice",
+  "Swimming in freezing water",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was Mountain Dew's original slogan?"
+correctAnswer = "Yahoo! Mountain Dew... It'll tickle your innards!"
+incorrectAnswers = [
+  "Give Me A Dew",
+  "Do The Dew",
+  "Get' that barefoot feelin' drinkin' Mountain Dew",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Foie gras is a French delicacy typically made from what part of a duck or goose?"
+correctAnswer = "Liver"
+incorrectAnswers = [
+  "Heart",
+  "Stomach",
+  "Intestines",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Five dollars is worth how many nickels?"
+correctAnswer = "100"
+incorrectAnswers = [
+  "50",
+  "25",
+  "69",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which American manufactured submachine gun was informally known by the American soldiers that used it as \"Grease Gun\"?"
+correctAnswer = "M3"
+incorrectAnswers = [
+  "Colt 9mm",
+  "Thompson",
+  "MAC-10",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Named after the mallow flower, mauve is a shade of what?"
+correctAnswer = "Purple"
+incorrectAnswers = [
+  "Red",
+  "Brown",
+  "Pink",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In the video-game franchise Kingdom Hearts, the main protagonist, carries a weapon with what shape?"
+correctAnswer = "Key"
+incorrectAnswers = [
+  "Sword",
+  "Pen",
+  "Cellphone",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "According to the nursery rhyme, what fruit did Little Jack Horner pull out of his Christmas pie?"
+correctAnswer = "Plum"
+incorrectAnswers = [
+  "Apple",
+  "Peach",
+  "Pear",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When did the website \"Facebook\" launch?"
+correctAnswer = "2004"
+incorrectAnswers = [
+  "2005",
+  "2003",
+  "2006",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Apple co-founder Steve Jobs died from complications of which form of cancer?"
+correctAnswer = "Pancreatic"
+incorrectAnswers = [
+  "Bone",
+  "Liver",
+  "Stomach",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the French word for \"fish\"?"
+correctAnswer = "poisson"
+incorrectAnswers = [
+  "fiche",
+  "escargot",
+  "mer",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these companies does NOT manufacture automobiles?"
+correctAnswer = "Ducati"
+incorrectAnswers = [
+  "Nissan",
+  "GMC",
+  "Fiat",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What are the three starter Pokemon available in Pokemon Black and White?"
+correctAnswer = "Snivy, Tepig, Oshawott"
+incorrectAnswers = [
+  "Snivy, Fennekin, Froakie",
+  "Chespin, Tepig, Froakie",
+  "Chespin, Fennekin, Oshawott",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What country saw a world record 315 million voters turn out for elections on May 20, 1991?"
+correctAnswer = "India"
+incorrectAnswers = [
+  "United States of America",
+  "Soviet Union",
+  "Poland",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which language is NOT Indo-European?"
+correctAnswer = "Hungarian"
+incorrectAnswers = [
+  "Russian",
+  "Greek",
+  "Latvian",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Where did the pineapple plant originate?"
+correctAnswer = "South America"
+incorrectAnswers = [
+  "Hawaii",
+  "Europe",
+  "Asia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Directly between the Washington Monument and the Reflecting Pool is a memorial to which war?"
+correctAnswer = "World War II"
+incorrectAnswers = [
+  "Vietnam War",
+  "American Civil War",
+  "American Revolutionary War",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the Portuguese word for \"Brazil\"?"
+correctAnswer = "Brasil"
+incorrectAnswers = [
+  "Brazil",
+  "Brasilia",
+  "Brasíl",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of the Jewish New Year?"
+correctAnswer = "Rosh Hashanah"
+incorrectAnswers = [
+  "Elul",
+  "New Year",
+  "Succoss",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these cities does NOT have a United States Minting location?"
+correctAnswer = "St. Louis, MO"
+incorrectAnswers = [
+  "San Fransisco, CA",
+  "Philidelphia, PA",
+  "West Point, NY",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who invented Pastafarianism?"
+correctAnswer = "Bobby Henderson"
+incorrectAnswers = [
+  "Eric Tignor",
+  "Bill Nye",
+  "Zach Soldi",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Computer manufacturer Compaq was acquired for $25 billion dollars in 2002 by which company?"
+correctAnswer = "Hewlett-Packard"
+incorrectAnswers = [
+  "Toshiba",
+  "Asus",
+  "Dell",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which one of these is not a typical European sword design?"
+correctAnswer = "Scimitar"
+incorrectAnswers = [
+  "Falchion",
+  "Ulfberht",
+  "Flamberge",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which product did Nokia, the telecommunications company, originally sell?"
+correctAnswer = "Paper"
+incorrectAnswers = [
+  "Phones",
+  "Computers",
+  "Processors",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "When was \"YouTube\" founded?"
+correctAnswer = "February 14, 2005"
+incorrectAnswers = [
+  "May 22, 2004",
+  "September 12, 2005",
+  "July 19, 2009",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is an existing family in \"The Sims\"?"
+correctAnswer = "The Goth Family"
+incorrectAnswers = [
+  "The Family",
+  "The Simoleon Family",
+  "The Proud Family",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these is the name of a Japanese system of alternative medicine, literally meaning \"finger pressure\"?"
+correctAnswer = "Shiatsu"
+incorrectAnswers = [
+  "Ukiyo",
+  "Majime",
+  "Ikigai",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Chartreuse is a color between yellow and what?"
+correctAnswer = "Green"
+incorrectAnswers = [
+  "Red",
+  "Black",
+  "Purple",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the German word for \"spoon\"?"
+correctAnswer = "Löffel"
+incorrectAnswers = [
+  "Gabel",
+  "Messer",
+  "Essstäbchen",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the star sign of someone born on Valentines day?"
+correctAnswer = "Aquarius"
+incorrectAnswers = [
+  "Pisces",
+  "Capricorn",
+  "Scorpio",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which item of clothing is usually worn by a Scotsman at a wedding?"
+correctAnswer = "Kilt"
+incorrectAnswers = [
+  "Skirt",
+  "Dress",
+  "Rhobes",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was the first ever London Underground line to be built?"
+correctAnswer = "Metropolitan Line"
+incorrectAnswers = [
+  "Circle Line",
+  "Bakerloo Line",
+  "Victoria Line",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the romanized Arabic word for \"moon\"?"
+correctAnswer = "Qamar"
+incorrectAnswers = [
+  "Najma",
+  "Kawkab",
+  "Shams",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the most commonly used noun in the English language?"
+correctAnswer = "Time"
+incorrectAnswers = [
+  "Home",
+  "Water",
+  "Man",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Earth is located in which galaxy?"
+correctAnswer = "The Milky Way Galaxy"
+incorrectAnswers = [
+  "The Mars Galaxy",
+  "The Galaxy Note",
+  "The Black Hole",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "If you planted the seeds of Quercus robur, what would grow?"
+correctAnswer = "Trees"
+incorrectAnswers = [
+  "Grains",
+  "Vegetables",
+  "Flowers",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the official language of Brazil?"
+correctAnswer = "Portuguese"
+incorrectAnswers = [
+  "Brazilian",
+  "Spanish",
+  "English",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Where is the train station \"Llanfair­pwllgwyngyll­gogery­chwyrn­drobwll­llan­tysilio­gogo­goch\"?"
+correctAnswer = "Wales"
+incorrectAnswers = [
+  "Moldova",
+  "Czech Republic",
+  "Denmark",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What name represents the letter \"M\" in the NATO phonetic alphabet?"
+correctAnswer = "Mike"
+incorrectAnswers = [
+  "Matthew",
+  "Mark",
+  "Max",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When someone is cowardly, they are said to have what color belly?"
+correctAnswer = "Yellow"
+incorrectAnswers = [
+  "Green",
+  "Red",
+  "Blue",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the soft drink Pepsi originally introduced as?"
+correctAnswer = "Brad's Drink"
+incorrectAnswers = [
+  "Pepsin Pop",
+  "Carolina Cola",
+  "Pepsin Syrup",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Fields Medal, one of the most sought after awards in mathematics, is awarded every how many years?"
+correctAnswer = "4"
+incorrectAnswers = [
+  "3",
+  "5",
+  "6",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Linus Pauling, one of the only winners of multiple Nobel Prizes, earned his Nobel Prizes in Chemistry and what?"
+correctAnswer = "Peace"
+incorrectAnswers = [
+  "Physics",
+  "Economics",
+  "Physiology/Medicine",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Before the 19th Century, the \"Living Room\" was originally called the..."
+correctAnswer = "Parlor"
+incorrectAnswers = [
+  "Open Room",
+  "Sitting Room",
+  "Loft",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the popular animatronic singing fish prop, singing such hits such as \"Don't Worry, Be Happy\"?"
+correctAnswer = "Big Mouth Billy Bass"
+incorrectAnswers = [
+  "Big Billy Bass",
+  "Singing Fish",
+  "Sardeen",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is Tasmania?"
+correctAnswer = "An Australian State"
+incorrectAnswers = [
+  "A flavor of Ben and Jerry's ice-cream",
+  "A Psychological Disorder",
+  "The Name of a Warner Brothers Cartoon Character",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What character was once considered to be the 27th letter of the alphabet?"
+correctAnswer = "Ampersand"
+incorrectAnswers = [
+  "Interrobang",
+  "Tilde",
+  "Pilcrow",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Located in Chile, El Teniente is the world's largest underground mine for what metal?"
+correctAnswer = "Copper"
+incorrectAnswers = [
+  "Iron",
+  "Nickel",
+  "Silver",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Earl Grey tea is black tea flavoured with what?"
+correctAnswer = "Bergamot oil"
+incorrectAnswers = [
+  "Lavender",
+  "Vanilla",
+  "Honey",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The Flag of the European Union has how many stars on it?"
+correctAnswer = "12"
+incorrectAnswers = [
+  "10",
+  "14",
+  "16",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What company developed the vocaloid Hatsune Miku?"
+correctAnswer = "Crypton Future Media"
+incorrectAnswers = [
+  "Sega",
+  "Sony",
+  "Yamaha Corporation",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following chemicals are found in eggplant seeds?"
+correctAnswer = "Nicotine"
+incorrectAnswers = [
+  "Mescaline",
+  "Cyanide",
+  "Psilocybin",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the MMO RPG \"Realm of the Mad God\", what dungeon is widely considered to be the most difficult?"
+correctAnswer = "The Shatter's"
+incorrectAnswers = [
+  "Snake Pit",
+  "The Tomb of the Acient's",
+  "The Puppet Master's Theater",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is not another name for the eggplant?"
+correctAnswer = "Potimarron"
+incorrectAnswers = [
+  "Brinjal",
+  "Guinea Squash",
+  "Melongene",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these banks are NOT authorized to issue currency notes in Hong Kong?"
+correctAnswer = "OCBC"
+incorrectAnswers = [
+  "HSBC",
+  "Standard Chartered",
+  "Bank of China",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When was the Playstation 3 released?"
+correctAnswer = "November 11, 2006"
+incorrectAnswers = [
+  "January 8, 2007",
+  "December 25, 2007",
+  "July 16, 2006",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What do the letters of the fast food chain KFC stand for?"
+correctAnswer = "Kentucky Fried Chicken"
+incorrectAnswers = [
+  "Kentucky Fresh Cheese",
+  "Kibbled Freaky Cow",
+  "Kiwi Food Cut",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was Hubba Bubba first introduced?"
+correctAnswer = "1979"
+incorrectAnswers = [
+  "1984",
+  "1972",
+  "1980",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following is not the host of a program on NPR?"
+correctAnswer = "Ben Shapiro"
+incorrectAnswers = [
+  "Terry Gross",
+  "Ira Glass",
+  "Peter Sagal",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does a funambulist walk on?"
+correctAnswer = "A Tight Rope"
+incorrectAnswers = [
+  "Broken Glass",
+  "Balls",
+  "The Moon",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is Cynophobia the fear of?"
+correctAnswer = "Dogs"
+incorrectAnswers = [
+  "Birds",
+  "Flying",
+  "Germs",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which one of the following rhythm games was made by Harmonix?"
+correctAnswer = "Rock Band"
+incorrectAnswers = [
+  "Meat Beat Mania",
+  "Guitar Hero Live",
+  "Dance Dance Revolution",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   "
+correctAnswer = "Richard Branson"
+incorrectAnswers = [
+  "Alan Sugar",
+  "Donald Trump",
+  "Bill Gates",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "According to the BBPA, what is the most common pub name in the UK?"
+correctAnswer = "Red Lion"
+incorrectAnswers = [
+  "Royal Oak",
+  "White Hart",
+  "King's Head",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "If you are caught \"Goldbricking\", what are you doing wrong?"
+correctAnswer = "Slacking"
+incorrectAnswers = [
+  "Smoking",
+  "Stealing",
+  "Cheating",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Waluigi's first appearance was in what game?"
+correctAnswer = "Mario Tennis 64 (N64)"
+incorrectAnswers = [
+  "Wario Land: Super Mario Land 3",
+  "Mario Party (N64)",
+  "Super Smash Bros. Ultimate",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What machine element is located in the center of fidget spinners?"
+correctAnswer = "Bearings"
+incorrectAnswers = [
+  "Axles",
+  "Gears",
+  "Belts",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which river flows through the Scottish city of Glasgow?"
+correctAnswer = "Clyde"
+incorrectAnswers = [
+  "Tay",
+  "Dee",
+  "Tweed",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What year was Queen Elizabeth II born?"
+correctAnswer = "1926"
+incorrectAnswers = [
+  "1923",
+  "1929",
+  "1930",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The Quadrangularis Reversum is best described as which of the following?"
+correctAnswer = "A percussion instrument"
+incorrectAnswers = [
+  "A building in Oxford University",
+  "A chess move",
+  "A geometric theorem",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which Italian automobile manufacturer gained majority control of U.S. automobile manufacturer Chrysler in 2011?"
+correctAnswer = "Fiat"
+incorrectAnswers = [
+  "Maserati",
+  "Alfa Romeo",
+  "Ferrari",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The drug cartel run by Pablo Escobar originated in which South American city?"
+correctAnswer = "Medellín"
+incorrectAnswers = [
+  "Bogotá",
+  "Quito",
+  "Cali",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What type of animal was Harambe, who was shot after a child fell into it's enclosure at the Cincinnati Zoo?"
+correctAnswer = "Gorilla"
+incorrectAnswers = [
+  "Tiger",
+  "Panda",
+  "Crocodile",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "A statue of Charles Darwin sits in what London museum?"
+correctAnswer = "Natural History Museum"
+incorrectAnswers = [
+  "Tate",
+  "British Museum",
+  "Science Museum",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the airspeed velocity of an unladen swallow?"
+correctAnswer = "24 MPH"
+incorrectAnswers = [
+  "15 MPH",
+  "20 MPH",
+  "200 MPH",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the famous Papa John's last name?"
+correctAnswer = "Schnatter"
+incorrectAnswers = [
+  "Chowder",
+  "Williams",
+  "ANDERSON",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the Swedish word for \"window\"?"
+correctAnswer = "Fönster"
+incorrectAnswers = [
+  "Hål",
+  "Skärm",
+  "Ruta",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Originally another word for poppy, coquelicot is a shade of what?"
+correctAnswer = "Red"
+incorrectAnswers = [
+  "Green",
+  "Blue",
+  "Pink",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In aerodynamics, which force pushes an object upwards?"
+correctAnswer = "Lift"
+incorrectAnswers = [
+  "Drag",
+  "Weight",
+  "Thrust",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the world's most expensive spice by weight?"
+correctAnswer = "Saffron"
+incorrectAnswers = [
+  "Cinnamon",
+  "Cardamom",
+  "Vanilla",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who is the youngest person to receive a Nobel Prize?"
+correctAnswer = "Malala Yousafzai"
+incorrectAnswers = [
+  "Lawrence Bragg",
+  "Werner Heisenberg",
+  "Yasser Arafat",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In DC comics where does the Green Arrow (Oliver Queen) live?"
+correctAnswer = "Star City"
+incorrectAnswers = [
+  "Central City",
+  "Gotham City",
+  "Metropolis",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the romanized Russian word for \"winter\"?"
+correctAnswer = "Zima"
+incorrectAnswers = [
+  "Leto",
+  "Vesna",
+  "Osen'",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the last letter of the Greek alphabet?"
+correctAnswer = "Omega"
+incorrectAnswers = [
+  "Mu",
+  "Epsilon",
+  "Kappa",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who founded the Khan Academy?"
+correctAnswer = "Sal Khan"
+incorrectAnswers = [
+  "Ben Khan",
+  "Kitt Khan",
+  "Adel Khan",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many calories are in a 355 ml can of Pepsi Cola?"
+correctAnswer = "150"
+incorrectAnswers = [
+  "200",
+  "100",
+  "155",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The New York Times slogan is, “All the News That’s Fit to…”"
+correctAnswer = "Print"
+incorrectAnswers = [
+  "Digest",
+  "Look",
+  "Read",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who is depicted on the US hundred dollar bill?"
+correctAnswer = "Benjamin Franklin"
+incorrectAnswers = [
+  "George Washington",
+  "Abraham Lincoln",
+  "Thomas Jefferson",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is the founder of \"The Lego Group\"?"
+correctAnswer = "Ole Kirk Christiansen"
+incorrectAnswers = [
+  " Jens Niels Christiansen",
+  "Kirstine Christiansen",
+  " Gerhardt Kirk Christiansen",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which American president appears on a one dollar bill?"
+correctAnswer = "George Washington"
+incorrectAnswers = [
+  "Thomas Jefferson",
+  "Abraham Lincoln",
+  "Benjamin Franklin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of Poland in Polish?"
+correctAnswer = "Polska"
+incorrectAnswers = [
+  "Pupcia",
+  "Polszka",
+  "Póland",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the French word for \"hat\"?"
+correctAnswer = "Chapeau"
+incorrectAnswers = [
+  "Bonnet",
+  " Écharpe",
+  " Casque",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "This field is sometimes known as “The Dismal Science.”"
+correctAnswer = "Economics"
+incorrectAnswers = [
+  "Philosophy",
+  "Politics",
+  "Physics",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many notes are there on a standard grand piano?"
+correctAnswer = "88"
+incorrectAnswers = [
+  "98",
+  "108",
+  "78",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following languages does NOT use gender as a part of its grammar?"
+correctAnswer = "Turkish"
+incorrectAnswers = [
+  "German",
+  "Danish",
+  "Polish",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What type of dog is 'Handsome Dan', the mascot of Yale University?"
+correctAnswer = "Bulldog"
+incorrectAnswers = [
+  "Yorkshire Terrier",
+  "Boxer",
+  "Pug",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In a 1994 CBS interview, Microsoft co-founder Bill Gates performed what unusual trick on camera?"
+correctAnswer = "Jumping over an office chair"
+incorrectAnswers = [
+  "Jumping backwards over a desk",
+  "Standing on his head",
+  "Typing on a keyboard during a handstand",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What geometric shape is generally used for stop signs?"
+correctAnswer = "Octagon"
+incorrectAnswers = [
+  "Hexagon",
+  "Circle",
+  "Triangle",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the full title of the Prime Minister of the UK?"
+correctAnswer = "First Lord of the Treasury"
+incorrectAnswers = [
+  "Duke of Cambridge",
+  "Her Majesty's Loyal Opposition",
+  "Manager of the Crown Estate",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What alcoholic drink is made from molasses?"
+correctAnswer = "Rum"
+incorrectAnswers = [
+  "Gin",
+  "Vodka",
+  "Whisky",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the currency of Poland?"
+correctAnswer = "Złoty"
+incorrectAnswers = [
+  "Ruble",
+  "Euro",
+  "Krone",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the romanized Chinese word for \"airplane\"?"
+correctAnswer = "Feiji"
+incorrectAnswers = [
+  "Qiche",
+  "Zongxian",
+  "Huojian",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the General Mills Corporation's monster cereals was the last to be released in the 1970's?"
+correctAnswer = "Fruit Brute"
+incorrectAnswers = [
+  "Count Chocula",
+  "Franken Berry",
+  "Boo-Berry",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which slogan did the fast food company, McDonald's, use before their \"I'm Lovin' It\" slogan?"
+correctAnswer = "We Love to See You Smile"
+incorrectAnswers = [
+  "Why Pay More!?",
+  "Have It Your Way",
+  "Making People Happy Through Food",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the highest number of Michelin stars a restaurant can receive?"
+correctAnswer = "Three"
+incorrectAnswers = [
+  "Four",
+  "Five",
+  "Six",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which logical fallacy means to attack the character of your opponent rather than their arguments?"
+correctAnswer = "Ad hominem"
+incorrectAnswers = [
+  "Post hoc ergo propter hoc",
+  "Tu quoque",
+  "Argumentum ad populum",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The word \"astasia\" means which of the following?"
+correctAnswer = "The inability to stand up"
+incorrectAnswers = [
+  "The inability to make decisions",
+  "The inability to concentrate on anything",
+  "A feverish desire to rip one's clothes off",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the name given to Japanese military dictators who ruled the country through the 12th and 19th Century?"
+correctAnswer = "Shogun"
+incorrectAnswers = [
+  "Ninja",
+  "Samurai",
+  "Shinobi",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which candy is NOT made by Mars?"
+correctAnswer = "Almond Joy"
+incorrectAnswers = [
+  "M&M's",
+  "Twix",
+  "Snickers",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In past times, what would a gentleman keep in his fob pocket?"
+correctAnswer = "Watch"
+incorrectAnswers = [
+  "Money",
+  "Keys",
+  "Notebook",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "On average, Americans consume 100 pounds of what per second?"
+correctAnswer = "Chocolate"
+incorrectAnswers = [
+  "Potatoes",
+  "Donuts",
+  "Cocaine",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What kind of aircraft was developed by Igor Sikorsky in the United States in 1942?"
+correctAnswer = "Helicopter"
+incorrectAnswers = [
+  "Stealth Blimp",
+  "Jet",
+  "Space Capsule",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What does the Latin phrase \"Veni, vidi, vici\" translate into English?"
+correctAnswer = "I came, I saw, I conquered"
+incorrectAnswers = [
+  "See no evil, hear no evil, speak no evil",
+  "Life, liberty, and happiness",
+  "Past, present, and future",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "After how many years would you celebrate your crystal anniversary?"
+correctAnswer = "15"
+incorrectAnswers = [
+  "20",
+  "10",
+  "25",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the first book of the Old Testament?"
+correctAnswer = "Genesis"
+incorrectAnswers = [
+  "Exodus",
+  "Leviticus",
+  "Numbers",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The words \"bungalow\" and \"shampoo\" originate from the languages of which country?"
+correctAnswer = "India"
+incorrectAnswers = [
+  "Papua New Guinea",
+  "Ethiopia",
+  "China",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In \"Battle Cats\", what is Moneko / MISS Moneko's critical percentage rate?"
+correctAnswer = "15%"
+incorrectAnswers = [
+  "20%",
+  "10%",
+  "25%",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The architect known as Le Corbusier was an important figure in what style of architecture?"
+correctAnswer = "Modernism"
+incorrectAnswers = [
+  "Neoclassical",
+  "Baroque",
+  "Gothic Revival",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who invented the first ever chocolate bar, in 1847?"
+correctAnswer = "Joseph Fry"
+incorrectAnswers = [
+  "Andrew Johnson",
+  "John Cadbury",
+  "John Tyler",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who is the author of Jurassic Park?"
+correctAnswer = "Michael Crichton"
+incorrectAnswers = [
+  "Peter Benchley",
+  "Chuck Paluhniuk",
+  "Irvine Welsh",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the very first video uploaded to YouTube?"
+correctAnswer = "Me at the zoo"
+incorrectAnswers = [
+  "tribute",
+  "carrie rides a truck",
+  "Her new puppy from great grandpa vern.",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following Ivy League universities has its official motto in Hebrew as well as in Latin?"
+correctAnswer = "Yale University"
+incorrectAnswers = [
+  "Princeton University",
+  "Harvard University",
+  "Columbia University",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is \"dabbing\"?"
+correctAnswer = "A dance"
+incorrectAnswers = [
+  "A medical procedure",
+  "A sport",
+  "A language",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What word represents the letter 'T' in the NATO phonetic alphabet?"
+correctAnswer = "Tango"
+incorrectAnswers = [
+  "Target",
+  "Taxi",
+  "Turkey",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following blood component forms a plug at the site of injuries?"
+correctAnswer = "Platelets"
+incorrectAnswers = [
+  "Red blood cells",
+  "White blood cells",
+  "Blood plasma",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the unit of currency in Laos?"
+correctAnswer = "Kip"
+incorrectAnswers = [
+  "Ruble",
+  "Konra",
+  "Dollar",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is a dead mall?"
+correctAnswer = "A mall with high vacancy rates or low consumer foot traffic"
+incorrectAnswers = [
+  "A mall with no stores",
+  "A mall that has been condemed",
+  "A mall after business hours",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the Morse code, which letter is indicated by 3 dots? "
+correctAnswer = "S"
+incorrectAnswers = [
+  "O",
+  "A",
+  "C",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many colors are there in a rainbow?"
+correctAnswer = "7"
+incorrectAnswers = [
+  "8",
+  "9",
+  "10",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When someone is inexperienced they are said to be what color?"
+correctAnswer = "Green"
+incorrectAnswers = [
+  "Red",
+  "Blue",
+  "Yellow",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following buildings is example of a structure primarily built in the Art Deco architectural style?"
+correctAnswer = "Niagara Mohawk Building"
+incorrectAnswers = [
+  "Taipei 101",
+  "One Detroit Center",
+  "Westendstrasse 1",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "If someone said \"you are olid\", what would they mean?"
+correctAnswer = "You smell extremely unpleasant."
+incorrectAnswers = [
+  "You are out of shape/weak.",
+  "Your appearance is repulsive.",
+  "You are incomprehensible/an idiot.",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In \"Resident Evil 3\", how many inventory slots does Jill have at the start of the game?"
+correctAnswer = "8"
+incorrectAnswers = [
+  "6",
+  "10",
+  "12",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which restaurant's mascot is a clown?"
+correctAnswer = "McDonald's"
+incorrectAnswers = [
+  "Whataburger",
+  "Burger King",
+  "Sonic",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which country drives on the left side of the road?"
+correctAnswer = "Japan"
+incorrectAnswers = [
+  "Germany",
+  "Russia",
+  "China",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following is not an Ivy League University?"
+correctAnswer = "Stanford"
+incorrectAnswers = [
+  "University of Pennsylvania",
+  "Harvard",
+  "Princeton",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following is the IATA code for Manchester Airport?"
+correctAnswer = "MAN"
+incorrectAnswers = [
+  "EGLL",
+  "LHR",
+  "EGCC",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is on display in the Madame Tussaud's museum in London?"
+correctAnswer = "Wax sculptures"
+incorrectAnswers = [
+  "Designer clothing",
+  "Unreleased film reels",
+  "Vintage cars",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The term \"scientist\" was coined in which year?"
+correctAnswer = "1833"
+incorrectAnswers = [
+  "1933",
+  "1942",
+  "1796",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What does the \"G\" mean in \"G-Man\"?"
+correctAnswer = "Government"
+incorrectAnswers = [
+  "Going",
+  "Ghost",
+  "Geronimo",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which essential condiment is also known as Japanese horseradish?"
+correctAnswer = "Wasabi "
+incorrectAnswers = [
+  "Mentsuyu",
+  "Karashi",
+  "Ponzu",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does the 'S' stand for in the abbreviation SIM, as in SIM card? "
+correctAnswer = "Subscriber"
+incorrectAnswers = [
+  "Single",
+  "Secure",
+  "Solid",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which musician has collaborated with American producer Porter Robinson and released the 2016 song \"Shelter\"?"
+correctAnswer = "Madeon"
+incorrectAnswers = [
+  "Mat Zo",
+  "deadmau5",
+  "Zedd",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Rolex is a company that specializes in what type of product?"
+correctAnswer = "Watches"
+incorrectAnswers = [
+  "Cars",
+  "Computers",
+  "Sports equipment",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the destination of the missing flight MH370?"
+correctAnswer = "Beijing"
+incorrectAnswers = [
+  "Kuala Lumpur",
+  "Singapore",
+  "Tokyo",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the romanized Korean word for \"heart\"?"
+correctAnswer = "Simjang"
+incorrectAnswers = [
+  "Aejeong",
+  "Jeongsin",
+  "Segseu",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is real haggis made of?"
+correctAnswer = "Sheep's Heart, Liver and Lungs"
+incorrectAnswers = [
+  "Sheep's Heart, Kidneys and Lungs",
+  "Sheep's Liver, Kidneys and Eyes",
+  "Whole Sheep",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In flight systems, what does the initialism \"TCAS\" stand for?"
+correctAnswer = "Traffic Collision Avoidance System"
+incorrectAnswers = [
+  "Traffic Communication Alert System",
+  "Traffic Configuration Alignment System",
+  "Traffic Call-sign Abbreviation System",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which sign of the zodiac is represented by the Crab?"
+correctAnswer = "Cancer"
+incorrectAnswers = [
+  "Libra",
+  "Virgo",
+  "Sagittarius",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the shape of the toy invented by Hungarian professor Ernő Rubik?"
+correctAnswer = "Cube"
+incorrectAnswers = [
+  "Sphere",
+  "Cylinder",
+  "Pyramid",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the romanized Japanese word for \"university\"?"
+correctAnswer = "Daigaku"
+incorrectAnswers = [
+  "Toshokan",
+  "Jimusho",
+  "Shokudou",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In 2013 how much money was lost by Nigerian scams?"
+correctAnswer = "$12.7 Billion"
+incorrectAnswers = [
+  "$95 Million",
+  "$956 Million",
+  "$2.7 Billion",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Disney's Haunted Mansion is home to a trio of Hitchhiking Ghosts. Which of these is NOT one of them?"
+correctAnswer = "Harry"
+incorrectAnswers = [
+  "Gus",
+  "Phineas",
+  "Ezra",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the defining characteristic of someone who is described as hirsute?"
+correctAnswer = "Hairy"
+incorrectAnswers = [
+  "Rude",
+  "Funny",
+  "Tall",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Electronic music producer Kygo's popularity skyrocketed after a certain remix. Which song did he remix?"
+correctAnswer = "Ed Sheeran - I See Fire"
+incorrectAnswers = [
+  "Marvin Gaye - Sexual Healing",
+  "Coldplay - Midnight",
+  "a-ha - Take On Me",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The word \"abulia\" means which of the following?"
+correctAnswer = "The inability to make decisions"
+incorrectAnswers = [
+  "The inability to stand up",
+  "The inability to concentrate on anything",
+  "A feverish desire to rip one's clothes off",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Red Vines is a brand of what type of candy?"
+correctAnswer = "Licorice"
+incorrectAnswers = [
+  "Lollipop",
+  "Chocolate",
+  "Bubblegum",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was Bank of America originally established as?"
+correctAnswer = "Bank of Italy"
+incorrectAnswers = [
+  "Bank of Long Island",
+  "Bank of Pennsylvania",
+  "Bank of Charlotte",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these words means \"idle spectator\"?"
+correctAnswer = "Gongoozler"
+incorrectAnswers = [
+  "Gossypiboma",
+  "Jentacular",
+  "Meupareunia",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "De Eemhof, Port Zelande and Het Heijderbos are holiday villas owned by what company?"
+correctAnswer = "Center Parcs"
+incorrectAnswers = [
+  "Yelloh Village",
+  "Keycamp",
+  "Villa Plus",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the third country to have a McDonald's restaurant?"
+correctAnswer = "Costa Rica"
+incorrectAnswers = [
+  "Japan",
+  "France",
+  "Australia",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Virtual reality company Oculus VR lost which of it's co-founders in a freak car accident in 2013?"
+correctAnswer = "Andrew Scott Reisse"
+incorrectAnswers = [
+  "Nate Mitchell",
+  "Jack McCauley",
+  "Palmer Luckey",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the name of NASA’s most famous space telescope?"
+correctAnswer = "Hubble Space Telescope"
+incorrectAnswers = [
+  "Big Eye",
+  "Death Star",
+  "Millenium Falcon",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which sign of the zodiac comes between Virgo and Scorpio?"
+correctAnswer = "Libra"
+incorrectAnswers = [
+  "Gemini",
+  "Taurus",
+  "Capricorn",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Where is Apple Inc. headquartered?"
+correctAnswer = "Cupertino, California"
+incorrectAnswers = [
+  "Redwood City, California",
+  "Redmond, Washington",
+  "Santa Monica, CA",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Sciophobia is the fear of what?"
+correctAnswer = "Shadows"
+incorrectAnswers = [
+  "Eating",
+  "Bright lights",
+  "Transportation",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which country has the most Trappist breweries?"
+correctAnswer = "Belgium"
+incorrectAnswers = [
+  "Netherlands",
+  "France",
+  "USA",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which iconic Disneyland attraction was closed in 2017 to be remodeled as a \"Guardians of the Galaxy\" themed ride?"
+correctAnswer = "Twilight Zone Tower of Terror"
+incorrectAnswers = [
+  "The Haunted Mansion",
+  "Pirates of the Caribbean",
+  "Peter Pan's Flight",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "On a dartboard, what number is directly opposite No. 1?"
+correctAnswer = "19"
+incorrectAnswers = [
+  "20",
+  "12",
+  "15",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The Canadian $1 coin is colloquially known as a what?"
+correctAnswer = "Loonie"
+incorrectAnswers = [
+  "Boolie",
+  "Foolie",
+  "Moodie",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What zodiac sign is represented by a pair of scales?"
+correctAnswer = "Libra"
+incorrectAnswers = [
+  "Aries",
+  "Capricorn",
+  "Sagittarius",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following card games revolves around numbers and basic math?"
+correctAnswer = "Uno"
+incorrectAnswers = [
+  "Go Fish",
+  "Twister",
+  "Munchkin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What are Panama hats made out of?"
+correctAnswer = "Straw"
+incorrectAnswers = [
+  "Silk",
+  "Hemp",
+  "Flax",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following  British Monarchs never appeared on a circulated pound sterling coin?"
+correctAnswer = "Edward VIII"
+incorrectAnswers = [
+  "Victoria",
+  "George VI",
+  "Charles II",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What year was Apple Inc. founded?"
+correctAnswer = "1976"
+incorrectAnswers = [
+  "1978",
+  "1980",
+  "1974",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which church's interior in Vatican City was designed in 1503 by renaissance architects including Bramante, Michelangelo and Bernini?"
+correctAnswer = "St. Peter's Basilica"
+incorrectAnswers = [
+  "Catania Cathedral",
+  "St. Mark’s Basilica",
+  "The Duomo of Florence",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the largest organ of the human body?"
+correctAnswer = "Skin"
+incorrectAnswers = [
+  "Heart",
+  "large Intestine",
+  "Liver",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is a \"dakimakura\"?"
+correctAnswer = "A body pillow"
+incorrectAnswers = [
+  "A Chinese meal, essentially composed of fish",
+  "A yoga posture",
+  "A word used to describe two people who truly love each other",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which country, not including Japan, has the most people of Japanese descent?"
+correctAnswer = "Brazil"
+incorrectAnswers = [
+  "China",
+  "South Korea",
+  "United States of America",
+]

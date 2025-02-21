@@ -1,0 +1,639 @@
+[[entry]]
+difficulty = "medium"
+question = "In Black Hammer, what dimension does Colonel Weird travel through?"
+correctAnswer = "Para-Zone"
+incorrectAnswers = [
+  "Hyperspace",
+  "Mirror Universe",
+  "Phantom Zone",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Calvin and Hobbes, what is the name of Susie's stuffed rabbit?"
+correctAnswer = "Mr. Bun"
+incorrectAnswers = [
+  "Mr. Bunbun",
+  "Mr. Rabbit",
+  "Mr. Hoppy",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "This Marvel superhero is often called \"The man without fear\"."
+correctAnswer = "Daredevil"
+incorrectAnswers = [
+  "Thor",
+  "Wolverine",
+  "Hulk",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who was the first American Vampire (Scott Snyder's American Vampire)?"
+correctAnswer = "Skinner Sweet"
+incorrectAnswers = [
+  "Hattie Hargrove",
+  "Pearl Jones",
+  "James \"Jim\" Book",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What otherworldly land does Thor come from?"
+correctAnswer = "Asgard"
+incorrectAnswers = [
+  "Midgard",
+  "Jotunheim",
+  "Sovengarde",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What year was the first San Diego Comic-Con?"
+correctAnswer = "1970"
+incorrectAnswers = [
+  "2000",
+  "1990",
+  "1985",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who is Batman?"
+correctAnswer = "Bruce Wayne"
+incorrectAnswers = [
+  "Clark Kent",
+  "Barry Allen",
+  "Tony Stark",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Found in the Marvel Comics fictional universe, what is the name of the nearly indestructible metal that coats Wolverine's bones and claws?"
+correctAnswer = "Adamantium"
+incorrectAnswers = [
+  "Titanium",
+  "Vibranium",
+  "Carbonadium",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Hellboy universe, what was Abe Sapien's birth name?"
+correctAnswer = "Langdon Everett Caul"
+incorrectAnswers = [
+  "Lord Baltimore",
+  "Sir Edward Grey",
+  "Landis Pope",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In \"Homestuck\" the \"Kingdom of Darkness\" is also known as?"
+correctAnswer = "Derse"
+incorrectAnswers = [
+  "Skaia",
+  "Prospit",
+  "The Medium",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The stuffed tiger in Calvin and Hobbes is named after what philosopher?"
+correctAnswer = "Thomas Hobbes"
+incorrectAnswers = [
+  "David Hobbes",
+  "John Hobbes",
+  "Nathaniel Hobbes",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the \"Archie\" comics, who was Jughead's first girlfriend?"
+correctAnswer = "Joani"
+incorrectAnswers = [
+  "Ethel",
+  "Debbi",
+  "Margret",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which Batman sidekick is the son of Talia al Ghul?"
+correctAnswer = "Damian Wayne"
+incorrectAnswers = [
+  "Dick Grayson",
+  "Tim Drake",
+  "Jason Todd",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What are the Three Virtues of Bionicle?"
+correctAnswer = "Unity, Duty, Destiny"
+incorrectAnswers = [
+  "Build, Play, Change",
+  "Work, Play, Live",
+  "Forge, Build, Fight",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the full first name of the babysitter in Calvin and Hobbes?"
+correctAnswer = "Rosalyn"
+incorrectAnswers = [
+  "Rose",
+  "Ruby",
+  "Rachel",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which issue of the \"Sonic the Hedgehog\" comic did Scourge the Hedgehog make his first appearance?"
+correctAnswer = "Sonic the Hedgehog #11"
+incorrectAnswers = [
+  "Sonic Universe #32",
+  "Sonic the Hedgehog #161",
+  "Sonic the Hedgehog #47",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The main six year old protagonist in Calvin and Hobbes is named after what theologian?"
+correctAnswer = "John Calvin"
+incorrectAnswers = [
+  "Calvin Klein",
+  "Calvin Coolidge",
+  "Phillip Calvin McGraw",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the real hair colour of the mainstream comic book version (Earth-616) of Daredevil?"
+correctAnswer = "Blonde"
+incorrectAnswers = [
+  "Auburn",
+  "Brown",
+  "Black",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What are the names of the two \"Canon fan trolls\" in \"Homestuck\"?"
+correctAnswer = "Mierfa Durgas and Nektan Whelan"
+incorrectAnswers = [
+  "The Wrycrown and Voksea Olkido",
+  "Aikter Frekik and Xagrai Ollomu",
+  "Grekei Ceknux and Riya Camacho",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What's the weakness of american vampires (Scott Snyder's American Vampire)?"
+correctAnswer = "Gold"
+incorrectAnswers = [
+  "Sunlight",
+  "Wood",
+  "Silver",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who authored The Adventures of Tintin?"
+correctAnswer = "Hergé"
+incorrectAnswers = [
+  "E.P. Jacobs",
+  "Rin Tin Tin",
+  "Chic Young",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who is the creator of the comic series \"The Walking Dead\"?"
+correctAnswer = "Robert Kirkman"
+incorrectAnswers = [
+  "Stan Lee",
+  "Malcolm Wheeler-Nicholson",
+  "Robert Crumb",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Bionicle, who was formerly a Av-Matoran and is now the Toa of Light?"
+correctAnswer = "Takua"
+incorrectAnswers = [
+  "Jaller",
+  "Vakama",
+  "Tahu",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the webcomic \"Ava's Demon\", what sin is \"Nevy Nervine\" based off of? "
+correctAnswer = "Envy "
+incorrectAnswers = [
+  "Sloth",
+  "Wrath ",
+  "Lust",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "When was the Garfield comic first published?"
+correctAnswer = "1978"
+incorrectAnswers = [
+  "1982",
+  "1973",
+  "1988",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who wrote the Batman comic series \"The Killing Joke\"?"
+correctAnswer = "Alan Moore"
+incorrectAnswers = [
+  "Bill Finger",
+  "Frank Miller",
+  "Jerry Siegel",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance?"
+correctAnswer = "Wally West"
+incorrectAnswers = [
+  "Johnny Quick",
+  "Jay Garrick",
+  "Eobard Thawne",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Homestuck Series, what is the alternate name for the Kingdom of Lights?"
+correctAnswer = "Prospit"
+incorrectAnswers = [
+  "No Name",
+  "Golden City",
+  "Yellow Moon",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "When Batman trolls the online chat rooms, what alias does he use?"
+correctAnswer = "JonDoe297"
+incorrectAnswers = [
+  "iAmBatman",
+  "BWayne13",
+  "BW1129",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the main character in the webcomic Gunnerkrigg Court by Tom Siddell?"
+correctAnswer = "Antimony"
+incorrectAnswers = [
+  "Bismuth",
+  "Mercury",
+  "Cobalt",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Marvel Comics, Taurus is the founder and leader of which criminal organization?"
+correctAnswer = "Zodiac"
+incorrectAnswers = [
+  "Scorpio",
+  "Tiger Mafia",
+  "The Union",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In \"Sonic the Hedgehog\" comic, who was the creator of Roboticizer? "
+correctAnswer = "Professor Charles the Hedgehog"
+incorrectAnswers = [
+  "Julian Robotnik",
+  "Ivo Robotnik",
+  "Snively Robotnik",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the comic about a young boy, and a tiger who is actually a stuffed animal?"
+correctAnswer = "Calvin and Hobbes"
+incorrectAnswers = [
+  "Winnie the Pooh",
+  "Albert and Pogo",
+  "Peanuts",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the designation given to the Marvel Cinematic Universe?"
+correctAnswer = "Earth-199999"
+incorrectAnswers = [
+  "Earth-616",
+  "Earth-10005",
+  "Earth-2008",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In what year did the first \"The Walking Dead\" comic come out?"
+correctAnswer = "2003"
+incorrectAnswers = [
+  "2001",
+  "2006",
+  "1999",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When was Marvel Comics founded?"
+correctAnswer = "1939"
+incorrectAnswers = [
+  "1932",
+  "1951",
+  "1936",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which universe crossover was introduced in the \"Sonic the Hedgehog\" comic issue #247?"
+correctAnswer = "Mega Man"
+incorrectAnswers = [
+  "Super Mario Brothers",
+  "Alex Kidd",
+  "Super Monkey Ball",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who created Ultron of Earth-616?"
+correctAnswer = "Henry Pym"
+incorrectAnswers = [
+  "Amadeus Cho",
+  "Tony Stark",
+  "Reed Richards",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In what Homestuck Update was [S] Game Over released?"
+correctAnswer = "October 25th, 2014"
+incorrectAnswers = [
+  "April 13th, 2009",
+  "April 8th, 2012",
+  "August 28th, 2003",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Marvel Universe, the planet of Svartalfheim is home to what race?"
+correctAnswer = "Dark Elves"
+incorrectAnswers = [
+  "Frost Giants",
+  "Kronans",
+  "Skrulls",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the alter-ego of the DC comics character \"Superman\"?"
+correctAnswer = "Clark Kent"
+incorrectAnswers = [
+  "Bruce Wayne",
+  "Arthur Curry",
+  "John Jones",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who was the inspiration for Cuthbert Calculus in the Tintin series?"
+correctAnswer = "Auguste Picard"
+incorrectAnswers = [
+  "Jacques Piccard",
+  "Will Morris",
+  "J. Cecil Maby",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is the second person to take up the mantle of Night Owl in the Watchmen graphic novel?"
+correctAnswer = "Daniel Dreiberg"
+incorrectAnswers = [
+  "Nelson Gardner",
+  "Hollis Mason",
+  "Adrian Veidt",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following superheros did Wonder Woman NOT have a love interest in?"
+correctAnswer = "Green Arrow"
+incorrectAnswers = [
+  "Superman",
+  "Batman",
+  "Steve Trevor",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the name of the first Robin in the Batman comics?"
+correctAnswer = "Dick Grayson"
+incorrectAnswers = [
+  "Bruce Wayne",
+  "Jason Todd",
+  "Tim Drake",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which pulp hero made appearances in Hellboy and BPRD comics before getting his own spin-off?"
+correctAnswer = "Lobster Johnson"
+incorrectAnswers = [
+  "Roger the Homunculus",
+  "The Spider",
+  "The Wendigo",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which one of these superhero teams appears in the Invincible comics?"
+correctAnswer = "Guardians of the Globe"
+incorrectAnswers = [
+  "Avengers",
+  "Justice League",
+  "Teenage Mutant Ninja Turtles",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Calvin and Hobbes, what is the name of the principal at Calvin's school?"
+correctAnswer = "Mr. Spittle"
+incorrectAnswers = [
+  "Mr. Boreman",
+  "Mr. Spitling",
+  "Mr. Moe",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Better known by his nickname Logan, what is Wolverine's birth name?"
+correctAnswer = "James Howlett"
+incorrectAnswers = [
+  "Logan Wolf",
+  "Thomas Wilde",
+  "John Savage",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the real name of the \"Master Of Magnetism\" Magneto?"
+correctAnswer = "Max Eisenhardt"
+incorrectAnswers = [
+  "Charles Xavier",
+  "Pietro Maximoff",
+  "Johann Schmidt",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Calvin and Hobbes, what is the name of the babysitter's boyfriend?"
+correctAnswer = "Charlie"
+incorrectAnswers = [
+  "Dave",
+  "Charles",
+  "Nathaniel",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In 1978, Superman teamed up with what celebrity, to defeat an alien invasion?"
+correctAnswer = "Muhammad Ali"
+incorrectAnswers = [
+  "Mike Tyson",
+  "Sylvester Stallone",
+  "Arnold Schwarzenegger",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In \"Homestuck\" what is Dave Strider's guardian?"
+correctAnswer = "Bro"
+incorrectAnswers = [
+  "Becquerel",
+  "Doc Scratch",
+  "Halley",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Pre-Super Genesis universe of \"Sonic the Hedgehog\" comic, what was the name of  Sally Acorn's brother?"
+correctAnswer = "Elias Acorn"
+incorrectAnswers = [
+  "Maximillian Acorn",
+  "Alexis Acorn",
+  "Frederick Acorn",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In the Batman comics, by what other name is the villain Dr. Jonathan Crane known?"
+correctAnswer = "Scarecrow"
+incorrectAnswers = [
+  "Bane",
+  "Calendar Man",
+  "Clayface",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In Black Hammer, what city did the heroes save from the Anti-God?"
+correctAnswer = "Spiral City"
+incorrectAnswers = [
+  "Mega-City One",
+  "Rockwood",
+  "Star City",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is Hellboy's true name?"
+correctAnswer = "Anung Un Rama"
+incorrectAnswers = [
+  "Right Hand of Doom",
+  "Ogdru Jahad",
+  "Azzael",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following rings from the DC Comics' \"Lantern Corps\" are classified as Parasitic?"
+correctAnswer = "Indigo (Compassion)"
+incorrectAnswers = [
+  "Green (Willpower)",
+  "White (Life)",
+  "Yellow (Fear)",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the Hellboy universe, who founded the BPRD?"
+correctAnswer = "Trevor Bruttenholm"
+incorrectAnswers = [
+  "Kate Corrigan",
+  "Johann Kraus",
+  "Benjamin Daimio",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What's the name of Batman's parents?"
+correctAnswer = "Thomas & Martha"
+incorrectAnswers = [
+  "Joey & Jackie",
+  "Jason & Sarah",
+  "Todd & Mira",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which \"Green Arrow\" sidekick commonly wears a baseball cap?"
+correctAnswer = "Roy Harper"
+incorrectAnswers = [
+  "Black Canary",
+  "Emiko Queen",
+  "Dick Grayson",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What's the race of Invincible's father?"
+correctAnswer = "Viltrumite"
+incorrectAnswers = [
+  "Kryptonian",
+  "Kree",
+  "Irken",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the comics, which Sonic character took command of the Dark Legion after Luger's assassination?"
+correctAnswer = "Lien-Da"
+incorrectAnswers = [
+  "Kragok",
+  "Dimitri",
+  "Remington",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is Homestuck character Gamzee's last name?"
+correctAnswer = "Makara"
+incorrectAnswers = [
+  "Makera",
+  "Makare",
+  "Makrea",
+]

@@ -1,0 +1,46 @@
+--- meson.build	2024-08-16 01:11:17.000000000 +0200
++++ new/meson.build	2025-02-21 16:14:06.420734900 +0100
+@@ -182,23 +182,17 @@
+ project_build_base_root = meson.current_build_dir()
+ 
+ subdir('src/lib/libdwarf')
+-subdir('src/bin/dwarfdump')
+ have_libdwarfp = false
++
+ if get_option('dwarfgen') == true
+   subdir('src/lib/libdwarfp')
+   subdir('src/bin/dwarfgen')
+   have_libdwarfp = true
+ endif
+-subdir('src/bin/attr_form')
+-subdir('src/bin/buildopstab')
+-subdir('src/bin/builduritable')
+-subdir('src/bin/gennames')
+-subdir('src/bin/tag_attr')
+-subdir('src/bin/tag_tree')
++
+ if get_option('dwarfexample') == true
+   subdir('src/bin/dwarfexample')
+ endif
+-subdir('doc')
+ 
+ configure_file(
+   input: 'src/bin/dwarfdump/dwarfdump.conf',
+@@ -206,8 +200,6 @@
+   copy: true
+ )
+ 
+-subdir('test')
+-
+ # Use config_h after all subdirs have set values
+ 
+ #configure_file(output : 'config.h', configuration : config_h)
+@@ -260,7 +252,7 @@
+          'libdwarfp': libdwarfp_output,
+          'dwarfgen': have_libdwarfp ? 'yes' : 'no',
+          'dwarfexample': get_option('dwarfexample') ? 'yes' : 'no',
+-         'documentation': have_doc,
++         'documentation': 'no',
+         }, section: 'Configuration Options Summary:')
+ 
+ summary({'zlib': (zlib_deps.found() ? 'yes' : 'no'),

@@ -1,0 +1,499 @@
+[[entry]]
+difficulty = "medium"
+question = "A minotaur is half human half what?"
+correctAnswer = "Bull"
+incorrectAnswers = [
+  "Cow",
+  "Horse",
+  "Eagle",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "This Greek goddess's name was chosen for the dwarf planet responsible for discord on Pluto's classification amongst astronomers."
+correctAnswer = "Eris"
+incorrectAnswers = [
+  "Charon",
+  "Ceres",
+  "Dysnomia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Neptune's greek name was..."
+correctAnswer = "Poseidon"
+incorrectAnswers = [
+  "Ares",
+  "Zeus",
+  "Apollo",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of these mythological creatures is said to be half-man and half-horse?"
+correctAnswer = "Centaur"
+incorrectAnswers = [
+  "Minotaur",
+  "Pegasus",
+  "Gorgon",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Norse mythology, what is the name of the serpent which eats the roots of the ash tree Yggdrasil?"
+correctAnswer = "Nidhogg"
+incorrectAnswers = [
+  "Bragi",
+  "Odin",
+  "Ymir",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In African mythology, Anansi is a trickster and storyteller who takes the shape of which animal?"
+correctAnswer = "Spider"
+incorrectAnswers = [
+  "Wild dog",
+  "Monkey",
+  "Crocodile",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who was the Roman god of fire?"
+correctAnswer = "Vulcan"
+incorrectAnswers = [
+  "Apollo",
+  "Jupiter",
+  "Mercury",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following is not one of the Greek Fates?"
+correctAnswer = "Narcissus"
+incorrectAnswers = [
+  "Clotho",
+  "Atropos",
+  "Lachesis",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these Roman gods doesn't have a counterpart in Greek mythology?"
+correctAnswer = "Janus"
+incorrectAnswers = [
+  "Vulcan",
+  "Juno",
+  "Mars",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The Nike apparel and footwear brand takes it's name from the Greek goddess of what?"
+correctAnswer = "Victory"
+incorrectAnswers = [
+  "Courage",
+  "Strength",
+  "Honor",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the punishment for Sysiphus's craftiness?"
+correctAnswer = "Cursed to roll a boulder up a hill for eternity."
+incorrectAnswers = [
+  "Tied to a boulder for eternity, being pecked by birds.",
+  "Standing in a lake filled with water he could not drink.",
+  "To fell a tree that regenerated after every axe swing.",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who is the Egyptian god of reproduction and lettuce?"
+correctAnswer = "Min"
+incorrectAnswers = [
+  "Menu",
+  "Mut",
+  "Meret",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The greek god Poseidon was the god of what?"
+correctAnswer = "The Sea"
+incorrectAnswers = [
+  "War",
+  "Sun",
+  "Fire",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Greek Mythology, who killed Achilles?"
+correctAnswer = "Paris"
+incorrectAnswers = [
+  "Hector",
+  "Helen",
+  "Pericles",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Hel was the daughter of which Norse Mythological figure?"
+correctAnswer = "Loki"
+incorrectAnswers = [
+  "Thor",
+  "Odin",
+  "Balder",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In Greek mythology, who is the god of wine?"
+correctAnswer = "Dionysus"
+incorrectAnswers = [
+  "Hephaestus",
+  "Demeter",
+  "Apollo",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who did Hippomenes defeat in a footrace?"
+correctAnswer = "Atalanta"
+incorrectAnswers = [
+  "Peleus",
+  "Theseus",
+  "Jason",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which figure from Greek mythology traveled to the underworld to return his wife Eurydice to the land of the living?"
+correctAnswer = "Orpheus"
+incorrectAnswers = [
+  "Hercules",
+  "Perseus",
+  "Daedalus",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which greek god/goddess tossed a golden apple with the words \"for the fairest\" into the middle of the feast of the gods?"
+correctAnswer = "Eris"
+incorrectAnswers = [
+  "Hades",
+  "Ares",
+  "Artemis",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Nidhogg is a mythical creature from what mythology?"
+correctAnswer = "Norse"
+incorrectAnswers = [
+  "Egyptian",
+  "Greek",
+  "Hindu",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Talos, the mythical giant bronze man, was the protector of which island?"
+correctAnswer = "Crete"
+incorrectAnswers = [
+  "Sardinia",
+  "Sicily",
+  "Cyprus",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "This Greek mythological figure is the god/goddess of battle strategy (among other things)."
+correctAnswer = "Athena"
+incorrectAnswers = [
+  "Ares",
+  "Artemis",
+  "Apollo",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many heads does Cerberus have?"
+correctAnswer = "3"
+incorrectAnswers = [
+  "2",
+  "1",
+  "5",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who was the King of Gods in Ancient Greek mythology?"
+correctAnswer = "Zeus"
+incorrectAnswers = [
+  "Apollo",
+  "Hermes",
+  "Poseidon",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The ancient Roman god of war was commonly known as which of the following?"
+correctAnswer = "Mars"
+incorrectAnswers = [
+  "Jupiter",
+  "Juno",
+  "Ares",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the Greek god of peaceful deaths?"
+correctAnswer = "Thanatos"
+incorrectAnswers = [
+  "Tartarus",
+  "Hades",
+  "Moros",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "According to the Egyptian Myth of Osiris, who murdered Osiris?"
+correctAnswer = "Set"
+incorrectAnswers = [
+  "Horus",
+  "Ra",
+  "Anhur",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which Greek & Roman god was known as the god of music, truth and prophecy, healing, the sun and light, plague, poetry, and more?"
+correctAnswer = "Apollo"
+incorrectAnswers = [
+  "Aphrodite",
+  "Artemis",
+  "Athena",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What mythology did the god \"Apollo\" come from?"
+correctAnswer = "Greek and Roman"
+incorrectAnswers = [
+  "Roman and Spanish",
+  "Greek and Chinese",
+  "Greek, Roman and Norse",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Norse god Odin has two pet crows named \"Huginn\" and \"Muninn\".  What do their names mean?"
+correctAnswer = "Thought & Memory"
+incorrectAnswers = [
+  "Power & Peace",
+  "War & Learning",
+  "Sleeping & Waking",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who is a minor god that is protector and creator of various arts, such as cheese making and bee keeping."
+correctAnswer = "Aristaeus"
+incorrectAnswers = [
+  "Autonoe",
+  "Carme",
+  "Cephisso",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who was the only god from Greece who did not get a name change in Rome?"
+correctAnswer = "Apollo"
+incorrectAnswers = [
+  "Demeter",
+  "Zeus",
+  "Athena",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following Mesopotamian mythological figures was NOT a deity?"
+correctAnswer = "Enkidu"
+incorrectAnswers = [
+  "Enki",
+  "Enlil",
+  "Enkimdu",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is the god of war in Polynesian mythology?"
+correctAnswer = "'Oro"
+incorrectAnswers = [
+  "Hina",
+  "Kohara",
+  "Māui",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which Norse God has a horse named Sleipnir?"
+correctAnswer = "Odin"
+incorrectAnswers = [
+  "Thor",
+  "Frigg",
+  "Balder",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following is not true about the life of Tiresias?"
+correctAnswer = "Sailed with the Argonauts to find the golden fleece"
+incorrectAnswers = [
+  "Athena turned him into a woman, and then years later back into a man",
+  "Hera blinded him after he agreed with Zeus in an argument",
+  "Revealed to Oedipus that Oedipus had married his own mother",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In most traditions, who was the wife of Zeus?"
+correctAnswer = "Hera"
+incorrectAnswers = [
+  "Aphrodite",
+  "Athena",
+  "Hestia",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "According to Algonquian folklore, how does one transform into a Wendigo?"
+correctAnswer = "Participating in cannibalism."
+incorrectAnswers = [
+  "Excessive mutilation of animal corpses.",
+  "Performing a ritual involving murder.",
+  "Drinking the blood of many slain animals.",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "According to Japanese folklore, what is the favorite food of the Kappa."
+correctAnswer = "Cucumbers"
+incorrectAnswers = [
+  "Kabocha",
+  "Nasu",
+  "Soba",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following is NOT a god in Norse Mythology."
+correctAnswer = "Jens"
+incorrectAnswers = [
+  "Loki",
+  "Tyr",
+  "Snotra",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who in Greek mythology, who led the Argonauts in search of the Golden Fleece?"
+correctAnswer = "Jason"
+incorrectAnswers = [
+  "Castor",
+  "Daedalus",
+  "Odysseus",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Hera is god of..."
+correctAnswer = "Marriage"
+incorrectAnswers = [
+  "Agriculture",
+  "Sea",
+  "War",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Hippogriff, not to be confused with the Griffon, is a magical creature with the front half of an eagle, and the back half of what?"
+correctAnswer = "A Horse"
+incorrectAnswers = [
+  "A Dragon",
+  "A Tiger",
+  "A Lion",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Greek Mythology, who was the daughter of King Minos?"
+correctAnswer = "Ariadne"
+incorrectAnswers = [
+  "Athena",
+  "Ariel",
+  "Alana",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the first human being in Norse mythology?"
+correctAnswer = "Ask"
+incorrectAnswers = [
+  "Asmund",
+  "Ake",
+  "Asger",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What mytological creatures have women's faces and vultures' bodies?"
+correctAnswer = "Harpies"
+incorrectAnswers = [
+  "Mermaids",
+  "Nymph",
+  "Lilith",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Maori hold that which island nation was founded by Kupe, who discovered it under a long white cloud?"
+correctAnswer = "New Zealand"
+incorrectAnswers = [
+  "Vanuatu",
+  "Fiji",
+  "Hawaii",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What animal did Queen Pasipahe sleep with before she gave birth to the Minotaur in Greek Mythology?"
+correctAnswer = "Bull"
+incorrectAnswers = [
+  "Pig",
+  "Ox",
+  "Horse",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the name of the Greek god of blacksmiths?"
+correctAnswer = "Hephaestus"
+incorrectAnswers = [
+  "Dyntos",
+  "Vulcan",
+  "Artagatus",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What immense structure is referred to in Norse Mythology as the Yggdrasil."
+correctAnswer = "Tree"
+incorrectAnswers = [
+  "Mountain",
+  "Temple",
+  "Castle",
+]

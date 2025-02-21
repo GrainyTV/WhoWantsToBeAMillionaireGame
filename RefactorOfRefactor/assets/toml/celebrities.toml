@@ -1,0 +1,479 @@
+[[entry]]
+difficulty = "hard"
+question = "How tall is Tom Cruise?"
+correctAnswer = "5′ 7″"
+incorrectAnswers = [
+  "5′ 9″",
+  "5′ 4″",
+  "5′ 5″",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "If he was still alive, in what year would Elvis Presley celebrate his 100th birthday?"
+correctAnswer = "2035"
+incorrectAnswers = [
+  "2030",
+  "2040",
+  "2045",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What year was O.J. Simpson aquitted of his murder charges?"
+correctAnswer = "1995"
+incorrectAnswers = [
+  "1992",
+  "1996",
+  "1991",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which actress married Michael Douglas in 2000?"
+correctAnswer = "Catherine Zeta-Jones"
+incorrectAnswers = [
+  "Ruth Jones",
+  "Pam Ferris",
+  "Sara Sugarman",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Neil Hamburger is played by which comedian?"
+correctAnswer = "Gregg Turkington"
+incorrectAnswers = [
+  "Nathan Fielder",
+  "Tim Heidecker",
+  "Todd Glass",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who out of these actresses is the youngest?"
+correctAnswer = "Kiernan Shipka"
+incorrectAnswers = [
+  "Ariel Winter",
+  "Emma Watson",
+  "Bonnie Wright",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which American celebrity died in 1977 playing golf in La Moraleja, Madrid?"
+correctAnswer = "Bing Crosby"
+incorrectAnswers = [
+  "Elvis Presley",
+  "Charlie Chaplin",
+  "Groucho Marx",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these people is NOT a part of the Internet comedy group Mega64?"
+correctAnswer = "Jon Jafari"
+incorrectAnswers = [
+  "Rocco Botte",
+  "Derrick Acosta",
+  "Shawn Chatfield",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is \"James Rolfe\" better known as?"
+correctAnswer = "The Angry Video Game Nerd"
+incorrectAnswers = [
+  "TotalBiscuit",
+  "PeanutButterGamer",
+  "PewDiePie",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which famous New York Yankees outfielder did Marilyn Monroe marry?"
+correctAnswer = "Joe DiMaggio"
+incorrectAnswers = [
+  "Tino Martinez",
+  "Babe Ruth",
+  "Mason Williams",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which school in Surrey, England did Steve Backshall attend?"
+correctAnswer = "Collingwood College"
+incorrectAnswers = [
+  "Tomlinscote School",
+  "Kings International College",
+  "Lyndhurst School",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "By which name is Ramon Estevez better known as?"
+correctAnswer = "Martin Sheen"
+incorrectAnswers = [
+  "Charlie Sheen",
+  "Ramon Sheen",
+  "Emilio Estevez",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "By what name is Carlos Estevez better known? "
+correctAnswer = "Charlie Sheen"
+incorrectAnswers = [
+  "Ricky Martin",
+  "Bruno Mars",
+  "Joaquin Phoenix",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In what year did \"Bob Ross\" die?"
+correctAnswer = "1995"
+incorrectAnswers = [
+  "1986",
+  "1989",
+  "1997",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is the real name of \"moot\", founder of the imageboard 4chan?"
+correctAnswer = "Christopher Poole"
+incorrectAnswers = [
+  "Mark Zuckerberg",
+  "Allison Harvard",
+  "Catie Wayne",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Donald J. Trump's Middle Name is..."
+correctAnswer = "John"
+incorrectAnswers = [
+  "Jeff",
+  "Jerald",
+  "Jason",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What does film maker Dan Bell typically focus his films on?"
+correctAnswer = "Abandoned Buildings and Dead Malls"
+incorrectAnswers = [
+  "Historic Landmarks",
+  "Action Films",
+  "Documentaries ",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the cause of death for Freddie Mercury?"
+correctAnswer = "Pneumonia"
+incorrectAnswers = [
+  "Stomach Cancer",
+  "HIV",
+  "Brain Hemorrhage",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Billy Herrington is from which US state?"
+correctAnswer = "New York"
+incorrectAnswers = [
+  "Arizona",
+  "California",
+  "Georgia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which TV chef wrote an autobiography titled \"Humble Pie\"?"
+correctAnswer = "Gordon Ramsay"
+incorrectAnswers = [
+  "Jamie Oliver",
+  "Ainsley Harriott",
+  "Antony Worrall Thompson",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "How old was Muhammad Ali when he died?"
+correctAnswer = "74"
+incorrectAnswers = [
+  "61",
+  "He's still alive",
+  "56",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Aubrey Graham is better known as"
+correctAnswer = "Drake"
+incorrectAnswers = [
+  "Travis Scott",
+  "Lil Wayne",
+  "2 Chainz",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What caused Jake Lloyd who played Anakin Skywalker in The Phantom Menace to quit acting?"
+correctAnswer = "Bullying"
+incorrectAnswers = [
+  "Criminal Record",
+  "Nomination for Worst Actor",
+  "Racism",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Gabe Newell was born in which year?"
+correctAnswer = "1962 "
+incorrectAnswers = [
+  "1970",
+  "1960",
+  "1972",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was Elvis Presley born?"
+correctAnswer = "January 8, 1935"
+incorrectAnswers = [
+  "December 13, 1931",
+  "July 18, 1940",
+  "April 17, 1938",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Named after a character he played in a 1969 film, what is the name of the ski resort in Utah that Robert Redford bought in 1968?"
+correctAnswer = "Sundance"
+incorrectAnswers = [
+  "Woodward",
+  "Turner",
+  "Booker",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was the cause of Marilyn Monroes suicide?"
+correctAnswer = "Drug Overdose"
+incorrectAnswers = [
+  "Knife Attack",
+  "House Fire",
+  "Gunshot",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which television show has Dan Gheesling been on?"
+correctAnswer = "Big Brother"
+incorrectAnswers = [
+  "Jeopardy",
+  "Survivor",
+  "The Bachelor",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "How much weight did Chris Pratt lose for his role as Star-Lord in \"Guardians of the Galaxy\"?"
+correctAnswer = "60 lbs"
+incorrectAnswers = [
+  "30 lbs",
+  "50 lbs",
+  "70 lbs",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The eccentric natural philosopher Tycho Brahe kept what as a pet?"
+correctAnswer = "Moose"
+incorrectAnswers = [
+  "Dog",
+  "Bear",
+  "Goat",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In 2014, this new top 100 rapper who featured in \"Computers\" and \"Body Dance\" was arrested in a NYPD sting for murder."
+correctAnswer = "Bobby Shmurda"
+incorrectAnswers = [
+  "DJ Snake",
+  "Swae Lee",
+  "Young Thug",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these celebrities was not a member of the Jackson 5?"
+correctAnswer = "Bo Jackson"
+incorrectAnswers = [
+  "Tito Jackson",
+  "Jermaine Jackson",
+  "Marlon Jackson",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Before voicing Pearl in Steven Universe, Deedee Magno Hall was part of which American band?"
+correctAnswer = "The Party"
+incorrectAnswers = [
+  "The Weather Girls",
+  "The Pussycat Dolls",
+  "The Cheetah Girls",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is generally considered to be William Shakespeare's birth date?"
+correctAnswer = "April 23rd, 1564"
+incorrectAnswers = [
+  "July 4th, 1409",
+  "September 29th, 1699",
+  "December 1st, 1750",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which celebrity announced his presidency in 2015?"
+correctAnswer = "Kanye West"
+incorrectAnswers = [
+  "Donald Trump",
+  "Leonardo DiCaprio",
+  "Miley Cyrus",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which actress's real name was Frances Ethel Gumm?"
+correctAnswer = "Judy Garland"
+incorrectAnswers = [
+  "Doris Day",
+  "Julie Andrews",
+  "Marilyn Monroe",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In which of these TV shows did the chef Gordon Ramsay not appear?"
+correctAnswer = "Auction Hunters"
+incorrectAnswers = [
+  "Ramsay's Kitchen Nightmares",
+  "Hotel Hell",
+  "Hell's Kitchen",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Where was Kanye West born?"
+correctAnswer = "Atlanta, Georgia"
+incorrectAnswers = [
+  "Chicago, Illinois",
+  "Los Angeles, California",
+  "Detroit, Michigan",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Paul McCartney has always used his middle name. What is his real first name? "
+correctAnswer = "James"
+incorrectAnswers = [
+  "John",
+  "Jack",
+  "Justin",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Nikki Diamond portrayed which Gladiator in the 1992 TV show \"Gladiators\"?"
+correctAnswer = "Scorpio"
+incorrectAnswers = [
+  "Jet",
+  "Nightshade",
+  "Falcon",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the religion of famous singer \"Freddie Mercury\"?"
+correctAnswer = "Zoroastrianism"
+incorrectAnswers = [
+  "Paganism",
+  "Ashurism",
+  "Judaism",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What year did radio icon Howard Stern start a job at radio station WNBC?"
+correctAnswer = "1982"
+incorrectAnswers = [
+  "1985",
+  "1984",
+  "1995",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who was Donald Trump's first wife?"
+correctAnswer = "Ivana Zelníčková"
+incorrectAnswers = [
+  "Melania Knauss",
+  "Marla Maples",
+  "Nancy Davis",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which radio personality calls himself \"The King of All Media\"?"
+correctAnswer = "Howard Stern"
+incorrectAnswers = [
+  "Rush Limbaugh",
+  "Pete Tong",
+  "Ryan Seacrest",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Gwyneth Paltrow has a daughter named...?"
+correctAnswer = "Apple"
+incorrectAnswers = [
+  "Lily",
+  "French",
+  "Dakota",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What was James Coburn's last film role before his death?"
+correctAnswer = "American Gun"
+incorrectAnswers = [
+  "Monsters Inc",
+  "Texas Rangers",
+  "Snow Dogs",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is Doug Walker's YouTube name?"
+correctAnswer = "The Nostalgia Critic"
+incorrectAnswers = [
+  "The Angry Video Game Nerd",
+  "AngryJoeShow",
+  "The Cinema Snob",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the name of Marilyn Monroe's first husband?"
+correctAnswer = "James Dougherty"
+incorrectAnswers = [
+  "Joe Dimaggio",
+  "Kirk Douglas",
+  "Arthur Miller",
+]

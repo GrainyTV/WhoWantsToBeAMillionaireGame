@@ -1,0 +1,509 @@
+[[entry]]
+difficulty = "medium"
+question = "At the start of a standard game of the Monopoly, if you throw a double six, which square would you land on?"
+correctAnswer = "Electric Company"
+incorrectAnswers = [
+  "Water Works",
+  "Chance",
+  "Community Chest",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The board game Monopoly takes its street names from which real American city?"
+correctAnswer = "Atlantic City, New Jersey"
+incorrectAnswers = [
+  "Las Vegas, Nevada",
+  "Duluth, Minnesota",
+  "Charleston, South Carolina",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Magic: The Gathering, which of the following was the first publicly released foil card?"
+correctAnswer = "Lightning Dragon"
+incorrectAnswers = [
+  "Revenant",
+  "Beast of Burden",
+  "Dirtcowl Wurm",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Magic: The Gathering, what term for blocking was established in the Portal set?"
+correctAnswer = "Intercepting"
+incorrectAnswers = [
+  "Blocking",
+  "Resisting",
+  "Shielding",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the maximum level you can have in a single class in Dungeons and Dragons (5e)?"
+correctAnswer = "20"
+incorrectAnswers = [
+  "30",
+  "15",
+  "25",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which ability from the \"Magic: The Gathering\" Scars of Mirrodin expansion involves having at least three artifacts in play?"
+correctAnswer = "Metalcraft"
+incorrectAnswers = [
+  "Affinity",
+  "Imprint",
+  "Living Weapon",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In \"Magic: The Gathering\", what instant card has the highest converted mana cost?"
+correctAnswer = "Blinkmoth Infusion"
+incorrectAnswers = [
+  "Vitalizing Wind",
+  " Chant of Vitu-Ghazi",
+  "Assert Authority",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "On a standard Monopoly board, how much do you have to pay for Tennessee Ave?"
+correctAnswer = "$180"
+incorrectAnswers = [
+  "$200",
+  "$160",
+  "$220",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How many rooms are there, not including the hallways and the set of stairs, in the board game \"Clue\"?"
+correctAnswer = "9"
+incorrectAnswers = [
+  "1",
+  "6",
+  "10",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Europa Universalis is a strategy video game based on which French board game?"
+correctAnswer = "Europa Universalis"
+incorrectAnswers = [
+  "Europe and the Universe",
+  "Europa!",
+  "Power in Europe",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In which year was the pen and paper RPG \"Deadlands\" released?"
+correctAnswer = "1996"
+incorrectAnswers = [
+  "2003",
+  "1999",
+  "1993",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In standard Monopoly, what's the rent if you land on Park Place with no houses?"
+correctAnswer = "$35"
+incorrectAnswers = [
+  "$30",
+  "$50",
+  "$45",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In \"Magic: The Gathering\", during the design for Planar Chaos, what color did the developers think of adding in as the sixth color?"
+correctAnswer = "Purple"
+incorrectAnswers = [
+  "Brown",
+  "Pink",
+  "Orange",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the most challenging monster in the Dungeons & Dragons 5th Edition Monster Manual?"
+correctAnswer = "Tarrasque"
+incorrectAnswers = [
+  "Beholder",
+  "Displacer Beast",
+  "Lich",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who is the main character in the VHS tape included in the board game Nightmare?"
+correctAnswer = "The Gatekeeper"
+incorrectAnswers = [
+  "The Kryptkeeper",
+  "The Monster",
+  "The Nightmare",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the world's oldest board game?"
+correctAnswer = "Senet"
+incorrectAnswers = [
+  "Chess",
+  "Checkers",
+  "Go",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The board game, Nightmare was released in what year?"
+correctAnswer = "1991"
+incorrectAnswers = [
+  "1992",
+  "1989",
+  "1995",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Magic: The Gathering, what was a tribute card to Jamie Wakefield's late wife Marilyn, who loved horses?"
+correctAnswer = "Timbermare"
+incorrectAnswers = [
+  "Loyal Pegasus",
+  "Vryn Wingmare",
+  "Sungrace Pegasus",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the sum of all the tiles in a standard box of Scrabble?"
+correctAnswer = "187"
+incorrectAnswers = [
+  "207",
+  "197",
+  "177",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many dice are used in the game of Yahtzee?"
+correctAnswer = "Five"
+incorrectAnswers = [
+  "Four",
+  "Six",
+  "Eight",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of these games includes the phrase \"Do not pass Go, do not collect $200\"?"
+correctAnswer = "Monopoly"
+incorrectAnswers = [
+  "Pay Day",
+  "Cluedo",
+  "Coppit",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the development code name for the \"Weatherlight\" expansion for \"Magic: The Gathering\", released in 1997?"
+correctAnswer = "Mocha Latte"
+incorrectAnswers = [
+  "Decaf",
+  "Frappuccino",
+  "Macchiato",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What do you declare in Rīchi Mahjong when you've drawn your winning tile?"
+correctAnswer = "Tsumo"
+incorrectAnswers = [
+  "Ron",
+  "Rīchi",
+  "Kan",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The board game \"Monopoly\" is a variation of what board game?"
+correctAnswer = "The Landlord's Game"
+incorrectAnswers = [
+  "Territorial Dispute",
+  "Property Feud",
+  "The Monopolist's Game",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "When Magic: The Gathering was first solicited, which of the following was it originally titled?"
+correctAnswer = "Mana Clash"
+incorrectAnswers = [
+  "Magic",
+  "Magic Clash",
+  "Mana Duels",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Some of the \"Fallen Empires\" cards from \"Magic: The Gathering\" were misprinted on the backs of which other card game?"
+correctAnswer = "Wyvern"
+incorrectAnswers = [
+  "Pokemon",
+  "Dominion",
+  "Yu-Gi-Oh",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What Magic: The Gathering card's flavor text is just 'Ribbit.'?"
+correctAnswer = "Turn to Frog"
+incorrectAnswers = [
+  "Spore Frog",
+  "Bloated Toad",
+  "Frogmite",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which character class in Dungeons and Dragons 5th edition gains it's powers from making a pact with a being of higher power?"
+correctAnswer = "Warlock"
+incorrectAnswers = [
+  "Wizard",
+  "Sorceror",
+  "Cleric",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "When was the board game Twister, released to the public?"
+correctAnswer = "April 1966"
+incorrectAnswers = [
+  "September 1965",
+  "January 1969",
+  "February 1966",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "How many points is the Z tile worth in Scrabble?"
+correctAnswer = "10"
+incorrectAnswers = [
+  "8",
+  "5",
+  "6",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which one of these is not a real game in the Dungeons & Dragons series?"
+correctAnswer = "Extreme Dungeons & Dragons"
+incorrectAnswers = [
+  "Advanced Dungeons & Dragons",
+  "Dungeons & Dragons 3.5th edition",
+  "Advanced Dungeons & Dragons 2nd edition",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The board game \"Ra\" was designed by which designer? "
+correctAnswer = "Reiner Knizia"
+incorrectAnswers = [
+  "Bruno Cathala",
+  "Uwe Rosenburg",
+  "Allison Kline",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What special item did the creators of Cards Against Humanity ship for their Black Friday pack?"
+correctAnswer = "Bull Feces"
+incorrectAnswers = [
+  "A Card Expansion",
+  "A Racist Toy",
+  "Cat Urine",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the development code name for the \"Urza's Destiny\" expansion for \"Magic: The Gathering\", released in 1999?"
+correctAnswer = "Chimichanga"
+incorrectAnswers = [
+  "Burrito",
+  "Taquito",
+  "Enchilada",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Yu-Gi-Oh, how does a player perform an Xyz Summon?"
+correctAnswer = "Overlay at least 2 Monsters of the Same Level"
+incorrectAnswers = [
+  "Activate a Spell and Send Monsters to the Graveyard",
+  "Add the Monsters' Levels Together to Match the Xyz Monster",
+  "Banish A Number of Monsters From Your Hand And Deck",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many dots are on a single die?"
+correctAnswer = "21"
+incorrectAnswers = [
+  "24",
+  "15",
+  "18",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following tabletop games is the oldest?"
+correctAnswer = "Go"
+incorrectAnswers = [
+  "Chess",
+  "Mahjong",
+  "Shogi",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "On a standard Monopoly board, which square is diagonally opposite 'Go'? "
+correctAnswer = "Free Parking"
+incorrectAnswers = [
+  "Go to Jail",
+  "Jail",
+  "The Electric Company",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which board game was first released on February 6th, 1935?"
+correctAnswer = "Monopoly"
+incorrectAnswers = [
+  "Risk",
+  "Clue",
+  "Candy Land",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which card is on the cover of the Beta rulebook of \"Magic: The Gathering\"?"
+correctAnswer = "Bog Wraith"
+incorrectAnswers = [
+  "Island",
+  "Rock Hydra",
+  "Elvish Archers",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In a standard game of Monopoly, what colour are the two cheapest properties?"
+correctAnswer = "Brown"
+incorrectAnswers = [
+  "Green",
+  "Yellow",
+  "Blue",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In Chess, the Queen has the combined movement of which two pieces?"
+correctAnswer = "Bishop and Rook"
+incorrectAnswers = [
+  "Rook and King",
+  "Knight and Bishop",
+  "King and Knight",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many pieces are there on the board at the start of a game of chess?"
+correctAnswer = "32"
+incorrectAnswers = [
+  "16",
+  "20",
+  "36",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these cards from \"Magic: The Gathering\" has a flavor text that begins with \"Oi oi oi\"?"
+correctAnswer = "Uthden Troll"
+incorrectAnswers = [
+  "Lotleth Troll",
+  "Albino Troll",
+  "Harvester Troll",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In the Board Game, Settlers of Catan, a die roll of what number causes the Robber to attack? "
+correctAnswer = "7"
+incorrectAnswers = [
+  "3",
+  "10",
+  "1",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many spaces are there on a standard Monopoly board?"
+correctAnswer = "40"
+incorrectAnswers = [
+  "28",
+  "55",
+  "36",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The Dice Tower network of board game podcasts and videos is run by which individual?"
+correctAnswer = "Tom Vasel"
+incorrectAnswers = [
+  "Jason LeVine",
+  "Borth Sampson",
+  "Uncle Pennybags",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Carcassonne is based on which French town?"
+correctAnswer = "Carcassonne"
+incorrectAnswers = [
+  "Paris",
+  "Marseille",
+  "Clermont-Ferrand",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "In board games, an additional or ammended rule that applies to a certain group or place is informally known as a \"what\" rule?"
+correctAnswer = "House"
+incorrectAnswers = [
+  "Custom",
+  "Extra",
+  "Change",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In Magic: The Gathering, what card's flavor text is \"Catch!\"?"
+correctAnswer = "Lava Axe"
+incorrectAnswers = [
+  "Stone-Throwing Devils",
+  "Ember Shot",
+  "Throwing Knife",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In what year was the card game Magic: the Gathering first introduced?"
+correctAnswer = "1993"
+incorrectAnswers = [
+  "1987",
+  "1998",
+  "2003",
+]

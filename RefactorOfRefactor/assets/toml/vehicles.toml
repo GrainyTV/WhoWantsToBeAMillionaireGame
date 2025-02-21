@@ -1,0 +1,589 @@
+[[entry]]
+difficulty = "easy"
+question = "What is the name of Nissan's most popular electric car?"
+correctAnswer = "Leaf"
+incorrectAnswers = [
+  "Tree",
+  "Deer",
+  "Roots",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following countries has officially banned the civilian use of dash cams in cars?"
+correctAnswer = "Austria"
+incorrectAnswers = [
+  "United States",
+  "Czechia",
+  "South Korea",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The Italian automaker Lamborghini uses what animal as its logo?"
+correctAnswer = "Bull"
+incorrectAnswers = [
+  "Bat",
+  "Horse",
+  "Snake",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which one of the following is NOT a sub-company of the Volkswagen Group?"
+correctAnswer = "Opel"
+incorrectAnswers = [
+  "Porsche",
+  "Bugatti",
+  "Bentley",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following collision avoidance systems helps airplanes avoid colliding with each other?"
+correctAnswer = "TCAS"
+incorrectAnswers = [
+  "GPWS",
+  "OCAS",
+  "TAWS",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What engine is in the Lexus SC400?"
+correctAnswer = "1UZ-FE"
+incorrectAnswers = [
+  "2JZ-GTE",
+  "7M-GTE",
+  "5M-GE",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What are the cylinder-like parts that pump up and down within the engine?"
+correctAnswer = "Pistons"
+incorrectAnswers = [
+  "Leaf Springs",
+  "Radiators",
+  "ABS",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which one of the following is not made by Ford?"
+correctAnswer = "Camry"
+incorrectAnswers = [
+  "Fusion",
+  "Model A",
+  "F-150",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which car tire manufacturer is famous for its \"Eagle\" brand of tires, and is the official tire supplier of NASCAR?"
+correctAnswer = "Goodyear"
+incorrectAnswers = [
+  "Pirelli",
+  "Bridgestone",
+  "Michelin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What UK Train does NOT go over 125MPH?"
+correctAnswer = "Sprinter"
+incorrectAnswers = [
+  "Class 43",
+  "Javelin",
+  "Pendolino",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which car manufacturer created the \"Aventador\"?"
+correctAnswer = "Lamborghini"
+incorrectAnswers = [
+  "Ferrari",
+  "Pagani",
+  "Bugatti",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What nickname was given to Air Canada Flight 143 after it ran out of fuel and glided to safety in 1983?"
+correctAnswer = "Gimli Glider"
+incorrectAnswers = [
+  "Gimli Microlight",
+  "Gimli Chaser",
+  "Gimli Superb",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Automobiles produced by Tesla Motors operate on which form of energy?"
+correctAnswer = "Electricity"
+incorrectAnswers = [
+  "Gasoline",
+  "Diesel",
+  "Nuclear",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What year did the Chevrolet LUV mini truck make its debut?"
+correctAnswer = "1972"
+incorrectAnswers = [
+  "1982",
+  "1975",
+  "1973",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which car tire manufacturer is famous for its \"P Zero\" line?"
+correctAnswer = "Pirelli"
+incorrectAnswers = [
+  "Goodyear",
+  "Bridgestone",
+  "Michelin",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which one of these chassis codes are used by BMW 3-series?"
+correctAnswer = "E46"
+incorrectAnswers = [
+  "E39",
+  "E85",
+  "F10",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which Japanese company is the world's largest manufacturer of motorcycles?"
+correctAnswer = "Honda"
+incorrectAnswers = [
+  "Yamaha",
+  "Suzuki",
+  "Kawasaki",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The LS3 engine is how many cubic inches?"
+correctAnswer = "376"
+incorrectAnswers = [
+  "346",
+  "364",
+  "427",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following passenger jets is the longest?"
+correctAnswer = "Boeing 747-8"
+incorrectAnswers = [
+  "Airbus A350-1000",
+  "Airbus A330-200",
+  "Boeing 787-10",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which one is NOT the function of engine oil in car engines?"
+correctAnswer = "Combustion"
+incorrectAnswers = [
+  "Lubrication",
+  "Cooling",
+  "Reduce corrosion",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Jaguar Cars was previously owned by which car manfacturer?"
+correctAnswer = "Ford"
+incorrectAnswers = [
+  "Chrysler",
+  "General Motors",
+  "Fiat",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What kind of train was Stepney, a train on the Bluebell Railway notable for his appearance in \"The Railway Series\"?"
+correctAnswer = "LB&SCR A1X"
+incorrectAnswers = [
+  "LB&SCR E2",
+  "LB&SCR J1",
+  "LB&SCR D1",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "The difference between the lengths of a Boeing 777-300ER and an Airbus A350-1000 is closest to:"
+correctAnswer = "0.1m"
+incorrectAnswers = [
+  "1m",
+  "10m ",
+  "100m",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In 2014, over 6 million General Motors vehicles were recalled due to what critical flaw?"
+correctAnswer = "Faulty ignition switch"
+incorrectAnswers = [
+  "Malfunctioning gas pedal",
+  "Breaking fuel lines",
+  "Faulty brake pads",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The LS7 engine is how many cubic inches?"
+correctAnswer = "427"
+incorrectAnswers = [
+  "346",
+  "364",
+  "376",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The British Rail Class 700, Class 707 and the Class 717 are part of what train family?"
+correctAnswer = "Desiro City"
+incorrectAnswers = [
+  "Networker",
+  "Aventra",
+  "Electrostar",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What model was the sports car gifted to Yuri Gagarin by the French government in 1965?"
+correctAnswer = "Matra Djet"
+incorrectAnswers = [
+  "Porsche 911",
+  "Alpine A110",
+  "AC Cobra",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these car models are produced by Lamborghini?"
+correctAnswer = "Aventador"
+incorrectAnswers = [
+  "Huayra",
+  "918",
+  "Chiron",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these cars is NOT considered one of the 5 Modern Supercars by Ferrari?"
+correctAnswer = "Testarossa"
+incorrectAnswers = [
+  "Enzo Ferrari",
+  "F40",
+  "288 GTO",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which supercar company is from Sweden?"
+correctAnswer = "Koenigsegg"
+incorrectAnswers = [
+  "Bugatti",
+  "Lamborghini",
+  "McLaren",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which animal features on the logo for Abarth, the motorsport division of Fiat?"
+correctAnswer = "Scorpion"
+incorrectAnswers = [
+  "Snake",
+  "Bull",
+  "Horse",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Volkswagen's legendary VR6 engine has cylinders positioned at what degree angle?"
+correctAnswer = "15 Degree"
+incorrectAnswers = [
+  "30 Degree",
+  "45 Degree",
+  "90 Degree",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following is NOT a Russian car manufacturer?"
+correctAnswer = "BYD"
+incorrectAnswers = [
+  "Silant",
+  "Dragon",
+  "GAZ",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which country has the international vehicle registration letter 'A'?"
+correctAnswer = "Austria"
+incorrectAnswers = [
+  "Afghanistan",
+  "Australia",
+  "Armenia",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What is the fastest road legal car in the world?"
+correctAnswer = "Koenigsegg Agera RS"
+incorrectAnswers = [
+  "Hennessy Venom GT",
+  "Bugatti Veyron Super Sport",
+  "Pagani Huayra BC",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What part of an automobile engine uses lobes to open and close intake and exhaust valves, and allows an air/fuel mixture into the engine?"
+correctAnswer = "Camshaft"
+incorrectAnswers = [
+  "Piston",
+  "Drive shaft",
+  "Crankshaft",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "How much horsepower is produced by the SD40-2 Locomotive?"
+correctAnswer = "3,000"
+incorrectAnswers = [
+  "3,200",
+  "2,578",
+  "2,190",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "What country was the Trabant 601 manufactured in?"
+correctAnswer = "East Germany"
+incorrectAnswers = [
+  "Soviet Union",
+  "Hungary",
+  "France",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What do the 4 Rings in Audi's Logo represent?"
+correctAnswer = "Previously independent automobile manufacturers"
+incorrectAnswers = [
+  "States in which Audi makes the most sales",
+  "Main cities vital to Audi",
+  "Countries in which Audi makes the most sales",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The LS1 engine is how many cubic inches?"
+correctAnswer = "346"
+incorrectAnswers = [
+  "350",
+  "355",
+  "360",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What country is the Hussarya supercar, made by the car manufacturer \"Arrinera\", assembled in?"
+correctAnswer = "Poland"
+incorrectAnswers = [
+  "China",
+  "Sweden",
+  "Italy",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The LS2 engine is how many cubic inches?"
+correctAnswer = "364"
+incorrectAnswers = [
+  "346",
+  "376",
+  "402",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which Italian city is home of the car manufacturer 'Fiat'?"
+correctAnswer = "Turin"
+incorrectAnswers = [
+  "Maranello",
+  "Modena",
+  "Rome",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these is NOT a car model produced by Malaysian car manufacturer Proton?"
+correctAnswer = "Kelisa"
+incorrectAnswers = [
+  "Saga",
+  "Perdana",
+  "Inspira",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which car is the first mass-produced hybrid vehicle?"
+correctAnswer = "Toyota Prius"
+incorrectAnswers = [
+  "Chevrolet Volt",
+  "Honda Fit",
+  "Peugeot 308 R HYbrid",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Where are the cars of the brand \"Ferrari\" manufactured?"
+correctAnswer = "Italy"
+incorrectAnswers = [
+  "Romania",
+  "Germany",
+  "Russia",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What was the name of the first front-wheel-drive car produced by Datsun (now Nissan)?"
+correctAnswer = "Cherry"
+incorrectAnswers = [
+  "Sunny",
+  "Bluebird",
+  "Skyline",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Complete the following analogy: Audi is to Volkswagen as Infiniti is to ?"
+correctAnswer = "Nissan"
+incorrectAnswers = [
+  "Honda",
+  "Hyundai",
+  "Subaru",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was Cadillac founded?"
+correctAnswer = "1902"
+incorrectAnswers = [
+  "1964",
+  "1898",
+  "1985",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "When was Tesla founded?"
+correctAnswer = "2003"
+incorrectAnswers = [
+  "2008",
+  "2005",
+  "2007",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following car models has been badge-engineered (rebadged) the most?"
+correctAnswer = "Isuzu Trooper"
+incorrectAnswers = [
+  "Holden Monaro",
+  "Suzuki Swift",
+  "Chevy Camaro",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which Variable Valve Timing technology is used by BMW?"
+correctAnswer = "VANOS"
+incorrectAnswers = [
+  "VVT-iw",
+  "VVEL",
+  "MultiAir",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following vehicles featured a full glass roof at base model?"
+correctAnswer = "Renault Avantime"
+incorrectAnswers = [
+  "Chevy Volt",
+  "Mercedes-Benz A-Class",
+  "Honda Odyssey",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of these companies does NOT manufacture motorcycles?"
+correctAnswer = "Toyota"
+incorrectAnswers = [
+  "Honda",
+  "Kawasaki",
+  "Yamaha",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Enzo Ferrari was originally an auto racer for what manufacturer before founding his own car company?"
+correctAnswer = "Alfa Romeo"
+incorrectAnswers = [
+  "Auto Union",
+  "Mercedes Benz",
+  "Bentley",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What car manufacturer gave away their patent for the seat-belt in the interest of saving lives?"
+correctAnswer = "Volvo"
+incorrectAnswers = [
+  "Ferrari",
+  "Ford",
+  "Renault",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which Audi does not use Haldex based all wheel drive system?"
+correctAnswer = "Audi A8"
+incorrectAnswers = [
+  "Audi TT",
+  "Audi S3",
+  "Audi A3",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which car brand does NOT belong to General Motors?"
+correctAnswer = "Ford"
+incorrectAnswers = [
+  "Buick",
+  "Cadillac",
+  "Chevrolet",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following car manufacturers had a war named after it?"
+correctAnswer = "Toyota"
+incorrectAnswers = [
+  "Honda",
+  "Ford",
+  "Volkswagen",
+]

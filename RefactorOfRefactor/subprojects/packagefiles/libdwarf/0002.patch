@@ -1,0 +1,10 @@
+--- src/lib/libdwarf/meson.build	2024-06-05 01:32:54.000000000 +0200
++++ new/src/lib/libdwarf/meson.build	2025-02-21 15:49:16.833605800 +0100
+@@ -143,7 +143,3 @@
+ )
+ 
+ meson.override_dependency('libdwarf', libdwarf)
+-
+-install_headers(libdwarf_header_src,
+-  install_dir : dir_pkginclude + '-' + v_maj
+-)

@@ -14,6 +14,7 @@ project(
 subdir('cmake' / 'sdl3')
 
 dependencies = [
+    dependency('tomlplusplus'),
     dependency('svl'),
     dependency('sdl3'),
     dependency('sdl3_image'),
@@ -32,6 +33,7 @@ sources = files(
     'src/utility.cpp',
     'src/fontmanager.cpp',
     'src/opengl.cpp',
+    'src/data.cpp',
     'src/asset.cpp',
     'src/ingamescene.cpp',
     'src/mainmenuscene.cpp',
@@ -49,7 +51,8 @@ executable(
     dependencies: dependencies,
     cpp_args: [
         '-Wno-missing-field-initializers',
-        '-Wno-return-type'
+        '-Wno-return-type',
+        '-DTOML_EXCEPTIONS=0',
     ],
     override_options: {
         'warning_level': '3',

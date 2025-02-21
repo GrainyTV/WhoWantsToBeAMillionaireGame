@@ -27,25 +27,27 @@ std::array<TextBubble, InGameScene::BUTTON_COUNT> InGameScene::initializeButtons
                 });
             });
 
+    const Data chosenData = Asset::getRandomData();
+
     return {
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[0], "Question"),
+            .Frontend = Hexagon(buttonAreas[0], chosenData.question),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[1], "Answer A"),
+            .Frontend = Hexagon(buttonAreas[1], chosenData.answers[0].Text),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[2], "Answer B", false),
+            .Frontend = Hexagon(buttonAreas[2], chosenData.answers[1].Text, false),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[3], "Answer C"),
+            .Frontend = Hexagon(buttonAreas[3], chosenData.answers[2].Text),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[4], "Answer D", false),
+            .Frontend = Hexagon(buttonAreas[4], chosenData.answers[3].Text, false),
             .Backend = Invokable()
         }),
     };
@@ -93,6 +95,8 @@ void InGameScene::intersects(const SDL_FPoint /*location*/)
 void InGameScene::enable()
 {
     sceneEnabled = true;
+
+    Mix_PlayMusic(Asset::getMusicById(MusicEasy), -1);
 }
 
 void InGameScene::clicks()

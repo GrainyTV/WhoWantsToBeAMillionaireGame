@@ -1,5 +1,7 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include "SDL3_mixer/SDL_mixer.h"
+#include "data.hpp"
 #include <cstdint>
 
 namespace Asset
@@ -8,6 +10,10 @@ namespace Asset
     {
         Logo,
         Background,
+        MusicEasy,
+        MusicMedium,
+        MusicHard,
+        InputFiles,
     };
 
     void queueToLoad(Identifier);
@@ -15,4 +21,8 @@ namespace Asset
     void beginLoadProcess();
 
     SDL_Texture* getTextureById(Identifier);
+
+    Mix_Music* getMusicById(Identifier);
+
+    Data getRandomData();
 }

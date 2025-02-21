@@ -9,7 +9,7 @@ class InGameScene
 {
 using enum Asset::Identifier;
 private:
-    static constexpr std::array ASSETS = { Background };
+    static constexpr std::array ASSETS = { Background, MusicEasy, MusicMedium, MusicHard };
     static constexpr size_t BUTTON_COUNT = 5;
     bool sceneEnabled;
     Option::Inst<int32_t> selectedButton;

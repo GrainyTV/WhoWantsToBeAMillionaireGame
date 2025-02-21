@@ -1,0 +1,409 @@
+[[entry]]
+difficulty = "easy"
+question = "According to the United States Constitution, how old must a person be to be elected President of the United States?"
+correctAnswer = "35"
+incorrectAnswers = [
+  "30",
+  "40",
+  "45",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The 2014 movie \"The Raid 2: Berandal\" was mainly filmed in which Asian country?"
+correctAnswer = "Indonesia"
+incorrectAnswers = [
+  "Thailand",
+  "Brunei",
+  "Malaysia",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "The largest consumer market in 2015 was..."
+correctAnswer = "The United States of America"
+incorrectAnswers = [
+  "Germany",
+  "Japan",
+  "United Kingdom",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which president erased the national debt of the United States?"
+correctAnswer = "Andrew Jackson"
+incorrectAnswers = [
+  "Ronald Reagan",
+  "John F. Kennedy",
+  "Franklin Roosevelt",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who succeeded Joseph Stalin as General Secretary of the Communist Party of the Soviet Union?"
+correctAnswer = "Nikita Khrushchev"
+incorrectAnswers = [
+  "Leonid Brezhnev",
+  "Mikhail Gorbachev",
+  "Boris Yeltsin",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Between 1973 to 1990, what country was ruled by dictator Augusto Pinochet?"
+correctAnswer = "Chile"
+incorrectAnswers = [
+  "Ethiopia",
+  "Indonesia",
+  "Nicaragua",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "In June 2017, Saudi Arabia and Egypt broke off ties with which country over its supposed support for terrorism?"
+correctAnswer = "Qatar"
+incorrectAnswers = [
+  "Bahrain",
+  "United States of America",
+  "Russia",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What is former United States President Bill Clinton's full name?"
+correctAnswer = "William Jefferson Clinton"
+incorrectAnswers = [
+  "William Roosevelt Clinton",
+  "William Truman Clinton",
+  "William Lincoln Clinton",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is centralism?"
+correctAnswer = " Concentration of power and authority in a central organization."
+incorrectAnswers = [
+  "Conforming to one single common political agenda.",
+  "Remaining politically neutral.",
+  "The grey area in the spectrum of political left and right.",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What is the name of Niccolò Machiavelli's work that argued effective leaders needed to crush their opponents at all costs?"
+correctAnswer = "The Prince"
+incorrectAnswers = [
+  "The Rape of Lucrece",
+  "Will to Power",
+  "Love's Labours Lost",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of these was an official candidate in the 2017 British General Election?"
+correctAnswer = "Lord Buckethead"
+incorrectAnswers = [
+  "James Francis",
+  "Robert Wimbledon",
+  "Sir Crumpetsby",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Before 2016, in which other year did Donald Trump run for President?"
+correctAnswer = "2000"
+incorrectAnswers = [
+  "2012",
+  "1988",
+  "2008",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which Native American tribe/nation requires at least one half blood quantum (equivalent to one parent) to be eligible for membership?"
+correctAnswer = "Yomba Shoshone Tribe"
+incorrectAnswers = [
+  "Standing Rock Sioux Tribe",
+  "Kiowa Tribe of Oklahoma",
+  "Pawnee Nation of Oklahoma",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who was the 40th President of the USA?"
+correctAnswer = "Ronald Reagan"
+incorrectAnswers = [
+  "Jimmy Carter",
+  "Bill Clinton",
+  "Richard Nixon",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Former United States President Bill Clinton famously played which instrument?"
+correctAnswer = "Saxophone"
+incorrectAnswers = [
+  "Baritone horn",
+  "Piano",
+  "Violin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Who was the 45th President of the United States?"
+correctAnswer = "Donald Trump"
+incorrectAnswers = [
+  "Barack Obama",
+  "Bill Clinton",
+  "George Bush",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following United States senators is known for performing a 24-hour long filibuster?"
+correctAnswer = "Strom Thurmond"
+incorrectAnswers = [
+  "Roy Blunt",
+  "John Barrasso",
+  "Chuck Schumer",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What are the first names of the first father and son pair that were both Prime Ministers of Canada?"
+correctAnswer = "Justin and Pierre"
+incorrectAnswers = [
+  "John and Louis",
+  "Brian and Justin",
+  "Brian and Pierre",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which of the following Pacific Islander countries is ruled by a constitutional monarchy?"
+correctAnswer = "Tonga"
+incorrectAnswers = [
+  "Palau",
+  "Fiji",
+  "Kiribati",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "The Watergate Scandal occured in what year?"
+correctAnswer = "1972"
+incorrectAnswers = [
+  "1973",
+  "1974",
+  "1971",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of these is NOT one of Donald Trump's children?"
+correctAnswer = "Julius"
+incorrectAnswers = [
+  "Donald Jr.",
+  "Ivanka",
+  "Eric",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who is the only US president to serve two non-consecutive terms in office?"
+correctAnswer = "Grover Cleveland"
+incorrectAnswers = [
+  "James K. Polk",
+  "Franklin D. Roosevelt",
+  "Thomas Jefferson",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "How many people are in the U.S. House of Representatives?"
+correctAnswer = "435"
+incorrectAnswers = [
+  "260",
+  "415",
+  "50",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who was the British Prime Minister at the outbreak of the Second World War?"
+correctAnswer = "Neville Chamberlain"
+incorrectAnswers = [
+  "Clement Attlee",
+  "Winston Churchill",
+  "Stanley Baldwin",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Whose 2016 presidential campaign slogan was \"Make America Great Again\"?"
+correctAnswer = "Donald Trump"
+incorrectAnswers = [
+  "Ted Cruz",
+  "Marco Rubio",
+  "Bernie Sanders",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who was elected leader of the UK Labour Party in September 2015?"
+correctAnswer = "Jeremy Corbyn"
+incorrectAnswers = [
+  "Ed Miliband",
+  "David Cameron",
+  "Theresa May",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which letter do you need to have on a European driver license in order to ride any motorbikes?"
+correctAnswer = "A"
+incorrectAnswers = [
+  "X",
+  "D",
+  "B",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who became Prime Minister of the United Kingdom in July 2016?"
+correctAnswer = "Theresa May"
+incorrectAnswers = [
+  "Boris Johnson",
+  "David Cameron",
+  "Tony Blair",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which former US president used \"Let's Make America Great Again\" as his campaign slogan before Donald Trump's campaign?"
+correctAnswer = "Ronald Reagan"
+incorrectAnswers = [
+  "Jimmy Carter",
+  "Gerald Ford",
+  "Richard Nixon",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Which of the following United States Presidents served the shortest term in office?"
+correctAnswer = "William Henry Harrison"
+incorrectAnswers = [
+  "Zachary Taylor",
+  "James A. Garfield",
+  "Warren G. Harding",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "What year did the effort to deploy the Common Core State Standards (CCSS) in the US begin?"
+correctAnswer = "2009"
+incorrectAnswers = [
+  "2012",
+  "2006",
+  "1997",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What was the personal nickname of the 40th Governor of the US State Louisiana, Huey Long?"
+correctAnswer = "The Kingfish"
+incorrectAnswers = [
+  "The Champ",
+  "The Hoot Owl",
+  "The Oracle",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "Who was the longest-serving senator in US history, serving from 1959 to 2010?"
+correctAnswer = "Robert Byrd"
+incorrectAnswers = [
+  "Daniel Inouye",
+  "Strom Thurmond",
+  "Joe Biden",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Before 2011, \"True Capitalist Radio\" was known by a different name. What was that name?"
+correctAnswer = "True Conservative Radio"
+incorrectAnswers = [
+  "True Republican Radio",
+  "Texan Capitalist Radio",
+  "United Capitalists",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Who was the only president to not be in office in Washington D.C?"
+correctAnswer = "George Washington"
+incorrectAnswers = [
+  "Abraham Lincoln",
+  "Richard Nixon",
+  "Thomas Jefferson",
+]
+
+[[entry]]
+difficulty = "hard"
+question = "\"Yes, America Can!\" was this United States politician's de facto campaign slogan in 2004."
+correctAnswer = "George W. Bush"
+incorrectAnswers = [
+  "John Kerry",
+  "Barack Obama",
+  "Al Gore",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "In United States history, how many vice presidents did Franklin D. Roosevelt have during his time in office as president?"
+correctAnswer = "3"
+incorrectAnswers = [
+  "1",
+  "2",
+  "0",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "What year did Gerald Ford Become President?"
+correctAnswer = "1974"
+incorrectAnswers = [
+  "1977",
+  "1973",
+  "1969",
+]
+
+[[entry]]
+difficulty = "easy"
+question = "Which former US president was nicknamed \"Teddy\" after he refused to shoot a defenseless black bear?"
+correctAnswer = "Theodore Roosevelt"
+incorrectAnswers = [
+  "Woodrow Wilson",
+  "James F. Fielder",
+  "Andrew Jackson",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Which of the following Argentinian presidents was elected in 2015?"
+correctAnswer = "Mauricio Macri"
+incorrectAnswers = [
+  "Cristina Fernandez de Kirchner",
+  "Nestor Kirchner",
+  "Juan Domingo Peron",
+]
+
+[[entry]]
+difficulty = "medium"
+question = "Due to the Nagoya Resolution, China agreed to allow Taiwan to compete separately in international sporting events under what name?"
+correctAnswer = "Chinese Taipei"
+incorrectAnswers = [
+  "Chinese Taiwan",
+  "Republic of Taiwan",
+  "Republic of Taipei ",
+]

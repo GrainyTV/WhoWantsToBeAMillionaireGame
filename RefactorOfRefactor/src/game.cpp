@@ -14,14 +14,33 @@ using Globals::GameProperties;
 
 void Game::init()
 {
+    // ┏━━━━━━━━━━┓
+    // ┃ SDL Init ┃
+    // ┗━━━━━━━━━━┛
+
     const auto sdlInit = Result(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS), "Failed to initialize SDL");
     ASSERT(sdlInit.isOk(), "{}", sdlInit.cause());
+
+    // ┏━━━━━━━━━━━━┓
+    // ┃ Audio Init ┃
+    // ┗━━━━━━━━━━━━┛
 
     const auto sdlAudioInit = Result(Mix_Init(MIX_INIT_MP3), "Failed to initialize SDL_mixer", static_cast<uint32_t>(MIX_INIT_MP3));
     ASSERT(sdlAudioInit.isOk(), "{}", sdlAudioInit.cause());
 
+    const auto audioDeviceInit = Result(Mix_OpenAudio(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr), "Failed to open default audio device for playback");
+    ASSERT(audioDeviceInit.isOk(), "{}", audioDeviceInit.cause());
+
+    // ┏━━━━━━━━━━━┓
+    // ┃ Text Init ┃
+    // ┗━━━━━━━━━━━┛
+
     const auto sdlTextInit = Result(TTF_Init(), "Failed to initialize SDL_ttf");
     ASSERT(sdlTextInit.isOk(), "{}", sdlTextInit.cause());
+
+    // ┏━━━━━━━━━━━━━━┓
+    // ┃ General Init ┃
+    // ┗━━━━━━━━━━━━━━┛
 
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
 
