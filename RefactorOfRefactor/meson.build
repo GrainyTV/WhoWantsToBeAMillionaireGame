@@ -11,7 +11,7 @@ project(
     meson_version: '>=1.3.0'
 )
 
-subdir('cmake' / 'sdl3')
+#subdir('cmake' / 'sdl3')
 
 dependencies = [
     dependency('tomlplusplus'),
