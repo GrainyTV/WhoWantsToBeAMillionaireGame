@@ -24,5 +24,5 @@ namespace Asset
 
     Mix_Music* getMusicById(Identifier);
 
-    Data getRandomData();
+    Toml::Data getRandomData();
 }

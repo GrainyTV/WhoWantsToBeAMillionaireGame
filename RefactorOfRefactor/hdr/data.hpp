@@ -1,29 +1,36 @@
 #pragma once
-#include "functionals.hpp"
-#include "result.hpp"
-#include "toml++/toml.hpp"
 #include <array>
 #include <cstdint>
-#include <string_view>
+#include <string>
+#include <vector>
 
-enum class Difficulty : std::uint8_t
+namespace Toml
 {
-    Easy,
-    Medium,
-    Hard,
-};
+    namespace _detail
+    {
+        enum class Difficulty : std::uint8_t
+        {
+            Easy,
+            Medium,
+            Hard,
+        };
 
-struct Answer
-{
-    std::string_view Text;
-    bool IsCorrect;
-};
+        struct Answer
+        {
+            std::string Text;
+            bool IsCorrect;
+        };
+    }
+    
+    using _detail::Difficulty;
+    using _detail::Answer;
 
-struct Data
-{
-    Difficulty diff;
-    std::string_view question;
-    std::array<Answer, 4> answers;
-
-    static Data convertFromToml(const toml::node&, size_t);
-};
+    struct Data
+    {
+        Difficulty Diff;
+        std::string Question;
+        std::array<Answer, 4> Answers;
+    };
+    
+    std::vector<Data> getAllFromFile(std::string_view);
+}

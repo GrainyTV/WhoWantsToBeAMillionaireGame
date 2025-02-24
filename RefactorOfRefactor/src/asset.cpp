@@ -16,8 +16,6 @@
 #include <unordered_map>
 #include <vector>
 
-//#include "data.hpp"
-
 namespace Asset
 {
     namespace
@@ -51,7 +49,7 @@ namespace Asset
             { InputFiles, { .Type = Text }},
         };
 
-        std::unordered_map<std::string, std::vector<Data>> dataCache;
+        std::unordered_map<std::string, std::vector<Toml::Data>> dataCache;
         std::unordered_map<Identifier, Mix_Music*> musicCache;
         std::unordered_map<Identifier, SDL_Texture*> textureCache;
         std::vector<std::pair<Identifier, MetaAsset>> neededEntries;
@@ -76,22 +74,13 @@ namespace Asset
             countdown.signal();
         }
 
-        void parseTomlFile(const fs::directory_entry& file)
+        void parseInputFile(const fs::directory_entry& file)
         {
             const fs::path& filePath = file.path();
 
             if (filePath.extension().string() == ".toml")
             {
-                const char* filePathStr = filePath.c_str();
-                const toml::parse_result parse = toml::parse_file(filePathStr);
-                
-                ASSERT(parse.succeeded(), "Invalid TOML file encountered ({})", filePathStr);
-                const toml::table& content = parse.table();
-                
-                ASSERT(content["entry"].is_array_of_tables(), "File not in 'array of tables' format prefixed with [[entry]] tags ({})", filePathStr);
-                const toml::array& entries = *content["entry"].as_array();
-                
-                std::vector<Data> loadedRecords = entries | Seq::mapi(Data::convertFromToml);
+                std::vector<Toml::Data> loadedRecords = Toml::getAllFromFile(filePath.string());
                 std::string topic = filePath.stem().string();
                 dataCache.emplace(topic, std::move(loadedRecords));
             }
@@ -135,7 +124,7 @@ namespace Asset
 
                 case Text:
                 {        
-                    fs::directory_iterator("assets/toml") | Seq::iter(parseTomlFile);
+                    fs::directory_iterator("assets/toml") | Seq::iter(parseInputFile);
                     countdown.signal();
                     break;
                 }
@@ -194,7 +183,7 @@ namespace Asset
         return musicCache[id];
     }
 
-    Data getRandomData()
+    Toml::Data getRandomData()
     {
         return dataCache["otaku"][0];
     }

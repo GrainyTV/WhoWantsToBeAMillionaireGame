@@ -27,27 +27,27 @@ std::array<TextBubble, InGameScene::BUTTON_COUNT> InGameScene::initializeButtons
                 });
             });
 
-    const Data chosenData = Asset::getRandomData();
+    const Toml::Data chosenData = Asset::getRandomData();
 
     return {
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[0], chosenData.question),
+            .Frontend = Hexagon(buttonAreas[0], chosenData.Question),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[1], chosenData.answers[0].Text),
+            .Frontend = Hexagon(buttonAreas[1], chosenData.Answers[0].Text),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[2], chosenData.answers[1].Text, false),
+            .Frontend = Hexagon(buttonAreas[2], chosenData.Answers[1].Text, false),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[3], chosenData.answers[2].Text),
+            .Frontend = Hexagon(buttonAreas[3], chosenData.Answers[2].Text),
             .Backend = Invokable()
         }),
         TextBubble({
-            .Frontend = Hexagon(buttonAreas[4], chosenData.answers[3].Text, false),
+            .Frontend = Hexagon(buttonAreas[4], chosenData.Answers[3].Text, false),
             .Backend = Invokable()
         }),
     };
