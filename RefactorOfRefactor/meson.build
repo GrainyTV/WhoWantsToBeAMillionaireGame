@@ -11,8 +11,6 @@ project(
     meson_version: '>=1.3.0'
 )
 
-#subdir('cmake' / 'sdl3')
-
 dependencies = [
     dependency('tomlplusplus'),
     dependency('svl'),
@@ -24,8 +22,8 @@ dependencies = [
 
 if get_option('buildtype') == 'debug'
     dependencies += [
-        dependency('cpptrace'),
-        dependency('fmt')
+        dependency('cpptrace', static: true),
+        dependency('fmt', static: true)
     ]
 endif
 

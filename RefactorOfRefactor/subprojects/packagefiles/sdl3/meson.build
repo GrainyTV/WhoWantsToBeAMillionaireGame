@@ -1,12 +1,15 @@
-project(
-    'sdl3',
-    'c',
-    version: 'stable-3.2.0'
-)
+project('sdl3', 'c', version: 'stable-3.2.0')
 
 fs = import('fs')
 cc = meson.get_compiler('c')
 conf_data = configuration_data()
+
+sources = []
+incdirs = ['include', 'src']
+dependencies = []
+
+subdir('src')
+
 conf_data.set10('HAVE_LIBC', true)
 
 libc_headers = [
@@ -138,154 +141,167 @@ foreach header : libc_headers
     if cc.has_header(header)
         header_id = fs.stem(header).to_upper()
         conf_data.set10(f'HAVE_@header_id@_H', true)
-
     endif
-
 endforeach
 
 foreach symbol : symbols_to_check
     if cc.has_function(symbol)
         symbol_id = symbol.to_upper()
         conf_data.set10(f'HAVE_@symbol_id@', true)
-
     endif
-
 endforeach
 
-sources = files(
-    'src/SDL.c',
-    'src/SDL_assert.c',
-    'src/SDL_error.c',
-    'src/SDL_guid.c',
-    'src/SDL_hashtable.c',
-    'src/SDL_hints.c',
-    'src/SDL_list.c',
-    'src/SDL_log.c',
-    'src/SDL_properties.c',
-    'src/SDL_utils.c',
-    'src/atomic/SDL_atomic.c',
-    'src/atomic/SDL_spinlock.c',
-    'src/audio/SDL_audio.c',
-    'src/audio/SDL_audiocvt.c',
-    'src/audio/SDL_audiodev.c',
-    'src/audio/SDL_audioqueue.c',
-    'src/audio/SDL_audioresample.c',
-    'src/audio/SDL_audiotypecvt.c',
-    'src/audio/SDL_mixer.c',
-    'src/audio/SDL_wave.c',
-    'src/camera/SDL_camera.c',
-    'src/core/SDL_core_unsupported.c',
-    'src/cpuinfo/SDL_cpuinfo.c',
-    'src/dynapi/SDL_dynapi.c',
-    'src/events/SDL_categories.c',
-    'src/events/SDL_clipboardevents.c',
-    'src/events/SDL_displayevents.c',
-    'src/events/SDL_dropevents.c',
-    'src/events/SDL_events.c',
-    'src/events/SDL_keyboard.c',
-    'src/events/SDL_keymap.c',
-    'src/events/SDL_keysym_to_keycode.c',
-    'src/events/SDL_keysym_to_scancode.c',
-    'src/events/SDL_mouse.c',
-    'src/events/SDL_pen.c',
-    'src/events/SDL_quit.c',
-    'src/events/SDL_scancode_tables.c',
-    'src/events/SDL_touch.c',
-    'src/events/SDL_windowevents.c',
-    'src/events/imKStoUCS.c',
-    'src/io/SDL_asyncio.c',
-    'src/io/SDL_iostream.c',
-    'src/io/generic/SDL_asyncio_generic.c',
-    'src/filesystem/SDL_filesystem.c',
-    'src/gpu/SDL_gpu.c',
-    'src/joystick/SDL_gamepad.c',
-    'src/joystick/SDL_joystick.c',
-    'src/joystick/SDL_steam_virtual_gamepad.c',
-    'src/joystick/controller_type.c',
-    'src/haptic/SDL_haptic.c',
-    'src/hidapi/SDL_hidapi.c',
-    'src/locale/SDL_locale.c',
-    'src/main/SDL_main_callbacks.c',
-    'src/main/SDL_runapp.c',
-    'src/misc/SDL_url.c',
-    'src/power/SDL_power.c',
-    'src/render/SDL_d3dmath.c',
-    'src/render/SDL_render.c',
-    'src/render/SDL_render_unsupported.c',
-    'src/render/SDL_yuv_sw.c',
-    'src/render/direct3d/SDL_render_d3d.c',
-    'src/render/direct3d/SDL_shaders_d3d.c',
-    'src/render/direct3d11/SDL_render_d3d11.c',
-    'src/render/direct3d11/SDL_shaders_d3d11.c',
-    'src/render/direct3d12/SDL_render_d3d12.c',
-    'src/render/direct3d12/SDL_shaders_d3d12.c',
-    'src/render/gpu/SDL_pipeline_gpu.c',
-    'src/render/gpu/SDL_render_gpu.c',
-    'src/render/gpu/SDL_shaders_gpu.c',
-    'src/render/opengl/SDL_render_gl.c',
-    'src/render/opengl/SDL_shaders_gl.c',
-    'src/render/opengles2/SDL_render_gles2.c',
-    'src/render/opengles2/SDL_shaders_gles2.c',
-    'src/render/ps2/SDL_render_ps2.c',
-    'src/render/psp/SDL_render_psp.c',
-    'src/render/software/SDL_blendfillrect.c',
-    'src/render/software/SDL_blendline.c',
-    'src/render/software/SDL_blendpoint.c',
-    'src/render/software/SDL_drawline.c',
-    'src/render/software/SDL_drawpoint.c',
-    'src/render/software/SDL_render_sw.c',
-    'src/render/software/SDL_rotate.c',
-    'src/render/software/SDL_triangle.c',
-    'src/render/vitagxm/SDL_render_vita_gxm.c',
-    'src/render/vitagxm/SDL_render_vita_gxm_memory.c',
-    'src/render/vitagxm/SDL_render_vita_gxm_tools.c',
-    'src/render/vulkan/SDL_render_vulkan.c',
-    'src/render/vulkan/SDL_shaders_vulkan.c',
-    'src/sensor/SDL_sensor.c',
-    'src/stdlib/SDL_crc16.c',
-    'src/stdlib/SDL_crc32.c',
-    'src/stdlib/SDL_getenv.c',
-    'src/stdlib/SDL_iconv.c',
-    'src/stdlib/SDL_malloc.c',
-    'src/stdlib/SDL_memcpy.c',
-    'src/stdlib/SDL_memmove.c',
-    'src/stdlib/SDL_memset.c',
-    'src/stdlib/SDL_mslibc.c',
-    'src/stdlib/SDL_murmur3.c',
-    'src/stdlib/SDL_qsort.c',
-    'src/stdlib/SDL_random.c',
-    'src/stdlib/SDL_stdlib.c',
-    'src/stdlib/SDL_string.c',
-    'src/stdlib/SDL_strtokr.c',
-    'src/storage/SDL_storage.c',
-    'src/thread/SDL_thread.c',
-    'src/time/SDL_time.c',
-    'src/timer/SDL_timer.c',
-    'src/video/SDL_RLEaccel.c',
-    'src/video/SDL_blit.c',
-    'src/video/SDL_blit_0.c',
-    'src/video/SDL_blit_1.c',
-    'src/video/SDL_blit_A.c',
-    'src/video/SDL_blit_N.c',
-    'src/video/SDL_blit_auto.c',
-    'src/video/SDL_blit_copy.c',
-    'src/video/SDL_blit_slow.c',
-    'src/video/SDL_bmp.c',
-    'src/video/SDL_clipboard.c',
-    'src/video/SDL_egl.c',
-    'src/video/SDL_fillrect.c',
-    'src/video/SDL_pixels.c',
-    'src/video/SDL_rect.c',
-    'src/video/SDL_stretch.c',
-    'src/video/SDL_surface.c',
-    'src/video/SDL_video.c',
-    'src/video/SDL_video_unsupported.c',
-    'src/video/SDL_vulkan_utils.c',
-    'src/video/SDL_yuv.c',
-    'src/video/yuv2rgb/yuv_rgb_lsx.c',
-    'src/video/yuv2rgb/yuv_rgb_sse.c',
-    'src/video/yuv2rgb/yuv_rgb_std.c'
-)
+video_driver_wayland = true
+
+wayland_deps = [
+    dependency('wayland-client', version: '>=1.18'),
+    dependency('wayland-egl'),
+    dependency('wayland-cursor'),
+    dependency('xkbcommon', version: '>=0.5.0')
+]
+
+foreach dep : wayland_deps
+    if dep.found() == false
+        video_driver_wayland = false
+    endif
+endforeach
+
+if video_driver_wayland
+    conf_data.set10('SDL_VIDEO_DRIVER_WAYLAND', true)
+    sources += [
+        'src/video/wayland/SDL_waylandclipboard.c',
+        'src/video/wayland/SDL_waylanddatamanager.c',
+        'src/video/wayland/SDL_waylanddyn.c',
+        'src/video/wayland/SDL_waylandevents.c',
+        'src/video/wayland/SDL_waylandkeyboard.c',
+        'src/video/wayland/SDL_waylandmessagebox.c',
+        'src/video/wayland/SDL_waylandmouse.c',
+        'src/video/wayland/SDL_waylandopengles.c',
+        'src/video/wayland/SDL_waylandshmbuffer.c',
+        'src/video/wayland/SDL_waylandvideo.c',
+        'src/video/wayland/SDL_waylandvulkan.c',
+        'src/video/wayland/SDL_waylandwindow.c'
+    ]
+
+    ws = find_program('wayland-scanner')
+
+    wayland_protocols_xml = [
+        'wayland-protocols/alpha-modifier-v1.xml',
+        'wayland-protocols/cursor-shape-v1.xml',
+        'wayland-protocols/fractional-scale-v1.xml',
+        'wayland-protocols/frog-color-management-v1.xml',
+        'wayland-protocols/idle-inhibit-unstable-v1.xml',
+        'wayland-protocols/input-timestamps-unstable-v1.xml',
+        'wayland-protocols/keyboard-shortcuts-inhibit-unstable-v1.xml',
+        'wayland-protocols/pointer-constraints-unstable-v1.xml',
+        'wayland-protocols/primary-selection-unstable-v1.xml',
+        'wayland-protocols/relative-pointer-unstable-v1.xml',
+        'wayland-protocols/tablet-v2.xml',
+        'wayland-protocols/text-input-unstable-v3.xml',
+        'wayland-protocols/viewporter.xml',
+        'wayland-protocols/wayland.xml',
+        'wayland-protocols/xdg-activation-v1.xml',
+        'wayland-protocols/xdg-decoration-unstable-v1.xml',
+        'wayland-protocols/xdg-dialog-v1.xml',
+        'wayland-protocols/xdg-foreign-unstable-v2.xml',
+        'wayland-protocols/xdg-output-unstable-v1.xml',
+        'wayland-protocols/xdg-shell.xml',
+        'wayland-protocols/xdg-toplevel-icon-v1.xml'
+    ]
+
+    foreach xml : wayland_protocols_xml
+        proto = fs.stem(xml)
+        proto_c = f'@proto@-protocol.c'
+        proto_h = f'@proto@-client-protocol.h'
+
+        sources += configure_file(
+            command: [ws, 'private-code', '@INPUT@', '@OUTPUT@'],
+            input: xml,
+            output: proto_c
+        )
+
+        sources += configure_file(
+            command: [ws, 'client-header', '@INPUT@', '@OUTPUT@'],
+            input: xml,
+            output: proto_h
+        )
+
+    endforeach
+
+    find_dylib_name = find_program('./find-dylib-name.py')
+    compiler_command = cc.cmd_array()
+
+    libWayland = run_command(find_dylib_name, wayland_deps[0].name(), compiler_command, check: true)
+    conf_data.set_quoted('SDL_VIDEO_DRIVER_WAYLAND_DYNAMIC', libWayland.stdout().strip())
+
+    libWaylandEgl = run_command(find_dylib_name, wayland_deps[1].name(), compiler_command, check: true)
+    conf_data.set_quoted('SDL_VIDEO_DRIVER_WAYLAND_DYNAMIC_EGL', libWaylandEgl.stdout().strip())
+
+    libWaylandCursor = run_command(find_dylib_name, wayland_deps[2].name(), compiler_command, check: true)
+    conf_data.set_quoted('SDL_VIDEO_DRIVER_WAYLAND_DYNAMIC_CURSOR', libWaylandCursor.stdout().strip())
+
+    libXkbcommon = run_command(find_dylib_name, wayland_deps[3].name(), compiler_command, check: true)
+    conf_data.set_quoted('SDL_VIDEO_DRIVER_WAYLAND_DYNAMIC_XKBCOMMON', libXkbcommon.stdout().strip())
+
+endif
+
+mesa = dependency('libglvnd')
+
+if mesa.found()
+    conf_data.set10('SDL_VIDEO_OPENGL', true)
+    conf_data.set10('SDL_VIDEO_RENDER_OGL', true)
+    conf_data.set10('SDL_VIDEO_OPENGL_ES2', true)
+    conf_data.set10('SDL_VIDEO_RENDER_OGL_ES2', true)
+    conf_data.set10('SDL_VIDEO_OPENGL_EGL', true)
+    conf_data.set10('SDL_VIDEO_OPENGL_GLX', true)
+
+endif
+
+pipewire = dependency('libpipewire-0.3', version: '>=0.3.44')
+
+if pipewire.found()
+    conf_data.set10('SDL_AUDIO_DRIVER_PIPEWIRE', true)
+    conf_data.set10('SDL_CAMERA_DRIVER_PIPEWIRE', true)
+
+    sources += [
+        'src/audio/pipewire/SDL_pipewire.c',
+        'src/camera/pipewire/SDL_camera_pipewire.c'
+    ]
+
+    find_dylib_name = find_program('./find-dylib-name.py')
+    compiler_command = cc.cmd_array()
+
+    libPipewire = run_command(find_dylib_name, 'pipewire-0.3', compiler_command, check: true)
+    conf_data.set_quoted('SDL_AUDIO_DRIVER_PIPEWIRE_DYNAMIC', libPipewire.stdout().strip())
+    conf_data.set_quoted('SDL_CAMERA_DRIVER_PIPEWIRE_DYNAMIC', libPipewire.stdout().strip())
+
+    dependencies += pipewire
+
+endif
+
+libm = cc.find_library('m')
+
+if libm.found()
+    dependencies += libm
+endif
+
+pthread = dependency('threads')
+
+if pthread.found()
+    conf_data.set10('SDL_THREAD_PTHREAD', true)
+    conf_data.set10('HAVE_SEM_TIMEDWAIT', true)
+    
+    sources += [
+        'src/thread/pthread/SDL_systhread.c',
+        'src/thread/pthread/SDL_sysmutex.c',
+        'src/thread/pthread/SDL_syscond.c',
+        'src/thread/pthread/SDL_sysrwlock.c',
+        'src/thread/pthread/SDL_systls.c',
+        'src/thread/pthread/SDL_syssem.c'
+    ]
+
+    dependencies += pthread
+endif
 
 sources += [
     'src/core/unix/SDL_appid.c',
@@ -317,20 +333,6 @@ sources += [
 
 sources += 'src/main/generic/SDL_sysmain_callbacks.c'
 
-libm_dep = cc.find_library('m')
-
-thread_dep = dependency('threads')
-conf_data.set10('SDL_THREAD_PTHREAD', true)
-conf_data.set10('HAVE_SEM_TIMEDWAIT', true)
-sources += [
-    'src/thread/pthread/SDL_systhread.c',
-    'src/thread/pthread/SDL_sysmutex.c',
-    'src/thread/pthread/SDL_syscond.c',
-    'src/thread/pthread/SDL_sysrwlock.c',
-    'src/thread/pthread/SDL_systls.c',
-    'src/thread/pthread/SDL_syssem.c'
-]
-
 conf_data.set10('SDL_TIMER_UNIX', true)
 sources += 'src/timer/unix/SDL_systimer.c'
 
@@ -340,7 +342,6 @@ if conf_data.get('HAVE_LINUX_INPUT_H') == 1
     conf_data.set10('SDL_INPUT_LINUXEV', true)
     conf_data.set10('SDL_HAPTIC_LINUX', true)
     sources += 'src/haptic/linux/SDL_syshaptic.c'
-
 endif
 
 conf_data.set10('SDL_FILESYSTEM_UNIX', true)
@@ -370,19 +371,11 @@ configure_file(
     configuration: conf_data
 )
 
-incdirs = [
-    'include',
-    'src'
-]
-
 sdl3_lib = library(
     meson.project_name(),
     sources,
     include_directories: incdirs,
-    dependencies: [
-        libm_dep,
-        thread_dep
-    ],
+    dependencies: dependencies,
     install: true
 )
 

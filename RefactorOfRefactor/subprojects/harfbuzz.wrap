@@ -5,6 +5,7 @@ source_filename = harfbuzz-10.2.0.tar.xz
 source_hash = 620e3468faec2ea8685d32c46a58469b850ef63040b3565cde05959825b48227
 source_fallback_url = https://github.com/mesonbuild/wrapdb/releases/download/harfbuzz_10.2.0-1/harfbuzz-10.2.0.tar.xz
 wrapdb_version = 10.2.0-1
+diff_files = harfbuzz/0001.patch, harfbuzz/0002.patch, harfbuzz/0003.patch
 
 [provide]
 dependency_names = harfbuzz, harfbuzz-cairo, harfbuzz-gobject, harfbuzz-icu, harfbuzz-subset

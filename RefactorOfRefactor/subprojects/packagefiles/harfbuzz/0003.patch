@@ -1,0 +1,101 @@
+--- ./src/meson.build	2025-01-11 17:13:18.000000000 +0100
++++ ./src/meson.build	2025-02-22 18:56:37.695803500 +0100
+@@ -4,7 +4,7 @@
+                command: [find_program('gen-hb-version.py'), meson.project_version(), '@OUTPUT@', '@INPUT@'],
+                input: 'hb-version.h.in',
+                output: 'hb-version.h',
+-               install: true,
++               install: false,
+                install_dir: get_option('includedir') / meson.project_name())
+ 
+ # Base and default-included sources and headers
+@@ -546,7 +546,7 @@
+ hb_features_h = configure_file(input: 'hb-features.h.in',
+                                output: 'hb-features.h',
+                                configuration: hb_enabled_features,
+-                               install: true,
++                               install: false,
+                                install_dir: get_option('includedir') / meson.project_name())
+ 
+ # This file is generated to convince gtk-doc to generate documentation for all
+@@ -600,7 +600,7 @@
+   cpp_args: cpp_args + extra_hb_cpp_args,
+   soversion: hb_so_version,
+   version: version,
+-  install: true,
++  install: false,
+   darwin_versions: darwin_versions,
+   link_language: libharfbuzz_link_language,
+ )
+@@ -618,32 +618,6 @@
+     output: 'harfbuzz-subset.def')
+ defs_list += [harfbuzz_subset_def]
+ 
+-libharfbuzz_subset = library('harfbuzz-subset', hb_subset_sources,
+-  include_directories: incconfig,
+-  dependencies: [m_dep],
+-  link_with: [libharfbuzz],
+-  cpp_args: cpp_args + extra_hb_cpp_args,
+-  soversion: hb_so_version,
+-  version: version,
+-  install: true,
+-  darwin_versions: darwin_versions,
+-  link_language: chosen_linker,
+-)
+-
+-custom_target('harfbuzz-subset.cc',
+-  build_by_default: true,
+-  output: 'harfbuzz-subset.cc',
+-  input: hb_base_sources + hb_subset_sources,
+-  command: [find_program('gen-harfbuzzcc.py'),
+-            '@OUTPUT@', meson.current_source_dir(), '@INPUT@'],
+-)
+-
+-libharfbuzz_subset_dep = declare_dependency(
+-  link_with: libharfbuzz_subset,
+-  include_directories: incsrc,
+-  dependencies: [m_dep])
+-meson.override_dependency('harfbuzz-subset', libharfbuzz_subset_dep)
+-
+ libharfbuzz_cairo_dep = null_dep
+ if conf.get('HAVE_CAIRO', 0) == 1
+   hb_cairo_sources = [
+@@ -755,19 +729,6 @@
+   endforeach
+ endif
+ 
+-pkgmod.generate(libharfbuzz,
+-  description: 'HarfBuzz text shaping library',
+-  subdirs: [meson.project_name()],
+-  version: meson.project_version(),
+-)
+-
+-pkgmod.generate(libharfbuzz_subset,
+-  description: 'HarfBuzz font subsetter',
+-  requires: ['harfbuzz = @0@'.format(meson.project_version())],
+-  subdirs: [meson.project_name()],
+-  version: meson.project_version(),
+-)
+-
+ libharfbuzz_icu_dep = null_dep
+ if have_icu and not have_icu_builtin
+   harfbuzz_icu_def = custom_target('harfbuzz-icu.def',
+@@ -893,12 +854,6 @@
+   cmake_config.set('HB_LIB_SUFFIX', '${CMAKE_SHARED_LIBRARY_SUFFIX}.@0@'.format(version))
+ endif
+ 
+-configure_file(input: 'harfbuzz-config.cmake.in',
+-  output: 'harfbuzz-config.cmake',
+-  configuration: cmake_config,
+-  install_dir: cmake_config_dir,
+-)
+-
+ gobject_enums_c = []
+ gobject_enums_h = []
+ libharfbuzz_gobject_dep = null_dep
+@@ -1045,5 +1000,3 @@
+     )
+   endforeach
+ endif
+-
+-install_headers(hb_headers + hb_subset_headers, subdir: meson.project_name())
