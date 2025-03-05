@@ -1,173 +1,179 @@
 #include "mainmenuscene.hpp"
-#include "SDL3/SDL.h"
 #include "asset.hpp"
-#include "fontmanager.hpp"
 #include "functionals.hpp"
 #include "globals.hpp"
 #include "hexagon.hpp"
-#include "invokable.hpp"
-#include "textbubble.hpp"
-#include "textureregion.hpp"
+#include "optionwrap.hpp"
 #include "utility.hpp"
 
-using enum Utility::CustomEvents;
-static constexpr size_t BUTTON_COUNT = 4;
-
-static SDL_FRect initializeLogoArea()
+namespace
 {
-    const auto properties = Globals::Properties.value();
-    const int32_t screenWidth = properties.ScreenWidth;
-    const int32_t screenHeight = properties.ScreenHeight;
-
-    const uint32_t halfScreenHeight = screenHeight / 2;
-    const float logoSize = halfScreenHeight * 0.9f;
-
-    return {
-        .x = screenWidth / 2.0f - logoSize / 2.0f,
-        .y = (halfScreenHeight - logoSize) / 2.0f,
-        .w = logoSize,
-        .h = logoSize,
-    };
-}
-
-static std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect logoArea)
-{
-    const auto properties = Globals::Properties.value();
-    const int32_t screenHeight = properties.ScreenHeight;
-
-    const uint32_t halfScreenHeight = screenHeight / 2;
-    const float totalItemSpace = halfScreenHeight * 0.7f;
-    const float individualItemSpace = totalItemSpace / BUTTON_COUNT;
-    const float totalPaddingSpace = halfScreenHeight - totalItemSpace;
-    const float individualPaddingSpace = totalPaddingSpace / (BUTTON_COUNT + 1);
-
-    const std::vector<SDL_FRect> buttonAreas = 
-        Seq::range<1, 5>()
-        | Seq::map([&](const int32_t index)
-            {
-                return SDL_FRect({
-                    .x = logoArea.x,
-                    .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
-                    .w = logoArea.w,
-                    .h = individualItemSpace,
-                });
-            });
+    constexpr size_t BUTTON_COUNT = 4;
+    bool sceneLoaded = false;
+    Option::Inst<size_t> selectedButton = Option::None<size_t>();
+    uint32_t sceneVao = 0;
+    SDL_FRect logoArea;
+    std::array<TextBubble, BUTTON_COUNT> uiButtons;
 
     using enum Utility::CustomEvents;
+    using enum Asset::Identifier;
 
-    return { 
-        TextBubble({ 
-            .Frontend = Hexagon(buttonAreas[0], "New Game"),
-            .Backend = Invokable(Utility::requestUserEvent, SDL_UserEvent(EVENT_CHANGE_SCENE_INGAME))
-        }),
-        
-        TextBubble({ 
-            .Frontend = Hexagon(buttonAreas[1], "How to Play"),
-            .Backend = Invokable()
-        }),
-        
-        TextBubble({ 
-            .Frontend = Hexagon(buttonAreas[2], "Settings"),
-            .Backend = Invokable()
-        }),
-        
-        TextBubble({ 
-            .Frontend = Hexagon(buttonAreas[3], "Quit"),
-            .Backend = Invokable(Utility::requestEvent, SDL_Event(SDL_EVENT_QUIT))
-        })
-    };
+    SDL_FRect initializeLogoArea()
+    {
+        const auto properties = Globals::Properties.value();
+        const int32_t screenWidth = properties.ScreenWidth;
+        const int32_t screenHeight = properties.ScreenHeight;
+
+        const uint32_t halfScreenHeight = screenHeight / 2;
+        const float logoSize = halfScreenHeight * 0.9f;
+
+        return {
+            .x = screenWidth / 2.0f - logoSize / 2.0f,
+            .y = (halfScreenHeight - logoSize) / 2.0f,
+            .w = logoSize,
+            .h = logoSize,
+        };
+    }
+
+    std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect logoArea)
+    {
+        const auto properties = Globals::Properties.value();
+        const int32_t screenHeight = properties.ScreenHeight;
+
+        const uint32_t halfScreenHeight = screenHeight / 2;
+        const float totalItemSpace = halfScreenHeight * 0.7f;
+        const float individualItemSpace = totalItemSpace / BUTTON_COUNT;
+        const float totalPaddingSpace = halfScreenHeight - totalItemSpace;
+        const float individualPaddingSpace = totalPaddingSpace / (BUTTON_COUNT + 1);
+
+        const std::vector<SDL_FRect> buttonAreas = 
+            Seq::range<1, 5>()
+            | Seq::map([&](const int32_t index)
+                {
+                    return SDL_FRect({
+                        .x = logoArea.x,
+                        .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
+                        .w = logoArea.w,
+                        .h = individualItemSpace,
+                    });
+                });
+
+        using enum Utility::CustomEvents;
+
+        return { 
+            TextBubble({ 
+                .Frontend = Hexagon::init(buttonAreas[0], true, "New Game"),
+                .Backend = Invokable(Utility::requestUserEvent, SDL_UserEvent(EVENT_CHANGE_SCENE_INGAME))
+            }),
+            
+            TextBubble({ 
+                .Frontend = Hexagon::init(buttonAreas[1], true, "How to Play"),
+                .Backend = Invokable()
+            }),
+            
+            TextBubble({ 
+                .Frontend = Hexagon::init(buttonAreas[2], true, "Settings"),
+                .Backend = Invokable()
+            }),
+            
+            TextBubble({ 
+                .Frontend = Hexagon::init(buttonAreas[3], true, "Quit"),
+                .Backend = Invokable(Utility::requestEvent, SDL_Event(SDL_EVENT_QUIT))
+            })
+        };
+    }
 }
 
-MainMenuScene::MainMenuScene()
-    : sceneLoaded(false)
-    , selectedButton(Option::None<int32_t>())
-    , logoArea(initializeLogoArea())
-    , uiButtons(initializeButtons(logoArea))
+void MainMenuScene::init()
 {
-    ASSETS | Seq::iter([](const Asset::Identifier iden) { Asset::queueToLoad(iden); });
+    sceneVao = OpenGL::generateAndApplyVertexArray();
+    logoArea = initializeLogoArea();
+    uiButtons = initializeButtons(logoArea);
+
+    Asset::queueToLoad(Logo);
+    Asset::queueToLoad(Background);
     Asset::beginLoadProcess();
 
     Utility::invalidate();
 }
 
-void MainMenuScene::deinit() const
+void MainMenuScene::deinit()
 {
     //Mix_FreeChunk(firstStartSfx);
     //SDL_DestroyTexture(backgroundImage.Resource);
     //SDL_DestroyTexture(logo.Resource);
-    // SDL_DestroyTexture((*buttons[0].getLabel()).Resource);
+    //SDL_DestroyTexture((*buttons[0].getLabel()).Resource);
 }
 
-void MainMenuScene::redraw() const
+void MainMenuScene::redraw()
 {
-    SDL_Renderer* const renderer = Globals::Properties.value().Renderer;
-    Utility::changeDrawColorTo(renderer, Color::BLACK);
-    SDL_RenderClear(renderer);
+    OpenGL::clearScreen();
 
     if (sceneLoaded)
     {
-        Utility::drawTextureRegion(renderer, TextureRegion(Asset::getTextureById(Background)));
-        Utility::drawTextureRegion(renderer, TextureRegion(Asset::getTextureById(Logo), logoArea));
+        OpenGL::renderTexture(Asset::getTextureById(Background));
+        OpenGL::renderTexture(Asset::getTextureById(Logo));
 
-        uiButtons[0].Frontend.draw();
-        uiButtons[1].Frontend.draw();
-        uiButtons[2].Frontend.draw();
-        uiButtons[3].Frontend.draw();
+        uiButtons
+        | Seq::iteri([&](const TextBubble& tb, const size_t i)
+            {
+                if (selectedButton.isSome() && selectedButton.value() == i)
+                {
+                    Hexagon::draw(tb.Frontend.GpuProperties, true);
+                }
+                else
+                {
+                    Hexagon::draw(tb.Frontend.GpuProperties, false);
+                }
+            });
     }
 
-    SDL_RenderPresent(renderer);
+    const auto properties = Globals::Properties.value();
+    SDL_GL_SwapWindow(properties.Window);
 }
 
-void MainMenuScene::intersects(const SDL_FPoint /*location*/)
+void MainMenuScene::intersects(const SDL_FPoint location)
 {
-    // auto newlySelectedButton = Option::None<int32_t>();
+    bool anyHovered = false;
 
-    // Seq::range<0, BUTTON_COUNT>()
-    // | Seq::iter([&](int32_t i)
-    //     {
-    //         if (uiButtons[i].isInsideItsHitbox(location))
-    //         {
-    //             newlySelectedButton = Option::Some(i);
-    //         }
-    //     });
+    uiButtons
+    | Seq::iteri([&](TextBubble& tb, const size_t i)
+        {
+            const bool isInside = Hexagon::isCursorInside(tb.Frontend.CpuProperties.Positions, Utility::fPointToSvl(location));
 
-    // if (selectedButton.isSome())
-    // {
-    //     const int32_t previousIndex = selectedButton.value();
+            if (isInside)
+            {
+                if (selectedButton.isNone())
+                {
+                    selectedButton = Option::Some(i);
+                    Utility::invalidate();
+                }
 
-    //     if (newlySelectedButton.isNone() || (newlySelectedButton.isSome() && newlySelectedButton.value() != previousIndex))
-    //     {
-    //         uiButtons[previousIndex].disableHover();
-    //         selectedButton = Option::None<int32_t>();
-    //         Utility::invalidate();
-    //     }
-    // }
+                anyHovered = true;
+            }
+        });
 
-    // if (newlySelectedButton.isSome())
-    // {
-    //     const int32_t newIndex = newlySelectedButton.value();
-        
-    //     if (selectedButton.isNone() || selectedButton.value() != newIndex)
-    //     {
-    //         uiButtons[newIndex].enableHover();
-    //         selectedButton = newlySelectedButton;
-    //         Utility::invalidate();
-    //     }
-    // }
+    if (anyHovered == false && selectedButton.isSome())
+    {
+        selectedButton = Option::None<size_t>();
+        Utility::invalidate();
+    }
 }
 
-void MainMenuScene::enable()
+void MainMenuScene::onSceneLoaded()
 {
     sceneLoaded = true;
+
+    OpenGL::defineTextureRenderLocation(Asset::getTextureById(Logo), Option::Some(logoArea));
+    OpenGL::defineTextureRenderLocation(Asset::getTextureById(Background));
+
+    Utility::invalidate();
 }
 
 void MainMenuScene::clicks()
 {
-    // if (selectedButton.isSome())
-    // {
-    //     const int32_t index = selectedButton.value();
-    //     buttons[index].click();
-    // }
-
-    uiButtons[0].Backend.execute();
+    if (selectedButton.isSome())
+    {
+        uiButtons.at(selectedButton.value()).Backend.execute();
+    }
 }

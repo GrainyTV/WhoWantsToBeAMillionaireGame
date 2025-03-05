@@ -9,13 +9,17 @@ Diagnostics:
       '*uppercase-literal-suffix',
       '*special-member-functions',
       '*simplify-boolean-expr',
+      '*vararg',
+      '*c-arrays',
       '*non-const-global-variables',
       '*namespace-comment*',
       '*magic-number*',
       '*non-private-member-variables*',
+      'cppcoreguidelines-owning-memory',
       'modernize-use-trailing-return-type',
       'modernize-use-nodiscard',
       'readability-math-missing-parentheses',
+      'readability-identifier-length',
       'cert-err58-cpp'
     ]
 

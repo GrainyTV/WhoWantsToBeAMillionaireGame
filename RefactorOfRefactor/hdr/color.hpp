@@ -1,25 +1,27 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include <limits>
 
 namespace Color
 {
-    static consteval SDL_FColor normalize(const SDL_Color& color)
+    static consteval SDL_FColor normalize(const SDL_Color color)
     {
-        constexpr float max = 255.0f;
+        constexpr float max = std::numeric_limits<uint8_t>::max();
+        SDL_FColor normalized(color.r, color.g, color.b, color.a);
 
-        return {
-            static_cast<float>(color.r) / max,
-            static_cast<float>(color.g) / max,
-            static_cast<float>(color.b) / max,
-            static_cast<float>(color.a) / max,
-        };
+        normalized.r /= max;
+        normalized.g /= max;
+        normalized.b /= max;
+        normalized.a /= max;
+
+        return normalized;
     }
 
-    constexpr SDL_Color BLACK{ .r = 33, .g = 33, .b = 33, .a = 255 };
-    constexpr SDL_Color WHITE{ .r = 255, .g = 255, .b = 255, .a = 255 };
-    constexpr SDL_Color ORANGE{ .r = 254, .g = 125, .b = 5, .a = 255 };
-    constexpr SDL_Color BLUE{ .r = 95, .g = 194, .b = 253, .a = 255 };
-    constexpr SDL_Color GREEN{ .r = 14, .g = 146, .b = 19, .a = 255 };
+    constexpr SDL_Color BLACK(33, 33, 33, 255);
+    constexpr SDL_Color WHITE(255, 255, 255, 255);
+    constexpr SDL_Color ORANGE(254, 125, 5, 255);
+    constexpr SDL_Color BLUE(95, 194, 253, 255);
+    constexpr SDL_Color GREEN(14, 146, 19, 255);
 
     constexpr SDL_FColor NBLACK = normalize(BLACK);
     constexpr SDL_FColor NORANGE = normalize(ORANGE);

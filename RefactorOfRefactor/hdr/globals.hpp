@@ -11,7 +11,7 @@ namespace Globals
         int32_t ScreenWidth;
         int32_t ScreenHeight;
         SDL_Window* Window;
-        SDL_Renderer* Renderer;
+        //SDL_Renderer* Renderer;
     };
 
     inline auto Properties = Option::None<GameProperties>();

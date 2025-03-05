@@ -19,7 +19,7 @@ public:
     explicit Invokable(Func&& function, Args&&... arguments)
         : action([func = std::forward<Func>(function), ...args = std::forward<Args>(arguments)]() mutable
             { 
-                func(std::move(args)...); 
+                func(std::forward<Args>(args)...); 
             })
     {}
 

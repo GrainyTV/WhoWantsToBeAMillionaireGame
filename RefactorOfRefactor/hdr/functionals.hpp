@@ -4,13 +4,6 @@
 #include <type_traits>
 #include <vector>
 
-// template<typename T>
-// concept IEnumerable = requires (T& seq)
-// {
-//     std::begin(seq);
-//     std::end(seq);
-// };
-
 template<typename T>
 concept IEnumerable = std::ranges::range<T>;
 
@@ -162,6 +155,23 @@ namespace Seq
             }
 
             return result;
+        };
+    }
+
+    template<typename Predicate>
+    auto forall(Predicate pred)
+    {
+        return [pred](const auto& container)
+        {
+            for (const auto& item : container)
+            {
+                if (pred(item) == false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         };
     }
 

@@ -31,6 +31,7 @@ sources = files(
     'src/utility.cpp',
     'src/fontmanager.cpp',
     'src/opengl.cpp',
+    'src/hexagon.cpp',
     'src/data.cpp',
     'src/asset.cpp',
     'src/ingamescene.cpp',

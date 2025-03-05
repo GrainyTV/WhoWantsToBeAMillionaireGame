@@ -15,51 +15,58 @@ namespace FontManager
         constexpr size_t DEFAULT_FONT_SIZE = 64;
         TTF_Font* fontResource;
 
-        SDL_Texture* generateFromTextWithSize(std::string_view text, const size_t size, const std::pair<float, float> target)
+        TextureGpu generateFromTextWithSize(std::string_view text, const size_t size, const float targetWidth, const float targetHeight)
         {
             const bool sizeChanged = TTF_SetFontSize(fontResource, static_cast<float>(size));
-            ASSERT(sizeChanged, "Failed to change size of font");
+            assert(sizeChanged, "Failed to change size of font");
 
-            SDL_Surface* const surface = TTF_RenderText_Blended(fontResource, text.data(), text.size(), Color::WHITE);
+            SDL_Surface* surface = TTF_RenderText_Blended(fontResource, text.data(), text.size(), Color::WHITE);
             DEFER(SDL_DestroySurface, surface);
 
-            float width = static_cast<float>((*surface).w);
-            float height = static_cast<float>((*surface).h);
-            float targetWidth = target.first;
-            float targetHeight = target.second;
+            SDL_FlipSurface(surface, SDL_FLIP_VERTICAL);
+
+            auto width = static_cast<float>((*surface).w);
+            auto height = static_cast<float>((*surface).h);
 
             if (width < targetWidth && height < targetHeight)
             {
-                return SDL_CreateTextureFromSurface(Globals::Properties.value().Renderer, surface);
+                const SDL_PixelFormat targetFormat = SDL_PIXELFORMAT_BGRA8888;
+
+                if ((*surface).format != targetFormat)
+                {
+                    SDL_Surface* convertedSurface = SDL_ConvertSurface(surface, targetFormat);
+                    DEFER(SDL_DestroySurface, convertedSurface);
+
+                    return OpenGL::createTextureFromSurface(convertedSurface);
+                }
+                
+                return OpenGL::createTextureFromSurface(surface);
             }
 
-            return generateFromTextWithSize(text, size - 2, target);
+            return generateFromTextWithSize(text, size - 2, targetWidth, targetHeight);
         }
     }
 
     void init()
     {
-        constexpr const char* FONT_PATH = "assets/fonts/%s.otf";
-        const size_t bufferSize = Utility::formattedSize(FONT_PATH, DEFAULT_FONT_NAME);
-        std::unique_ptr<char[]> buffer = std::make_unique<char[]>(bufferSize);
-        SDL_snprintf(buffer.get(), bufferSize, FONT_PATH, DEFAULT_FONT_NAME);
+        constexpr const char* FONT_PATH_FMT = "assets/fonts/%s.otf";
+        const std::unique_ptr<char[]> fontPath = Utility::formatPath(FONT_PATH_FMT, DEFAULT_FONT_NAME);
 
-        const auto font = Result(TTF_OpenFont(buffer.get(), DEFAULT_FONT_SIZE), "Failed to load font");
-        ASSERT(font.isOk(), "{}", font.cause());
+        const auto font = Result(TTF_OpenFont(fontPath.get(), DEFAULT_FONT_SIZE), "Failed to load font");
+        assert(font.isOk(), "{}", font.toString());
 
-        fontResource = font.value();
+        fontResource = font.unwrap();
     }
 
-    SDL_Texture* generateFromText(std::string_view text, const std::pair<float, float> target)
+    TextureGpu generateFromText(std::string_view text, const float targetWidth, const float targetHeight)
     {
-        return generateFromTextWithSize(text, DEFAULT_FONT_SIZE, target);
+        return generateFromTextWithSize(text, DEFAULT_FONT_SIZE, targetWidth, targetHeight);
     }
 
-    SDL_FRect centerInsideArea(SDL_Texture* texture, SDL_FRect outerArea)
+    SDL_FRect centerInsideArea(const TextureGpu texture, const SDL_FRect outerArea)
     {
-        float innerWidth;
-        float innerHeight;
-        SDL_GetTextureSize(texture, &innerWidth, &innerHeight);
+        auto innerWidth = static_cast<float>(texture.Width);
+        auto innerHeight = static_cast<float>(texture.Height);
 
         return {
             outerArea.x + (outerArea.w - innerWidth) / 2.0f,

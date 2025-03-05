@@ -1,30 +1,19 @@
 #pragma once
-#include "textbubble.hpp"
-#include "asset.hpp"
-#include <array>
-#include <cstdint>
+#include "SDL3/SDL.h"
 
-class MainMenuScene
+struct MainMenuScene
 {
-using enum Asset::Identifier;
-private:
-    static constexpr std::array ASSETS = { Logo, Background, InputFiles };
-    static constexpr size_t BUTTON_COUNT = 4;
-    bool sceneLoaded;
-    Option::Inst<int32_t> selectedButton;
-    SDL_FRect logoArea;
-    std::array<TextBubble, BUTTON_COUNT> uiButtons;
+    MainMenuScene() = default;
 
-public:
-    MainMenuScene();
+    void init();
 
-    void deinit() const;
+    void deinit();
 
-    void redraw() const;
+    void redraw();
 
     void intersects(SDL_FPoint);
 
-    void enable();
+    void onSceneLoaded();
 
     void clicks();
 };

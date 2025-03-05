@@ -13,7 +13,7 @@ namespace Option
     template<typename T>
     Inst<T> Some(T value)
     {
-        return Inst<T>(std::move(value));
+        return Inst<T>(value);
     }
 
     template<typename T>
@@ -54,7 +54,7 @@ namespace Option
 
         const T& value() const
         {
-            ASSERT(isSome(), "Tried to access inner value of empty optional!");
+            assert(isSome(), "Tried to access inner value of empty optional!");
             return *valueOrNone;
         }
 
@@ -63,4 +63,5 @@ namespace Option
         friend Inst None<T>();
     };
 }
+
 

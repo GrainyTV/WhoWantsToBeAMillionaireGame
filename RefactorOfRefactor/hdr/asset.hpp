@@ -2,6 +2,7 @@
 #include "SDL3/SDL.h"
 #include "SDL3_mixer/SDL_mixer.h"
 #include "data.hpp"
+#include "record.hpp"
 #include <cstdint>
 
 namespace Asset
@@ -20,7 +21,7 @@ namespace Asset
 
     void beginLoadProcess();
 
-    SDL_Texture* getTextureById(Identifier);
+    TextureGpu getTextureById(Identifier);
 
     Mix_Music* getMusicById(Identifier);
 

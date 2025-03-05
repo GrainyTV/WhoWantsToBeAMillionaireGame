@@ -1,8 +1,11 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include "color.hpp"
 #include "debug.hpp"
+#include "opengl.hpp"
 #include "svl/SVL.h"
 #include "textureregion.hpp"
+#include <memory>
 #include <span>
 
 namespace Utility
@@ -16,15 +19,13 @@ namespace Utility
         EVENT_CHANGE_SCENE_INGAME,
     };
 
-    Vec2 fPointToSvl(const SDL_FPoint fPoint);
+    //SDL_FPoint svlToFpoint(const Vec2 svlVec2);
 
-    SDL_FPoint svlToFpoint(const Vec2 svlVec2);
-
-    void changeDrawColorTo(SDL_Renderer* renderer, const SDL_Color& color);
+    //void changeDrawColorTo(SDL_Renderer* renderer, const SDL_Color& color);
 
     const SDL_DisplayMode* displayInfo(SDL_Window* window);
 
-    void drawTextureRegion(SDL_Renderer*, TextureRegion&&);
+    //void drawTextureRegion(SDL_Renderer*, TextureRegion&&);
 
     void drawRectangle(SDL_Renderer* renderer, const SDL_FRect* rectangle);
 
@@ -41,15 +42,26 @@ namespace Utility
     template<typename T>
     void free(T* managedObj)
     {
-        ASSERT(managedObj != nullptr, "Trying to free a null pointer");
+        assert(managedObj != nullptr, "Trying to free a null pointer");
         delete managedObj;
     }
 
-    template<typename ...Args>
-    size_t formattedSize(const char* fmt, Args&& ...args)
+    // REVISED API
+    // |
+    // |
+    // V
+
+    bool isPositive(float);
+
+    Vec2 fPointToSvl(SDL_FPoint);
+
+    std::unique_ptr<char[]> formatPath(const char*, const char*);
+
+    template<SDL_Color Color>
+    void changeDrawColorTo()
     {
-        int32_t byteCount = SDL_snprintf(nullptr, 0, fmt, std::forward<Args>(args)...);
-        ASSERT(byteCount > 0, "Failed to determine required bytes for stack based string format");
-        return byteCount + 1;
+        OpenGL::changeDrawColorTo(Color::normalize(Color));
     }
+
+    std::array<Vec2, 4> cornersOfRectangle(SDL_FRect);
 }

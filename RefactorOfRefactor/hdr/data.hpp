@@ -29,7 +29,10 @@ namespace Toml
     {
         Difficulty Diff;
         std::string Question;
-        std::array<Answer, 4> Answers;
+        Answer AnswerA;
+        Answer AnswerB;
+        Answer AnswerC;
+        Answer AnswerD;
     };
     
     std::vector<Data> getAllFromFile(std::string_view);

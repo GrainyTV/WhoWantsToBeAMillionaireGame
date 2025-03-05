@@ -51,25 +51,15 @@ namespace Asset
 
         std::unordered_map<std::string, std::vector<Toml::Data>> dataCache;
         std::unordered_map<Identifier, Mix_Music*> musicCache;
-        std::unordered_map<Identifier, SDL_Texture*> textureCache;
+        std::unordered_map<Identifier, TextureGpu> textureCache;
         std::vector<std::pair<Identifier, MetaAsset>> neededEntries;
         CountDownEvent countdown;
 
-        void convertSurfaceToTexture(SDL_Surface* surface, const Identifier id)
-        {    
-            const auto properties = Globals::Properties.value();
-
-            const auto conversion = Result(
-                SDL_CreateTextureFromSurface(properties.Renderer, surface),
-                "Failed to convert surface to texture"
-            );
-            ASSERT(conversion.isOk(), "{}", conversion.cause());
+        void convertSurfaceToTexture(SDL_Surface*& surface, const Identifier id)
+        {
             DEFER(SDL_DestroySurface, surface);
 
-            SDL_Texture* texture = conversion.value();
-            OpenGL::bindTexture(texture);
-            OpenGL::applyTextureFiltering(SDL_SCALEMODE_LINEAR);
-
+            TextureGpu texture = OpenGL::createTextureFromSurface(surface);
             textureCache.emplace(id, texture);
             countdown.signal();
         }
@@ -95,29 +85,47 @@ namespace Asset
             {
                 case Texture:
                 {
-                    constexpr const char* TEXTURE_PATH = "assets/textures/%s.png";
-                    const size_t bufferSize = Utility::formattedSize(TEXTURE_PATH, metadata.Name);
-                    std::unique_ptr<char[]> buffer = std::make_unique<char[]>(bufferSize);
-                    SDL_snprintf(buffer.get(), bufferSize, TEXTURE_PATH, metadata.Name);
+                    constexpr const char* TEXTURE_PATH_FMT = "assets/textures/%s.png";
+                    const std::unique_ptr<char[]> texturePath = Utility::formatPath(TEXTURE_PATH_FMT, metadata.Name);
 
-                    const auto surface = Result(IMG_Load(buffer.get()), "Failed to load surface");
-                    ASSERT(surface.isOk(), "{}", surface.cause());
-                    
-                    auto* const callback = new Invokable(convertSurfaceToTexture, surface.value(), id);
+                    const auto surfaceResult = Result(IMG_Load(texturePath.get()), "Failed to load surface");
+                    assert(surfaceResult.isOk(), "{}", surfaceResult.toString());
+
+                    SDL_Surface* surface(surfaceResult.unwrap());
+                    const SDL_PixelFormat targetFormat = SDL_PIXELFORMAT_BGRA8888;
+
+                    // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                    // ┃ Flip surface for OpenGL's inverted coordinate system ┃
+                    // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+                    SDL_FlipSurface(surface, SDL_FlipMode::SDL_FLIP_VERTICAL);
+                    Invokable* callback = nullptr;
+
+                    if ((*surface).format != targetFormat)
+                    {
+                        DEFER(SDL_DestroySurface, surface);
+                        
+                        SDL_Surface* convertedSurface = SDL_ConvertSurface(surface, targetFormat);
+                        callback = new Invokable(convertSurfaceToTexture, convertedSurface, id);
+                    }
+                    else
+                    {
+                        callback = new Invokable(convertSurfaceToTexture, surface, id);
+                    }
+
                     Utility::requestUserEvent({ .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = callback });
                     break;
                 }
 
                 case Music:
                 {
-                    constexpr const char* AUDIO_PATH = "assets/audio/%s.mp3";
-                    const size_t bufferSize = Utility::formattedSize(AUDIO_PATH, metadata.Name);
-                    std::unique_ptr<char[]> buffer = std::make_unique<char[]>(bufferSize);
-                    SDL_snprintf(buffer.get(), bufferSize, AUDIO_PATH, metadata.Name);
+                    constexpr const char* AUDIO_PATH_FMT = "assets/audio/%s.mp3";
+                    const std::unique_ptr<char[]> audioPath = Utility::formatPath(AUDIO_PATH_FMT, metadata.Name);
 
-                    const auto music = Result(Mix_LoadMUS(buffer.get()), "Failed to load music");
-                    ASSERT(music.isOk(), "{}", music.cause());
-                    musicCache.emplace(id, music.value());
+                    const auto music = Result(Mix_LoadMUS(audioPath.get()), "Failed to load music");
+                    assert(music.isOk(), "{}", music.toString());
+                    
+                    musicCache.emplace(id, music.unwrap());
                     countdown.signal();
                     break;
                 }
@@ -130,7 +138,7 @@ namespace Asset
                 }
 
                 default:
-                    LOG("Not yet implemented!");
+                    log("Not yet implemented!");
                     break;
             }
         }
@@ -142,19 +150,28 @@ namespace Asset
             countdown.wait();
 
             neededEntries.clear();
-            Utility::requestEvent({ EVENT_ENABLE_SCENE });
-            Utility::invalidate();     
+            Utility::requestUserEvent({ EVENT_ENABLE_SCENE });    
         }
     }
 
     void queueToLoad(const Identifier id)
     {
-        ASSERT(assetDescriptor.contains(id), "Asset Descriptor is missing provided indentifier {}", static_cast<int32_t>(id));
+        assert(assetDescriptor.contains(id), "Asset Descriptor is missing provided indentifier {}", static_cast<int32_t>(id));
         
-        if (textureCache.contains(id) == false && musicCache.contains(id) == false)
+        bool haveTexture = textureCache.contains(id);
+        bool haveMusic = musicCache.contains(id);
+        bool haveText = id == InputFiles && dataCache.empty() == false;
+
+        // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+        // ┃ If ID is found in one of the caches, no need to reload that asset ┃
+        // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+        if (haveTexture || haveMusic || haveText)
         {
-            neededEntries.emplace_back(id, assetDescriptor[id]);
-        }   
+            return;
+        }
+
+        neededEntries.emplace_back(id, assetDescriptor[id]);
     }
 
     void beginLoadProcess()
@@ -166,20 +183,19 @@ namespace Asset
         }
         else
         {
-            Utility::requestEvent({ EVENT_ENABLE_SCENE });
-            Utility::invalidate();
+            Utility::requestUserEvent({ EVENT_ENABLE_SCENE });
         }
     }
 
-    SDL_Texture* getTextureById(const Identifier id)
+    TextureGpu getTextureById(const Identifier id)
     {
-        ASSERT(textureCache.contains(id), "Texture Cache is missing provided indentifier {}", static_cast<int32_t>(id));
+        assert(textureCache.contains(id), "Texture Cache is missing provided indentifier {}", static_cast<int32_t>(id));
         return textureCache[id];
     }
 
     Mix_Music* getMusicById(const Identifier id)
     {
-        ASSERT(musicCache.contains(id), "Music Cache is missing provided indentifier {}", static_cast<int32_t>(id));
+        assert(musicCache.contains(id), "Music Cache is missing provided indentifier {}", static_cast<int32_t>(id));
         return musicCache[id];
     }
 

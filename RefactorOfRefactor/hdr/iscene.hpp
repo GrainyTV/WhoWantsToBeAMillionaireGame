@@ -1,10 +1,12 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include <cstdint>
 #include <variant>
 
 enum class SceneOperation : std::uint8_t
 {
-    Deinitialize,
+    Init,
+    Deinit,
     Click,
     Hover,
     Redraw,
@@ -37,7 +39,11 @@ public:
         
         switch (selected)
         {
-            case Deinitialize:
+            case Init:
+                currentScene.init();
+                break;
+
+            case Deinit:
                 currentScene.deinit();
                 break;
             
@@ -54,7 +60,7 @@ public:
                 break;
             
             case Enable:
-                currentScene.enable();
+                currentScene.onSceneLoaded();
                 break;
         }
     }

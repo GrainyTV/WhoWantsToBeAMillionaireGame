@@ -59,18 +59,15 @@ public:
         return isOk() == false;
     }
 
-    const T& value() const
+    const T& unwrap() const
     {
-        ASSERT(isOk(), "Tried to access inner value of result object in error state!");
+        assert(isOk(), "Tried to access inner value of result object in error state!");
         return successValue.value();
     }
 
-    std::string cause() const
+    std::string toString() const
     {
-        ASSERT(isError(), "Tried to access error message of result object in success state!");
-        std::array<char, 512> buffer;
-        SDL_snprintf(buffer.data(), sizeof(buffer), "%s (%s)", errorMessage.value().data(), SDL_GetError());
-        return { buffer.data() }; 
+        return isOk() ? "Ok()" : "Error(" + std::string(errorMessage.value()) + ")";
     }
 };
 

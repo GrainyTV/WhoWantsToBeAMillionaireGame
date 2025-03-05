@@ -1,12 +1,13 @@
 #pragma once
 #include "SDL3/SDL.h"
+#include "record.hpp"
 #include <string_view>
 
 namespace FontManager
 {
     void init();
 
-    SDL_Texture* generateFromText(std::string_view, std::pair<float, float>);
+    TextureGpu generateFromText(std::string_view, float, float);
 
-    SDL_FRect centerInsideArea(SDL_Texture*, SDL_FRect);
+    SDL_FRect centerInsideArea(TextureGpu, SDL_FRect);
 }
