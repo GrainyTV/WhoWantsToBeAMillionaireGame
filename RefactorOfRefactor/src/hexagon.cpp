@@ -11,10 +11,10 @@ namespace Hexagon
     {
         constexpr uint32_t THICKNESS = 5;
 
-        SDL_FRect reserveAreaForText(const SDL_FRect availableArea)
+        SDL_FRect reserveAreaForText(const SDL_FRect availableArea, float WIDTH_LIMIT = 0.75f, float HEIGHT_LIMIT = 0.5f)
         {
-            constexpr float WIDTH_LIMIT = 0.75f;
-            constexpr float HEIGHT_LIMIT = 0.5f;
+            //constexpr float WIDTH_LIMIT = 0.75f;
+            //constexpr float HEIGHT_LIMIT = 0.5f;
 
             return { 
                 availableArea.x + (1 - WIDTH_LIMIT) * 0.5f * availableArea.w, 
@@ -164,40 +164,46 @@ namespace Hexagon
         return {
             .CpuProperties = {
                 .Positions = hexagonPositions,
+                .AvailableArea = area,
                 .TextArea = textArea
             },
             .GpuProperties = {
                 .RenderedText = (text.empty() == false) ? defineText(textArea, text) : TextureGpu(),
                 .Background = { .BufferId = OpenGL::createPrimitives(hexagonBackground), .VertexCount = hexagonBackground.size() },
                 .Border = { .BufferId = OpenGL::createPrimitives(hexagonStroke), .VertexCount = hexagonStroke.size() },
-                .HorizontalLine = 
-                    needLine
-                    ? Option::Some(RectangleGpu(OpenGL::createPrimitives(hexagonStrokeLine)))
-                    : Option::None<RectangleGpu>()
+                .HorizontalLine = needLine ? RectangleGpu(OpenGL::createPrimitives(hexagonStrokeLine)) : RectangleGpu()
             }
         };
     }
 
     void lateinit(HexagonInstance& hex, std::string_view text)
     {
+        if (text.ends_with('?'))
+        {
+            hex.CpuProperties.TextArea = reserveAreaForText(hex.CpuProperties.AvailableArea, 0.95f, 0.9f);
+        }
+
         hex.GpuProperties.RenderedText = defineText(hex.CpuProperties.TextArea, text);
     }
 
-    void draw(const HexagonGpu& hex, const bool isHovered)
+    void draw(const HexagonGpu& hex, const HexagonRenderProperties& props /*const bool isHovered*/)
     {
-        if (hex.HorizontalLine.isSome())
+        if (hex.HorizontalLine.BufferId != 0)
         {
             OpenGL::changeDrawColorTo(Color::NBLUE);
-            OpenGL::renderQuad(hex.HorizontalLine.value().BufferId);
+            OpenGL::renderQuad(hex.HorizontalLine.BufferId);
         }
 
-        OpenGL::changeDrawColorTo(isHovered ? Color::NORANGE : Color::NBLACK);
+        OpenGL::changeDrawColorTo(props.ButtonColor);
         OpenGL::renderPrimitives(hex.Background.BufferId, 5, hex.Background.VertexCount);
 
         OpenGL::changeDrawColorTo(Color::NBLUE);
         OpenGL::renderPrimitives(hex.Border.BufferId, 4, hex.Border.VertexCount);
 
-        OpenGL::renderTexture(hex.RenderedText);
+        if (props.TextVisible)
+        {
+            OpenGL::renderTexture(hex.RenderedText);
+        }
     }
 
     bool isCursorInside(std::span<const Vec2> positions, const Vec2 p0)

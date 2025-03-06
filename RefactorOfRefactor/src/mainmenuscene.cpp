@@ -115,15 +115,17 @@ void MainMenuScene::redraw()
         OpenGL::renderTexture(Asset::getTextureById(Logo));
 
         uiButtons
-        | Seq::iteri([&](const TextBubble& tb, const size_t i)
+        | Seq::iteri([&](TextBubble& tb, const size_t i)
             {
                 if (selectedButton.isSome() && selectedButton.value() == i)
                 {
-                    Hexagon::draw(tb.Frontend.GpuProperties, true);
+                    tb.Frontend.GeneralProperties.ButtonColor = Color::NORANGE;
+                    Hexagon::draw(tb.Frontend.GpuProperties, tb.Frontend.GeneralProperties);
                 }
                 else
                 {
-                    Hexagon::draw(tb.Frontend.GpuProperties, false);
+                    tb.Frontend.GeneralProperties.ButtonColor = Color::NBLACK;
+                    Hexagon::draw(tb.Frontend.GpuProperties, tb.Frontend.GeneralProperties);
                 }
             });
     }
@@ -137,7 +139,7 @@ void MainMenuScene::intersects(const SDL_FPoint location)
     bool anyHovered = false;
 
     uiButtons
-    | Seq::iteri([&](TextBubble& tb, const size_t i)
+    | Seq::iteri([&](const TextBubble& tb, const size_t i)
         {
             const bool isInside = Hexagon::isCursorInside(tb.Frontend.CpuProperties.Positions, Utility::fPointToSvl(location));
 
@@ -166,6 +168,11 @@ void MainMenuScene::onSceneLoaded()
 
     OpenGL::defineTextureRenderLocation(Asset::getTextureById(Logo), Option::Some(logoArea));
     OpenGL::defineTextureRenderLocation(Asset::getTextureById(Background));
+
+    uiButtons[0].Frontend.GeneralProperties.TextVisible = true;
+    uiButtons[1].Frontend.GeneralProperties.TextVisible = true;
+    uiButtons[2].Frontend.GeneralProperties.TextVisible = true;
+    uiButtons[3].Frontend.GeneralProperties.TextVisible = true;
 
     Utility::invalidate();
 }

@@ -21,12 +21,13 @@ struct PrimitiveGpu
 
 struct RectangleGpu
 {
-    uint32_t BufferId;
+    uint32_t BufferId = 0;
 };
 
 struct HexagonCpu
 {
     std::array<Vec2, 6> Positions;
+    SDL_FRect AvailableArea;
     SDL_FRect TextArea;
 };
 
@@ -35,13 +36,22 @@ struct HexagonGpu
     TextureGpu RenderedText;
     PrimitiveGpu Background;
     PrimitiveGpu Border;
-    Option::Inst<RectangleGpu> HorizontalLine = Option::None<RectangleGpu>();
+    RectangleGpu HorizontalLine;
+    //Option::Inst<RectangleGpu> HorizontalLine = Option::None<RectangleGpu>();
+    //bool TextVisible;
+};
+
+struct HexagonRenderProperties
+{
+    bool TextVisible;
+    SDL_FColor ButtonColor;
 };
 
 struct HexagonInstance
 {
     HexagonCpu CpuProperties;
     HexagonGpu GpuProperties;
+    HexagonRenderProperties GeneralProperties;
 };
 
 struct TextBubble

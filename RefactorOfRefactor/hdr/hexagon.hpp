@@ -11,7 +11,7 @@ namespace Hexagon
 
     void lateinit(HexagonInstance&, std::string_view);
 
-    void draw(const HexagonGpu&, bool);
+    void draw(const HexagonGpu&, const HexagonRenderProperties&);
 
     bool isCursorInside(std::span<const Vec2>, Vec2);
 }

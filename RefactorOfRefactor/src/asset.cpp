@@ -47,11 +47,16 @@ namespace Asset
             { MusicMedium, { .Type = Music, .Name = "music-medium-questions" }},
             { MusicHard, { .Type = Music, .Name = "music-hard-questions" }},
             { InputFiles, { .Type = Text }},
+            { CorrectAnswer, { .Type = Sfx, .Name = "correct-answer" }},
+            { WrongAnswer, { .Type = Sfx, .Name = "wrong-answer" }},
+            { FinalAnswer, { .Type = Sfx, .Name = "final-answer" }},
         };
 
         std::unordered_map<std::string, std::vector<Toml::Data>> dataCache;
         std::unordered_map<Identifier, Mix_Music*> musicCache;
-        std::unordered_map<Identifier, TextureGpu> textureCache;
+        std::unordered_map<Identifier, Mix_Chunk*> sfxCache;
+        std::unordered_map<Identifier, TextureGpu> textureCache;        
+
         std::vector<std::pair<Identifier, MetaAsset>> neededEntries;
         CountDownEvent countdown;
 
@@ -130,16 +135,25 @@ namespace Asset
                     break;
                 }
 
+                case Sfx:
+                {
+                    constexpr const char* AUDIO_PATH_FMT = "assets/audio/%s.mp3";
+                    const std::unique_ptr<char[]> audioPath = Utility::formatPath(AUDIO_PATH_FMT, metadata.Name);
+
+                    const auto sfx = Result(Mix_LoadWAV(audioPath.get()), "Failed to load sound effect");
+                    assert(sfx.isOk(), "{}", sfx.toString());
+                    
+                    sfxCache.emplace(id, sfx.unwrap());
+                    countdown.signal();
+                    break;
+                }
+
                 case Text:
                 {        
                     fs::directory_iterator("assets/toml") | Seq::iter(parseInputFile);
                     countdown.signal();
                     break;
                 }
-
-                default:
-                    log("Not yet implemented!");
-                    break;
             }
         }
 
@@ -160,13 +174,14 @@ namespace Asset
         
         bool haveTexture = textureCache.contains(id);
         bool haveMusic = musicCache.contains(id);
+        bool haveSfx = sfxCache.contains(id);
         bool haveText = id == InputFiles && dataCache.empty() == false;
 
         // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
         // ┃ If ID is found in one of the caches, no need to reload that asset ┃
         // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-        if (haveTexture || haveMusic || haveText)
+        if (haveTexture || haveMusic || haveSfx || haveText)
         {
             return;
         }
@@ -197,6 +212,12 @@ namespace Asset
     {
         assert(musicCache.contains(id), "Music Cache is missing provided indentifier {}", static_cast<int32_t>(id));
         return musicCache[id];
+    }
+
+    Mix_Chunk* getSfxById(const Identifier id)
+    {
+        assert(sfxCache.contains(id), "SFX Cache is missing provided indentifier {}", static_cast<int32_t>(id));
+        return sfxCache[id];
     }
 
     Toml::Data getRandomData()

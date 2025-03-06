@@ -15,6 +15,9 @@ namespace Asset
         MusicMedium,
         MusicHard,
         InputFiles,
+        CorrectAnswer,
+        WrongAnswer,
+        FinalAnswer,
     };
 
     void queueToLoad(Identifier);
@@ -24,6 +27,8 @@ namespace Asset
     TextureGpu getTextureById(Identifier);
 
     Mix_Music* getMusicById(Identifier);
+
+    Mix_Chunk* getSfxById(Identifier);
 
     Toml::Data getRandomData();
 }
