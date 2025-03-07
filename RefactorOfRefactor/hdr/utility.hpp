@@ -57,11 +57,11 @@ namespace Utility
 
     std::unique_ptr<char[]> formatPath(const char*, const char*);
 
-    template<SDL_Color Color>
-    void changeDrawColorTo()
-    {
-        OpenGL::changeDrawColorTo(Color::normalize(Color));
-    }
+    // template<SDL_Color Color>
+    // void changeDrawColorTo()
+    // {
+    //     OpenGL::changeDrawColorTo(Color::normalize(Color));
+    // }
 
     std::array<Vec2, 4> cornersOfRectangle(SDL_FRect);
 }

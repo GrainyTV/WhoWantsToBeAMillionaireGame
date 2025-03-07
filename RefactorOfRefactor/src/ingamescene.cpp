@@ -13,38 +13,40 @@ namespace
     bool mouseEnabled = false;
     Option::Inst<size_t> selectedButton = Option::None<size_t>();
     std::array<TextBubble, BUTTON_COUNT> uiButtons;
+    std::array<HexagonRenderProperties, BUTTON_COUNT> uiButtonProperties;
     Toml::Data data;
 
     using enum Asset::Identifier;
 
-    void animateTextPopups()
-    {
-        auto animationCallback = [](void* userData, uint32_t, uint32_t) -> uint32_t
-        {
-            auto* enabled = static_cast<bool*>(userData);
-            *enabled = true;
-            Utility::invalidate();
-            return 0;
-        };
-
-        auto animate = [&](const int32_t i)
-        {
-            SDL_AddTimer(500 + i * 2000, animationCallback, &uiButtons.at(i).Frontend.GeneralProperties.TextVisible);
-        };
-
-        Seq::range<0, BUTTON_COUNT>() | Seq::iter(animate);
-        SDL_AddTimer(8525, animationCallback, &mouseEnabled);
-    }
-
     void ontoTheNextRound()
     {
-        uiButtons[0].Frontend.GeneralProperties.TextVisible = false;
-        uiButtons[1].Frontend.GeneralProperties.TextVisible = false;
-        uiButtons[2].Frontend.GeneralProperties.TextVisible = false;
-        uiButtons[3].Frontend.GeneralProperties.TextVisible = false;
-        uiButtons[4].Frontend.GeneralProperties.TextVisible = false;
+        auto animateTextPopups = []()
+        {
+            auto enableDisplayAnimation = [](void* userData, uint32_t, uint32_t) -> uint32_t
+            {
+                auto* enabled = static_cast<bool*>(userData);
+                *enabled = true;
+                Utility::invalidate();
+                return 0;
+            };
 
+            uiButtonProperties
+            | Seq::iteri([&](HexagonRenderProperties& props, const size_t i)
+                {
+                    SDL_AddTimer(500 + i * 2000, enableDisplayAnimation, &props.TextVisible);
+                });
+
+            SDL_AddTimer(8525, enableDisplayAnimation, &mouseEnabled);
+        };
+
+        uiButtonProperties | Seq::iter([](HexagonRenderProperties& props)
+            {
+                props.ButtonColor = Color::NBLACK;
+                props.TextVisible = false;
+            });
+        
         data = Asset::getRandomData();
+
         Hexagon::lateinit(uiButtons[0].Frontend, data.Question);
         Hexagon::lateinit(uiButtons[1].Frontend, data.AnswerA.Text);
         Hexagon::lateinit(uiButtons[2].Frontend, data.AnswerB.Text);
@@ -83,11 +85,12 @@ namespace
         {
             SDL_AddTimer(2250, answerValidateAnimation, Asset::getSfxById(CorrectAnswer));
             SDL_AddTimer(2250 + 1000, waitBeforeNewRoundAnimation, nullptr);
-            uiButtons[1].Frontend.GeneralProperties.ButtonColor = Color::normalize(Color::GREEN);
+            uiButtonProperties[1].ButtonColor = Color::NGREEN;
         }
         else
         {
             SDL_AddTimer(2250, answerValidateAnimation, Asset::getSfxById(WrongAnswer));
+            uiButtonProperties[2].ButtonColor = Color::NRED;
         }
     }
 
@@ -173,9 +176,9 @@ void InGameScene::redraw()
         OpenGL::renderTexture(Asset::getTextureById(Background));
 
         uiButtons
-        | Seq::iter([](const TextBubble& tb)
+        | Seq::iteri([&](const TextBubble& tb, const size_t i)
             {
-                Hexagon::draw(tb.Frontend.GpuProperties, tb.Frontend.GeneralProperties);
+                Hexagon::draw(tb.Frontend.GpuProperties, uiButtonProperties.at(i));
             });
     }
 
@@ -205,7 +208,7 @@ void InGameScene::intersects(const SDL_FPoint location)
                     if (selectedButton.isNone())
                     {
                         selectedButton = Option::Some(i + 1);
-                        uiButtons.at(selectedButton.value()).Frontend.GeneralProperties.ButtonColor = Color::NORANGE;
+                        uiButtonProperties.at(selectedButton.value()).ButtonColor = Color::NORANGE;
                         Utility::invalidate();
                     }
 
@@ -215,7 +218,7 @@ void InGameScene::intersects(const SDL_FPoint location)
 
         if (anyHovered == false && selectedButton.isSome())
         {
-            uiButtons.at(selectedButton.value()).Frontend.GeneralProperties.ButtonColor = Color::NBLACK;
+            uiButtonProperties.at(selectedButton.value()).ButtonColor = Color::NBLACK;
             selectedButton = Option::None<size_t>();
             Utility::invalidate();
         }
@@ -225,16 +228,9 @@ void InGameScene::intersects(const SDL_FPoint location)
 void InGameScene::onSceneLoaded()
 {
     sceneLoaded = true;
-    
-    data = Asset::getRandomData();
-    Hexagon::lateinit(uiButtons[0].Frontend, data.Question);
-    Hexagon::lateinit(uiButtons[1].Frontend, data.AnswerA.Text);
-    Hexagon::lateinit(uiButtons[2].Frontend, data.AnswerB.Text);
-    Hexagon::lateinit(uiButtons[3].Frontend, data.AnswerC.Text);
-    Hexagon::lateinit(uiButtons[4].Frontend, data.AnswerD.Text);
 
     Mix_PlayMusic(Asset::getMusicById(MusicEasy), -1);
-    animateTextPopups();
+    ontoTheNextRound();
 
     Utility::invalidate();
 }

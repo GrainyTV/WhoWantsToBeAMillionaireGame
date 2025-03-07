@@ -14,6 +14,7 @@ namespace
     uint32_t sceneVao = 0;
     SDL_FRect logoArea;
     std::array<TextBubble, BUTTON_COUNT> uiButtons;
+    std::array<HexagonRenderProperties, BUTTON_COUNT> uiButtonProperties;
 
     using enum Utility::CustomEvents;
     using enum Asset::Identifier;
@@ -115,18 +116,9 @@ void MainMenuScene::redraw()
         OpenGL::renderTexture(Asset::getTextureById(Logo));
 
         uiButtons
-        | Seq::iteri([&](TextBubble& tb, const size_t i)
+        | Seq::iteri([&](const TextBubble& tb, const size_t i)
             {
-                if (selectedButton.isSome() && selectedButton.value() == i)
-                {
-                    tb.Frontend.GeneralProperties.ButtonColor = Color::NORANGE;
-                    Hexagon::draw(tb.Frontend.GpuProperties, tb.Frontend.GeneralProperties);
-                }
-                else
-                {
-                    tb.Frontend.GeneralProperties.ButtonColor = Color::NBLACK;
-                    Hexagon::draw(tb.Frontend.GpuProperties, tb.Frontend.GeneralProperties);
-                }
+                Hexagon::draw(tb.Frontend.GpuProperties, uiButtonProperties.at(i));
             });
     }
 
@@ -148,6 +140,7 @@ void MainMenuScene::intersects(const SDL_FPoint location)
                 if (selectedButton.isNone())
                 {
                     selectedButton = Option::Some(i);
+                    uiButtonProperties.at(selectedButton.value()).ButtonColor = Color::NORANGE;
                     Utility::invalidate();
                 }
 
@@ -157,6 +150,7 @@ void MainMenuScene::intersects(const SDL_FPoint location)
 
     if (anyHovered == false && selectedButton.isSome())
     {
+        uiButtonProperties.at(selectedButton.value()).ButtonColor = Color::NBLACK;
         selectedButton = Option::None<size_t>();
         Utility::invalidate();
     }
@@ -169,10 +163,12 @@ void MainMenuScene::onSceneLoaded()
     OpenGL::defineTextureRenderLocation(Asset::getTextureById(Logo), Option::Some(logoArea));
     OpenGL::defineTextureRenderLocation(Asset::getTextureById(Background));
 
-    uiButtons[0].Frontend.GeneralProperties.TextVisible = true;
-    uiButtons[1].Frontend.GeneralProperties.TextVisible = true;
-    uiButtons[2].Frontend.GeneralProperties.TextVisible = true;
-    uiButtons[3].Frontend.GeneralProperties.TextVisible = true;
+    uiButtonProperties
+    | Seq::iter([](HexagonRenderProperties& props)
+        {
+            props.TextVisible = true;
+            props.ButtonColor = Color::NBLACK;
+        });
 
     Utility::invalidate();
 }

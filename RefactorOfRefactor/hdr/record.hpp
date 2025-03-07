@@ -1,7 +1,6 @@
 #pragma once
 #include "invokable.hpp"
 #include "SDL3/SDL.h"
-#include "optionwrap.hpp"
 #include "svl/SVL.h"
 #include <cstdint>
 
@@ -37,8 +36,6 @@ struct HexagonGpu
     PrimitiveGpu Background;
     PrimitiveGpu Border;
     RectangleGpu HorizontalLine;
-    //Option::Inst<RectangleGpu> HorizontalLine = Option::None<RectangleGpu>();
-    //bool TextVisible;
 };
 
 struct HexagonRenderProperties
@@ -51,7 +48,6 @@ struct HexagonInstance
 {
     HexagonCpu CpuProperties;
     HexagonGpu GpuProperties;
-    HexagonRenderProperties GeneralProperties;
 };
 
 struct TextBubble
