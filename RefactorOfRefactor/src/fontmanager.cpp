@@ -15,12 +15,16 @@ namespace FontManager
         constexpr size_t DEFAULT_FONT_SIZE = 64;
         TTF_Font* fontResource;
 
-        TextureGpu generateFromTextWithSize(std::string_view text, const size_t size, const float targetWidth, const float targetHeight)
+        TextureGpu generateFromTextWithSize(std::string_view text, const size_t size, const float targetWidth, const float targetHeight, const bool multiLine)
         {
             const bool sizeChanged = TTF_SetFontSize(fontResource, static_cast<float>(size));
             assert(sizeChanged, "Failed to change size of font");
 
-            SDL_Surface* surface = TTF_RenderText_Blended(fontResource, text.data(), text.size(), Color::WHITE);
+            SDL_Surface* surface = 
+                multiLine
+                ? TTF_RenderText_Blended_Wrapped(fontResource, text.data(), text.size(), Color::WHITE, 0)
+                : TTF_RenderText_Blended(fontResource, text.data(), text.size(), Color::WHITE);
+            
             DEFER(SDL_DestroySurface, surface);
 
             SDL_FlipSurface(surface, SDL_FLIP_VERTICAL);
@@ -43,7 +47,7 @@ namespace FontManager
                 return OpenGL::createTextureFromSurface(surface);
             }
 
-            return generateFromTextWithSize(text, size - 2, targetWidth, targetHeight);
+            return generateFromTextWithSize(text, size - 2, targetWidth, targetHeight, multiLine);
         }
     }
 
@@ -56,11 +60,12 @@ namespace FontManager
         assert(font.isOk(), "{}", font.toString());
 
         fontResource = font.unwrap();
+        TTF_SetFontWrapAlignment(fontResource, TTF_HORIZONTAL_ALIGN_CENTER);
     }
 
-    TextureGpu generateFromText(std::string_view text, const float targetWidth, const float targetHeight)
+    TextureGpu generateFromText(std::string_view text, const float targetWidth, const float targetHeight, const bool multiLine)
     {
-        return generateFromTextWithSize(text, DEFAULT_FONT_SIZE, targetWidth, targetHeight);
+        return generateFromTextWithSize(text, DEFAULT_FONT_SIZE, targetWidth, targetHeight, multiLine);
     }
 
     SDL_FRect centerInsideArea(const TextureGpu texture, const SDL_FRect outerArea)

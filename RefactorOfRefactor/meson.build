@@ -32,7 +32,7 @@ sources = files(
     'src/fontmanager.cpp',
     'src/opengl.cpp',
     'src/hexagon.cpp',
-    'src/data.cpp',
+    'src/toml.cpp',
     'src/asset.cpp',
     'src/ingamescene.cpp',
     'src/mainmenuscene.cpp',

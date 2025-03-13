@@ -1,13 +1,11 @@
 #pragma once
+#include "SDL3/SDL.h"
+#include <limits>
 
 namespace Color
 {
-    #include "SDL3/SDL_pixels.h"
-
     namespace _impl_details
     {
-        #include <limits>
-
         constexpr SDL_Color BLACK(24, 24, 24, 255);
         constexpr SDL_Color ORANGE(254, 125, 5, 255);
         constexpr SDL_Color BLUE(95, 194, 253, 255);

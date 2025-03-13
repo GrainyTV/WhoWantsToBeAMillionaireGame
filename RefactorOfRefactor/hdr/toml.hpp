@@ -1,29 +1,22 @@
 #pragma once
-#include <array>
 #include <cstdint>
 #include <string>
 #include <vector>
 
 namespace Toml
 {
-    namespace _detail
+    enum class Difficulty : std::uint8_t
     {
-        enum class Difficulty : std::uint8_t
-        {
-            Easy,
-            Medium,
-            Hard,
-        };
+        Easy,
+        Medium,
+        Hard,
+    };
 
-        struct Answer
-        {
-            std::string Text;
-            bool IsCorrect;
-        };
-    }
-    
-    using _detail::Difficulty;
-    using _detail::Answer;
+    struct Answer
+    {
+        std::string Text;
+        bool IsCorrect;
+    };
 
     struct Data
     {

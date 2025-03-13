@@ -15,6 +15,7 @@
 #include <thread>
 #include <unordered_map>
 #include <vector>
+#include <random>
 
 namespace Asset
 {
@@ -39,6 +40,9 @@ namespace Asset
             const char* Name;
         };
 
+        std::random_device rd;
+        std::mt19937 generator(rd());
+
         std::unordered_map<Identifier, MetaAsset> assetDescriptor =
         {
             { Logo, { .Type = Texture, .Name = "logo" }},
@@ -52,6 +56,7 @@ namespace Asset
             { FinalAnswer, { .Type = Sfx, .Name = "final-answer" }},
         };
 
+        std::vector<std::string> dataTopics;
         std::unordered_map<std::string, std::vector<Toml::Data>> dataCache;
         std::unordered_map<Identifier, Mix_Music*> musicCache;
         std::unordered_map<Identifier, Mix_Chunk*> sfxCache;
@@ -77,6 +82,8 @@ namespace Asset
             {
                 std::vector<Toml::Data> loadedRecords = Toml::getAllFromFile(filePath.string());
                 std::string topic = filePath.stem().string();
+
+                dataTopics.emplace_back(topic);
                 dataCache.emplace(topic, std::move(loadedRecords));
             }
         }
@@ -222,6 +229,13 @@ namespace Asset
 
     Toml::Data getRandomData()
     {
-        return dataCache["otaku"][0];
+        std::uniform_int_distribution<size_t> topicDistrib(0, dataTopics.size() - 1);
+        std::string& topic = dataTopics.at(topicDistrib(generator));
+
+        std::uniform_int_distribution<size_t> questionDistrib(0, dataCache[topic].size() - 1);
+        
+        const Toml::Data selected = dataCache[topic][questionDistrib(generator)];
+        log("Len: {}", selected.Question.size());
+        return selected;
     }
 }

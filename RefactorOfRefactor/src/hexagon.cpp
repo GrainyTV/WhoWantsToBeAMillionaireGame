@@ -9,18 +9,49 @@ namespace Hexagon
 {
     namespace
     {
+        enum class EstimatedSize : std::uint8_t
+        {
+            Small,
+            Big,
+            Big_ML,
+        };
+
         constexpr uint32_t THICKNESS = 5;
 
-        SDL_FRect reserveAreaForText(const SDL_FRect availableArea, float WIDTH_LIMIT = 0.75f, float HEIGHT_LIMIT = 0.5f)
+        SDL_FRect reserveAreaForText(const SDL_FRect availableArea, const EstimatedSize size = EstimatedSize::Small)
         {
-            //constexpr float WIDTH_LIMIT = 0.75f;
-            //constexpr float HEIGHT_LIMIT = 0.5f;
+            float widthLimit;
+            float heightLimit;
+
+            switch (size)
+            {
+                case EstimatedSize::Small:
+                {
+                    widthLimit = 0.75f;
+                    heightLimit = 0.5f;
+                    break;
+                }
+
+                case EstimatedSize::Big:
+                {
+                    widthLimit = 0.95f;
+                    heightLimit = 0.9f;
+                    break;
+                }
+
+                case EstimatedSize::Big_ML:
+                {
+                    widthLimit = 0.75f;
+                    heightLimit = 0.85f;
+                    break;
+                }
+            }
 
             return { 
-                availableArea.x + (1 - WIDTH_LIMIT) * 0.5f * availableArea.w, 
-                availableArea.y + (1 - HEIGHT_LIMIT) * 0.5f * availableArea.h, 
-                WIDTH_LIMIT * availableArea.w, 
-                HEIGHT_LIMIT * availableArea.h
+                availableArea.x + (1 - widthLimit) * 0.5f * availableArea.w, 
+                availableArea.y + (1 - heightLimit) * 0.5f * availableArea.h, 
+                widthLimit * availableArea.w, 
+                heightLimit * availableArea.h
             };
         }
 
@@ -135,13 +166,55 @@ namespace Hexagon
             return Utility::cornersOfRectangle(line);
         }
 
-        TextureGpu defineText(const SDL_FRect textArea, std::string_view text)
+        TextureGpu defineText(const SDL_FRect textArea, std::string_view text, bool multiLine = false)
         {
-            const TextureGpu textAsTexture = FontManager::generateFromText(text, textArea.w, textArea.h);
+            const TextureGpu textAsTexture = FontManager::generateFromText(text, textArea.w, textArea.h, multiLine);
             const SDL_FRect centerAlignedTextArea = FontManager::centerInsideArea(textAsTexture, textArea);
             OpenGL::defineTextureRenderLocation(textAsTexture, Option::Some(centerAlignedTextArea));
 
             return textAsTexture;
+        }
+
+        Option::Inst<int32_t> findBestCut(std::string_view line)
+        {
+            auto n = static_cast<int32_t>(line.length());
+            int32_t mid = n / 2;
+            std::vector<int32_t> whitespaceIndices;
+            
+            // Collect indices of whitespace characters
+            
+            for (int32_t i = 0; i < n; ++i)
+            {
+                if (std::isspace(line[i]) != 0)
+                {
+                    whitespaceIndices.push_back(i);
+                }
+            }
+            
+            // If no whitespace found, return -1 (no cut possible)
+            
+            if (whitespaceIndices.empty())
+            { 
+                return Option::None<int32_t>();
+            }
+            
+            // Find the closest whitespace index to the middle
+            
+            int32_t bestCut = whitespaceIndices[0];
+            int32_t minDiff = std::abs(bestCut - mid);
+            
+            for (int32_t idx : whitespaceIndices)
+            {
+                int32_t diff = std::abs(idx - mid);
+                
+                if (diff <= minDiff)
+                {
+                    bestCut = idx;
+                    minDiff = diff;
+                }
+            }
+            
+            return Option::Some(bestCut);
         }
     }
 
@@ -178,12 +251,40 @@ namespace Hexagon
 
     void lateinit(HexagonInstance& hex, std::string_view text)
     {
-        if (text.ends_with('?'))
+        size_t characterCount = text.size();
+        EstimatedSize size;
+
+        if (characterCount < 50)
         {
-            hex.CpuProperties.TextArea = reserveAreaForText(hex.CpuProperties.AvailableArea, 0.95f, 0.9f);
+            size = EstimatedSize::Small;
+        }
+        else if (characterCount < 70)
+        {
+            size = EstimatedSize::Big;
+        }
+        else
+        {
+            size = EstimatedSize::Big_ML;
         }
 
-        hex.GpuProperties.RenderedText = defineText(hex.CpuProperties.TextArea, text);
+        hex.CpuProperties.TextArea = reserveAreaForText(hex.CpuProperties.AvailableArea, size);
+
+        if (size == EstimatedSize::Big_ML)
+        {
+            Option::Inst<int32_t> cutIndex = findBestCut(text);
+            std::string modifiedText(text);
+            
+            if (cutIndex.isSome())
+            {
+                modifiedText.at(cutIndex.value()) = '\n';
+            }
+
+            hex.GpuProperties.RenderedText = defineText(hex.CpuProperties.TextArea, modifiedText, true);
+        }
+        else
+        {
+            hex.GpuProperties.RenderedText = defineText(hex.CpuProperties.TextArea, text, false);
+        }
     }
 
     void draw(const HexagonGpu& hex, const HexagonRenderProperties& props /*const bool isHovered*/)
