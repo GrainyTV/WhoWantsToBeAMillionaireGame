@@ -54,6 +54,7 @@ namespace Asset
             { CorrectAnswer, { .Type = Sfx, .Name = "correct-answer" }},
             { WrongAnswer, { .Type = Sfx, .Name = "wrong-answer" }},
             { FinalAnswer, { .Type = Sfx, .Name = "final-answer" }},
+            //{ ScoreBoard,  { .Type = Texture, .Name = "scoreboard" }},
         };
 
         std::vector<std::string> dataTopics;

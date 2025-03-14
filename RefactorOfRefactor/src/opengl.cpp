@@ -1,4 +1,3 @@
-#include "utility.hpp"
 #define GLAD_GL_IMPLEMENTATION
 
 #include "globals.hpp"
@@ -8,6 +7,7 @@
 #include "opengl.hpp"
 #include "result.hpp"
 #include "svl/SVL.h"
+#include "utility.hpp"
 #include <climits>
 
 namespace OpenGL
@@ -78,6 +78,8 @@ namespace OpenGL
         glAttachShader(shaderProgram, fragmentShader);
         glLinkProgram(shaderProgram);
         glUseProgram(shaderProgram);
+
+        glLineWidth(5);
     }
 
     void changeDrawColorTo(const SDL_FColor nColor)

@@ -55,3 +55,15 @@ struct TextBubble
     HexagonInstance Frontend;
     Invokable Backend;
 };
+
+struct Scoreboard
+{
+    SDL_FRect BaseArea;
+    RectangleGpu BackgroundPart1;
+    RectangleGpu BackgroundPart2;
+    PrimitiveGpu BackgroundPart3;
+    PrimitiveGpu BackgroundPart4;
+    PrimitiveGpu BackgroundPart5;
+    PrimitiveGpu BackgroundPart6;
+    PrimitiveGpu BackgroundBorder;
+};

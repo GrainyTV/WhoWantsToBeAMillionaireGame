@@ -121,7 +121,7 @@ namespace Hexagon
 
             const std::vector<Vec2> strokeVertices =
                 hexagonPositions 
-                | Seq::pairwise()
+                | Seq::pairwiseWrap()
                 | Seq::map(createQuadFromEndpoints)
                 | Seq::flatten();
 
@@ -323,7 +323,7 @@ namespace Hexagon
 
         return
             positions
-            | Seq::pairwise()
+            | Seq::pairwiseWrap()
             | Seq::map(crossProductOfEdge)
             | Seq::forall(Utility::isPositive);
     }

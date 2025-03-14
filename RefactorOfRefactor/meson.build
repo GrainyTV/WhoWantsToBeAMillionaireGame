@@ -28,6 +28,7 @@ if get_option('buildtype') == 'debug'
 endif
 
 sources = files(
+    'src/bezier.cpp',
     'src/utility.cpp',
     'src/fontmanager.cpp',
     'src/opengl.cpp',

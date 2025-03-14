@@ -119,7 +119,7 @@ namespace Seq
         };
     }
 
-    inline auto pairwise()
+    inline auto pairwiseWrap()
     {
         return [](const auto& container)
         {
@@ -129,6 +129,25 @@ namespace Seq
             result.reserve(count);
 
             for (size_t i = 0; i < count; ++i)
+            {
+                size_t j = (i + 1) % count;
+                result.emplace_back(container[i], container[j]);
+            }
+
+            return result;
+        };
+    }
+
+    inline auto pairwise()
+    {
+        return [](const auto& container)
+        {
+            using ItemType = ItemOf<std::decay_t<decltype(container)>>;
+            const size_t count = std::distance(std::begin(container), std::end(container));
+            std::vector<std::pair<ItemType, ItemType>> result;
+            result.reserve(count);
+
+            for (size_t i = 0; i + 1 < count; ++i)
             {
                 size_t j = (i + 1) % count;
                 result.emplace_back(container[i], container[j]);
