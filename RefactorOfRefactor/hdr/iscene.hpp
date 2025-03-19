@@ -5,12 +5,12 @@
 
 enum class SceneOperation : std::uint8_t
 {
-    Init,
-    Deinit,
-    Click,
-    Hover,
-    Redraw,
-    Enable
+    INIT,
+    DEINIT,
+    CLICK,
+    HOVER,
+    REDRAW,
+    ENABLE
 };
 
 class IScene
@@ -25,7 +25,7 @@ public:
         , cursor(-1, -1)
     {}
 
-    IScene(const SceneOperation oper, const SDL_FPoint pos)
+    explicit IScene(const SceneOperation oper, const SDL_FPoint pos)
         : selected(oper)
         , cursor(pos)
     {}
@@ -39,27 +39,27 @@ public:
         
         switch (selected)
         {
-            case Init:
+            case INIT:
                 currentScene.init();
                 break;
 
-            case Deinit:
+            case DEINIT:
                 currentScene.deinit();
                 break;
             
-            case Click:
+            case CLICK:
                 currentScene.clicks();
                 break;
             
-            case Hover:
+            case HOVER:
                 currentScene.intersects(cursor);
                 break;
             
-            case Redraw:
+            case REDRAW:
                 currentScene.redraw();
                 break;
             
-            case Enable:
+            case ENABLE:
                 currentScene.onSceneLoaded();
                 break;
         }

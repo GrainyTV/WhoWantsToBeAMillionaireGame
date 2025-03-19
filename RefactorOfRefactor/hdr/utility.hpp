@@ -3,7 +3,8 @@
 #include "color.hpp"
 #include "debug.hpp"
 #include "opengl.hpp"
-#include "svl/SVL.h"
+//#include "svl/SVL.h"
+#include "glm/glm.hpp"
 #include "textureregion.hpp"
 #include <memory>
 #include <span>
@@ -42,7 +43,7 @@ namespace Utility
     template<typename T>
     void free(T* managedObj)
     {
-        assert(managedObj != nullptr, "Trying to free a null pointer");
+        Debug::assert(managedObj != nullptr, "Trying to free a null pointer");
         delete managedObj;
     }
 
@@ -53,15 +54,11 @@ namespace Utility
 
     bool isPositive(float);
 
-    Vec2 fPointToSvl(SDL_FPoint);
+    glm::vec2 fPointToGlm(SDL_FPoint);
 
     std::unique_ptr<char[]> formatPath(const char*, const char*);
 
-    // template<SDL_Color Color>
-    // void changeDrawColorTo()
-    // {
-    //     OpenGL::changeDrawColorTo(Color::normalize(Color));
-    // }
+    std::array<glm::vec2, 4> cornersOfRectangle(SDL_FRect);
 
-    std::array<Vec2, 4> cornersOfRectangle(SDL_FRect);
+    glm::vec2 centerPointOfRectangle(SDL_FRect);
 }

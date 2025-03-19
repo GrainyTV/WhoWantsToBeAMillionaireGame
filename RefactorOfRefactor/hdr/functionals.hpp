@@ -3,6 +3,7 @@
 #include <numeric>
 #include <type_traits>
 #include <vector>
+#include <array>
 
 template<typename T>
 concept IEnumerable = std::ranges::range<T>;

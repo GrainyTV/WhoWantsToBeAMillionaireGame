@@ -7,9 +7,9 @@ namespace Toml
 {
     enum class Difficulty : std::uint8_t
     {
-        Easy,
-        Medium,
-        Hard,
+        EASY,
+        MEDIUM,
+        HARD,
     };
 
     struct Answer

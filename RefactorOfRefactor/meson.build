@@ -13,7 +13,7 @@ project(
 
 dependencies = [
     dependency('tomlplusplus'),
-    dependency('svl'),
+    dependency('glm'),
     dependency('sdl3'),
     dependency('sdl3_image'),
     dependency('sdl3_mixer'),
@@ -28,15 +28,15 @@ if get_option('buildtype') == 'debug'
 endif
 
 sources = files(
+    'src/ellipse.cpp',
     'src/bezier.cpp',
     'src/utility.cpp',
     'src/fontmanager.cpp',
     'src/opengl.cpp',
+    'src/scoreboard.cpp',
     'src/hexagon.cpp',
     'src/toml.cpp',
     'src/asset.cpp',
-    'src/ingamescene.cpp',
-    'src/mainmenuscene.cpp',
     'src/event.cpp',
     'src/game.cpp',
     'src/main.cpp'

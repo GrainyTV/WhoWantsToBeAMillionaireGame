@@ -21,24 +21,24 @@ void Game::init()
     SDL_SetHint(SDL_HINT_VIDEO_DOUBLE_BUFFER, "true");
 
     const auto sdlInit = Result(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS), "Failed to initialize SDL");
-    assert(sdlInit.isOk(), "{}", sdlInit.toString());
+    Debug::assert(sdlInit.isOk(), "{}", sdlInit.toString());
 
     // ┏━━━━━━━━━━━━┓
     // ┃ Audio Init ┃
     // ┗━━━━━━━━━━━━┛
 
     const auto sdlAudioInit = Result(Mix_Init(MIX_INIT_MP3), "Failed to initialize SDL_mixer", static_cast<uint32_t>(MIX_INIT_MP3));
-    assert(sdlAudioInit.isOk(), "{}", sdlAudioInit.toString());
+    Debug::assert(sdlAudioInit.isOk(), "{}", sdlAudioInit.toString());
 
     const auto audioDeviceInit = Result(Mix_OpenAudio(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr), "Failed to open default audio device for playback");
-    assert(audioDeviceInit.isOk(), "{}", audioDeviceInit.toString());
+    Debug::assert(audioDeviceInit.isOk(), "{}", audioDeviceInit.toString());
 
     // ┏━━━━━━━━━━━┓
     // ┃ Text Init ┃
     // ┗━━━━━━━━━━━┛
 
     const auto sdlTextInit = Result(TTF_Init(), "Failed to initialize SDL_ttf");
-    assert(sdlTextInit.isOk(), "{}", sdlTextInit.toString());
+    Debug::assert(sdlTextInit.isOk(), "{}", sdlTextInit.toString());
 
     // ┏━━━━━━━━━━━━━━┓
     // ┃ General Init ┃
@@ -53,7 +53,7 @@ void Game::init()
     const auto windowInit = Result(
         SDL_CreateWindow("Who Wants To Be A Millionaire?", 0, 0, SDL_WINDOW_OPENGL),
         "SDL_CreateWindow() failed");
-    assert(windowInit.isOk(), "{}", windowInit.toString());
+    Debug::assert(windowInit.isOk(), "{}", windowInit.toString());
 
     SDL_Window* const window = windowInit.unwrap();
     //SDL_GLContext glContext = SDL_GL_CreateContext(window);
@@ -73,7 +73,7 @@ void Game::init()
     // const auto rendererInit = Result(
     //     SDL_CreateRendererWithProperties(rendererProperties),
     //     "SDL_CreateRenderer() failed");
-    // assert(rendererInit.isOk(), "{}", rendererInit.toString());
+    // Debug::assert(rendererInit.isOk(), "{}", rendererInit.toString());
 
     // SDL_Renderer* const renderer = rendererInit.unwrap();
 

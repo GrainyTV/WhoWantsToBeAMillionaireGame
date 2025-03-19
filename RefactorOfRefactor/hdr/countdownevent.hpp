@@ -15,7 +15,7 @@ private:
 public:
     void reset(const size_t size)
     {
-        assert(size > 0, "CountDownEvent size must be larger than 0");
+        Debug::assert(size > 0, "CountDownEvent size must be larger than 0");
         numberOfRemainingItems = size;
     }
 

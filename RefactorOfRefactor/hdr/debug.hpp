@@ -6,34 +6,37 @@
     #include "fmt/format.h"
 #endif
 
-consteval bool isDebugMode()
+namespace Debug
 {
-    #ifndef NDEBUG
-        return true;
-    #else
-        return false;
-    #endif
-}
-
-template<bool Enabled = isDebugMode(), typename... Args>
-void assert(bool expr, fmt::format_string<Args...> message, Args&&... args)
-{
-    if constexpr (Enabled)
+    consteval bool isDebugMode()
     {
-        if (expr == false)
+        #ifndef NDEBUG
+            return true;
+        #else
+            return false;
+        #endif
+    }
+
+    template<bool Enabled = isDebugMode(), typename... Args>
+    void assert(bool expr, fmt::format_string<Args...> message, Args&&... args)
+    {
+        if constexpr (Enabled)
         {
-            fmt::println(stderr, "Assertion failed: {}", fmt::format(message, std::forward<Args>(args)...));
-            cpptrace::generate_trace(1).print_with_snippets();
-            std::abort();
+            if (expr == false)
+            {
+                fmt::println(stderr, "Debug::assertion failed: {}", fmt::format(message, std::forward<Args>(args)...));
+                cpptrace::generate_trace(1).print_with_snippets();
+                std::abort();
+            }
         }
     }
-}
 
-template<bool Enabled = isDebugMode(), typename... Args>
-void log(fmt::format_string<Args...> message, Args&&... args)
-{
-    if constexpr (Enabled)
+    template<bool Enabled = isDebugMode(), typename... Args>
+    void log(fmt::format_string<Args...> message, Args&&... args)
     {
-        fmt::println(stderr, message, std::forward<Args>(args)...);
+        if constexpr (Enabled)
+        {
+            fmt::println(stderr, message, std::forward<Args>(args)...);
+        }
     }
 }

@@ -18,8 +18,8 @@ public:
     requires Action<Func, Args...>
     explicit Invokable(Func&& function, Args&&... arguments)
         : action([func = std::forward<Func>(function), ...args = std::forward<Args>(arguments)]() mutable
-            { 
-                func(std::forward<Args>(args)...); 
+            {
+                std::invoke(func, std::forward<Args>(args)...);
             })
     {}
 

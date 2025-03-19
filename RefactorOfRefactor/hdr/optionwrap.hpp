@@ -54,7 +54,7 @@ namespace Option
 
         const T& value() const
         {
-            assert(isSome(), "Tried to access inner value of empty optional!");
+            Debug::assert(isSome(), "Tried to access inner value of empty optional!");
             return *valueOrNone;
         }
 

@@ -1,0 +1,31 @@
+---
+Checks: 
+  - '*'
+  - '-altera*'
+  - '-fuchsia*'
+  - '-llvmlibc*'
+  - '-*magic-numbers'
+  - '-*uppercase-literal-suffix'
+  - '-*namespace-comment*'
+  - '-modernize-use-nodiscard'
+  - '-modernize-use-trailing-return-type'
+  - '-readability-math-missing-parentheses'
+  - '-readability-identifier-length'
+  - '-hicpp-member-init'
+  - '-cppcoreguidelines-pro-type-member-init'
+  - '-misc-no-recursion'
+  - '-readability-simplify-boolean-expr'
+
+CheckOptions:
+  misc-const-correctness.AnalyzeValues: true
+  cppcoreguidelines-avoid-non-const-global-variables.AllowInternalLinkage: true
+  readability-identifier-naming.ClassCase: 'CamelCase'
+  readability-identifier-naming.StructCase: 'CamelCase'
+  readability-identifier-naming.NamespaceCase: 'CamelCase'
+  readability-identifier-naming.EnumCase: 'CamelCase'
+  readability-identifier-naming.FunctionCase: 'camelBack'
+  readability-identifier-naming.VariableCase: 'camelBack'
+  readability-identifier-naming.ConstexprVariableCase: 'UPPER_CASE'
+  readability-identifier-naming.EnumConstantCase: 'UPPER_CASE'
+  readability-identifier-naming.MacroDefinitionCase: 'UPPER_CASE'
+...

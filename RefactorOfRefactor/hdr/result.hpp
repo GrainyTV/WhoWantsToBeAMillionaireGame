@@ -61,7 +61,7 @@ public:
 
     const T& unwrap() const
     {
-        assert(isOk(), "Tried to access inner value of result object in error state!");
+        Debug::assert(isOk(), "Tried to access inner value of result object in error state!");
         return successValue.value();
     }
 

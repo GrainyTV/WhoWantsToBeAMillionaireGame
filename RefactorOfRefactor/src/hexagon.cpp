@@ -7,39 +7,49 @@
 
 namespace Hexagon
 {
+    using OpenGL::TextureGpu;
+    using _impl_details::HexagonInstance;
+    using _impl_details::HexagonGpu;
+    using _impl_details::HexagonRenderProperties;
+    using glm::vec2;
+
     namespace
     {
+        constexpr int32_t UNDEFINED = 0xAA;
+
         enum class EstimatedSize : std::uint8_t
         {
-            Small,
-            Big,
-            Big_ML,
+            SMALL,
+            BIG,
+            BIG_ML,
         };
 
         constexpr uint32_t THICKNESS = 5;
 
-        SDL_FRect reserveAreaForText(const SDL_FRect availableArea, const EstimatedSize size = EstimatedSize::Small)
+        SDL_FRect reserveAreaForText(const SDL_FRect availableArea, const EstimatedSize size = EstimatedSize::SMALL)
         {
-            float widthLimit;
-            float heightLimit;
+            using enum EstimatedSize;
+
+            float widthLimit = UNDEFINED;
+            float heightLimit = UNDEFINED;
 
             switch (size)
             {
-                case EstimatedSize::Small:
+                case SMALL:
                 {
                     widthLimit = 0.75f;
                     heightLimit = 0.5f;
                     break;
                 }
 
-                case EstimatedSize::Big:
+                case BIG:
                 {
                     widthLimit = 0.95f;
                     heightLimit = 0.9f;
                     break;
                 }
 
-                case EstimatedSize::Big_ML:
+                case BIG_ML:
                 {
                     widthLimit = 0.75f;
                     heightLimit = 0.85f;
@@ -55,9 +65,9 @@ namespace Hexagon
             };
         }
 
-        std::array<Vec2, 6> calculatePositions(const SDL_FRect area)
+        std::array<vec2, 6> calculatePositions(const SDL_FRect area)
         {
-            const std::array<Vec2, 4> middlePart = Utility::cornersOfRectangle(area);
+            const std::array<vec2, 4> middlePart = Utility::cornersOfRectangle(area);
 
             const float verticalDistance = middlePart[2][1] - middlePart[0][1];
             const float midPoint = std::midpoint(middlePart[2][1], middlePart[0][1]);
@@ -77,32 +87,32 @@ namespace Hexagon
             // ┃ a = ?                                    ┃
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-            const float cSquared = sqr(2.0f / 3.0f * verticalDistance);
-            const float bSquared = sqr(verticalDistance) / 4.0f;
-            const float aSide = sqrtf(cSquared - bSquared);
+            const float cSquared = glm::pow(2.0f / 3.0f * verticalDistance, 2.0f);
+            const float bSquared = glm::pow(verticalDistance, 2.0f) / 4.0f;
+            const float aSide = glm::sqrt(cSquared - bSquared);
 
-            const Vec2 leftEdge(middlePart[0][0] - aSide, midPoint);
-            const Vec2 rightEdge(middlePart[1][0] + aSide, midPoint);
+            const vec2 leftEdge(middlePart[0][0] - aSide, midPoint);
+            const vec2 rightEdge(middlePart[1][0] + aSide, midPoint);
 
             return { leftEdge, middlePart[0], middlePart[1], rightEdge, middlePart[3], middlePart[2]  };
         }
 
-        std::array<Vec2, 48> calculateStroke(float thickness, std::span<const Vec2> hexagonPositions)
+        std::array<vec2, 48> calculateStroke(float thickness, std::span<const vec2> hexagonPositions)
         {
-            std::array<Vec2, 48> result;
+            std::array<vec2, 48> result;
 
-            auto createQuadFromEndpoints = [=](const std::pair<Vec2, Vec2>& pair)
+            auto createQuadFromEndpoints = [=](const std::pair<vec2, vec2>& pair)
             {
-                const Vec2 startVertex = std::get<0>(pair);
-                const Vec2 endVertex = std::get<1>(pair);
+                const vec2 startVertex = std::get<0>(pair);
+                const vec2 endVertex = std::get<1>(pair);
 
-                Vec2 direction = endVertex - startVertex;
-                normalise(direction);
+                vec2 direction = endVertex - startVertex;
+                direction = glm::normalize(direction);
 
-                Vec2 perpendicular(-direction[1], direction[0]);
+                vec2 perpendicular(-direction[1], direction[0]);
                 perpendicular *= thickness / 2.0f;
 
-                const std::array<Vec2, 4> strokeSegmentCorners = {
+                const std::array<vec2, 4> strokeSegmentCorners = {
                     startVertex + perpendicular,
                     startVertex - perpendicular,
                     endVertex + perpendicular,
@@ -119,13 +129,13 @@ namespace Hexagon
                 };
             };
 
-            const std::vector<Vec2> strokeVertices =
+            const std::vector<vec2> strokeVertices =
                 hexagonPositions 
                 | Seq::pairwiseWrap()
                 | Seq::map(createQuadFromEndpoints)
                 | Seq::flatten();
 
-            assert(strokeVertices.size() == 36, "Stroke should use 6 vertex per 6 sides");
+            Debug::assert(strokeVertices.size() == 36, "Stroke should use 6 vertex per 6 sides");
             std::move(strokeVertices.begin(), strokeVertices.end(), result.begin());
             
             // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -152,7 +162,7 @@ namespace Hexagon
             return result;
         }
 
-        std::array<Vec2, 4> calculateStrokeLine(float thickness, const Vec2 referencePoint)
+        std::array<vec2, 4> calculateStrokeLine(float thickness, const vec2 referencePoint)
         {
             const float yValue = referencePoint[1];
 
@@ -244,7 +254,7 @@ namespace Hexagon
                 .RenderedText = (text.empty() == false) ? defineText(textArea, text) : TextureGpu(),
                 .Background = { .BufferId = OpenGL::createPrimitives(hexagonBackground), .VertexCount = hexagonBackground.size() },
                 .Border = { .BufferId = OpenGL::createPrimitives(hexagonStroke), .VertexCount = hexagonStroke.size() },
-                .HorizontalLine = needLine ? RectangleGpu(OpenGL::createPrimitives(hexagonStrokeLine)) : RectangleGpu()
+                .HorizontalLine = needLine ? OpenGL::createPrimitives(hexagonStrokeLine) : 0
             }
         };
     }
@@ -256,20 +266,20 @@ namespace Hexagon
 
         if (characterCount < 50)
         {
-            size = EstimatedSize::Small;
+            size = EstimatedSize::SMALL;
         }
         else if (characterCount < 70)
         {
-            size = EstimatedSize::Big;
+            size = EstimatedSize::BIG;
         }
         else
         {
-            size = EstimatedSize::Big_ML;
+            size = EstimatedSize::BIG_ML;
         }
 
         hex.CpuProperties.TextArea = reserveAreaForText(hex.CpuProperties.AvailableArea, size);
 
-        if (size == EstimatedSize::Big_ML)
+        if (size == EstimatedSize::BIG_ML)
         {
             Option::Inst<int32_t> cutIndex = findBestCut(text);
             std::string modifiedText(text);
@@ -287,19 +297,19 @@ namespace Hexagon
         }
     }
 
-    void draw(const HexagonGpu& hex, const HexagonRenderProperties& props /*const bool isHovered*/)
+    void draw(const HexagonGpu& hex, const HexagonRenderProperties& props)
     {
-        if (hex.HorizontalLine.BufferId != 0)
+        if (hex.HorizontalLine != 0)
         {
             OpenGL::changeDrawColorTo(Color::NBLUE);
-            OpenGL::renderQuad(hex.HorizontalLine.BufferId);
+            OpenGL::renderQuad(hex.HorizontalLine);
         }
 
         OpenGL::changeDrawColorTo(props.ButtonColor);
-        OpenGL::renderPrimitives(hex.Background.BufferId, 5, hex.Background.VertexCount);
+        OpenGL::renderTrianglesPacked(hex.Background.BufferId, hex.Background.VertexCount);
 
         OpenGL::changeDrawColorTo(Color::NBLUE);
-        OpenGL::renderPrimitives(hex.Border.BufferId, 4, hex.Border.VertexCount);
+        OpenGL::renderTriangles(hex.Border.BufferId, hex.Border.VertexCount);
 
         if (props.TextVisible)
         {
@@ -307,17 +317,17 @@ namespace Hexagon
         }
     }
 
-    bool isCursorInside(std::span<const Vec2> positions, const Vec2 p0)
+    bool isCursorInside(std::span<const vec2> positions, const vec2 p0)
     {
         // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
         // ┃ Using cross product with all sides                     ┃
         // ┃ Same sign means the point is inside the convex hexagon ┃
         // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-        auto crossProductOfEdge = [=](const std::pair<Vec2, Vec2>& neighbor)
+        auto crossProductOfEdge = [=](const std::pair<vec2, vec2>& neighbor)
         {
-            const Vec2 ab = neighbor.second - neighbor.first;
-            const Vec2 ap = p0 - neighbor.first;
+            const vec2 ab = neighbor.second - neighbor.first;
+            const vec2 ap = p0 - neighbor.first;
             return ab[0] * ap[1] - ab[1] * ap[0];
         };
 
