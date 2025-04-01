@@ -1,11 +1,14 @@
-project(
-    'sdl3_image',
-    'c',
-    version: 'stable-3.2.0'
-)
+project('sdl3_image', 'c', version: '3.2.0')
+subproject('libpng', default_options: ['default_library=static'])
 
 sdl3 = dependency('sdl3')
 libpng = dependency('libpng')
+
+add_project_arguments(
+    '-DSDL_IMAGE_USE_COMMON_BACKEND',
+    '-DLOAD_PNG',
+    language: 'c'
+)
 
 sources = files(
     'src/IMG.c',
@@ -30,25 +33,20 @@ sources = files(
     'src/IMG_xv.c'
 )
 
-incdir = [
-    'src',
-    'include'
-]
+incdirs = include_directories('src', 'include')
 
-sdl3_image_lib = static_library(
+sdl3_image_lib = library(
     meson.project_name(),
     sources,
-    include_directories: incdir,
+    include_directories: incdirs,
     dependencies: [sdl3, libpng],
-    c_args: [
-        '-DSDL_IMAGE_USE_COMMON_BACKEND',
-        '-DLOAD_PNG'
-    ]
+    install: true,
+    install_rpath: '.'
 )
 
 sdl3_image_dep = declare_dependency(
-    include_directories: incdir,
+    include_directories: incdirs,
     link_with: sdl3_image_lib
 )
 
-meson.override_dependency('sdl3_image', sdl3_image_dep)
+meson.override_dependency(meson.project_name(), sdl3_image_dep)

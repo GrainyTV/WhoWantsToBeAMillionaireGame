@@ -1,5 +1,6 @@
 #include "bezier.hpp"
-#include "functionals.hpp"
+#include "seq/seq.hpp"
+#include <array>
 
 namespace Bezier
 {
@@ -7,24 +8,6 @@ namespace Bezier
 
     namespace
     {
-        template<size_t CHUNKS>
-        requires (CHUNKS > 0)
-        consteval std::array<float, CHUNKS + 1> divideUnitLengthIntoEqualChunks()
-        {
-            std::array<float, CHUNKS + 1> result;
-            result[0] = 0;
-            result[CHUNKS] = 1;
-            
-            constexpr float STEP_SIZE = 1.0f / CHUNKS;
-            
-            for (size_t i = 1; i < CHUNKS; ++i)
-            {
-                result[i] = i * STEP_SIZE;
-            }
-
-            return result;
-        }
-
         vec2 evaluateAtT(const std::pair<vec2, vec2>& ab, const float t)
         {
             const vec2& a = ab.first;
@@ -49,18 +32,24 @@ namespace Bezier
 
             return solveSegment(subSolutions, t);
         }
-
-        constexpr std::array T_VALUES = divideUnitLengthIntoEqualChunks<8>();
     }
 
-    std::vector<vec2> generateFromControls(std::span<const vec2> controls)
+    std::array<vec2, N> generateFromControls(std::span<const vec2> controls)
     {
         auto solveForT = [&](const float t)
         {
             return solveSegment(controls, t);
         };
 
-        return T_VALUES | Seq::map(solveForT);
+        std::array<vec2, N> result;
+        auto vRes = T_VALUES | Seq::map(solveForT);
+        std::move(vRes.begin(), vRes.end(), result.begin());
+        return result;
+    }
+
+    std::array<glm::vec2, N> generateFromControls(std::initializer_list<const glm::vec2> controls)
+    {
+        return generateFromControls(std::span(controls));
     }
 }
 

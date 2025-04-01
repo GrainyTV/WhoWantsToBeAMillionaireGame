@@ -1,5 +1,6 @@
 #include "ellipse.hpp"
-#include "functionals.hpp"
+#include "seq/seq.hpp"
+#include "utility.hpp"
 #include <cmath>
 
 namespace Ellipse
@@ -26,8 +27,8 @@ namespace Ellipse
             const float a = desc.RadiusHorizontal;
             const float b = desc.RadiusVertical;
 
-            const float xShift = desc.Center[0];
-            const float yShift = desc.Center[1];
+            const float xShift = desc.Center.x;
+            const float yShift = desc.Center.y;
 
             const float cosT = cosf(t);
             const float sinT = sinf(t);
@@ -48,5 +49,24 @@ namespace Ellipse
         };
 
         return Seq::range<0, STEPS + 1>() | Seq::map(calculateEllipseAtT);
+    }
+
+    EllipseButton init(const SDL_FRect area)
+    {
+        const vec2 center = Utility::centerPointOfRectangle(area);
+
+        const std::vector<vec2> vertices = Ellipse::generate({
+            .Center = center,
+            .RadiusHorizontal = area.w / 2.0f,
+            .RadiusVertical = area.h / 2.0f
+        });
+        
+        const auto vertexCount = static_cast<int32_t>(vertices.size() + 1);
+
+        return {
+            .GpuProperties = {
+                .Ellipse = { .BufferId = OpenGL::createPrimitives(Seq::singleton(center) | Seq::append(vertices)), .VertexCount = vertexCount }
+            }
+        };
     }
 }

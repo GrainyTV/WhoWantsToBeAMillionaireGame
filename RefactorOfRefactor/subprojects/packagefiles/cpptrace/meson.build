@@ -4,11 +4,9 @@ project(
     version: '0.7.5',
     default_options: {
         'cpp_std': 'c++11',
-        'warning_level': '2'
+        'warning_level': '2',
     }
 )
-
-libdwarf = dependency('libdwarf', static: true)
 
 sources = files(
     'src/binary/elf.cpp',
@@ -47,30 +45,46 @@ sources = files(
     'src/platform/dbghelp_syminit_manager.cpp'
 )
 
-incdirs = [
-    'include',
-    'src'
-]
+incdirs = include_directories('include', 'src')
+
+config = []
+dependencies = []
+
+if host_machine.system() == 'windows'
+    config += [
+        '-DCPPTRACE_UNWIND_WITH_DBGHELP',
+        '-DCPPTRACE_GET_SYMBOLS_WITH_DBGHELP',
+        '-DCPPTRACE_DEMANGLE_WITH_NOTHING'
+    ]
+
+    cpp = meson.get_compiler('cpp')
+    dependencies += cpp.find_library('dbghelp')
+
+else
+    config += [
+        '-DCPPTRACE_UNWIND_WITH_UNWIND',
+        '-DCPPTRACE_GET_SYMBOLS_WITH_LIBDWARF',
+        '-DCPPTRACE_DEMANGLE_WITH_CXXABI',
+        '-DLIBDWARF_STATIC'
+    ]
+
+    subproject('libdwarf', default_options: 'default_library=static')
+    dependencies += dependency('libdwarf')
+
+endif
 
 cpptrace_lib = static_library(
     meson.project_name(),
     sources,
     include_directories: incdirs,
-    cpp_args: [
-        '-DCPPTRACE_STATIC_DEFINE',
-        '-DCPPTRACE_GET_SYMBOLS_WITH_LIBDWARF',
-        '-DCPPTRACE_DEMANGLE_WITH_CXXABI',
-        '-DCPPTRACE_UNWIND_WITH_UNWIND',
-        '-Werror=return-type',
-        '-Wundef',
-        '-Wuninitialized'
-    ],
+    cpp_args: [config],
     pic: true,
-    dependencies: [libdwarf]
+    dependencies: [dependencies]
 )
 
 cpptrace_dep = declare_dependency(
     include_directories: incdirs,
     link_with: cpptrace_lib
 )
+
 meson.override_dependency('cpptrace', cpptrace_dep)

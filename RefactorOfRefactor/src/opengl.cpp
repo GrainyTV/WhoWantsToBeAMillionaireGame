@@ -147,7 +147,7 @@ namespace OpenGL
 
         glTexImage2D(
             GL_TEXTURE_2D, 0, GL_RGBA8, (*surface).w, (*surface).h, 0,
-            GL_ABGR_EXT, GL_UNSIGNED_INT_8_8_8_8, (*surface).pixels
+            GL_RGBA, GL_UNSIGNED_INT_8_8_8_8_REV, (*surface).pixels
         );
         glGenerateMipmap(GL_TEXTURE_2D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -218,6 +218,11 @@ namespace OpenGL
         glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec2), vertices.data(), GL_STATIC_DRAW);
 
         return bufferId;
+    }
+
+    uint32_t createPrimitives(std::initializer_list<const vec2> vertices)
+    {
+        return createPrimitives(std::span(vertices));
     }
 
     uint32_t generateAndApplyVertexArray()

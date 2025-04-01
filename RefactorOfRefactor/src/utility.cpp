@@ -115,8 +115,8 @@ namespace Utility
         const std::array corners = cornersOfRectangle(rect);
 
         return {
-            (corners[0][0] + corners[1][0] + corners[2][0] + corners[3][0]) / 4.0f,
-            (corners[0][1] + corners[1][1] + corners[2][1] + corners[3][1]) / 4.0f
+            (corners[0].x + corners[1].x + corners[2].x + corners[3].x) / 4.0f,
+            (corners[0].y + corners[1].y + corners[2].y + corners[3].y) / 4.0f
         };
     }
 }

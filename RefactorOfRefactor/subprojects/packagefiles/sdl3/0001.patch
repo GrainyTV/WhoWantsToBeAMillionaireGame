@@ -1,0 +1,42 @@
+--- ./meson.build	2025-03-29 02:16:24.000000000 +0100
++++ ./meson.build	2025-04-01 08:55:01.009720100 +0200
+@@ -213,6 +213,10 @@
+   add_project_arguments('-fobjc-arc', language: 'objc')
+ endif
+ 
++sdl_deps += dependency('gl')
++cdata.set('SDL_VIDEO_RENDER_OGL', 1)
++cdata.set('SDL_VIDEO_OPENGL', 1)
++
+ if host_machine.system() == 'linux'
+   cdata.set('SDL_PLATFORM_LINUX', 1)
+   cdata.set('SDL_THREAD_PTHREAD', 1)
+@@ -220,11 +224,11 @@
+   cdata.set('SDL_LOADSO_DLOPEN', 1)
+   cdata.set('SDL_PROCESS_POSIX', 1)
+   cdata.set('SDL_INPUT_LINUXEV', 1)
+-  cdata.set('SDL_VIDEO_RENDER_OGL', 1)
+   cdata.set('SDL_GPU_VULKAN', 1)
+   cdata.set('SDL_VIDEO_VULKAN', 1)
+   cdata.set('SDL_VIDEO_RENDER_VULKAN', 1)
+   cdata.set('SDL_TIMER_UNIX', 1)
++  cdata.set('SDL_VIDEO_OPENGL_EGL', 1)
+   sdl_deps += dependency('libudev')
+   sdl_deps += dependency('dbus-1')
+   sdl_deps += dependency('libpipewire-0.3')
+@@ -252,6 +256,7 @@
+   cdata.set('SDL_VIDEO_RENDER_VULKAN', 1)
+   cdata.set('SDL_XINPUT', 1)
+   cdata.set('SDL_TIMER_WINDOWS', 1)
++  cdata.set('SDL_VIDEO_OPENGL_WGL', 1)
+   sdl_deps += cc.find_library('version')
+   sdl_deps += cc.find_library('Imm32')
+   sdl_deps += cc.find_library('SetupAPI')
+@@ -274,6 +279,7 @@
+   cdata.set('SDL_VIDEO_RENDER_VULKAN', 1)
+   cdata.set('SDL_XINPUT', 1)
+   cdata.set('SDL_TIMER_UNIX', 1)
++  cdata.set('SDL_VIDEO_OPENGL_CGL', 1)
+   sdl_deps += dependency('appleframeworks',
+                          modules: ['CoreFoundation',
+                                    'Cocoa',

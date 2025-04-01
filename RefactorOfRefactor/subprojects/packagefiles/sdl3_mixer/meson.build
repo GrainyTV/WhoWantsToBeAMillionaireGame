@@ -1,10 +1,11 @@
-project(
-    'sdl3_mixer',
-    'c',
-    version: 'pre-3.0.0'
-)
+project('sdl3_mixer', 'c', version: 'git-4be37aed1a4b76df71a814fbfa8ec9983f3b5508')
 
 sdl3 = dependency('sdl3')
+
+add_project_arguments(
+    '-DMUSIC_MP3_MINIMP3',
+    language: 'c'
+)
 
 sources = files(
     'src/codecs/load_aiff.c',
@@ -34,20 +35,15 @@ sources = files(
     'src/utils.c'
 )
 
-incdirs = [
-    'src',
-    'src/codecs',
-    'include'
-]
+incdirs = include_directories('src', 'src/codecs', 'include')
 
-sdl3_mixer_lib = static_library(
+sdl3_mixer_lib = library(
     meson.project_name(),
     sources,
     include_directories: incdirs,
     dependencies: sdl3,
-    c_args: [
-        '-DMUSIC_MP3_MINIMP3'
-    ]
+    install: true,
+    install_rpath: '.'
 )
 
 sdl3_mixer_dep = declare_dependency(
@@ -55,4 +51,4 @@ sdl3_mixer_dep = declare_dependency(
     link_with: sdl3_mixer_lib
 )
 
-meson.override_dependency('sdl3_mixer', sdl3_mixer_dep)
+meson.override_dependency(meson.project_name(), sdl3_mixer_dep)

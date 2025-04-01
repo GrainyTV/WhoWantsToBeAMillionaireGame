@@ -1,6 +1,6 @@
 #pragma once
 #include "asset.hpp"
-#include "functionals.hpp"
+#include "seq/seq.hpp"
 #include "globals.hpp"
 #include "hexagon.hpp"
 #include "iscene.hpp"
@@ -39,21 +39,21 @@ namespace Scene
                     return 0;
                 };
 
-                uiButtons
-                | Seq::iteri([&](TextBubble& tb, const size_t i)
-                    {
-                        SDL_AddTimer(500 + i * 2000, enableDisplayAnimation, &tb.Frontend.RenderProperties.TextVisible);
-                    });
+                // uiButtons
+                // | Seq::iteri([&](TextBubble& tb, const size_t i)
+                //     {
+                //         SDL_AddTimer(500 + i * 2000, enableDisplayAnimation, &tb.Frontend.RenderProperties.TextVisible);
+                //     });
 
                 SDL_AddTimer(8525, enableDisplayAnimation, &mouseEnabled);
             };
 
-            uiButtons
-            | Seq::iter([](TextBubble& tb)
-                {
-                    tb.Frontend.RenderProperties.ButtonColor = Color::NBLACK;
-                    tb.Frontend.RenderProperties.TextVisible = false;
-                });
+            // uiButtons
+            // | Seq::iter([](TextBubble& tb)
+            //     {
+            //         tb.Frontend.RenderProperties.ButtonColor = Color::NBLACK;
+            //         tb.Frontend.RenderProperties.TextVisible = false;
+            //     });
             
             data = Asset::getRandomData();
 
@@ -171,7 +171,7 @@ namespace Scene
         void init()
         {
             uiButtons = initializeButtons();
-            scoreboard = ScoreboardModule::init(uiButtons[2].Frontend.CpuProperties.Positions, totalAvailableSpaceTopHalf);
+            scoreboard = ScoreboardModule::init(uiButtons[2].Frontend.CpuProperties.AvailableArea, totalAvailableSpaceTopHalf);
 
             Asset::queueToLoad(Background);
             Asset::queueToLoad(MusicEasy);
@@ -198,7 +198,7 @@ namespace Scene
             if (sceneLoaded)
             {
                 OpenGL::renderTexture(Asset::getTextureById(Background));
-                ScoreboardModule::draw(scoreboard.GpuProperties);
+                ScoreboardModule::draw(scoreboard);
 
                 uiButtons
                 | Seq::iter([&](const TextBubble& tb)

@@ -1,7 +1,7 @@
 #pragma once
 #include "iscene.hpp"
 #include "asset.hpp"
-#include "functionals.hpp"
+#include "seq/seq.hpp"
 #include "globals.hpp"
 #include "hexagon.hpp"
 #include "optionwrap.hpp"
@@ -167,12 +167,12 @@ namespace Scene
             OpenGL::defineTextureRenderLocation(Asset::getTextureById(Logo), Option::Some(logoArea));
             OpenGL::defineTextureRenderLocation(Asset::getTextureById(Background));
 
-            uiButtons
-            | Seq::iter([](TextBubble& tb)
-                {
-                    tb.Frontend.RenderProperties.TextVisible = true;
-                    tb.Frontend.RenderProperties.ButtonColor = Color::NBLACK;
-                });
+            // uiButtons
+            // | Seq::iter([](TextBubble& tb)
+            //     {
+            //         tb.Frontend.RenderProperties.TextVisible = true;
+            //         tb.Frontend.RenderProperties.ButtonColor = Color::NBLACK;
+            //     });
 
             Utility::invalidate();
         }

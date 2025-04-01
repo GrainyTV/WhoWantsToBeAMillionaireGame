@@ -47,19 +47,41 @@ void Game::init()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
     SDL_GL_SetSwapInterval(1);
 
     const auto windowInit = Result(
         SDL_CreateWindow("Who Wants To Be A Millionaire?", 0, 0, SDL_WINDOW_OPENGL),
         "SDL_CreateWindow() failed");
-    Debug::assert(windowInit.isOk(), "{}", windowInit.toString());
+    Debug::assert(windowInit.isOk(), "{} SDL({})", windowInit.toString(), SDL_GetError());
 
     SDL_Window* const window = windowInit.unwrap();
     //SDL_GLContext glContext = SDL_GL_CreateContext(window);
     SDL_GL_CreateContext(window);
     int version = gladLoadGL(static_cast<GLADloadfunc>(SDL_GL_GetProcAddress));
     printf("GL %d.%d\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+
+    printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
+    printf("OpenGL Renderer: %s\n", glGetString(GL_RENDERER));
+    printf("OpenGL Vendor: %s\n", glGetString(GL_VENDOR));
+
+auto MessageCallback = []( GLenum /*source*/,
+                 GLenum type,
+                 GLuint /*id*/,
+                 GLenum severity,
+                 GLsizei /*length*/,
+                 const GLchar* message,
+                 const void* /*userParam*/ ) -> void
+{
+  fprintf( stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+           ( type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : "" ),
+            type, severity, message );
+};
+
+// During init, enable debug output
+glEnable              ( GL_DEBUG_OUTPUT );
+glDebugMessageCallback( MessageCallback, 0 );
 
     const SDL_DisplayMode* screenProperties = Utility::displayInfo(window);
 

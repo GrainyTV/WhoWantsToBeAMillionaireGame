@@ -24,7 +24,7 @@ namespace Debug
         {
             if (expr == false)
             {
-                fmt::println(stderr, "Debug::assertion failed: {}", fmt::format(message, std::forward<Args>(args)...));
+                fmt::println(stderr, "Assertion failed: {}", fmt::format(message, std::forward<Args>(args)...));
                 cpptrace::generate_trace(1).print_with_snippets();
                 std::abort();
             }

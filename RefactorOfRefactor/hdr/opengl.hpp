@@ -3,6 +3,7 @@
 #include "glm/glm.hpp"
 #undef assert
 #include "optionwrap.hpp"
+#include <initializer_list>
 
 namespace OpenGL
 {
@@ -39,6 +40,8 @@ namespace OpenGL
     void renderTrianglesHub(uint32_t, int32_t);
 
     uint32_t createPrimitives(std::span<const glm::vec2>);
+    
+    uint32_t createPrimitives(std::initializer_list<const glm::vec2>);
 
     uint32_t generateAndApplyVertexArray();
     

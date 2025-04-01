@@ -2,7 +2,7 @@
 
 #include "toml.hpp"
 #include "debug.hpp"
-#include "functionals.hpp"
+#include "seq/seq.hpp"
 #include "toml++/toml.hpp"
 #include <unordered_map>
 

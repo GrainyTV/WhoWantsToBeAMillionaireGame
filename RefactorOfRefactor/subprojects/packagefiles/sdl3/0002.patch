@@ -1,0 +1,17 @@
+--- ./src/render/meson.build	2025-03-29 02:16:24.000000000 +0100
++++ ./src/render/meson.build	2025-04-01 08:53:13.719731100 +0200
+@@ -1,5 +1,6 @@
+ subdir('gpu')
+ subdir('software')
++subdir('opengl')
+ 
+ if host_machine.system() == 'windows'
+   subdir('direct3d12')
+@@ -8,7 +9,6 @@
+   subdir('metal')
+   subdir('vulkan')
+ else
+-  subdir('opengl')
+   subdir('vulkan')
+ endif
+ 

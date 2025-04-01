@@ -1,16 +1,19 @@
 #include "hexagon.hpp"
+#include "bezier.hpp"
+#include "border.hpp"
 #include "fontmanager.hpp"
-#include "functionals.hpp"
+#include "seq/seq.hpp"
 #include "globals.hpp"
 #include "utility.hpp"
+#include <cstddef>
 #include <numeric>
 
 namespace Hexagon
 {
-    using OpenGL::TextureGpu;
     using _impl_details::HexagonInstance;
     using _impl_details::HexagonGpu;
     using _impl_details::HexagonRenderProperties;
+    using OpenGL::TextureGpu;
     using glm::vec2;
 
     namespace
@@ -65,12 +68,22 @@ namespace Hexagon
             };
         }
 
-        std::array<vec2, 6> calculatePositions(const SDL_FRect area)
+        std::array<vec2, 4> findTwoOppositeSideControls(const std::pair<vec2, vec2> ab)
+        {
+            const vec2& a = ab.first;
+            const vec2& b = ab.second;
+
+            const vec2 aTob(a.x, b.y);
+            const vec2 bToa(b.x, a.y);
+
+            return { a, bToa, aTob, b };
+        }
+
+        std::array<vec2, 68> calculatePositions(const SDL_FRect area)
         {
             const std::array<vec2, 4> middlePart = Utility::cornersOfRectangle(area);
-
-            const float verticalDistance = middlePart[2][1] - middlePart[0][1];
-            const float midPoint = std::midpoint(middlePart[2][1], middlePart[0][1]);
+            const float verticalDistance = middlePart[2].y - middlePart[0].y;
+            const float midPoint = std::midpoint(middlePart[2].y, middlePart[0].y);
 
             // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
             // ┃ Solving Pythagorean Theorem for (a) side ┃
@@ -87,79 +100,36 @@ namespace Hexagon
             // ┃ a = ?                                    ┃
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-            const float cSquared = glm::pow(2.0f / 3.0f * verticalDistance, 2.0f);
+            const float cSquared = glm::pow(2.0f * verticalDistance, 2.0f) / 9.0f;
             const float bSquared = glm::pow(verticalDistance, 2.0f) / 4.0f;
             const float aSide = glm::sqrt(cSquared - bSquared);
 
-            const vec2 leftEdge(middlePart[0][0] - aSide, midPoint);
-            const vec2 rightEdge(middlePart[1][0] + aSide, midPoint);
+            const vec2 leftEdge(middlePart[0].x - aSide, midPoint);
+            const vec2 rightEdge(middlePart[1].x + aSide, midPoint);
 
-            return { leftEdge, middlePart[0], middlePart[1], rightEdge, middlePart[3], middlePart[2]  };
-        }
+            std::array upperRightCorner = Bezier::generateFromControls(
+                findTwoOppositeSideControls(std::make_pair(middlePart[1], rightEdge))
+            );
 
-        std::array<vec2, 48> calculateStroke(float thickness, std::span<const vec2> hexagonPositions)
-        {
-            std::array<vec2, 48> result;
+            std::array lowerRightCorner = Bezier::generateFromControls(
+                findTwoOppositeSideControls(std::make_pair(rightEdge, middlePart[3]))
+            );
 
-            auto createQuadFromEndpoints = [=](const std::pair<vec2, vec2>& pair)
-            {
-                const vec2 startVertex = std::get<0>(pair);
-                const vec2 endVertex = std::get<1>(pair);
+            std::array lowerLeftCorner = Bezier::generateFromControls(
+                findTwoOppositeSideControls(std::make_pair(middlePart[2], leftEdge))
+            );
 
-                vec2 direction = endVertex - startVertex;
-                direction = glm::normalize(direction);
-
-                vec2 perpendicular(-direction[1], direction[0]);
-                perpendicular *= thickness / 2.0f;
-
-                const std::array<vec2, 4> strokeSegmentCorners = {
-                    startVertex + perpendicular,
-                    startVertex - perpendicular,
-                    endVertex + perpendicular,
-                    endVertex - perpendicular
-                };
-
-                return std::array {
-                    strokeSegmentCorners[0],
-                    strokeSegmentCorners[1],
-                    strokeSegmentCorners[2],
-                    strokeSegmentCorners[1],
-                    strokeSegmentCorners[2],
-                    strokeSegmentCorners[3]
-                };
-            };
-
-            const std::vector<vec2> strokeVertices =
-                hexagonPositions 
-                | Seq::pairwiseWrap()
-                | Seq::map(createQuadFromEndpoints)
-                | Seq::flatten();
-
-            Debug::assert(strokeVertices.size() == 36, "Stroke should use 6 vertex per 6 sides");
-            std::move(strokeVertices.begin(), strokeVertices.end(), result.begin());
+            std::array upperLeftCorner = Bezier::generateFromControls(
+                findTwoOppositeSideControls(std::make_pair(leftEdge, middlePart[0]))
+            );
             
-            // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-            // ┃ Magic Numbers For Sewing Stroke Segments Together ┃
-            // ┃ <4, 5, 7> <10, 11, 13> <22, 23, 25> <28, 29, 31>  ┃
-            // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            
-            result[36] = result[4];
-            result[37] = result[5];
-            result[38] = result[7];
+            std::array<vec2, 68> result;
+            std::copy(upperRightCorner.begin(), upperRightCorner.end(), result.begin());
+            std::copy(lowerRightCorner.begin(), lowerRightCorner.end(), result.begin() + 17);
+            std::copy(lowerLeftCorner.begin(), lowerLeftCorner.end(), result.begin() + 2*17);
+            std::copy(upperLeftCorner.begin(), upperLeftCorner.end(), result.begin() + 3*17);
 
-            result[39] = result[10];
-            result[40] = result[11];
-            result[41] = result[13];
-
-            result[42] = result[22];
-            result[43] = result[23];
-            result[44] = result[25];
-
-            result[45] = result[28];
-            result[46] = result[29];
-            result[47] = result[31];
-
-            return result;
+            return result; 
         }
 
         std::array<vec2, 4> calculateStrokeLine(float thickness, const vec2 referencePoint)
@@ -231,18 +201,16 @@ namespace Hexagon
     HexagonInstance init(const SDL_FRect area, bool needLine, std::string_view text)
     {
         const SDL_FRect textArea = reserveAreaForText(area);
-        const std::array hexagonPositions = calculatePositions(area);
-        const std::array hexagonStroke = calculateStroke(THICKNESS, hexagonPositions);
-        const std::array hexagonStrokeLine = calculateStrokeLine(THICKNESS, hexagonPositions[0]);
+        
+        std::array hexagonPositions = calculatePositions(area);
+        const vec2 centerPosition = Utility::centerPointOfRectangle(area);
+        const std::array hexagonStroke = Border::generateFrom(hexagonPositions);
+        const std::array hexagonStrokeLine = calculateStrokeLine(THICKNESS, centerPosition);
 
-        // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-        // ┃ Reorder vertices for triangle strip render ┃
-        // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-
-        const std::array hexagonBackground = {
-            hexagonPositions[0], hexagonPositions[1], hexagonPositions[5],
-            hexagonPositions[2], hexagonPositions[4], hexagonPositions[3]
-        };
+        std::array<vec2, hexagonPositions.size() + 2> hexagonRenderPositions;
+        hexagonRenderPositions[0] = centerPosition;
+        hexagonRenderPositions[hexagonRenderPositions.size() - 1] = hexagonPositions[0];
+        std::copy(hexagonPositions.begin(), hexagonPositions.end(), hexagonRenderPositions.begin() + 1);
 
         return {
             .CpuProperties = {
@@ -252,8 +220,8 @@ namespace Hexagon
             },
             .GpuProperties = {
                 .RenderedText = (text.empty() == false) ? defineText(textArea, text) : TextureGpu(),
-                .Background = { .BufferId = OpenGL::createPrimitives(hexagonBackground), .VertexCount = hexagonBackground.size() },
-                .Border = { .BufferId = OpenGL::createPrimitives(hexagonStroke), .VertexCount = hexagonStroke.size() },
+                .Background = { .BufferId = OpenGL::createPrimitives(hexagonRenderPositions), .VertexCount = static_cast<int32_t>(hexagonRenderPositions.size()) },
+                .Border = { .BufferId = OpenGL::createPrimitives(hexagonStroke), .VertexCount = static_cast<int32_t>(hexagonStroke.size()) },
                 .HorizontalLine = needLine ? OpenGL::createPrimitives(hexagonStrokeLine) : 0
             }
         };
@@ -306,10 +274,10 @@ namespace Hexagon
         }
 
         OpenGL::changeDrawColorTo(props.ButtonColor);
-        OpenGL::renderTrianglesPacked(hex.Background.BufferId, hex.Background.VertexCount);
+        OpenGL::renderTrianglesHub(hex.Background.BufferId, hex.Background.VertexCount);
 
         OpenGL::changeDrawColorTo(Color::NBLUE);
-        OpenGL::renderTriangles(hex.Border.BufferId, hex.Border.VertexCount);
+        OpenGL::renderTrianglesPacked(hex.Border.BufferId, hex.Border.VertexCount);
 
         if (props.TextVisible)
         {
@@ -319,22 +287,31 @@ namespace Hexagon
 
     bool isCursorInside(std::span<const vec2> positions, const vec2 p0)
     {
-        // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-        // ┃ Using cross product with all sides                     ┃
-        // ┃ Same sign means the point is inside the convex hexagon ┃
-        // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-
-        auto crossProductOfEdge = [=](const std::pair<vec2, vec2>& neighbor)
+        auto windingNumberDetection = [p0](const std::pair<vec2, vec2>& neighbor)
         {
-            const vec2 ab = neighbor.second - neighbor.first;
-            const vec2 ap = p0 - neighbor.first;
-            return ab[0] * ap[1] - ab[1] * ap[0];
+            const vec2& a = neighbor.first;
+            const vec2& b = neighbor.second;
+            const bool atLeastOneXIsToTheRight = a.x >= p0.x || b.x >= p0.x;
+
+            if (a.y <= p0.y && p0.y <= b.y && atLeastOneXIsToTheRight)
+            {
+                return 1;
+            }
+            
+            if (b.y <= p0.y && p0.y <= a.y && atLeastOneXIsToTheRight)
+            {
+                return -1;
+            }
+            
+            return 0;
         };
 
-        return
+        const int32_t windingNumberSum =
             positions
             | Seq::pairwiseWrap()
-            | Seq::map(crossProductOfEdge)
-            | Seq::forall(Utility::isPositive);
+            | Seq::map(windingNumberDetection)
+            | Seq::sum();
+
+        return windingNumberSum != 0;
     }
 }

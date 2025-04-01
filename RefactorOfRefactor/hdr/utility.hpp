@@ -2,16 +2,14 @@
 #include "SDL3/SDL.h"
 #include "color.hpp"
 #include "debug.hpp"
-#include "opengl.hpp"
-//#include "svl/SVL.h"
 #include "glm/glm.hpp"
-#include "textureregion.hpp"
+#include "opengl.hpp"
 #include <memory>
 #include <span>
 
 namespace Utility
 {
-    enum CustomEvents
+    enum CustomEvents : std::uint16_t
     {
         EVENT_INVALIDATE = SDL_EVENT_USER,
         EVENT_ENABLE_SCENE,

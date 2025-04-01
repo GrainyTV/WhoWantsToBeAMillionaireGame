@@ -5,7 +5,7 @@
 #include "debug.hpp"
 #include "defer.hpp"
 #include "fontmanager.hpp"
-#include "functionals.hpp"
+#include "seq/seq.hpp"
 #include "globals.hpp"
 #include "opengl.hpp"
 #include "result.hpp"

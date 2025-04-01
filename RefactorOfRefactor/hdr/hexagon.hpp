@@ -12,7 +12,7 @@ namespace Hexagon
     {
         struct HexagonCpu
         {
-            std::array<glm::vec2, 6> Positions;
+            std::array<glm::vec2, 68> Positions;
             SDL_FRect AvailableArea;
             SDL_FRect TextArea;
         };
