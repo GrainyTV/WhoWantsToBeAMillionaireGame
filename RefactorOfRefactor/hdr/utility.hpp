@@ -6,6 +6,7 @@
 #include "opengl.hpp"
 #include <memory>
 #include <span>
+#include <array>
 
 namespace Utility
 {

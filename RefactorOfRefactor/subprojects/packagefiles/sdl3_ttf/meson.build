@@ -4,6 +4,11 @@ subproject('freetype2')
 sdl3 = dependency('sdl3')
 freetype2 = dependency('freetype2')
 
+add_project_arguments(
+    '-DDLL_EXPORT',
+    language: 'c'
+)
+
 sources = files(
     'src/SDL_hashtable.c',
     'src/SDL_hashtable_ttf.c',

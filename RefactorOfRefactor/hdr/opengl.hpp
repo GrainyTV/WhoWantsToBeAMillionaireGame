@@ -4,6 +4,7 @@
 #undef assert
 #include "optionwrap.hpp"
 #include <initializer_list>
+#include <span>
 
 namespace OpenGL
 {

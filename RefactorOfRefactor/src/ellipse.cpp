@@ -2,6 +2,7 @@
 #include "seq/seq.hpp"
 #include "utility.hpp"
 #include <cmath>
+#include <numbers>
 
 namespace Ellipse
 {
@@ -12,12 +13,12 @@ namespace Ellipse
     {
         constexpr int32_t STEPS = 48;
         constexpr float N = 2.3f;
-        constexpr float TWO_PI = 2.0f * M_PIf;
+        constexpr float TWO_PI = 2.0f * std::numbers::pi_v<float>;
 
         template<typename T>
         float sgn(T val)
         {
-            return (T(0) < val) - (val < T(0));
+            return static_cast<float>((T(0) < val) - (val < T(0)));
         }
 
         vec2 evaluateAtT(const float t, const EllipseDescriptor& desc)

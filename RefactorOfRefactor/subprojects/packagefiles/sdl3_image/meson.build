@@ -7,6 +7,7 @@ libpng = dependency('libpng')
 add_project_arguments(
     '-DSDL_IMAGE_USE_COMMON_BACKEND',
     '-DLOAD_PNG',
+    '-DDLL_EXPORT',
     language: 'c'
 )
 

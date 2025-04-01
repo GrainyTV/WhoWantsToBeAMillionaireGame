@@ -5,6 +5,7 @@
 #include "opengl.hpp"
 #include <span>
 #include <string_view>
+#include <array>
 
 namespace Hexagon
 {

@@ -5,6 +5,7 @@ project(
         'cpp_std': 'c++20',
         'buildtype': 'debug',
         'prefix': meson.current_build_dir() / 'bin',
+        'bindir': meson.current_build_dir() / 'bin',
         'libdir': 'lib64',
     },
     version: '1.0',
@@ -26,6 +27,7 @@ available_args = cpp.get_supported_arguments(
     '-Wfloat-conversion',
     '-Wno-missing-field-initializers',
     '/Zc:preprocessor',
+    '/wd4100',
 )
 
 subdir('meson' / 'wraps')
@@ -58,7 +60,7 @@ executable(
     override_options: {
         'warning_level': '3',
         'werror': true,
-        'b_ndebug': 'if-release'
+        'b_ndebug': 'if-release',
     },
     install: true,
     install_dir: output_prefix,

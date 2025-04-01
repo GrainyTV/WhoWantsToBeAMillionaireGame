@@ -1,10 +1,7 @@
 #pragma once
-
-#ifndef NDEBUG
-    #include "cpptrace/cpptrace.hpp"
-    #include "fmt/base.h"
-    #include "fmt/format.h"
-#endif
+#include "cpptrace/cpptrace.hpp"
+#include "fmt/base.h"
+#include "fmt/format.h"
 
 namespace Debug
 {

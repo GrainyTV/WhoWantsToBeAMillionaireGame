@@ -44,11 +44,11 @@ void Utility::drawRectangle(SDL_Renderer* renderer, const SDL_FRect* rectangle)
     Debug::assert(drawRectangle == 0, "Failed to draw rectangle onto the screen ({})", SDL_GetError());
 }
 
-void Utility::drawVertices(SDL_Renderer* renderer, std::span<const SDL_Vertex> vertices)
-{
-    const auto drawVertices = SDL_RenderGeometry(renderer, nullptr, vertices.data(), vertices.size(), nullptr, 0);
-    Debug::assert(drawVertices, "Failed to draw vertices onto the screen ({})", SDL_GetError());
-}
+// void Utility::drawVertices(SDL_Renderer* renderer, std::span<const SDL_Vertex> vertices)
+// {
+//     const auto drawVertices = SDL_RenderGeometry(renderer, nullptr, vertices.data(), vertices.size(), nullptr, 0);
+//     Debug::assert(drawVertices, "Failed to draw vertices onto the screen ({})", SDL_GetError());
+// }
 
 float Utility::areaOfTriangleByItsVertices(const SDL_FPoint vertA, const SDL_FPoint vertB, const SDL_FPoint vertC)
 {

@@ -13,12 +13,12 @@ namespace std
 
     inline fs::directory_iterator begin(fs::directory_iterator it)
     {
-        return fs::__cxx11::begin(it);
+        return fs::begin(it);
     }
 
     inline fs::directory_iterator end(fs::directory_iterator it)
     {
-        return fs::__cxx11::end(it);
+        return fs::end(it);
     }
 }
 
@@ -63,6 +63,8 @@ template<typename Func, typename... Args>
     using ReturnValue = typename std::__invoke_of<Func, Args...>::type;
 #elif defined(__GLIBCXX__)
     using ReturnValue = typename std::__invoke_result<Func, Args...>::type;
+#elif defined(_MSVC_STL_VERSION)
+    using ReturnValue = std::_Invoke_result_t<Func, Args...>;
 #endif
 
 template<typename T, typename = std::enable_if_t<IEnumerable<T>>, typename Closure>
@@ -79,6 +81,8 @@ template<typename Func, typename... Args>
     constexpr bool IsInvokable = std::__invokable<Func, Args...>::value;
 #elif defined(__GLIBCXX__)
     constexpr bool IsInvokable = std::__is_invocable<Func, Args...>::value;
+#elif defined(_MSVC_STL_VERSION)
+    constexpr bool IsInvokable = std::_Select_invoke_traits<Func, Args...>::_Is_invocable::value;
 #endif
 
 template<typename T1, typename T2>

@@ -2,10 +2,7 @@ project(
     'cpptrace',
     'cpp',
     version: '0.7.5',
-    default_options: {
-        'cpp_std': 'c++11',
-        'warning_level': '2',
-    }
+    default_options: ['warning_level=2']
 )
 
 sources = files(
@@ -45,6 +42,7 @@ sources = files(
     'src/platform/dbghelp_syminit_manager.cpp'
 )
 
+add_project_arguments('-DCPPTRACE_STATIC_DEFINE', language: 'cpp')
 incdirs = include_directories('include', 'src')
 
 config = []
@@ -54,11 +52,15 @@ if host_machine.system() == 'windows'
     config += [
         '-DCPPTRACE_UNWIND_WITH_DBGHELP',
         '-DCPPTRACE_GET_SYMBOLS_WITH_DBGHELP',
-        '-DCPPTRACE_DEMANGLE_WITH_NOTHING'
+        '-DCPPTRACE_DEMANGLE_WITH_NOTHING',
     ]
 
+    windows_sdk_dir = run_command('cmd', '/c', 'echo', '%WindowsSdkDir%', check: true).stdout().strip()
+    windows_sdk_version = run_command('cmd', '/c', 'echo', '%WindowsSDKVersion%', check: true).stdout().strip()
+    windows_sdk_lib_path = windows_sdk_dir + 'Lib' / windows_sdk_version + 'um' / 'x64'
+
     cpp = meson.get_compiler('cpp')
-    dependencies += cpp.find_library('dbghelp')
+    dependencies += cpp.find_library('dbghelp', dirs: windows_sdk_lib_path, static: true)
 
 else
     config += [
