@@ -130,14 +130,15 @@ namespace Scene
             
             const std::vector<SDL_FRect> buttonAreas = 
                 Seq::range<1, 6>()
-                | Seq::map([&](const int32_t& index)
+                | Seq::map([&](const int32_t index)
                     {
-                        const size_t row = index / 2;
+                        const int32_t row = index / 2;
+                        const auto rowF = static_cast<float>(row);
 
                         return SDL_FRect({
                             .x = index == 1 ? beginWidth : index % 2 == 0 ? beginWidth : beginWidth + sixtyfivePercantOfWidth * 0.55f,
                             //.y = sixtyPercantOfHeight + (row + 1) * individualPaddingSpace + row * individualItemSpace,
-                            .y = totalAvailableSpaceTopHalf + (row + 1) * individualPaddingSpace + row * individualItemSpace,
+                            .y = totalAvailableSpaceTopHalf + (rowF + 1) * individualPaddingSpace + rowF * individualItemSpace,
                             .w = index == 1 ? sixtyfivePercantOfWidth : sixtyfivePercantOfWidth * 0.45f,
                             .h = individualItemSpace,
                         });

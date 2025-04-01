@@ -66,7 +66,7 @@ template<typename Func, typename... Args>
 #endif
 
 template<typename T, typename = std::enable_if_t<IEnumerable<T>>, typename Closure>
-auto operator|(T&& sequence, Closure&& sequenceClosure) -> ReturnValue<Closure, T>
+constexpr auto operator|(T&& sequence, Closure&& sequenceClosure) -> ReturnValue<Closure, T>
 {
     return sequenceClosure(sequence);
 }
@@ -127,7 +127,7 @@ namespace Seq
     }
 
     template<typename Action>
-    auto iter(Action&& action)
+    constexpr auto iter(Action&& action)
     {
         return [action](const auto& sequence) -> void
         {

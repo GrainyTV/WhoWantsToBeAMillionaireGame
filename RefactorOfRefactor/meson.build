@@ -22,6 +22,8 @@ add_project_arguments(
 )
 
 available_args = cpp.get_supported_arguments(
+    '-Wconversion',
+    '-Wfloat-conversion',
     '-Wno-missing-field-initializers',
     '/Zc:preprocessor',
 )

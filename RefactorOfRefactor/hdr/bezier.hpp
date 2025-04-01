@@ -3,6 +3,7 @@
 #include <array>
 #include <span>
 #include <vector>
+#include "seq/seq.hpp"
 
 namespace Bezier
 {
@@ -18,10 +19,7 @@ namespace Bezier
             
             constexpr float STEP_SIZE = 1.0f / CHUNKS;
             
-            for (size_t i = 1; i < CHUNKS; ++i)
-            {
-                result[i] = i * STEP_SIZE;
-            }
+            Seq::range<1, CHUNKS>() | Seq::iter([&result](std::size_t i) { result[i] = static_cast<float>(i) * STEP_SIZE; });
 
             return result;
         }

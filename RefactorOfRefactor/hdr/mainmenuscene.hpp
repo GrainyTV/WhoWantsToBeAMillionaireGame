@@ -1,10 +1,10 @@
 #pragma once
 #include "iscene.hpp"
 #include "asset.hpp"
-#include "seq/seq.hpp"
 #include "globals.hpp"
 #include "hexagon.hpp"
 #include "optionwrap.hpp"
+#include "seq/seq.hpp"
 #include "utility.hpp"
 
 namespace Scene
@@ -26,10 +26,10 @@ namespace Scene
         static SDL_FRect initializeLogoArea()
         {
             const auto properties = Globals::Properties.value();
-            const int32_t screenWidth = properties.ScreenWidth;
-            const int32_t screenHeight = properties.ScreenHeight;
+            const auto screenWidth = static_cast<float>(properties.ScreenWidth);
+            const auto screenHeight = static_cast<float>(properties.ScreenHeight);
 
-            const uint32_t halfScreenHeight = screenHeight / 2;
+            const float halfScreenHeight = screenHeight / 2;
             const float logoSize = halfScreenHeight * 0.9f;
 
             return {
@@ -43,9 +43,9 @@ namespace Scene
         static std::array<TextBubble, BUTTON_COUNT> initializeButtons(const SDL_FRect logoArea)
         {
             const auto properties = Globals::Properties.value();
-            const int32_t screenHeight = properties.ScreenHeight;
+            const auto screenHeight = static_cast<float>(properties.ScreenHeight);
 
-            const uint32_t halfScreenHeight = screenHeight / 2;
+            const float halfScreenHeight = screenHeight / 2;
             const float totalItemSpace = halfScreenHeight * 0.7f;
             const float individualItemSpace = totalItemSpace / BUTTON_COUNT;
             const float totalPaddingSpace = halfScreenHeight - totalItemSpace;
@@ -55,9 +55,11 @@ namespace Scene
                 Seq::range<1, 5>()
                 | Seq::map([&](const int32_t index)
                     {
+                        const auto indexF = static_cast<float>(index);
+
                         return SDL_FRect({
                             .x = logoArea.x,
-                            .y = halfScreenHeight + index * individualPaddingSpace + (index - 1) * individualItemSpace,
+                            .y = halfScreenHeight + indexF * individualPaddingSpace + (indexF - 1) * individualItemSpace,
                             .w = logoArea.w,
                             .h = individualItemSpace,
                         });
