@@ -1,13 +1,8 @@
 project('sdl3_ttf', 'c', version: '3.1.0')
-subproject('freetype2')
+subproject('freetype2', default_options: 'default_library=static')
 
 sdl3 = dependency('sdl3')
 freetype2 = dependency('freetype2')
-
-add_project_arguments(
-    '-DDLL_EXPORT',
-    language: 'c'
-)
 
 sources = files(
     'src/SDL_hashtable.c',

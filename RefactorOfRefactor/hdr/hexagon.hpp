@@ -42,6 +42,7 @@ namespace Hexagon
 
     struct TextBubble
     {
+        bool IsEnabled = true;
         _impl_details::HexagonInstance Frontend;
         Invokable Backend;
     };

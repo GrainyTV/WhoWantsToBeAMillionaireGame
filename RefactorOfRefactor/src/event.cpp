@@ -63,7 +63,8 @@ namespace Event
         SDL_SetWindowSize(properties.Window, properties.ScreenWidth, properties.ScreenHeight);
         SDL_SetWindowFullscreen(properties.Window, true);
 
-        OpenGL::compileShaders();
+        //OpenGL::compileShaders();
+        OpenGL::init();
         FontManager::init();
         changeSceneTo<MainMenuScene>();
 

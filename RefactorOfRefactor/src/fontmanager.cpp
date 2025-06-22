@@ -33,7 +33,7 @@ namespace FontManager
             if (width < targetWidth && height < targetHeight)
             {
                 SDL_FlipSurface(surface, SDL_FLIP_VERTICAL);
-                SDL_Surface* convertedSurface = SDL_ConvertSurface(surface, SDL_PIXELFORMAT_ABGR8888);                
+                SDL_Surface* convertedSurface = SDL_ConvertSurface(surface, SDL_PIXELFORMAT_ABGR8888);
                 return OpenGL::createTextureFromSurface(convertedSurface);
             }
 
@@ -47,7 +47,7 @@ namespace FontManager
         const std::unique_ptr<char[]> fontPath = Utility::formatPath(FONT_PATH_FMT, DEFAULT_FONT_NAME);
 
         const auto font = Result(TTF_OpenFont(fontPath.get(), DEFAULT_FONT_SIZE), "Failed to load font");
-        Debug::assert(font.isOk(), "{}", font.toString());
+        Debug::assert(font.isOk(), "{} SDL: {}", font.toString(), SDL_GetError());
 
         fontResource = font.unwrap();
         TTF_SetFontWrapAlignment(fontResource, TTF_HORIZONTAL_ALIGN_CENTER);

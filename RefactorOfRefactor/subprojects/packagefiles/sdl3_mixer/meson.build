@@ -4,7 +4,6 @@ sdl3 = dependency('sdl3')
 
 add_project_arguments(
     '-DMUSIC_MP3_MINIMP3',
-    '-DDLL_EXPORT',
     language: 'c'
 )
 

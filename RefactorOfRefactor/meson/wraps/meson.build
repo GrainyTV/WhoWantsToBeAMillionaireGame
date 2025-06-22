@@ -11,19 +11,7 @@ dependency_ids = [
     'cpptrace',
 ]
 
-# debug_dependency_ids = [
-#     'fmt',
-#     'cpptrace'
-# ]
-
 foreach id : dependency_ids
     subproject(id)
     dependencies += dependency(id)
 endforeach
-
-# if get_option('buildtype') == 'debug'
-#     foreach id : debug_dependency_ids
-#         subproject(id)
-#         dependencies += dependency(id)
-#     endforeach
-# endif

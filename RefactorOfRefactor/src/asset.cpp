@@ -58,7 +58,8 @@ namespace Asset
             { CorrectAnswer, { .Type = SFX, .Name = "correct-answer" }},
             { WrongAnswer, { .Type = SFX, .Name = "wrong-answer" }},
             { FinalAnswer, { .Type = SFX, .Name = "final-answer" }},
-            //{ ScoreBoard,  { .Type = Texture, .Name = "scoreboard" }},
+            { HELP_AUDIENCE,  { .Type = TEXTURE, .Name = "people-group-solid" }},
+            { HELP_PHONE, { .Type = TEXTURE, .Name = "phone-volume-solid" }},
         };
 
         std::vector<std::string> dataTopics;

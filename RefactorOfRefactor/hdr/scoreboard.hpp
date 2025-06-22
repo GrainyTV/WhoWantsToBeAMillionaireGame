@@ -1,7 +1,9 @@
 #pragma once
+#include "asset.hpp"
 #include "opengl.hpp"
-#include "roundedrectangle.hpp"
 #include "ellipse.hpp"
+#include "roundedrectangle.hpp"
+#include <string_view>
 
 namespace ScoreboardModule
 {    
@@ -16,5 +18,9 @@ namespace ScoreboardModule
     Scoreboard init(SDL_FRect, float);
 
     void draw(const Scoreboard&);
+
+    void lateinit(Ellipse::EllipseButton&, Asset::Identifier);
+
+    void lateinit(Ellipse::EllipseButton&, std::string_view);
 }
 

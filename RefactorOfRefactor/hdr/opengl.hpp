@@ -14,6 +14,7 @@ namespace OpenGL
         uint32_t BufferId;
         int32_t Width;
         int32_t Height;
+        float AspectRatio;
     };
 
     struct PrimitiveGpu
@@ -24,7 +25,7 @@ namespace OpenGL
 
     using RectangleGpu = uint32_t;
 
-    void compileShaders();
+    void init();
 
     void changeDrawColorTo(SDL_FColor);
 

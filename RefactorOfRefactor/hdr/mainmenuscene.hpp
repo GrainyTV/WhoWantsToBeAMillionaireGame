@@ -16,12 +16,14 @@ namespace Scene
     class MainMenuScene
     {
     private:
-        static constexpr size_t BUTTON_COUNT = 4;
         bool sceneLoaded = false;
-        Option::Inst<size_t> selectedButton = Option::None<size_t>();
         uint32_t sceneVao = 0;
-        SDL_FRect logoArea;
+        Option::Inst<size_t> selectedButton = Option::None<size_t>();
+
+        static constexpr std::size_t BUTTON_COUNT = 4;
         std::array<TextBubble, BUTTON_COUNT> uiButtons;
+        
+        SDL_FRect logoArea;
 
         static SDL_FRect initializeLogoArea()
         {
@@ -169,12 +171,12 @@ namespace Scene
             OpenGL::defineTextureRenderLocation(Asset::getTextureById(Logo), Option::Some(logoArea));
             OpenGL::defineTextureRenderLocation(Asset::getTextureById(Background));
 
-            // uiButtons
-            // | Seq::iter([](TextBubble& tb)
-            //     {
-            //         tb.Frontend.RenderProperties.TextVisible = true;
-            //         tb.Frontend.RenderProperties.ButtonColor = Color::NBLACK;
-            //     });
+            Seq::range<0, BUTTON_COUNT>()
+            | Seq::iter([this](std::size_t i)
+                {
+                    uiButtons.at(i).Frontend.RenderProperties.TextVisible = true;
+                    uiButtons.at(i).Frontend.RenderProperties.ButtonColor = Color::NBLACK;
+                });
 
             Utility::invalidate();
         }

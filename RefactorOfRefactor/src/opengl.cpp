@@ -1,4 +1,6 @@
+#ifndef GLAD_GL_IMPLEMENTATION
 #define GLAD_GL_IMPLEMENTATION
+#endif
 
 #include "globals.hpp"
 #include "SDL3_image/SDL_image.h"
@@ -17,6 +19,7 @@ namespace OpenGL
     namespace
     {
         uint32_t shaderProgram = 0;
+        SDL_GLContext glContext;
 
         constexpr const char* vertexShaderSource = R"(
             #version 130
@@ -107,30 +110,68 @@ namespace OpenGL
                 Debug::log("{}", errorMessage);
             }
         }
+
+        void compileShaders()
+        {
+            uint32_t vertexShader = glCreateShader(GL_VERTEX_SHADER);
+            glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+            
+            uint32_t fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+            glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+            
+            glCompileShader(vertexShader);
+            checkShaderCompilationResult("Vertex", vertexShader);
+            
+            glCompileShader(fragmentShader);
+            checkShaderCompilationResult("Fragment", fragmentShader);
+
+            shaderProgram = glCreateProgram();
+            glAttachShader(shaderProgram, vertexShader);
+            glAttachShader(shaderProgram, fragmentShader);
+            glLinkProgram(shaderProgram);
+            glUseProgram(shaderProgram);
+        }
     }
 
-    void compileShaders()
+    void init()
     {
+        const auto properties = Globals::Properties.value();
+        glContext = SDL_GL_CreateContext(properties.Window);
+
+        const int32_t version = gladLoadGL(static_cast<GLADloadfunc>(SDL_GL_GetProcAddress));
+        Debug::log("OpenGL Version: {}.{}", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+        Debug::log("OpenGL Vendor: {}", (const char*) glGetString(GL_VENDOR));
+        Debug::log("OpenGL Renderer: {}", (const char*) glGetString(GL_RENDERER));
+
+        if (Debug::isDebugMode())
+        {
+            const auto messageCallback = []
+               (GLenum /*source*/,
+                GLenum type,
+                GLuint /*id*/,
+                GLenum severity,
+                GLsizei /*length*/,
+                const GLchar* message,
+                const void* /*userParam*/) -> void
+            {
+                if (type == GL_DEBUG_TYPE_ERROR)
+                {
+                    Debug::log("[OpenGL Error Encountered]");
+                    Debug::log("==> Severity: {0:#x}", severity);
+                    Debug::log("==> Cause: {}\n", message);
+                }
+            };
+
+            glEnable(GL_DEBUG_OUTPUT);
+            glDebugMessageCallback(messageCallback, nullptr);
+        }
+
+        glViewport(0, 0, properties.ScreenWidth, properties.ScreenHeight);
+
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        uint32_t vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
-        
-        uint32_t fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
-        
-        glCompileShader(vertexShader);
-        checkShaderCompilationResult("Vertex", vertexShader);
-        
-        glCompileShader(fragmentShader);
-        checkShaderCompilationResult("Fragment", fragmentShader);
-
-        shaderProgram = glCreateProgram();
-        glAttachShader(shaderProgram, vertexShader);
-        glAttachShader(shaderProgram, fragmentShader);
-        glLinkProgram(shaderProgram);
-        glUseProgram(shaderProgram);
+        compileShaders();
     }
 
     void changeDrawColorTo(const SDL_FColor nColor)
@@ -149,6 +190,10 @@ namespace OpenGL
             GL_TEXTURE_2D, 0, GL_RGBA8, (*surface).w, (*surface).h, 0,
             GL_RGBA, GL_UNSIGNED_INT_8_8_8_8_REV, (*surface).pixels
         );
+        
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        
         glGenerateMipmap(GL_TEXTURE_2D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -156,11 +201,15 @@ namespace OpenGL
         uint32_t bufferId = 0;
         glGenBuffers(1, &bufferId);
 
+        const int32_t width = (*surface).w;
+        const int32_t height = (*surface).h;
+
         return {
             .Id = textureId,
             .BufferId = bufferId,
-            .Width = (*surface).w,
-            .Height = (*surface).h
+            .Width = width,
+            .Height = height,
+            .AspectRatio = static_cast<float>(width) / static_cast<float>(height),
         };
     }
 

@@ -60,4 +60,10 @@ namespace Utility
     std::array<glm::vec2, 4> cornersOfRectangle(SDL_FRect);
 
     glm::vec2 centerPointOfRectangle(SDL_FRect);
+
+    template<typename T>
+    void resetAsync(T& asyncObj)
+    {
+        asyncObj.get();
+    }
 }

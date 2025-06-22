@@ -11,6 +11,8 @@ namespace Color
         constexpr SDL_Color BLUE(95, 194, 253, 255);
         constexpr SDL_Color GREEN(14, 146, 19, 255);
         constexpr SDL_Color RED(219, 24, 73, 255);
+        //constexpr SDL_Color GRAY(232, 231, 227, 255);
+        constexpr SDL_Color GRAY(172, 171, 170, 255);
 
         consteval SDL_FColor normalize(const SDL_Color color)
         {
@@ -32,4 +34,5 @@ namespace Color
     constexpr SDL_FColor NBLUE = _impl_details::normalize(_impl_details::BLUE);
     constexpr SDL_FColor NGREEN = _impl_details::normalize(_impl_details::GREEN);
     constexpr SDL_FColor NRED = _impl_details::normalize(_impl_details::RED);
+    constexpr SDL_FColor NGRAY = _impl_details::normalize(_impl_details::GRAY);
 }

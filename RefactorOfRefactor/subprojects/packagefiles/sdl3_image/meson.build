@@ -1,5 +1,6 @@
 project('sdl3_image', 'c', version: '3.2.0')
-subproject('libpng', default_options: ['default_library=static'])
+subproject('zlib', default_options: 'default_library=static')
+subproject('libpng', default_options: 'default_library=static')
 
 sdl3 = dependency('sdl3')
 libpng = dependency('libpng')
@@ -7,7 +8,6 @@ libpng = dependency('libpng')
 add_project_arguments(
     '-DSDL_IMAGE_USE_COMMON_BACKEND',
     '-DLOAD_PNG',
-    '-DDLL_EXPORT',
     language: 'c'
 )
 

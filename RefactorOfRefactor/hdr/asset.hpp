@@ -18,7 +18,8 @@ namespace Asset
         CorrectAnswer,
         WrongAnswer,
         FinalAnswer,
-        //ScoreBoard,
+        HELP_AUDIENCE,
+        HELP_PHONE,
     };
 
     void queueToLoad(Identifier);

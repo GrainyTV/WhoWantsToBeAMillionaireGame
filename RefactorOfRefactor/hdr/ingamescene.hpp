@@ -1,5 +1,6 @@
 #pragma once
 #include "asset.hpp"
+#include "fontmanager.hpp"
 #include "seq/seq.hpp"
 #include "globals.hpp"
 #include "hexagon.hpp"
@@ -7,6 +8,8 @@
 #include "optionwrap.hpp"
 #include "scoreboard.hpp"
 #include "utility.hpp"
+
+#include <future>
 
 namespace Scene
 {
@@ -17,43 +20,147 @@ namespace Scene
     class InGameScene
     {
     private:
-        static constexpr size_t BUTTON_COUNT = 5;
         bool sceneLoaded = false;
-        bool mouseEnabled = false;
         float totalAvailableSpaceTopHalf = 0;
         float totalAvailableSpaceBottomHalf = 0;
         Option::Inst<size_t> selectedButton = Option::None<size_t>();
+        
+        static constexpr size_t BUTTON_COUNT = 5;
         std::array<TextBubble, BUTTON_COUNT> uiButtons;
+        
         Toml::Data data;
         Scoreboard scoreboard;
+        std::future<void> animationProcess;
+
+        void removeHalfOfTheAnswers()
+        {
+            uiButtons.at(1).IsEnabled = false;
+            uiButtons.at(2).IsEnabled = false;
+            Utility::invalidate();
+        }
+
+        void buttonIntersectionWithPreviousHit(SDL_FPoint location)
+        {
+            const std::size_t buttonId = selectedButton.value();
+
+            if (buttonId >= 1 && buttonId <= 4)
+            {
+                const bool noMainButtonsHovered =
+                    Seq::range<1, BUTTON_COUNT>()
+                    | Seq::forall([&](std::size_t i)
+                        {
+                            return Hexagon::isCursorInside(uiButtons.at(i).Frontend.CpuProperties.Positions, Utility::fPointToGlm(location)) == false;
+                        });            
+
+                if (noMainButtonsHovered)
+                {
+                    uiButtons.at(selectedButton.value()).Frontend.RenderProperties.ButtonColor = Color::NBLACK;  
+                    selectedButton = Option::None<std::size_t>();
+                    Utility::invalidate();
+                }
+
+                return;
+            }
+
+            if (buttonId == 5 && Hexagon::isCursorInside(scoreboard.FiftyFiftyHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
+            {
+                scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NGRAY;
+                selectedButton = Option::None<std::size_t>();
+                Utility::invalidate();
+                return;
+            }
+
+            if (buttonId == 6 && Hexagon::isCursorInside(scoreboard.PhoneHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
+            {
+                scoreboard.PhoneHelp.GpuProperties.Color = Color::NGRAY;
+                selectedButton = Option::None<std::size_t>();
+                Utility::invalidate();
+                return;     
+            }
+
+            if (buttonId == 7 && Hexagon::isCursorInside(scoreboard.AudienceHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
+            {
+                scoreboard.AudienceHelp.GpuProperties.Color = Color::NGRAY;
+                selectedButton = Option::None<std::size_t>();
+                Utility::invalidate();
+            }
+        }
+
+        Option::Inst<std::size_t> buttonIntersectionWithoutPreviousHit(SDL_FPoint location)
+        {
+            auto selectedButton = Option::None<std::size_t>();
+
+            Seq::range<1, BUTTON_COUNT>()
+            | Seq::iter([&](std::size_t i)
+                {
+                    if (Hexagon::isCursorInside(uiButtons.at(i).Frontend.CpuProperties.Positions, Utility::fPointToGlm(location))
+                        && uiButtons.at(i).IsEnabled)
+                    {
+                        selectedButton = Option::Some(i);
+                    }
+                });
+
+            if (selectedButton.isSome())
+            {
+                return selectedButton;
+            }
+
+            if (Hexagon::isCursorInside(scoreboard.FiftyFiftyHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
+            {
+                return Option::Some(BUTTON_COUNT);
+            }
+
+            if (Hexagon::isCursorInside(scoreboard.PhoneHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
+            {
+                return Option::Some(BUTTON_COUNT + 1);
+            }
+
+            if (Hexagon::isCursorInside(scoreboard.AudienceHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
+            {
+                return Option::Some(BUTTON_COUNT + 2);
+            }
+
+            return Option::None<std::size_t>();
+        }
+
+        bool checkForOngoingAnimation()
+        {
+            if (animationProcess.valid())
+            {
+                const std::future_status animStatus = animationProcess.wait_for(std::chrono::milliseconds(0));
+                
+                if (animStatus != std::future_status::ready)
+                {
+                    return true;
+                }
+
+                Utility::resetAsync(animationProcess);
+            }
+
+            return false;
+        }
+
+        void animateTextPopups()
+        {
+            Seq::range<0, BUTTON_COUNT>()
+            | Seq::iter([this](std::size_t i)
+                {
+                    std::this_thread::sleep_for(std::chrono::milliseconds(i == 0 ? 500 : 2000));
+                    uiButtons.at(i).Frontend.RenderProperties.TextVisible = true;
+                    Utility::invalidate();
+                });
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(25));
+        }
 
         void ontoTheNextRound()
         {
-            auto animateTextPopups = [this]()
-            {
-                auto enableDisplayAnimation = [](void* userData, uint32_t, uint32_t) -> uint32_t
+            Seq::range<0, BUTTON_COUNT>()
+            | Seq::iter([this](std::size_t i)
                 {
-                    auto* enabled = static_cast<bool*>(userData);
-                    *enabled = true;
-                    Utility::invalidate();
-                    return 0;
-                };
-
-                // uiButtons
-                // | Seq::iteri([&](TextBubble& tb, const size_t i)
-                //     {
-                //         SDL_AddTimer(500 + i * 2000, enableDisplayAnimation, &tb.Frontend.RenderProperties.TextVisible);
-                //     });
-
-                SDL_AddTimer(8525, enableDisplayAnimation, &mouseEnabled);
-            };
-
-            // uiButtons
-            // | Seq::iter([](TextBubble& tb)
-            //     {
-            //         tb.Frontend.RenderProperties.ButtonColor = Color::NBLACK;
-            //         tb.Frontend.RenderProperties.TextVisible = false;
-            //     });
+                    uiButtons.at(i).Frontend.RenderProperties.TextVisible = false;
+                    uiButtons.at(i).Frontend.RenderProperties.ButtonColor = Color::NBLACK;
+                });
             
             data = Asset::getRandomData();
 
@@ -63,47 +170,32 @@ namespace Scene
             Hexagon::lateinit(uiButtons[3].Frontend, data.AnswerC.Text);
             Hexagon::lateinit(uiButtons[4].Frontend, data.AnswerD.Text);
 
-            animateTextPopups();
+            animationProcess = std::async(std::launch::async, &InGameScene::animateTextPopups, this);
+        }
+
+        void animateAnswerValidation()
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(2250));
+            Mix_PlayChannel(-1, Asset::getSfxById(CorrectAnswer), 0);
             Utility::invalidate();
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            auto* const callback = new Invokable(&InGameScene::ontoTheNextRound, this);
+            Utility::requestUserEvent({ .type = Utility::EVENT_INVOKE_ON_UI_THREAD, .data1 = callback });
         }
 
         void checkIfAnswerIsCorrect(Toml::Answer* answer)
         {
-            auto waitBeforeNewRoundAnimation = [](void* callback, uint32_t, uint32_t) -> uint32_t
-            {
-                //auto* callback = new Invokable(&InGameScene::ontoTheNextRound, this);
-
-                Utility::requestUserEvent({
-                    .type = Utility::EVENT_INVOKE_ON_UI_THREAD,
-                    .data1 = callback,
-                });
-                
-                return 0;
-            };
-
-            auto answerValidateAnimation = [](void* userData, uint32_t, uint32_t) -> uint32_t
-            {
-                auto* const sfx = static_cast<Mix_Chunk*>(userData);
-                Mix_PlayChannel(-1, sfx, 0);
-                Utility::invalidate();
-                return 0;
-            };
-
             Mix_PlayChannel(-1, Asset::getSfxById(FinalAnswer), 0);
 
             if ((*answer).IsCorrect)
             {
-                SDL_AddTimer(2250, answerValidateAnimation, Asset::getSfxById(CorrectAnswer));
-
-                auto* callback = new Invokable(&InGameScene::ontoTheNextRound, this);
-                SDL_AddTimer(2250 + 1000, waitBeforeNewRoundAnimation, callback);
-                
-                uiButtons[1].Frontend.RenderProperties.ButtonColor = Color::NGREEN;
+                uiButtons.at(1).Frontend.RenderProperties.ButtonColor = Color::NGREEN;
+                animationProcess = std::async(std::launch::async, &InGameScene::animateAnswerValidation, this);          
             }
             else
             {
-                SDL_AddTimer(2250, answerValidateAnimation, Asset::getSfxById(WrongAnswer));
-                uiButtons[2].Frontend.RenderProperties.ButtonColor = Color::NRED;
+                uiButtons.at(2).Frontend.RenderProperties.ButtonColor = Color::NRED;
             }
         }
 
@@ -137,7 +229,6 @@ namespace Scene
 
                         return SDL_FRect({
                             .x = index == 1 ? beginWidth : index % 2 == 0 ? beginWidth : beginWidth + sixtyfivePercantOfWidth * 0.55f,
-                            //.y = sixtyPercantOfHeight + (row + 1) * individualPaddingSpace + row * individualItemSpace,
                             .y = totalAvailableSpaceTopHalf + (rowF + 1) * individualPaddingSpace + rowF * individualItemSpace,
                             .w = index == 1 ? sixtyfivePercantOfWidth : sixtyfivePercantOfWidth * 0.45f,
                             .h = individualItemSpace,
@@ -182,7 +273,8 @@ namespace Scene
             Asset::queueToLoad(FinalAnswer);
             Asset::queueToLoad(CorrectAnswer);
             Asset::queueToLoad(WrongAnswer);
-            //Asset::queueToLoad(ScoreBoard);
+            Asset::queueToLoad(HELP_AUDIENCE);
+            Asset::queueToLoad(HELP_PHONE);
             Asset::beginLoadProcess();
 
             Utility::invalidate();
@@ -195,10 +287,10 @@ namespace Scene
         void redraw()
         {
             OpenGL::clearScreen();
+            OpenGL::renderTexture(Asset::getTextureById(Background));
 
             if (sceneLoaded)
             {
-                OpenGL::renderTexture(Asset::getTextureById(Background));
                 ScoreboardModule::draw(scoreboard);
 
                 uiButtons
@@ -214,39 +306,48 @@ namespace Scene
 
         void intersects(const SDL_FPoint location)
         {
-            if (mouseEnabled)
+            if (checkForOngoingAnimation() == false)
             {
-                bool anyHovered = false;
-
-                // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-                // ┃ Question should not be hovered so we take subarray ┃
-                // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-
-                const std::span<const TextBubble> hoverableButtons(uiButtons.begin() + 1, uiButtons.end());
-
-                hoverableButtons
-                | Seq::iteri([&](const TextBubble& tb, const size_t i)
-                    {
-                        const bool isInside = Hexagon::isCursorInside(tb.Frontend.CpuProperties.Positions, Utility::fPointToGlm(location));
-
-                        if (isInside)
-                        {
-                            if (selectedButton.isNone())
-                            {
-                                selectedButton = Option::Some(i + 1);
-                                uiButtons.at(selectedButton.value()).Frontend.RenderProperties.ButtonColor = Color::NORANGE;
-                                Utility::invalidate();
-                            }
-
-                            anyHovered = true;
-                        }
-                    });
-
-                if (anyHovered == false && selectedButton.isSome())
+                if (selectedButton.isSome())
                 {
-                    uiButtons.at(selectedButton.value()).Frontend.RenderProperties.ButtonColor = Color::NBLACK;
-                    selectedButton = Option::None<size_t>();
-                    Utility::invalidate();
+                    buttonIntersectionWithPreviousHit(location);
+                }
+                else
+                {
+                    const Option::Inst<std::size_t> hit = buttonIntersectionWithoutPreviousHit(location);
+
+                    if (hit.isSome())
+                    {
+                        const std::size_t buttonId = hit.value();
+
+                        switch (buttonId)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                                uiButtons.at(buttonId).Frontend.RenderProperties.ButtonColor = Color::NORANGE;
+                                break;
+
+                            case 5:
+                                scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NORANGE;
+                                break;
+                            
+                            case 6:
+                                scoreboard.PhoneHelp.GpuProperties.Color = Color::NORANGE;
+                                break;
+
+                            case 7:
+                                scoreboard.AudienceHelp.GpuProperties.Color = Color::NORANGE;
+                                break;
+
+                            default:
+                                Debug::assert(false, "Undefined button id encountered ({})", buttonId);
+                        }
+
+                        selectedButton = hit;
+                        Utility::invalidate();
+                    }
                 }
             }
         }
@@ -254,15 +355,9 @@ namespace Scene
         void onSceneLoaded()
         {
             sceneLoaded = true;
-
-            // TextureGpu scoreBoard = Asset::getTextureById(ScoreBoard);
-            // SDL_FRect scoreBoardTarget({
-            //     .x = uiButtons[0].Frontend.CpuProperties.Positions[2][0] - static_cast<float>(scoreBoard.Width),
-            //     .y = 0,
-            //     .w = static_cast<float>(scoreBoard.Width),
-            //     .h = static_cast<float>(scoreBoard.Height)
-            // });
-            // OpenGL::defineTextureRenderLocation(scoreBoard, Option::Some(scoreBoardTarget));
+            ScoreboardModule::lateinit(scoreboard.FiftyFiftyHelp, "50:50");
+            ScoreboardModule::lateinit(scoreboard.PhoneHelp, HELP_PHONE);
+            ScoreboardModule::lateinit(scoreboard.AudienceHelp, HELP_AUDIENCE);
 
             Mix_PlayMusic(Asset::getMusicById(MusicEasy), -1);
             ontoTheNextRound();
@@ -272,10 +367,35 @@ namespace Scene
 
         void clicks()
         {
-            if (selectedButton.isSome())
+            if (checkForOngoingAnimation() == false && selectedButton.isSome())
             {
-                mouseEnabled = false;
-                uiButtons.at(selectedButton.value()).Backend.execute();
+                const std::size_t buttonId = selectedButton.value();
+
+                switch (buttonId)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        if (uiButtons.at(buttonId).IsEnabled) { uiButtons.at(buttonId).Backend.execute(); }
+                        break;
+
+                    case 5:
+                        removeHalfOfTheAnswers();
+                        //scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NORANGE;
+                        break;
+                    
+                    case 6:
+                        //scoreboard.PhoneHelp.GpuProperties.Color = Color::NORANGE;
+                        break;
+
+                    case 7:
+                        //scoreboard.AudienceHelp.GpuProperties.Color = Color::NORANGE;
+                        break;
+
+                    default:
+                        Debug::assert(false, "Undefined button id encountered ({})", buttonId);
+                }
             }
         }
     };

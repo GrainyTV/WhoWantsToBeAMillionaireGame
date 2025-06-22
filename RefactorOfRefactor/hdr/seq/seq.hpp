@@ -1,25 +1,34 @@
 #pragma once
-#include <array>
-#include <numeric>
-#include <vector>
-#include <iterator>
-#include <type_traits>
 #include <algorithm>
+#include <array>
 #include <filesystem>
+#include <iterator>
+#include <numeric>
+#include <type_traits>
+#include <vector>
 
-namespace std
+namespace fs = std::filesystem;
+
+template<typename T>
+constexpr auto beginSelector(const T& sequence)
 {
-    namespace fs = std::filesystem;
+    return std::begin(sequence);
+}
 
-    inline fs::directory_iterator begin(fs::directory_iterator it)
-    {
-        return fs::begin(it);
-    }
+template<typename T>
+constexpr auto endSelector(const T& sequence)
+{
+    return std::end(sequence);
+}
 
-    inline fs::directory_iterator end(fs::directory_iterator it)
-    {
-        return fs::end(it);
-    }
+inline fs::directory_iterator beginSelector(const fs::directory_iterator& dir)
+{
+    return fs::begin(dir);
+}
+
+inline fs::directory_iterator endSelector(const fs::directory_iterator& /*unused*/)
+{
+    return {};
 }
 
 template<typename, typename = void>
@@ -58,6 +67,10 @@ constexpr bool IEnumerable<T, std::enable_if_t<
 template<typename T, std::size_t N>
 constexpr bool IEnumerable<T(&)[N]> = true;
 
+
+template<typename T>
+constexpr bool IEnumerable<T, std::enable_if_t<std::is_same<T, std::decay_t<fs::directory_iterator>>::value>> = true;
+
 template<typename Func, typename... Args>
 #if defined(_LIBCPP_VERSION)
     using ReturnValue = typename std::__invoke_of<Func, Args...>::type;
@@ -74,7 +87,8 @@ constexpr auto operator|(T&& sequence, Closure&& sequenceClosure) -> ReturnValue
 }
 
 template<typename T>
-using ItemOf = std::decay_t<decltype(*std::begin(std::declval<T&>()))>;
+//using ItemOf = std::decay_t<decltype(*std::begin(std::declval<T&>()))>;
+using ItemOf = std::decay_t<decltype(*beginSelector(std::declval<T&>()))>;
 
 template<typename Func, typename... Args>
 #if defined(_LIBCPP_VERSION)
@@ -138,7 +152,8 @@ namespace Seq
             using T = ItemOf<decltype(sequence)>;
             static_assert(IsValidSignature<void, Action, const T&>, "Signature of Action should be <void(const T&)>");
             
-            std::for_each(std::begin(sequence), std::end(sequence), action);
+            //std::for_each(std::begin(sequence), std::end(sequence), action);
+            std::for_each(beginSelector(sequence), endSelector(sequence), action);
         };
     }
 
