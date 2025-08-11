@@ -1,13 +1,16 @@
 project('sdl3_image', 'c', version: '3.2.0')
-subproject('zlib', default_options: 'default_library=static')
-subproject('libpng', default_options: 'default_library=static')
 
-sdl3 = dependency('sdl3')
-libpng = dependency('libpng')
+zlib_proj = subproject('zlib')
+meson.override_dependency('zlib', zlib_proj.get_variable('zlib_dep').as_static())
+
+libpng_proj = subproject('libpng')
+meson.override_dependency('libpng', libpng_proj.get_variable('libpng_dep').as_static())
 
 add_project_arguments(
+    '-DDLL_EXPORT',
     '-DSDL_IMAGE_USE_COMMON_BACKEND',
     '-DLOAD_PNG',
+    '-DLOAD_SVG',
     language: 'c'
 )
 
@@ -37,10 +40,13 @@ sources = files(
 incdirs = include_directories('src', 'include')
 
 sdl3_image_lib = library(
-    meson.project_name(),
+    'SDL3_image',
     sources,
     include_directories: incdirs,
-    dependencies: [sdl3, libpng],
+    dependencies: [
+        dependency('sdl3'),
+        dependency('libpng')
+    ],
     install: true,
     install_rpath: '.'
 )

@@ -49,8 +49,8 @@ namespace Asset
 
         std::unordered_map<Identifier, MetaAsset> assetDescriptor =
         {
-            { Logo, { .Type = TEXTURE, .Name = "logo" }},
-            { Background, { .Type = TEXTURE, .Name = "background" }},
+            { Logo, { .Type = TEXTURE, .Name = "logo.png" }},
+            { Background, { .Type = TEXTURE, .Name = "background.png" }},
             { MusicEasy, { .Type = MUSIC, .Name = "music-easy-questions" }},
             { MusicMedium, { .Type = MUSIC, .Name = "music-medium-questions" }},
             { MusicHard, { .Type = MUSIC, .Name = "music-hard-questions" }},
@@ -58,8 +58,8 @@ namespace Asset
             { CorrectAnswer, { .Type = SFX, .Name = "correct-answer" }},
             { WrongAnswer, { .Type = SFX, .Name = "wrong-answer" }},
             { FinalAnswer, { .Type = SFX, .Name = "final-answer" }},
-            { HELP_AUDIENCE,  { .Type = TEXTURE, .Name = "people-group-solid" }},
-            { HELP_PHONE, { .Type = TEXTURE, .Name = "phone-volume-solid" }},
+            { HELP_AUDIENCE,  { .Type = TEXTURE, .Name = "people-group-solid.svg" }},
+            { HELP_PHONE, { .Type = TEXTURE, .Name = "phone-volume-solid.svg" }},
         };
 
         std::vector<std::string> dataTopics;
@@ -103,7 +103,7 @@ namespace Asset
             {
                 case TEXTURE:
                 {
-                    constexpr const char* TEXTURE_PATH_FMT = "assets/textures/%s.png";
+                    constexpr const char* TEXTURE_PATH_FMT = "assets/textures/%s";
                     const std::unique_ptr<char[]> texturePath = Utility::formatPath(TEXTURE_PATH_FMT, metadata.Name);
 
                     const auto surfaceResult = Result(IMG_Load(texturePath.get()), "Failed to load surface");

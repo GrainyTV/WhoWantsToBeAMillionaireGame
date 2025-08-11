@@ -1,11 +1,10 @@
 project(
-    'Who Wants To Be A Millionaire',
+    'WhoWantsToBeAMillionaire',
     'cpp',
     default_options: {
         'cpp_std': 'c++20',
         'buildtype': 'debug',
-        'prefix': meson.current_build_dir() / 'bin',
-        'bindir': meson.current_build_dir() / 'bin',
+        'prefix': meson.current_source_dir() / 'bin',
         'libdir': 'lib64',
     },
     version: '1.0',
@@ -15,22 +14,36 @@ project(
 cpp = meson.get_compiler('cpp')
 platform = host_machine.system()
 
-add_project_arguments(
+global_args = cpp.get_supported_arguments('/utf-8')
+add_global_arguments(global_args, language: 'cpp')
+
+local_args = cpp.get_supported_arguments(
+# Macro defines
     '-DTOML_EXCEPTIONS=0',
     '-DGLM_FORCE_XYZW_ONLY',
     '-DCPPTRACE_STATIC_DEFINE',
-    language: 'cpp'
-)
-
-available_args = cpp.get_supported_arguments(
+# Unix args
     '-Wconversion',
     '-Wfloat-conversion',
     '-Wno-missing-field-initializers',
+# Windows args
+    '/utf-8',
     '/Zc:preprocessor',
     '/wd4100',
+    '/wd4530'
 )
+add_project_arguments(local_args, language: 'cpp')
 
-subdir('meson' / 'wraps')
+dependencies = [
+    dependency('tomlplusplus'),
+    dependency('glm'),
+    dependency('sdl3'),
+    dependency('sdl3_image'),
+    dependency('sdl3_mixer'),
+    dependency('sdl3_ttf'),
+    dependency('fmt'),
+    dependency('cpptrace'),
+]
 
 sources = files(
     'src/ellipse.cpp',
@@ -48,27 +61,29 @@ sources = files(
     'src/main.cpp'
 )
 
-output_prefix = get_option('prefix')
+copy_assets = run_command(
+    find_program('tools' / 'copy_dir.py'), 'assets',
+    check: true,
+    capture: false
+)
 
 executable(
-    meson.project_name().replace(' ', ''),
+    meson.project_name(),
     sources,
     name_suffix: platform == 'windows' ? 'exe' : 'out',
     include_directories: include_directories('hdr'),
     dependencies: dependencies,
-    cpp_args: available_args,
     override_options: {
         'warning_level': '3',
         'werror': true,
         'b_ndebug': 'if-release',
     },
     install: true,
-    install_dir: output_prefix,
+    install_dir: get_option('prefix'),
     install_rpath: get_option('libdir')
 )
 
 install_subdir('assets',
-    install_dir: output_prefix,
+    install_dir: get_option('prefix'),
     follow_symlinks: false
 )
- 

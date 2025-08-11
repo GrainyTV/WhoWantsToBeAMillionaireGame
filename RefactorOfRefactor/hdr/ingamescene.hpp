@@ -88,7 +88,7 @@ namespace Scene
 
         Option::Inst<std::size_t> buttonIntersectionWithoutPreviousHit(SDL_FPoint location)
         {
-            auto selectedButton = Option::None<std::size_t>();
+            auto somethingSelected = Option::None<std::size_t>();
 
             Seq::range<1, BUTTON_COUNT>()
             | Seq::iter([&](std::size_t i)
@@ -96,13 +96,13 @@ namespace Scene
                     if (Hexagon::isCursorInside(uiButtons.at(i).Frontend.CpuProperties.Positions, Utility::fPointToGlm(location))
                         && uiButtons.at(i).IsEnabled)
                     {
-                        selectedButton = Option::Some(i);
+                        somethingSelected = Option::Some(i);
                     }
                 });
 
-            if (selectedButton.isSome())
+            if (somethingSelected.isSome())
             {
-                return selectedButton;
+                return somethingSelected;
             }
 
             if (Hexagon::isCursorInside(scoreboard.FiftyFiftyHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
