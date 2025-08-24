@@ -16,7 +16,7 @@ void Game::init()
     // ┃ SDL Init ┃
     // ┗━━━━━━━━━━┛
 
-    SDL_SetHint(SDL_HINT_VIDEO_DOUBLE_BUFFER, "true");
+    // SDL_SetHint(SDL_HINT_VIDEO_DOUBLE_BUFFER, "true");
 
     const auto sdlInit = Result(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS), "Failed to initialize SDL");
     Debug::assert(sdlInit.isOk(), "{} SDL({})", sdlInit.toString(), SDL_GetError());
@@ -42,32 +42,41 @@ void Game::init()
     // ┃ General Init ┃
     // ┗━━━━━━━━━━━━━━┛
 
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
-    SDL_GL_SetSwapInterval(1);
+    //SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    //SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+    //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    //SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
+    //SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
+    //SDL_GL_SetSwapInterval(1);
 
     const auto windowInit = Result(
-        SDL_CreateWindow("Who Wants To Be A Millionaire?", 0, 0, SDL_WINDOW_OPENGL),
+        SDL_CreateWindow("Who Wants To Be A Millionaire?", 0, 0, SDL_WINDOW_HIDDEN),
         "SDL_CreateWindow() failed");
     Debug::assert(windowInit.isOk(), "{} SDL({})", windowInit.toString(), SDL_GetError());
 
     SDL_Window* const window = windowInit.unwrap();
     const SDL_DisplayMode* const screenProperties = Utility::displayInfo(window);
 
-    Globals::Properties = Option::Some<Globals::GameProperties>({
-        .ScreenWidth = (*screenProperties).w,
-        .ScreenHeight = (*screenProperties).h,
+    const auto gpuInit = Result(
+        SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV | SDL_GPU_SHADERFORMAT_METALLIB, Debug::isDebugMode(), nullptr),
+        "SDL_CreateGPUDevice() failed");
+    Debug::assert(gpuInit.isOk(), "{} SDL({})", gpuInit.toString(), SDL_GetError());
+
+    SDL_GPUDevice* const gpu = gpuInit.unwrap();
+
+    Globals::Properties = OptionExtensions::Some<Globals::GameProperties>({
+        .ScreenWidth = static_cast<uint32_t>((*screenProperties).w),
+        .ScreenHeight = static_cast<uint32_t>((*screenProperties).h),
         .Window = window,
+        .Gpu = gpu,
     });
 }
 
 void Game::deinit()
 {
-    const auto properties = Globals::Properties.value();
+    const auto& properties = Globals::Properties.value();
 
+    SDL_DestroyGPUDevice(properties.Gpu);
     SDL_DestroyWindow(properties.Window);
     TTF_Quit();
     Mix_Quit();

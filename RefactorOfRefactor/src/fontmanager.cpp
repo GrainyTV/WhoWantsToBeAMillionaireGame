@@ -6,6 +6,7 @@
 #include "result.hpp"
 #include "utility.hpp"
 #include <memory>
+#include "seq/seq.hpp"
 
 namespace FontManager
 {
@@ -15,29 +16,31 @@ namespace FontManager
         constexpr size_t DEFAULT_FONT_SIZE = 64;
         TTF_Font* fontResource;
 
-        OpenGL::TextureGpu generateFromTextWithSize(std::string_view text, const size_t size, const float targetWidth, const float targetHeight, const bool multiLine)
+        Shader::TextureInfo generateFromTextWithFontSize(std::string_view text, float targetWidth, float targetHeight, size_t fontSize, bool multiLine)
         {
-            const bool sizeChanged = TTF_SetFontSize(fontResource, static_cast<float>(size));
+            const bool sizeChanged = TTF_SetFontSize(fontResource, static_cast<float>(fontSize));
             Debug::assert(sizeChanged, "Failed to change size of font");
 
             SDL_Surface* surface = 
                 multiLine
                 ? TTF_RenderText_Blended_Wrapped(fontResource, text.data(), text.size(), Color::WHITE, 0)
                 : TTF_RenderText_Blended(fontResource, text.data(), text.size(), Color::WHITE);
-            
             DEFER(SDL_DestroySurface, surface);
 
-            auto width = static_cast<float>((*surface).w);
-            auto height = static_cast<float>((*surface).h);
-
-            if (width < targetWidth && height < targetHeight)
+            if ((*surface).w < targetWidth && (*surface).h < targetHeight)
             {
-                SDL_FlipSurface(surface, SDL_FLIP_VERTICAL);
-                SDL_Surface* convertedSurface = SDL_ConvertSurface(surface, SDL_PIXELFORMAT_ABGR8888);
-                return OpenGL::createTextureFromSurface(convertedSurface);
+                if ((*surface).format != SDL_PIXELFORMAT_RGBA32)
+                {
+                    SDL_Surface* convertedSurface = SDL_ConvertSurface(surface, SDL_PIXELFORMAT_RGBA32);
+                    DEFER(SDL_DestroySurface, surface);
+
+                    return Shader::createTextureFromSurface(convertedSurface);
+                }
+
+                return Shader::createTextureFromSurface(surface);
             }
 
-            return generateFromTextWithSize(text, size - 2, targetWidth, targetHeight, multiLine);
+            return generateFromTextWithFontSize(text, targetWidth, targetHeight, fontSize - 2, multiLine);
         }
     }
 
@@ -53,15 +56,15 @@ namespace FontManager
         TTF_SetFontWrapAlignment(fontResource, TTF_HORIZONTAL_ALIGN_CENTER);
     }
 
-    OpenGL::TextureGpu generateFromText(std::string_view text, const float targetWidth, const float targetHeight, const bool multiLine)
+    Shader::TextureInfo generateFromText(std::string_view text, float targetWidth, float targetHeight)
     {
-        return generateFromTextWithSize(text, DEFAULT_FONT_SIZE, targetWidth, targetHeight, multiLine);
+        return generateFromTextWithFontSize(text, targetWidth, targetHeight, DEFAULT_FONT_SIZE, text | Seq::contains('\n'));
     }
 
-    SDL_FRect centerInsideArea(const OpenGL::TextureGpu texture, const SDL_FRect outerArea)
+    SDL_FRect alignRenderedTextToCenter(const Shader::TextureInfo& texture, SDL_FRect outerArea)
     {
-        auto innerWidth = static_cast<float>(texture.Width);
-        auto innerHeight = static_cast<float>(texture.Height);
+        const float innerWidth = static_cast<float>((*texture.Metadata).w);
+        const float innerHeight = static_cast<float>((*texture.Metadata).h);
 
         return {
             outerArea.x + (outerArea.w - innerWidth) / 2.0f,

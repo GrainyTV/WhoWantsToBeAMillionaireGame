@@ -1,12 +1,13 @@
 #pragma once
 #include "SDL3/SDL.h"
 #include "color.hpp"
-#include "debug.hpp"
+
 #include "glm/glm.hpp"
-#include "opengl.hpp"
+//#include "opengl.hpp"
 #include <memory>
 #include <span>
 #include <array>
+#include "debug.hpp"
 
 namespace Utility
 {
@@ -17,6 +18,19 @@ namespace Utility
         EVENT_INVOKE_ON_UI_THREAD,
         EVENT_CHANGE_SCENE_MAINMENU,
         EVENT_CHANGE_SCENE_INGAME,
+    };
+
+    struct RectCorners
+    {
+        glm::vec2 TopLeft;
+        glm::vec2 TopRight;
+        glm::vec2 BottomLeft;
+        glm::vec2 BottomRight;
+
+        constexpr std::span<const glm::vec2> asSpan() const
+        {
+            return std::span(&TopLeft, 4);
+        }
     };
 
     //SDL_FPoint svlToFpoint(const Vec2 svlVec2);
@@ -57,9 +71,11 @@ namespace Utility
 
     std::unique_ptr<char[]> formatPath(const char*, const char*);
 
-    std::array<glm::vec2, 4> cornersOfRectangle(SDL_FRect);
+    RectCorners cornersOfRectangle(SDL_FRect);
 
     glm::vec2 centerPointOfRectangle(SDL_FRect);
+
+    auto danSundayWindingNumberCheck(std::span<const glm::vec2>, glm::vec2) -> bool;
 
     template<typename T>
     void resetAsync(T& asyncObj)

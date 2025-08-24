@@ -10,8 +10,8 @@ class Result
 {
 private:
     bool isSuccess;
-    Option::Inst<T> successValue;
-    Option::Inst<std::string_view> errorMessage;
+    Option<T> successValue;
+    Option<std::string_view> errorMessage;
 
 public:
     Result(const Result&) = delete;
@@ -21,32 +21,32 @@ public:
     requires std::is_same_v<T, bool>
     explicit Result(const U booleanExpression, std::string_view errorMessage)
         : isSuccess(booleanExpression)
-        , successValue(isSuccess ? Option::Some(true) : Option::None<T>())
-        , errorMessage(isSuccess ? Option::None<std::string_view>() : Option::Some(errorMessage))
+        , successValue(isSuccess ? OptionExtensions::Some(true) : OptionExtensions::None<T>())
+        , errorMessage(isSuccess ? OptionExtensions::None<std::string_view>() : OptionExtensions::Some(errorMessage))
     {}
     
     template<typename U = T>
     requires std::is_same_v<T, uint32_t>
     explicit Result(const U integerExpression, std::string_view errorMessage, const U shouldBe = 0)
         : isSuccess(integerExpression == shouldBe)
-        , successValue(isSuccess ? Option::Some(integerExpression) : Option::None<T>())
-        , errorMessage(isSuccess ? Option::None<std::string_view>() : Option::Some(errorMessage))
+        , successValue(isSuccess ? OptionExtensions::Some(integerExpression) : OptionExtensions::None<T>())
+        , errorMessage(isSuccess ? OptionExtensions::None<std::string_view>() : OptionExtensions::Some(errorMessage))
     {}
 
     template<typename U = T>
     requires std::is_same_v<T, int64_t>
     explicit Result(const U integerExpression, std::string_view errorMessage, const U min, const U max)
         : isSuccess(integerExpression >= min && integerExpression <= max) 
-        , successValue(isSuccess ? Option::Some(integerExpression) : Option::None<T>())
-        , errorMessage(isSuccess ? Option::None<std::string_view>() : Option::Some(errorMessage))
+        , successValue(isSuccess ? OptionExtensions::Some(integerExpression) : OptionExtensions::None<T>())
+        , errorMessage(isSuccess ? OptionExtensions::None<std::string_view>() : OptionExtensions::Some(errorMessage))
     {}
 
     template<typename U = T>
     requires std::is_pointer_v<T>
     explicit Result(const U pointerExpression, std::string_view errorMessage)
         : isSuccess(pointerExpression != nullptr)
-        , successValue(isSuccess ? Option::Some(pointerExpression) : Option::None<T>())
-        , errorMessage(isSuccess ? Option::None<std::string_view>() : Option::Some(errorMessage))
+        , successValue(isSuccess ? OptionExtensions::Some(pointerExpression) : OptionExtensions::None<T>())
+        , errorMessage(isSuccess ? OptionExtensions::None<std::string_view>() : OptionExtensions::Some(errorMessage))
     {}
 
     bool isOk() const

@@ -13,7 +13,7 @@ private:
     std::mutex m;
 
 public:
-    void reset(const size_t size)
+    void reset(size_t size)
     {
         Debug::assert(size > 0, "CountDownEvent size must be larger than 0");
         numberOfRemainingItems = size;

@@ -7,7 +7,7 @@
 
 namespace Bezier
 {
-    namespace _impl_details
+    namespace _details
     {
         template<size_t CHUNKS>
         requires (CHUNKS > 0)
@@ -25,10 +25,10 @@ namespace Bezier
         }
     }
 
-    constexpr std::array T_VALUES = _impl_details::divideUnitLengthIntoEqualChunks<16>();
-    constexpr std::size_t N = T_VALUES.size();
+    constexpr std::array T_VALUES = _details::divideUnitLengthIntoEqualChunks<16>();
+    constexpr std::size_t POLY_COUNT = T_VALUES.size();
 
-    std::array<glm::vec2, N> generateFromControls(std::span<const glm::vec2>);
+    std::array<glm::vec2, POLY_COUNT> generateFromControls(std::span<const glm::vec2>);
     
-    std::array<glm::vec2, N> generateFromControls(std::initializer_list<const glm::vec2>);
+    std::array<glm::vec2, POLY_COUNT> generateFromControls(std::initializer_list<const glm::vec2>);
 }

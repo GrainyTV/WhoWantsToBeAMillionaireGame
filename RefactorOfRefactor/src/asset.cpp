@@ -7,7 +7,7 @@
 #include "fontmanager.hpp"
 #include "seq/seq.hpp"
 #include "globals.hpp"
-#include "opengl.hpp"
+//#include "opengl.hpp"
 #include "result.hpp"
 #include "utility.hpp"
 #include <filesystem>
@@ -66,19 +66,20 @@ namespace Asset
         std::unordered_map<std::string, std::vector<Toml::Data>> dataCache;
         std::unordered_map<Identifier, Mix_Music*> musicCache;
         std::unordered_map<Identifier, Mix_Chunk*> sfxCache;
-        std::unordered_map<Identifier, OpenGL::TextureGpu> textureCache;        
+        std::unordered_map<Identifier, Shader::TextureInfo> textureCache;        
 
         std::vector<std::pair<Identifier, MetaAsset>> neededEntries;
         CountDownEvent countdown;
 
-        void convertSurfaceToTexture(SDL_Surface*& surface, const Identifier id)
-        {
-            DEFER(SDL_DestroySurface, surface);
+        //void convertSurfaceToTexture(SDL_Surface*& surface, const Identifier id)
+        //{
+        //    // DEFER(SDL_DestroySurface, surface);
 
-            auto texture = OpenGL::createTextureFromSurface(surface);
-            textureCache.emplace(id, texture);
-            countdown.signal();
-        }
+        //    //auto texture = OpenGL::createTextureFromSurface(surface);
+        //    auto texture = Shader::createTextureFromSurface(surface);
+        //    textureCache.emplace(id, texture);
+        //    countdown.signal();
+        //}
 
         void parseInputFile(const fs::directory_entry& file)
         {
@@ -109,15 +110,25 @@ namespace Asset
                     const auto surfaceResult = Result(IMG_Load(texturePath.get()), "Failed to load surface");
                     Debug::assert(surfaceResult.isOk(), "{}", surfaceResult.toString());
 
-                    SDL_Surface* surface(surfaceResult.unwrap());
+                    SDL_Surface* const surface = surfaceResult.unwrap();
+
+                    if ((*surface).format != SDL_PIXELFORMAT_RGBA32)
+                    {
+                        DEFER(SDL_DestroySurface, surface);
+                        SDL_Surface* const convertedSurface = SDL_ConvertSurface(surface, SDL_PIXELFORMAT_RGBA32);
+
+                        textureCache.emplace(id, Shader::createTextureFromSurface(convertedSurface));
+                    }
+                    else
+                    {
+                        textureCache.emplace(id, Shader::createTextureFromSurface(surface));
+                    }
+
+                    countdown.signal();
+
                     //const SDL_PixelFormat targetFormat = SDL_PIXELFORMAT_BGRA8888;
 
-                    // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-                    // ┃ Flip surface for OpenGL's inverted coordinate system ┃
-                    // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-
-                    SDL_FlipSurface(surface, SDL_FLIP_VERTICAL);
-                    auto* callback = new Invokable(convertSurfaceToTexture, surface, id);
+                    //auto* callback = new Invokable(convertSurfaceToTexture, surface, id);
 
                     // Invokable* callback = nullptr;
 
@@ -133,7 +144,7 @@ namespace Asset
                     //     callback = new Invokable(convertSurfaceToTexture, surface, id);
                     // }
 
-                    Utility::requestUserEvent({ .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = callback });
+                    //Utility::requestUserEvent({ .type = EVENT_INVOKE_ON_UI_THREAD, .data1 = callback });
                     break;
                 }
 
@@ -217,7 +228,7 @@ namespace Asset
         }
     }
 
-    OpenGL::TextureGpu getTextureById(const Identifier id)
+    Shader::TextureInfo getTextureById(const Identifier id)
     {
         Debug::assert(textureCache.contains(id), "Texture Cache is missing provided indentifier {}", static_cast<int32_t>(id));
         return textureCache[id];

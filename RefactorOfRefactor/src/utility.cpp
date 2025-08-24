@@ -1,8 +1,10 @@
 #include "utility.hpp"
 #include "debug.hpp"
 #include "result.hpp"
+#include "seq/seq.hpp"
 
 using enum Utility::CustomEvents;
+using glm::vec2;
 
 // SDL_FPoint Utility::svlToFpoint(const Vec2 svlVec2)
 // {
@@ -100,23 +102,61 @@ namespace Utility
         return buffer;
     }
 
-    std::array<vec2, 4> cornersOfRectangle(const SDL_FRect rect)
+    RectCorners cornersOfRectangle(SDL_FRect rect)
     {
         return {
-            vec2(rect.x, rect.y),
-            vec2(rect.x + rect.w, rect.y),
-            vec2(rect.x, rect.y + rect.h),
-            vec2(rect.x + rect.w, rect.y + rect.h)
+            .TopLeft = vec2(rect.x, rect.y),
+            .TopRight = vec2(rect.x + rect.w, rect.y),
+            .BottomLeft = vec2(rect.x, rect.y + rect.h),
+            .BottomRight = vec2(rect.x + rect.w, rect.y + rect.h)
         };
     }
 
-    vec2 centerPointOfRectangle(const SDL_FRect rect)
+    vec2 centerPointOfRectangle(SDL_FRect rect)
     {
-        const std::array corners = cornersOfRectangle(rect);
+        const RectCorners corners = cornersOfRectangle(rect);
 
         return {
-            (corners[0].x + corners[1].x + corners[2].x + corners[3].x) / 4.0f,
-            (corners[0].y + corners[1].y + corners[2].y + corners[3].y) / 4.0f
+            (corners.TopLeft.x + corners.TopRight.x + corners.BottomLeft.x + corners.BottomRight.x) / 4.0f,
+            (corners.TopLeft.y + corners.TopRight.y + corners.BottomLeft.y + corners.BottomRight.y) / 4.0f
         };
+    }
+
+    auto danSundayWindingNumberCheck(std::span<const vec2> positions, vec2 p0) -> bool
+    {
+        // probably a really scuffed implementation
+        // of Dan Sunday's algorithm to test if any point
+        // is inside an arbitrary polygon, but it works
+
+        auto windingNumberDetection = [p0](const std::pair<vec2, vec2>& neighbors)
+        {
+            const vec2& a = neighbors.first;
+            const vec2& b = neighbors.second;
+            
+            const bool atLeastOneXIsToTheRight = a.x >= p0.x || b.x >= p0.x;
+            const bool goingUpwards = atLeastOneXIsToTheRight && a.y <= p0.y && p0.y <= b.y;
+            const bool goingDownwards = atLeastOneXIsToTheRight && b.y <= p0.y && p0.y <= a.y;
+
+            if (goingUpwards)
+            {
+                return 1;
+            }
+            else if (goingDownwards)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        };
+
+        const int32_t windingNumberSum =
+            positions
+            | Seq::pairwiseWrap()
+            | Seq::map(windingNumberDetection)
+            | Seq::sum();
+
+        return windingNumberSum != 0;
     }
 }

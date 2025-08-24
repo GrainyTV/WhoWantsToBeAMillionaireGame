@@ -19,7 +19,8 @@ def main():
     to_copy = os.path.join(source_dir, target_dir)
     where_to = os.path.join(build_dir, target_dir)
 
-    shutil.copytree(to_copy, where_to)
+    if not os.path.exists(where_to):
+        shutil.copytree(to_copy, where_to)
 
 if __name__ == '__main__':
     main()

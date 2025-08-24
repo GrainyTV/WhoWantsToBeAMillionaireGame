@@ -3,7 +3,7 @@
 #include "fontmanager.hpp"
 #include "seq/seq.hpp"
 #include "globals.hpp"
-#include "hexagon.hpp"
+#include "textbubble.hpp"
 #include "iscene.hpp"
 #include "optionwrap.hpp"
 #include "scoreboard.hpp"
@@ -13,7 +13,7 @@
 
 namespace Scene
 {
-    using Hexagon::TextBubble;
+    using TextBubbleModule::TextBubble;
     using ScoreboardModule::Scoreboard;
     using enum Asset::Identifier;
 
@@ -23,105 +23,108 @@ namespace Scene
         bool sceneLoaded = false;
         float totalAvailableSpaceTopHalf = 0;
         float totalAvailableSpaceBottomHalf = 0;
-        Option::Inst<size_t> selectedButton = Option::None<size_t>();
-        
+        Option<size_t> selectedButton = OptionExtensions::None<size_t>();
+
         static constexpr size_t BUTTON_COUNT = 5;
-        std::array<TextBubble, BUTTON_COUNT> uiButtons;
+        std::array<TextBubble, BUTTON_COUNT> uiButtons = initializeButtons();
+
+        Scoreboard scoreboard = { uiButtons[2].availableArea(), totalAvailableSpaceTopHalf };
+        
+        // these below will be initialized later
         
         Toml::Data data;
-        Scoreboard scoreboard;
         std::future<void> animationProcess;
 
         void removeHalfOfTheAnswers()
         {
-            uiButtons.at(1).IsEnabled = false;
-            uiButtons.at(2).IsEnabled = false;
-            Utility::invalidate();
+            //uiButtons.at(1).IsEnabled = false;
+            //uiButtons.at(2).IsEnabled = false;
+            //Utility::invalidate();
         }
 
-        void buttonIntersectionWithPreviousHit(SDL_FPoint location)
-        {
-            const std::size_t buttonId = selectedButton.value();
+        //void buttonIntersectionWithPreviousHit(SDL_FPoint location)
+        //{
+        //    const std::size_t buttonId = selectedButton.value();
 
-            if (buttonId >= 1 && buttonId <= 4)
-            {
-                const bool noMainButtonsHovered =
-                    Seq::range<1, BUTTON_COUNT>()
-                    | Seq::forall([&](std::size_t i)
-                        {
-                            return Hexagon::isCursorInside(uiButtons.at(i).Frontend.CpuProperties.Positions, Utility::fPointToGlm(location)) == false;
-                        });            
+        //    if (buttonId >= 1 && buttonId <= 4)
+        //    {
+        //        const bool noMainButtonsHovered =
+        //            Seq::range<1, BUTTON_COUNT>()
+        //            | Seq::forall([&](std::size_t i)
+        //                {
+        //                    return Hexagon::isCursorInside(uiButtons.at(i).Frontend.CpuProperties.Positions, Utility::fPointToGlm(location)) == false;
+        //                });            
 
-                if (noMainButtonsHovered)
-                {
-                    uiButtons.at(selectedButton.value()).Frontend.RenderProperties.ButtonColor = Color::NBLACK;  
-                    selectedButton = Option::None<std::size_t>();
-                    Utility::invalidate();
-                }
+        //        if (noMainButtonsHovered)
+        //        {
+        //            uiButtons.at(selectedButton.value()).Frontend.RenderProperties.ButtonColor = Color::NBLACK;  
+        //            selectedButton = Option::None<std::size_t>();
+        //            Utility::invalidate();
+        //        }
 
-                return;
-            }
+        //        return;
+        //    }
 
-            if (buttonId == 5 && Hexagon::isCursorInside(scoreboard.FiftyFiftyHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
-            {
-                scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NGRAY;
-                selectedButton = Option::None<std::size_t>();
-                Utility::invalidate();
-                return;
-            }
+        //    if (buttonId == 5 && Hexagon::isCursorInside(scoreboard.FiftyFiftyHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
+        //    {
+        //        scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NGRAY;
+        //        selectedButton = Option::None<std::size_t>();
+        //        Utility::invalidate();
+        //        return;
+        //    }
 
-            if (buttonId == 6 && Hexagon::isCursorInside(scoreboard.PhoneHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
-            {
-                scoreboard.PhoneHelp.GpuProperties.Color = Color::NGRAY;
-                selectedButton = Option::None<std::size_t>();
-                Utility::invalidate();
-                return;     
-            }
+        //    if (buttonId == 6 && Hexagon::isCursorInside(scoreboard.PhoneHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
+        //    {
+        //        scoreboard.PhoneHelp.GpuProperties.Color = Color::NGRAY;
+        //        selectedButton = Option::None<std::size_t>();
+        //        Utility::invalidate();
+        //        return;     
+        //    }
 
-            if (buttonId == 7 && Hexagon::isCursorInside(scoreboard.AudienceHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
-            {
-                scoreboard.AudienceHelp.GpuProperties.Color = Color::NGRAY;
-                selectedButton = Option::None<std::size_t>();
-                Utility::invalidate();
-            }
-        }
+        //    if (buttonId == 7 && Hexagon::isCursorInside(scoreboard.AudienceHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)) == false)
+        //    {
+        //        scoreboard.AudienceHelp.GpuProperties.Color = Color::NGRAY;
+        //        selectedButton = Option::None<std::size_t>();
+        //        Utility::invalidate();
+        //    }
+        //}
 
-        Option::Inst<std::size_t> buttonIntersectionWithoutPreviousHit(SDL_FPoint location)
-        {
-            auto somethingSelected = Option::None<std::size_t>();
+        //Option<size_t> buttonIntersectionWithoutPreviousHit(SDL_FPoint location)
+        //{
+        //    auto somethingSelected = Option::None<std::size_t>();
 
-            Seq::range<1, BUTTON_COUNT>()
-            | Seq::iter([&](std::size_t i)
-                {
-                    if (Hexagon::isCursorInside(uiButtons.at(i).Frontend.CpuProperties.Positions, Utility::fPointToGlm(location))
-                        && uiButtons.at(i).IsEnabled)
-                    {
-                        somethingSelected = Option::Some(i);
-                    }
-                });
+        //    Seq::range<1, BUTTON_COUNT>()
+        //    | Seq::iter([&](std::size_t i)
+        //        {
+        //            if (Hexagon::isCursorInside(uiButtons.at(i).Frontend.CpuProperties.Positions, Utility::fPointToGlm(location))
+        //                && uiButtons.at(i).IsEnabled)
+        //            {
+        //                somethingSelected = Option::Some(i);
+        //            }
+        //        });
 
-            if (somethingSelected.isSome())
-            {
-                return somethingSelected;
-            }
+        //    if (somethingSelected.isSome())
+        //    {
+        //        return somethingSelected;
+        //    }
 
-            if (Hexagon::isCursorInside(scoreboard.FiftyFiftyHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
-            {
-                return Option::Some(BUTTON_COUNT);
-            }
+        //    if (Hexagon::isCursorInside(scoreboard.FiftyFiftyHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
+        //    {
+        //        return Option::Some(BUTTON_COUNT);
+        //    }
 
-            if (Hexagon::isCursorInside(scoreboard.PhoneHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
-            {
-                return Option::Some(BUTTON_COUNT + 1);
-            }
+        //    if (Hexagon::isCursorInside(scoreboard.PhoneHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
+        //    {
+        //        return Option::Some(BUTTON_COUNT + 1);
+        //    }
 
-            if (Hexagon::isCursorInside(scoreboard.AudienceHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
-            {
-                return Option::Some(BUTTON_COUNT + 2);
-            }
+        //    if (Hexagon::isCursorInside(scoreboard.AudienceHelp.CpuProperties.Vertices, Utility::fPointToGlm(location)))
+        //    {
+        //        return Option::Some(BUTTON_COUNT + 2);
+        //    }
 
-            return Option::None<std::size_t>();
-        }
+        //    return Option::None<std::size_t>();
+        //}
 
         bool checkForOngoingAnimation()
         {
@@ -142,11 +145,11 @@ namespace Scene
 
         void animateTextPopups()
         {
-            Seq::range<0, BUTTON_COUNT>()
-            | Seq::iter([this](std::size_t i)
+            uiButtons
+            | Seq::iteri([this](size_t i, const TextBubble& /*unused*/)
                 {
                     std::this_thread::sleep_for(std::chrono::milliseconds(i == 0 ? 500 : 2000));
-                    uiButtons.at(i).Frontend.RenderProperties.TextVisible = true;
+                    uiButtons[i].showText();
                     Utility::invalidate();
                 });
 
@@ -155,20 +158,33 @@ namespace Scene
 
         void ontoTheNextRound()
         {
-            Seq::range<0, BUTTON_COUNT>()
-            | Seq::iter([this](std::size_t i)
-                {
-                    uiButtons.at(i).Frontend.RenderProperties.TextVisible = false;
-                    uiButtons.at(i).Frontend.RenderProperties.ButtonColor = Color::NBLACK;
-                });
-            
-            data = Asset::getRandomData();
+            //Seq::range<0, BUTTON_COUNT>()
+            //| Seq::iter([this](std::size_t i)
+            //    {
+            //        uiButtons.at(i).Frontend.RenderProperties.TextVisible = false;
+            //        uiButtons[i].Frontend.RenderProperties.ButtonColor = Color::NBLACK;
+            //    });
 
-            Hexagon::lateinit(uiButtons[0].Frontend, data.Question);
-            Hexagon::lateinit(uiButtons[1].Frontend, data.AnswerA.Text);
-            Hexagon::lateinit(uiButtons[2].Frontend, data.AnswerB.Text);
-            Hexagon::lateinit(uiButtons[3].Frontend, data.AnswerC.Text);
-            Hexagon::lateinit(uiButtons[4].Frontend, data.AnswerD.Text);
+            data = Asset::getRandomData();
+            
+            uiButtons
+            | Seq::iteri([this](size_t i, const TextBubble& /*unused*/)
+                {
+                    uiButtons[i].changeBackgroundColorTo(Color::NBLACK);
+                    uiButtons[i].hideText();
+                });
+
+            uiButtons[0].applyText(data.Question);
+            uiButtons[1].applyText(data.AnswerA.Text);
+            uiButtons[2].applyText(data.AnswerB.Text);
+            uiButtons[3].applyText(data.AnswerC.Text);
+            uiButtons[4].applyText(data.AnswerD.Text);
+
+            //Hexagon::lateinit(uiButtons[0].Frontend, data.Question);
+            //Hexagon::lateinit(uiButtons[1].Frontend, data.AnswerA.Text);
+            //Hexagon::lateinit(uiButtons[2].Frontend, data.AnswerB.Text);
+            //Hexagon::lateinit(uiButtons[3].Frontend, data.AnswerC.Text);
+            //Hexagon::lateinit(uiButtons[4].Frontend, data.AnswerD.Text);
 
             animationProcess = std::async(std::launch::async, &InGameScene::animateTextPopups, this);
         }
@@ -190,18 +206,18 @@ namespace Scene
 
             if ((*answer).IsCorrect)
             {
-                uiButtons.at(1).Frontend.RenderProperties.ButtonColor = Color::NGREEN;
+                uiButtons[1].changeBackgroundColorTo(Color::NGREEN);
                 animationProcess = std::async(std::launch::async, &InGameScene::animateAnswerValidation, this);          
             }
             else
             {
-                uiButtons.at(2).Frontend.RenderProperties.ButtonColor = Color::NRED;
+                uiButtons[2].changeBackgroundColorTo(Color::NRED);
             }
         }
 
         std::array<TextBubble, BUTTON_COUNT> initializeButtons()
         {
-            const auto properties = Globals::Properties.value();
+            const auto& properties = Globals::Properties.value();
             const auto screenWidth = static_cast<float>(properties.ScreenWidth);
             const auto screenHeight = static_cast<float>(properties.ScreenHeight);
 
@@ -220,50 +236,35 @@ namespace Scene
             const float sixtyfivePercantOfWidth = 0.65f * screenWidth;
             const float beginWidth = (screenWidth - sixtyfivePercantOfWidth) / 2.0f;
             
-            const std::vector<SDL_FRect> buttonAreas = 
+            const std::array<SDL_FRect, BUTTON_COUNT> buttonAreas = 
                 Seq::range<1, 6>()
-                | Seq::map([&](const int32_t index)
+                | Seq::map([&](int32_t i)
                     {
-                        const int32_t row = index / 2;
+                        const int32_t row = i / 2;
                         const auto rowF = static_cast<float>(row);
 
                         return SDL_FRect({
-                            .x = index == 1 ? beginWidth : index % 2 == 0 ? beginWidth : beginWidth + sixtyfivePercantOfWidth * 0.55f,
+                            .x = (i == 1 || i % 2 == 0) ? beginWidth : beginWidth + sixtyfivePercantOfWidth * 0.55f,
                             .y = totalAvailableSpaceTopHalf + (rowF + 1) * individualPaddingSpace + rowF * individualItemSpace,
-                            .w = index == 1 ? sixtyfivePercantOfWidth : sixtyfivePercantOfWidth * 0.45f,
+                            .w = (i == 1) ? sixtyfivePercantOfWidth : sixtyfivePercantOfWidth * 0.45f,
                             .h = individualItemSpace,
                         });
                     });
 
             return {
-                TextBubble({
-                    .Frontend = Hexagon::init(buttonAreas[0], true),
-                    .Backend = Invokable()
-                }),
-                TextBubble({
-                    .Frontend = Hexagon::init(buttonAreas[1], true),
-                    .Backend = Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerA)
-                }),
-                TextBubble({
-                    .Frontend = Hexagon::init(buttonAreas[2], false),
-                    .Backend = Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerB)
-                }),
-                TextBubble({
-                    .Frontend = Hexagon::init(buttonAreas[3], true),
-                    .Backend = Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerC)
-                }),
-                TextBubble({
-                    .Frontend = Hexagon::init(buttonAreas[4], false),
-                    .Backend = Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerD)
-                }),
+                TextBubble(buttonAreas[0]),
+                TextBubble(buttonAreas[1], OptionExtensions::Some(Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerA))),
+                TextBubble(buttonAreas[2], OptionExtensions::Some(Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerB)), false),
+                TextBubble(buttonAreas[3], OptionExtensions::Some(Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerC))),
+                TextBubble(buttonAreas[4], OptionExtensions::Some(Invokable(&InGameScene::checkIfAnswerIsCorrect, this, &data.AnswerD)), false),
             };
         }
 
     public:
         void init()
         {
-            uiButtons = initializeButtons();
-            scoreboard = ScoreboardModule::init(uiButtons[2].Frontend.CpuProperties.AvailableArea, totalAvailableSpaceTopHalf);
+            // uiButtons = initializeButtons();
+            // scoreboard = ScoreboardModule::init(uiButtons[2].Frontend.CpuProperties.AvailableArea, totalAvailableSpaceTopHalf);
 
             Asset::queueToLoad(Background);
             Asset::queueToLoad(MusicEasy);
@@ -277,6 +278,8 @@ namespace Scene
             Asset::queueToLoad(HELP_PHONE);
             Asset::beginLoadProcess();
 
+            scoreboard.FiftyFiftyHelp.applyText("50:50");
+
             Utility::invalidate();
         }
 
@@ -286,117 +289,168 @@ namespace Scene
 
         void redraw()
         {
-            OpenGL::clearScreen();
-            OpenGL::renderTexture(Asset::getTextureById(Background));
+            //OpenGL::clearScreen();
+            //OpenGL::renderTexture(Asset::getTextureById(Background));
 
-            if (sceneLoaded)
+            //if (sceneLoaded)
+            //{
+            //    ScoreboardModule::draw(scoreboard);
+
+            //    uiButtons
+            //    | Seq::iter([&](const TextBubble& tb)
+            //        {
+            //            Hexagon::draw(tb.Frontend.GpuProperties, tb.Frontend.RenderProperties);
+            //        });
+            //}
+
+            //const auto properties = Globals::Properties.value();
+            //SDL_GL_SwapWindow(properties.Window);
+
+            const auto& properties = Globals::Properties.value();
+            SDL_GPUCommandBuffer* const commandBuffer = SDL_AcquireGPUCommandBuffer(properties.Gpu);
+
+            if (commandBuffer != nullptr)
             {
-                ScoreboardModule::draw(scoreboard);
+                SDL_GPUTexture* swapchainTexture = nullptr;
 
-                uiButtons
-                | Seq::iter([&](const TextBubble& tb)
+                if (SDL_WaitAndAcquireGPUSwapchainTexture(commandBuffer, properties.Window, &swapchainTexture, nullptr, nullptr))
+                {
+                    SDL_GPURenderPass* const render = Shader::beginRender(commandBuffer, swapchainTexture);
+                    Shader::renderTexture(commandBuffer, render, Asset::getTextureById(Background));
+
+                    if (sceneLoaded)
                     {
-                        Hexagon::draw(tb.Frontend.GpuProperties, tb.Frontend.RenderProperties);
-                    });
+                        uiButtons
+                        | Seq::iter([&](const TextBubble& tb)
+                            {
+                                tb.draw(commandBuffer, render);
+                            });
+
+                        scoreboard.draw(commandBuffer, render);
+                        
+                        Shader::renderTexture(commandBuffer, render, scoreboard.FiftyFiftyHelp.renderedText());
+                        Shader::renderTexture(commandBuffer, render, Asset::getTextureById(HELP_PHONE));
+                        Shader::renderTexture(commandBuffer, render, Asset::getTextureById(HELP_AUDIENCE));
+                    }
+
+                    SDL_EndGPURenderPass(render);
+                    Shader::finalizeRender(commandBuffer, swapchainTexture);
+                }
             }
 
-            const auto properties = Globals::Properties.value();
-            SDL_GL_SwapWindow(properties.Window);
+            if (!SDL_SubmitGPUCommandBuffer(commandBuffer))
+            {
+                Debug::log("You done fucked up!");
+            }
         }
 
         void intersects(const SDL_FPoint location)
         {
-            if (checkForOngoingAnimation() == false)
-            {
-                if (selectedButton.isSome())
-                {
-                    buttonIntersectionWithPreviousHit(location);
-                }
-                else
-                {
-                    const Option::Inst<std::size_t> hit = buttonIntersectionWithoutPreviousHit(location);
+            //if (checkForOngoingAnimation() == false)
+            //{
+            //    if (selectedButton.isSome())
+            //    {
+            //        buttonIntersectionWithPreviousHit(location);
+            //    }
+            //    else
+            //    {
+            //        const Option::Inst<std::size_t> hit = buttonIntersectionWithoutPreviousHit(location);
 
-                    if (hit.isSome())
-                    {
-                        const std::size_t buttonId = hit.value();
+            //        if (hit.isSome())
+            //        {
+            //            const std::size_t buttonId = hit.value();
 
-                        switch (buttonId)
-                        {
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 4:
-                                uiButtons.at(buttonId).Frontend.RenderProperties.ButtonColor = Color::NORANGE;
-                                break;
+            //            switch (buttonId)
+            //            {
+            //                case 1:
+            //                case 2:
+            //                case 3:
+            //                case 4:
+            //                    uiButtons.at(buttonId).Frontend.RenderProperties.ButtonColor = Color::NORANGE;
+            //                    break;
 
-                            case 5:
-                                scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NORANGE;
-                                break;
-                            
-                            case 6:
-                                scoreboard.PhoneHelp.GpuProperties.Color = Color::NORANGE;
-                                break;
+            //                case 5:
+            //                    scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NORANGE;
+            //                    break;
+            //                
+            //                case 6:
+            //                    scoreboard.PhoneHelp.GpuProperties.Color = Color::NORANGE;
+            //                    break;
 
-                            case 7:
-                                scoreboard.AudienceHelp.GpuProperties.Color = Color::NORANGE;
-                                break;
+            //                case 7:
+            //                    scoreboard.AudienceHelp.GpuProperties.Color = Color::NORANGE;
+            //                    break;
 
-                            default:
-                                Debug::assert(false, "Undefined button id encountered ({})", buttonId);
-                        }
+            //                default:
+            //                    Debug::assert(false, "Undefined button id encountered ({})", buttonId);
+            //            }
 
-                        selectedButton = hit;
-                        Utility::invalidate();
-                    }
-                }
-            }
+            //            selectedButton = hit;
+            //            Utility::invalidate();
+            //        }
+            //    }
+            //}
         }
 
         void onSceneLoaded()
         {
             sceneLoaded = true;
-            ScoreboardModule::lateinit(scoreboard.FiftyFiftyHelp, "50:50");
-            ScoreboardModule::lateinit(scoreboard.PhoneHelp, HELP_PHONE);
-            ScoreboardModule::lateinit(scoreboard.AudienceHelp, HELP_AUDIENCE);
-
             Mix_PlayMusic(Asset::getMusicById(MusicEasy), -1);
+            
+            // todo: give this function better name
             ontoTheNextRound();
+
+            Shader::beginUploadToGpu();
+            Shader::uploadTextureToGpuWithAreaIfNeeded(scoreboard.FiftyFiftyHelp.renderedText(), OptionExtensions::Some(scoreboard.FiftyFiftyHelp.whereToRenderTextureAt(scoreboard.FiftyFiftyHelp.renderedText())));
+            Shader::uploadTextureToGpuWithAreaIfNeeded(Asset::getTextureById(HELP_PHONE), OptionExtensions::Some(scoreboard.PhoneHelp.whereToRenderTextureAt(Asset::getTextureById(HELP_PHONE))));
+            Shader::uploadTextureToGpuWithAreaIfNeeded(Asset::getTextureById(HELP_AUDIENCE), OptionExtensions::Some(scoreboard.AudienceHelp.whereToRenderTextureAt(Asset::getTextureById(HELP_AUDIENCE))));
+            uiButtons | Seq::iter([](const TextBubble& tb) { Shader::uploadTextureToGpuWithAreaIfNeeded(tb.renderedText(), OptionExtensions::Some(tb.whereToRenderTextAt())); });
+            Shader::endUploadToGpu();
+
+
+            //ScoreboardModule::lateinit(scoreboard.FiftyFiftyHelp, "50:50");
+            //ScoreboardModule::lateinit(scoreboard.PhoneHelp, HELP_PHONE);
+            //ScoreboardModule::lateinit(scoreboard.AudienceHelp, HELP_AUDIENCE);
+            //Shader::beginUploadToGpu();
+            //Shader::endUploadToGpu();
+
+
 
             Utility::invalidate();
         }
 
         void clicks()
         {
-            if (checkForOngoingAnimation() == false && selectedButton.isSome())
-            {
-                const std::size_t buttonId = selectedButton.value();
+            //if (checkForOngoingAnimation() == false && selectedButton.isSome())
+            //{
+            //    const std::size_t buttonId = selectedButton.value();
 
-                switch (buttonId)
-                {
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        if (uiButtons.at(buttonId).IsEnabled) { uiButtons.at(buttonId).Backend.execute(); }
-                        break;
+            //    switch (buttonId)
+            //    {
+            //        case 1:
+            //        case 2:
+            //        case 3:
+            //        case 4:
+            //            if (uiButtons.at(buttonId).IsEnabled) { uiButtons.at(buttonId).Backend.execute(); }
+            //            break;
 
-                    case 5:
-                        removeHalfOfTheAnswers();
-                        //scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NORANGE;
-                        break;
-                    
-                    case 6:
-                        //scoreboard.PhoneHelp.GpuProperties.Color = Color::NORANGE;
-                        break;
+            //        case 5:
+            //            removeHalfOfTheAnswers();
+            //            //scoreboard.FiftyFiftyHelp.GpuProperties.Color = Color::NORANGE;
+            //            break;
+            //        
+            //        case 6:
+            //            //scoreboard.PhoneHelp.GpuProperties.Color = Color::NORANGE;
+            //            break;
 
-                    case 7:
-                        //scoreboard.AudienceHelp.GpuProperties.Color = Color::NORANGE;
-                        break;
+            //        case 7:
+            //            //scoreboard.AudienceHelp.GpuProperties.Color = Color::NORANGE;
+            //            break;
 
-                    default:
-                        Debug::assert(false, "Undefined button id encountered ({})", buttonId);
-                }
-            }
+            //        default:
+            //            Debug::assert(false, "Undefined button id encountered ({})", buttonId);
+            //    }
+            //}
         }
     };
 }

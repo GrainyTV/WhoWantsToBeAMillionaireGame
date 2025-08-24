@@ -38,7 +38,7 @@ namespace Toml
 
         return 
             entries
-            | Seq::mapi([](const toml::node& entry, size_t i) -> Toml::Data
+            | Seq::mapi([](size_t i, const toml::node& entry) -> Toml::Data
                 {
                     Debug::assert(entry.is_table(), "Entry is not a valid table at index {}", i);
                     const auto properties = *entry.as_table();

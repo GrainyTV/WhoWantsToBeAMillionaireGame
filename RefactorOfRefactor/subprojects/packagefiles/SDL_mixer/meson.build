@@ -1,8 +1,7 @@
 project('sdl3_mixer', 'c', version: 'git-4be37aed1a4b76df71a814fbfa8ec9983f3b5508')
 
-sdl3 = dependency('sdl3')
-
 add_project_arguments(
+    '-DDLL_EXPORT',
     '-DMUSIC_MP3_MINIMP3',
     language: 'c'
 )
@@ -38,10 +37,10 @@ sources = files(
 incdirs = include_directories('src', 'src/codecs', 'include')
 
 sdl3_mixer_lib = library(
-    meson.project_name(),
+    'SDL3_mixer',
     sources,
     include_directories: incdirs,
-    dependencies: sdl3,
+    dependencies: dependency('sdl3'),
     install: true,
     install_rpath: '.'
 )

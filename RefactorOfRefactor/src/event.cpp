@@ -9,7 +9,8 @@
 
 #include "scene.hpp"
 
-#include "opengl.hpp"
+//#include "opengl.hpp"
+#include "shader.hpp"
 #include "utility.hpp"
 #include <functional>
 #include <unordered_map>
@@ -18,10 +19,9 @@ namespace Event
 {
     namespace
     {
+        using namespace Scene;
         using enum Utility::CustomEvents;
         using enum SceneOperation;
-        using Scene::MainMenuScene;
-        using Scene::InGameScene;
         using ExclusiveScene = std::variant<std::monostate, MainMenuScene, InGameScene>;
 
         SDL_Event presentEvent;
@@ -59,12 +59,18 @@ namespace Event
 
     void startRunningOnMainUiThread()
     {
-        const auto properties = Globals::Properties.value();
+        const auto& properties = Globals::Properties.value();
+        
         SDL_SetWindowSize(properties.Window, properties.ScreenWidth, properties.ScreenHeight);
+        SDL_ShowWindow(properties.Window);
         SDL_SetWindowFullscreen(properties.Window, true);
-
+        
+        Debug::assert(SDL_ClaimWindowForGPUDevice(properties.Gpu, properties.Window), "{}", SDL_GetError());
+        
+        // SDL_SetWindowFullscreen(properties.Window, true);
         //OpenGL::compileShaders();
-        OpenGL::init();
+        //OpenGL::init();
+        Shader::init();
         FontManager::init();
         changeSceneTo<MainMenuScene>();
 
@@ -73,9 +79,12 @@ namespace Event
             const bool detectedEvent = SDL_WaitEvent(&presentEvent);
             Debug::assert(detectedEvent, "Failed to load event from queue ({})", SDL_GetError());
 
-            if (eventCalls.contains(presentEvent.type))
+            if (detectedEvent)
             {
-                eventCalls[presentEvent.type]();
+                if (eventCalls.contains(presentEvent.type))
+                {
+                    eventCalls[presentEvent.type]();
+                }
             }
         }
     }

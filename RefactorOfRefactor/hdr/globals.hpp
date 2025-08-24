@@ -8,11 +8,11 @@ namespace Globals
 {
     struct GameProperties
     {
-        int32_t ScreenWidth;
-        int32_t ScreenHeight;
+        uint32_t ScreenWidth;
+        uint32_t ScreenHeight;
         SDL_Window* Window;
-        //SDL_Renderer* Renderer;
+        SDL_GPUDevice* Gpu;
     };
 
-    inline auto Properties = Option::None<GameProperties>();
+    inline auto Properties = OptionExtensions::None<GameProperties>();
 }

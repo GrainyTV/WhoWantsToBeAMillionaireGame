@@ -35,6 +35,7 @@ local_args = cpp.get_supported_arguments(
 add_project_arguments(local_args, language: 'cpp')
 
 dependencies = [
+    dependency('seq.hpp'),
     dependency('tomlplusplus'),
     dependency('glm'),
     dependency('sdl3'),
@@ -50,10 +51,11 @@ sources = files(
     'src/bezier.cpp',
     'src/utility.cpp',
     'src/fontmanager.cpp',
-    'src/opengl.cpp',
+#    'src/opengl.cpp',
+    'src/shader.cpp',
     'src/roundedrectangle.cpp',
     'src/scoreboard.cpp',
-    'src/hexagon.cpp',
+    'src/textbubble.cpp',
     'src/toml.cpp',
     'src/asset.cpp',
     'src/event.cpp',
@@ -67,9 +69,17 @@ copy_assets = run_command(
     capture: false
 )
 
+obj_gen = generator(
+    find_program('objcopy'),
+    arguments: ['-I', 'binary', '-O', 'pe-x86-64', '-B', 'i386:x86-64', '@INPUT@', '@OUTPUT@'],
+    output: '@PLAINNAME@.obj'
+)
+
 executable(
     meson.project_name(),
     sources,
+    obj_gen.process('shader/vertex.spirv'),
+    obj_gen.process('shader/fragment.spirv'),
     name_suffix: platform == 'windows' ? 'exe' : 'out',
     include_directories: include_directories('hdr'),
     dependencies: dependencies,

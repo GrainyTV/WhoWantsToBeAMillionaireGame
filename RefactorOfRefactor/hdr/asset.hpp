@@ -1,7 +1,8 @@
 #pragma once
 #include "SDL3/SDL.h"
 #include "SDL3_mixer/SDL_mixer.h"
-#include "opengl.hpp"
+//#include "opengl.hpp"
+#include "shader.hpp"
 #include "toml.hpp"
 #include <cstdint>
 
@@ -26,7 +27,7 @@ namespace Asset
 
     void beginLoadProcess();
 
-    OpenGL::TextureGpu getTextureById(Identifier);
+    Shader::TextureInfo getTextureById(Identifier);
 
     Mix_Music* getMusicById(Identifier);
 
